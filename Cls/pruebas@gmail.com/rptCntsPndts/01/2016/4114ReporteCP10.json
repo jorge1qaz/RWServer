@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "ccod_cli": "44734225   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 320.83,
+      "total": 320.83,
+      "crazon": "JURADO SALCEDO EDWIN                                                                                "
+    },
+    {
+      "ccod_cli": "44057652   ",
+      "sum_ndebe": 463.25,
+      "sum_nhaber": 675.75,
+      "total": 212.5,
+      "crazon": "PEREZ DE LA TORRE YENNY KARINA                                                                      "
+    },
+    {
+      "ccod_cli": "41636245   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 202.22,
+      "total": 202.22,
+      "crazon": "QUISPE CORDOVA WILLIAM JAVIER                                                                       "
+    },
+    {
+      "ccod_cli": "42753276   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 137.22,
+      "total": 137.22,
+      "crazon": "QUENAYA PORTUGAL FIORELA                                                                            "
+    },
+    {
+      "ccod_cli": "46620046   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 125.0,
+      "total": 125.0,
+      "crazon": "CARDENAS LLACZA GUADALUPE                                                                           "
+    },
+    {
+      "ccod_cli": "20568485921",
+      "sum_ndebe": 997.77,
+      "sum_nhaber": 0.0,
+      "total": -997.77,
+      "crazon": "GRUPO HINOSTROZA SERVIS S.A.C.                                                                      "
+    }
+  ]
+}

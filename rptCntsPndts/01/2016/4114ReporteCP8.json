@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "44734225   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 320.83,
+      "total": 320.83,
+      "crazon": "JURADO SALCEDO EDWIN                                                                                "
+    },
+    {
+      "ccod_cli": "42264223   ",
+      "sum_ndebe": 1019.15,
+      "sum_nhaber": 1226.93,
+      "total": 207.78,
+      "crazon": "SALOME BORJA CESAR                                                                                  "
+    },
+    {
+      "ccod_cli": "46620046   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 125.0,
+      "total": 125.0,
+      "crazon": "CARDENAS LLACZA GUADALUPE                                                                           "
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20541453904",
+      "sum_ndebe": 16632.0,
+      "sum_nhaber": 20790.0,
+      "total": 4158.0,
+      "crazon": "E-CONTACOM S.A.C                                                                                    "
+    },
+    {
+      "ccod_cli": "20485967894",
+      "sum_ndebe": 3074.0,
+      "sum_nhaber": 6609.01,
+      "total": 3535.01,
+      "crazon": "EDITORA GRAFICA LL. RICALDI EIRL                                                                    "
+    },
+    {
+      "ccod_cli": "19909710   ",
+      "sum_ndebe": 34066.0,
+      "sum_nhaber": 36000.0,
+      "total": 1934.0,
+      "crazon": "HINOSTROZA ROMANI HERMENEGILDO                                                                      "
+    },
+    {
+      "ccod_cli": "10458341571",
+      "sum_ndebe": 22404.64,
+      "sum_nhaber": 22904.64,
+      "total": 500.0,
+      "crazon": "DAMIAN HINOSTROZA LISETTE KATERINE                                                                  "
+    },
+    {
+      "ccod_cli": "20107480979",
+      "sum_ndebe": 71776.93,
+      "sum_nhaber": 64341.05,
+      "total": -7435.88,
+      "crazon": "COMERCIALIZADORA DE LLANTAS SAC                                                                     "
+    }
+  ]
+}

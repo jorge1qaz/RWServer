@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "ccod_cli": "09113418   ",
+      "sum_ndebe": 3100.0,
+      "sum_nhaber": 3400.0,
+      "total": 300.0,
+      "crazon": "GAMARRA BENAVIDES CARLOS JESUS                                                                      "
+    },
+    {
+      "ccod_cli": "19929586   ",
+      "sum_ndebe": 3000.0,
+      "sum_nhaber": 3300.0,
+      "total": 300.0,
+      "crazon": "TRUCIOS VILA ANTONIO ZACARIAS                                                                       "
+    },
+    {
+      "ccod_cli": "20076626   ",
+      "sum_ndebe": 3000.0,
+      "sum_nhaber": 3300.0,
+      "total": 300.0,
+      "crazon": "SEDANO HINOSTROZA FERNANDO                                                                          "
+    },
+    {
+      "ccod_cli": "40827350   ",
+      "sum_ndebe": 3000.0,
+      "sum_nhaber": 3300.0,
+      "total": 300.0,
+      "crazon": "HUALPARUCA SIUCE WILLIAM LEONCIO                                                                    "
+    },
+    {
+      "ccod_cli": "45954251   ",
+      "sum_ndebe": 3000.0,
+      "sum_nhaber": 3300.0,
+      "total": 300.0,
+      "crazon": "HUAMAN LINDO LUIS                                                                                   "
+    },
+    {
+      "ccod_cli": "48127826   ",
+      "sum_ndebe": 3000.0,
+      "sum_nhaber": 3300.0,
+      "total": 300.0,
+      "crazon": "SALGADO CANCHAYA JESUS                                                                              "
+    },
+    {
+      "ccod_cli": "43559659   ",
+      "sum_ndebe": 1160.0,
+      "sum_nhaber": 1450.0,
+      "total": 290.0,
+      "crazon": "MESCUA CUSSI JUAN CARLOS                                                                            "
+    },
+    {
+      "ccod_cli": "44051956   ",
+      "sum_ndebe": 1980.0,
+      "sum_nhaber": 2245.0,
+      "total": 265.0,
+      "crazon": "GOMEZ ILIZARBE LUIS ANGEL                                                                           "
+    },
+    {
+      "ccod_cli": "20015797   ",
+      "sum_ndebe": 450.0,
+      "sum_nhaber": 600.0,
+      "total": 150.0,
+      "crazon": "ROJAS BALBIN PABLO ROGER                                                                            "
+    },
+    {
+      "ccod_cli": "20103370   ",
+      "sum_ndebe": 130.0,
+      "sum_nhaber": 195.0,
+      "total": 65.0,
+      "crazon": "AYALA ALLCAHUAMAN DELIA                                                                             "
+    },
+    {
+      "ccod_cli": "47553840   ",
+      "sum_ndebe": 450.0,
+      "sum_nhaber": 500.0,
+      "total": 50.0,
+      "crazon": "LAZARO PAITAMPOMA JHONY ROBER                                                                       "
+    }
+  ]
+}

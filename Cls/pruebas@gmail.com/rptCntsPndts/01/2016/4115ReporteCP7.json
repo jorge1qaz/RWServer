@@ -1,0 +1,53 @@
+{
+  "data": [
+    {
+      "ccod_cli": "46545994   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 597.99,
+      "total": 597.99,
+      "crazon": "PALOMINO QUICCA JHONY                                                                               "
+    },
+    {
+      "ccod_cli": "20043577   ",
+      "sum_ndebe": 12.15,
+      "sum_nhaber": 479.73,
+      "total": 467.58,
+      "crazon": "DE LA TORRE PONCE LUIS ALBERTO                                                                      "
+    },
+    {
+      "ccod_cli": "44734225   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 465.82,
+      "total": 465.82,
+      "crazon": "JURADO SALCEDO EDWIN                                                                                "
+    },
+    {
+      "ccod_cli": "42768162   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 141.21,
+      "total": 141.21,
+      "crazon": "PACHERRES LARA MARVIN AUGUSTO                                                                       "
+    },
+    {
+      "ccod_cli": "43723710   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 81.56,
+      "total": 81.56,
+      "crazon": "ALEJANDRO ORELLANA MADAI SANDRA                                                                     "
+    },
+    {
+      "ccod_cli": "46620046   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 54.37,
+      "total": 54.37,
+      "crazon": "CARDENAS LLACZA GUADALUPE                                                                           "
+    },
+    {
+      "ccod_cli": "20076626   ",
+      "sum_ndebe": 1118.74,
+      "sum_nhaber": 718.74,
+      "total": -400.0,
+      "crazon": "SEDANO HINOSTROZA FERNANDO                                                                          "
+    }
+  ]
+}

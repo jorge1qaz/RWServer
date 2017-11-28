@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "ccod_cli": "10414309882",
+      "sum_ndebe": 1131.71,
+      "sum_nhaber": 608.62,
+      "total": 523.09,
+      "crazon": "HINOSTROZA CUADROS MERCEDES ODELINDA                                                                "
+    },
+    {
+      "ccod_cli": "20226499572",
+      "sum_ndebe": 1574.0,
+      "sum_nhaber": 1164.0,
+      "total": 410.0,
+      "crazon": "EMP. DE TRANSP. Y REPRES. TURISMO CENTRAL S.A                                                       "
+    },
+    {
+      "ccod_cli": "10434737694",
+      "sum_ndebe": 1210.07,
+      "sum_nhaber": 884.05,
+      "total": 326.02,
+      "crazon": "RIVERA PALOMINO BLANCA NIEVES                                                                       "
+    },
+    {
+      "ccod_cli": "20487110141",
+      "sum_ndebe": 180.0,
+      "sum_nhaber": 0.0,
+      "total": 180.0,
+      "crazon": "ICYCON PERUANA  E.I.R.L.                                                                            "
+    },
+    {
+      "ccod_cli": "20443848178",
+      "sum_ndebe": 132.0,
+      "sum_nhaber": 20.0,
+      "total": 112.0,
+      "crazon": "EMP DE TRANSPORTES TICLLAS SAC                                                                      "
+    },
+    {
+      "ccod_cli": "20545722471",
+      "sum_ndebe": 192.0,
+      "sum_nhaber": 95.0,
+      "total": 97.0,
+      "crazon": "Consorcio Rio Mantaro                                                                               "
+    },
+    {
+      "ccod_cli": "20281244222",
+      "sum_ndebe": 151.0,
+      "sum_nhaber": 57.0,
+      "total": 94.0,
+      "crazon": "ENERGIA Y ORGANIZACION DE SISTEMAS SAC                                                              "
+    },
+    {
+      "ccod_cli": "20202656391",
+      "sum_ndebe": 181.0,
+      "sum_nhaber": 90.0,
+      "total": 91.0,
+      "crazon": "TRANDISER SRLTDA                                                                                    "
+    },
+    {
+      "ccod_cli": "20568728255",
+      "sum_ndebe": 338.45,
+      "sum_nhaber": 346.53,
+      "total": -8.08,
+      "crazon": "IMPORTACIONES E INVERSIONES GENERALES DACL SAC                                                      "
+    },
+    {
+      "ccod_cli": "20486439492",
+      "sum_ndebe": 290.28,
+      "sum_nhaber": 298.7,
+      "total": -8.42,
+      "crazon": "REPUESTOS Y SERVICIOS JAPAN PARTES S.C.R.L.                                                         "
+    },
+    {
+      "ccod_cli": "10198965036",
+      "sum_ndebe": 715.18,
+      "sum_nhaber": 735.91,
+      "total": -20.73,
+      "crazon": "MENDOZA GALLARDO MIDIAN EUGENIA                                                                     "
+    }
+  ]
+}

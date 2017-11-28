@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "19821580   ",
+      "sum_ndebe": 2000.0,
+      "sum_nhaber": 1500.0,
+      "total": -500.0,
+      "crazon": "CAMARGO MARAVI SANDRA                                                                               "
+    },
+    {
+      "ccod_cli": "19909707   ",
+      "sum_ndebe": 2000.0,
+      "sum_nhaber": 1500.0,
+      "total": -500.0,
+      "crazon": "HINSOTROZA LAZO ELISA MARGOT                                                                        "
+    },
+    {
+      "ccod_cli": "19909708   ",
+      "sum_ndebe": 2000.0,
+      "sum_nhaber": 1500.0,
+      "total": -500.0,
+      "crazon": "HINOSTROZA LAZO EDAGARD WILFREDO                                                                    "
+    }
+  ]
+}

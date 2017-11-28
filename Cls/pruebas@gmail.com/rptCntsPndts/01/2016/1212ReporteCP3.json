@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20281244222",
+      "sum_ndebe": 586.0,
+      "sum_nhaber": 57.0,
+      "total": 529.0,
+      "crazon": "ENERGIA Y ORGANIZACION DE SISTEMAS SAC                                                              "
+    },
+    {
+      "ccod_cli": "20202656391",
+      "sum_ndebe": 345.0,
+      "sum_nhaber": 181.0,
+      "total": 164.0,
+      "crazon": "TRANDISER SRLTDA                                                                                    "
+    },
+    {
+      "ccod_cli": "10434737694",
+      "sum_ndebe": 1210.07,
+      "sum_nhaber": 1080.19,
+      "total": 129.88,
+      "crazon": "RIVERA PALOMINO BLANCA NIEVES                                                                       "
+    },
+    {
+      "ccod_cli": "20443848178",
+      "sum_ndebe": 132.0,
+      "sum_nhaber": 20.0,
+      "total": 112.0,
+      "crazon": "EMP DE TRANSPORTES TICLLAS SAC                                                                      "
+    },
+    {
+      "ccod_cli": "20158953065",
+      "sum_ndebe": 40.0,
+      "sum_nhaber": 0.0,
+      "total": 40.0,
+      "crazon": "PETROGAS DEL CENTRO SRL                                                                             "
+    },
+    {
+      "ccod_cli": "20486439492",
+      "sum_ndebe": 290.28,
+      "sum_nhaber": 298.7,
+      "total": -8.42,
+      "crazon": "REPUESTOS Y SERVICIOS JAPAN PARTES S.C.R.L.                                                         "
+    },
+    {
+      "ccod_cli": "20568728255",
+      "sum_ndebe": 338.45,
+      "sum_nhaber": 348.26,
+      "total": -9.81,
+      "crazon": "IMPORTACIONES E INVERSIONES GENERALES DACL SAC                                                      "
+    },
+    {
+      "ccod_cli": "10414309882",
+      "sum_ndebe": 1131.71,
+      "sum_nhaber": 1148.86,
+      "total": -17.15,
+      "crazon": "HINOSTROZA CUADROS MERCEDES ODELINDA                                                                "
+    },
+    {
+      "ccod_cli": "10198965036",
+      "sum_ndebe": 715.18,
+      "sum_nhaber": 735.91,
+      "total": -20.73,
+      "crazon": "MENDOZA GALLARDO MIDIAN EUGENIA                                                                     "
+    }
+  ]
+}

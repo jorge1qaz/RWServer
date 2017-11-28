@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "44734225   ",
+      "sum_ndebe": 1000.0,
+      "sum_nhaber": 0.0,
+      "total": 1000.0,
+      "crazon": "JURADO SALCEDO EDWIN                                                                                "
+    },
+    {
+      "ccod_cli": "40827350   ",
+      "sum_ndebe": 660.0,
+      "sum_nhaber": 0.0,
+      "total": 660.0,
+      "crazon": "HUALPARUCA SIUCE WILLIAM LEONCIO                                                                    "
+    },
+    {
+      "ccod_cli": "72566644   ",
+      "sum_ndebe": 70.0,
+      "sum_nhaber": 0.0,
+      "total": 70.0,
+      "crazon": "HUAMANLAZO BOZA EDWIN ARTURO                                                                        "
+    }
+  ]
+}

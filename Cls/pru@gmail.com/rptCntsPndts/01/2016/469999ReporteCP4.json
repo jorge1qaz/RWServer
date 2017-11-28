@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20107480979",
+      "sum_ndebe": 27385.02,
+      "sum_nhaber": 60217.87,
+      "total": 32832.85,
+      "crazon": "COMERCIALIZADORA DE LLANTAS SAC                                                                     "
+    },
+    {
+      "ccod_cli": "19909710   ",
+      "sum_ndebe": 12246.32,
+      "sum_nhaber": 28000.0,
+      "total": 15753.68,
+      "crazon": "HINOSTROZA ROMANI HERMENEGILDO                                                                      "
+    },
+    {
+      "ccod_cli": "20485967894",
+      "sum_ndebe": 3074.0,
+      "sum_nhaber": 4084.01,
+      "total": 1010.01,
+      "crazon": "EDITORA GRAFICA LL. RICALDI EIRL                                                                    "
+    },
+    {
+      "ccod_cli": "20569026602",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 138.2,
+      "total": 138.2,
+      "crazon": "RTR INVERSIONES EIRL                                                                                "
+    },
+    {
+      "ccod_cli": "20341198217",
+      "sum_ndebe": 111.82,
+      "sum_nhaber": 223.34,
+      "total": 111.52,
+      "crazon": "COMPAñIA PERUANA DE MEDIOS DE PAGO S.A.C                                                            "
+    }
+  ]
+}

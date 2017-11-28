@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20100210909",
+      "sum_ndebe": 194.21,
+      "sum_nhaber": 52.95,
+      "total": 141.26,
+      "crazon": "LA POSITIVA SEGUROS Y REASEGUROS                                                                    "
+    },
+    {
+      "ccod_cli": "20202380621",
+      "sum_ndebe": 152.52,
+      "sum_nhaber": 12.71,
+      "total": 139.81,
+      "crazon": "MAPFRE PERU COMPAÑIA DE SEGUROS Y REASEGUROS S.A.                                                   "
+    },
+    {
+      "ccod_cli": "20568485921",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 105.9,
+      "total": -105.9,
+      "crazon": "GRUPO HINOSTROZA SERVIS S.A.C.                                                                      "
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20509709573",
+      "sum_ndebe": 24711.98,
+      "sum_nhaber": 24258.53,
+      "total": -453.45,
+      "crazon": "ISOPETROL LUBRICANTS DEL PERU S.A.C.                                                                "
+    },
+    {
+      "ccod_cli": "20321435395",
+      "sum_ndebe": 14229.5,
+      "sum_nhaber": 13377.63,
+      "total": -851.87,
+      "crazon": " INVERSIONES HINOSTROZA S.A.C.                                                                      "
+    },
+    {
+      "ccod_cli": "20255186249",
+      "sum_ndebe": 17432.78,
+      "sum_nhaber": 15773.27,
+      "total": -1659.51,
+      "crazon": "EQUIPMENT & SERVICE TRADING S.A                                                                     "
+    }
+  ]
+}

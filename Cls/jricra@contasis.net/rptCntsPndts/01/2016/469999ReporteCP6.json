@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20107480979",
+      "sum_ndebe": 38804.12,
+      "sum_nhaber": 60217.87,
+      "total": 21413.75,
+      "crazon": "COMERCIALIZADORA DE LLANTAS SAC                                                                     "
+    },
+    {
+      "ccod_cli": "10458341571",
+      "sum_ndebe": 5450.54,
+      "sum_nhaber": 10404.64,
+      "total": 4954.1,
+      "crazon": "DAMIAN HINOSTROZA LISETTE KATERINE                                                                  "
+    },
+    {
+      "ccod_cli": "19909710   ",
+      "sum_ndebe": 26644.26,
+      "sum_nhaber": 30000.0,
+      "total": 3355.74,
+      "crazon": "HINOSTROZA ROMANI HERMENEGILDO                                                                      "
+    },
+    {
+      "ccod_cli": "20485967894",
+      "sum_ndebe": 3074.0,
+      "sum_nhaber": 5044.01,
+      "total": 1970.01,
+      "crazon": "EDITORA GRAFICA LL. RICALDI EIRL                                                                    "
+    },
+    {
+      "ccod_cli": "20100907926",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 102.0,
+      "total": 102.0,
+      "crazon": "RESTAURANT CHIFA PHO WA S A                                                                         "
+    },
+    {
+      "ccod_cli": "20508841125",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 71.0,
+      "total": 71.0,
+      "crazon": "HOTEL RESTAURANT CHEZ VICTOR E.I.R.L.                                                               "
+    },
+    {
+      "ccod_cli": "20573830033",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 62.0,
+      "total": 62.0,
+      "crazon": "INVERSIONES EL TIMON E.I.R.L.                                                                       "
+    },
+    {
+      "ccod_cli": "10454443379",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 53.01,
+      "total": 53.01,
+      "crazon": "HORNA RAMIREZ KARINA LOURDES                                                                        "
+    },
+    {
+      "ccod_cli": "10090968861",
+      "sum_ndebe": 369.0,
+      "sum_nhaber": 416.0,
+      "total": 47.0,
+      "crazon": "HUAMANI SULCA LUCILA                                                                                "
+    },
+    {
+      "ccod_cli": "20120576365",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 36.0,
+      "total": 36.0,
+      "crazon": "ESTAC.DE SERV.VILLA RICA DE OROPESA SRL                                                             "
+    },
+    {
+      "ccod_cli": "10096794091",
+      "sum_ndebe": 72.0,
+      "sum_nhaber": 87.0,
+      "total": 15.0,
+      "crazon": "XIE CHAU SHAO XIAU                                                                                  "
+    }
+  ]
+}

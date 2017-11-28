@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "ccod_cli": "09113418   ",
+      "sum_ndebe": 500.0,
+      "sum_nhaber": 334.0,
+      "total": 166.0,
+      "crazon": "GAMARRA BENAVIDES CARLOS JESUS                                                                      "
+    },
+    {
+      "ccod_cli": "19929586   ",
+      "sum_ndebe": 1500.0,
+      "sum_nhaber": 1334.0,
+      "total": 166.0,
+      "crazon": "TRUCIOS VILA ANTONIO ZACARIAS                                                                       "
+    },
+    {
+      "ccod_cli": "43559654   ",
+      "sum_ndebe": 1636.0,
+      "sum_nhaber": 1536.0,
+      "total": 100.0,
+      "crazon": "MESCUA CUSI JUAN CARLOS                                                                             "
+    }
+  ]
+}

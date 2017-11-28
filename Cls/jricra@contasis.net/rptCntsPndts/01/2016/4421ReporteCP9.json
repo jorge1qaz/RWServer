@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "ccod_cli": "19909706   ",
+      "sum_ndebe": 3500.0,
+      "sum_nhaber": 3000.0,
+      "total": -500.0,
+      "crazon": "HINOSTROZA LAZO GLADYS                                                                              "
+    },
+    {
+      "ccod_cli": "19909707   ",
+      "sum_ndebe": 3500.0,
+      "sum_nhaber": 3000.0,
+      "total": -500.0,
+      "crazon": "HINSOTROZA LAZO ELISA MARGOT                                                                        "
+    },
+    {
+      "ccod_cli": "19909708   ",
+      "sum_ndebe": 3500.0,
+      "sum_nhaber": 3000.0,
+      "total": -500.0,
+      "crazon": "HINOSTROZA LAZO EDAGARD WILFREDO                                                                    "
+    },
+    {
+      "ccod_cli": "19909710   ",
+      "sum_ndebe": 4000.0,
+      "sum_nhaber": 3500.0,
+      "total": -500.0,
+      "crazon": "HINOSTROZA ROMANI HERMENEGILDO                                                                      "
+    },
+    {
+      "ccod_cli": "19821580   ",
+      "sum_ndebe": 4000.0,
+      "sum_nhaber": 3000.0,
+      "total": -1000.0,
+      "crazon": "CAMARGO MARAVI SANDRA                                                                               "
+    }
+  ]
+}

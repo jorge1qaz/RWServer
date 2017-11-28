@@ -1,0 +1,235 @@
+{
+  "data": [
+    {
+      "ccod_cli": "11111111   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 11115.28,
+      "total": 11115.28,
+      "crazon": "CLIENTES VARIOS                                                                                     "
+    },
+    {
+      "ccod_cli": "20568485921",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 4713.48,
+      "total": 4713.48,
+      "crazon": "GRUPO HINOSTROZA SERVIS S.A.C.                                                                      "
+    },
+    {
+      "ccod_cli": "73378391   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 4215.55,
+      "total": 4215.55,
+      "crazon": "HINOSTROZA CAMARENA DIEGO FERNANDO                                                                  "
+    },
+    {
+      "ccod_cli": "43559659   ",
+      "sum_ndebe": 2048.81,
+      "sum_nhaber": 4299.15,
+      "total": 2250.34,
+      "crazon": "MESCUA CUSSI JUAN CARLOS                                                                            "
+    },
+    {
+      "ccod_cli": "24425336   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 2062.71,
+      "total": 2062.71,
+      "crazon": "varios                                                                                              "
+    },
+    {
+      "ccod_cli": "20103370   ",
+      "sum_ndebe": 1535.12,
+      "sum_nhaber": 2348.05,
+      "total": 812.93,
+      "crazon": "AYALA ALLCAHUAMAN DELIA                                                                             "
+    },
+    {
+      "ccod_cli": "20015797   ",
+      "sum_ndebe": 2374.72,
+      "sum_nhaber": 3122.96,
+      "total": 748.24,
+      "crazon": "ROJAS BALBIN PABLO ROGER                                                                            "
+    },
+    {
+      "ccod_cli": "42753276   ",
+      "sum_ndebe": 1211.5,
+      "sum_nhaber": 1394.9,
+      "total": 183.4,
+      "crazon": "QUENAYA PORTUGAL FIORELA                                                                            "
+    },
+    {
+      "ccod_cli": "20114144   ",
+      "sum_ndebe": 2748.54,
+      "sum_nhaber": 2930.44,
+      "total": 181.9,
+      "crazon": "VEGA ASTO DORIS DOMINGA                                                                             "
+    },
+    {
+      "ccod_cli": "47553840   ",
+      "sum_ndebe": 7677.43,
+      "sum_nhaber": 7705.66,
+      "total": 28.23,
+      "crazon": "LAZARO PAITAMPOMA JHONY ROBER                                                                       "
+    },
+    {
+      "ccod_cli": "48061357   ",
+      "sum_ndebe": 15.0,
+      "sum_nhaber": 0.0,
+      "total": -15.0,
+      "crazon": "SANDRA CHINTILLO MARTINEZ                                                                           "
+    },
+    {
+      "ccod_cli": "76855139   ",
+      "sum_ndebe": 1770.52,
+      "sum_nhaber": 1714.74,
+      "total": -55.78,
+      "crazon": "MERGE VILCA JOSE JOEL                                                                               "
+    },
+    {
+      "ccod_cli": "43723710   ",
+      "sum_ndebe": 736.04,
+      "sum_nhaber": 578.14,
+      "total": -157.9,
+      "crazon": "ALEJANDRO ORELLANA MADAI SANDRA                                                                     "
+    },
+    {
+      "ccod_cli": "46620046   ",
+      "sum_ndebe": 1464.19,
+      "sum_nhaber": 1215.39,
+      "total": -248.8,
+      "crazon": "CARDENAS LLACZA GUADALUPE                                                                           "
+    },
+    {
+      "ccod_cli": "48127826   ",
+      "sum_ndebe": 10833.9,
+      "sum_nhaber": 10474.23,
+      "total": -359.67,
+      "crazon": "SALGADO CANCHAYA JESUS                                                                              "
+    },
+    {
+      "ccod_cli": "41636245   ",
+      "sum_ndebe": 2334.22,
+      "sum_nhaber": 1933.31,
+      "total": -400.91,
+      "crazon": "QUISPE CORDOVA WILLIAM JAVIER                                                                       "
+    },
+    {
+      "ccod_cli": "45954251   ",
+      "sum_ndebe": 8866.97,
+      "sum_nhaber": 8418.05,
+      "total": -448.92,
+      "crazon": "HUAMAN LINDO LUIS                                                                                   "
+    },
+    {
+      "ccod_cli": "20076626   ",
+      "sum_ndebe": 10790.32,
+      "sum_nhaber": 10263.81,
+      "total": -526.51,
+      "crazon": "SEDANO HINOSTROZA FERNANDO                                                                          "
+    },
+    {
+      "ccod_cli": "40827350   ",
+      "sum_ndebe": 8697.65,
+      "sum_nhaber": 8028.23,
+      "total": -669.42,
+      "crazon": "HUALPARUCA SIUCE WILLIAM LEONCIO                                                                    "
+    },
+    {
+      "ccod_cli": "20043577   ",
+      "sum_ndebe": 1593.44,
+      "sum_nhaber": 907.59,
+      "total": -685.85,
+      "crazon": "DE LA TORRE PONCE LUIS ALBERTO                                                                      "
+    },
+    {
+      "ccod_cli": "42768162   ",
+      "sum_ndebe": 5853.68,
+      "sum_nhaber": 5040.45,
+      "total": -813.23,
+      "crazon": "PACHERRES LARA MARVIN AUGUSTO                                                                       "
+    },
+    {
+      "ccod_cli": "44390274   ",
+      "sum_ndebe": 5464.5,
+      "sum_nhaber": 4626.99,
+      "total": -837.51,
+      "crazon": "ORDOÑEZ SUAREZ KAREN NAYELY                                                                         "
+    },
+    {
+      "ccod_cli": "46545994   ",
+      "sum_ndebe": 3602.07,
+      "sum_nhaber": 2757.36,
+      "total": -844.71,
+      "crazon": "PALOMINO QUICCA JHONY                                                                               "
+    },
+    {
+      "ccod_cli": "44051956   ",
+      "sum_ndebe": 8837.11,
+      "sum_nhaber": 7940.95,
+      "total": -896.16,
+      "crazon": "GOMEZ ILIZARBE LUIS ANGEL                                                                           "
+    },
+    {
+      "ccod_cli": "72566644   ",
+      "sum_ndebe": 5662.73,
+      "sum_nhaber": 4697.94,
+      "total": -964.79,
+      "crazon": "HUAMANLAZO BOZA EDWIN ARTURO                                                                        "
+    },
+    {
+      "ccod_cli": "42264223   ",
+      "sum_ndebe": 6545.01,
+      "sum_nhaber": 5525.87,
+      "total": -1019.14,
+      "crazon": "SALOME BORJA CESAR                                                                                  "
+    },
+    {
+      "ccod_cli": "09113418   ",
+      "sum_ndebe": 9657.95,
+      "sum_nhaber": 8526.19,
+      "total": -1131.76,
+      "crazon": "GAMARRA BENAVIDES CARLOS JESUS                                                                      "
+    },
+    {
+      "ccod_cli": "44057652   ",
+      "sum_ndebe": 8377.5,
+      "sum_nhaber": 7119.25,
+      "total": -1258.25,
+      "crazon": "PEREZ DE LA TORRE YENNY KARINA                                                                      "
+    },
+    {
+      "ccod_cli": "44734225   ",
+      "sum_ndebe": 3431.75,
+      "sum_nhaber": 2160.5,
+      "total": -1271.25,
+      "crazon": "JURADO SALCEDO EDWIN                                                                                "
+    },
+    {
+      "ccod_cli": "19929586   ",
+      "sum_ndebe": 10715.5,
+      "sum_nhaber": 9280.62,
+      "total": -1434.88,
+      "crazon": "TRUCIOS VILA ANTONIO ZACARIAS                                                                       "
+    },
+    {
+      "ccod_cli": "43559654   ",
+      "sum_ndebe": 1993.2,
+      "sum_nhaber": 0.0,
+      "total": -1993.2,
+      "crazon": "MESCUA CUSI JUAN CARLOS                                                                             "
+    },
+    {
+      "ccod_cli": "48029289   ",
+      "sum_ndebe": 9410.47,
+      "sum_nhaber": 7178.81,
+      "total": -2231.66,
+      "crazon": "MENDEZ BAUTISTA DENIS ROBERT                                                                        "
+    },
+    {
+      "ccod_cli": "45550454   ",
+      "sum_ndebe": 8819.54,
+      "sum_nhaber": 6586.53,
+      "total": -2233.01,
+      "crazon": "REMUZGO OYOLA YORDAN                                                                                "
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "ccod_cli": "09113418   ",
+      "sum_ndebe": 1900.0,
+      "sum_nhaber": 2200.0,
+      "total": 300.0,
+      "crazon": "GAMARRA BENAVIDES CARLOS JESUS                                                                      "
+    },
+    {
+      "ccod_cli": "19929586   ",
+      "sum_ndebe": 2100.0,
+      "sum_nhaber": 2400.0,
+      "total": 300.0,
+      "crazon": "TRUCIOS VILA ANTONIO ZACARIAS                                                                       "
+    },
+    {
+      "ccod_cli": "20076626   ",
+      "sum_ndebe": 1800.0,
+      "sum_nhaber": 2100.0,
+      "total": 300.0,
+      "crazon": "SEDANO HINOSTROZA FERNANDO                                                                          "
+    },
+    {
+      "ccod_cli": "45550454   ",
+      "sum_ndebe": 950.0,
+      "sum_nhaber": 1250.0,
+      "total": 300.0,
+      "crazon": "REMUZGO OYOLA YORDAN                                                                                "
+    },
+    {
+      "ccod_cli": "45954251   ",
+      "sum_ndebe": 2100.0,
+      "sum_nhaber": 2400.0,
+      "total": 300.0,
+      "crazon": "HUAMAN LINDO LUIS                                                                                   "
+    },
+    {
+      "ccod_cli": "48127826   ",
+      "sum_ndebe": 1800.0,
+      "sum_nhaber": 2100.0,
+      "total": 300.0,
+      "crazon": "SALGADO CANCHAYA JESUS                                                                              "
+    },
+    {
+      "ccod_cli": "43559659   ",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 290.0,
+      "total": 290.0,
+      "crazon": "MESCUA CUSSI JUAN CARLOS                                                                            "
+    },
+    {
+      "ccod_cli": "44051956   ",
+      "sum_ndebe": 920.0,
+      "sum_nhaber": 1185.0,
+      "total": 265.0,
+      "crazon": "GOMEZ ILIZARBE LUIS ANGEL                                                                           "
+    },
+    {
+      "ccod_cli": "44057652   ",
+      "sum_ndebe": 1769.5,
+      "sum_nhaber": 2026.0,
+      "total": 256.5,
+      "crazon": "PEREZ DE LA TORRE YENNY KARINA                                                                      "
+    },
+    {
+      "ccod_cli": "48029289   ",
+      "sum_ndebe": 1100.0,
+      "sum_nhaber": 1200.0,
+      "total": 100.0,
+      "crazon": "MENDEZ BAUTISTA DENIS ROBERT                                                                        "
+    },
+    {
+      "ccod_cli": "44390274   ",
+      "sum_ndebe": 720.0,
+      "sum_nhaber": 785.0,
+      "total": 65.0,
+      "crazon": "ORDOÑEZ SUAREZ KAREN NAYELY                                                                         "
+    },
+    {
+      "ccod_cli": "42264223   ",
+      "sum_ndebe": 1920.0,
+      "sum_nhaber": 1984.0,
+      "total": 64.0,
+      "crazon": "SALOME BORJA CESAR                                                                                  "
+    }
+  ]
+}

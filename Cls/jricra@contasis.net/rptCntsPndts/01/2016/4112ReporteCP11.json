@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "ccod_cli": "43559659   ",
+      "sum_ndebe": 580.0,
+      "sum_nhaber": 1160.0,
+      "total": 580.0,
+      "crazon": "MESCUA CUSSI JUAN CARLOS                                                                            "
+    },
+    {
+      "ccod_cli": "09113418   ",
+      "sum_ndebe": 2800.0,
+      "sum_nhaber": 3100.0,
+      "total": 300.0,
+      "crazon": "GAMARRA BENAVIDES CARLOS JESUS                                                                      "
+    },
+    {
+      "ccod_cli": "20076626   ",
+      "sum_ndebe": 2700.0,
+      "sum_nhaber": 3000.0,
+      "total": 300.0,
+      "crazon": "SEDANO HINOSTROZA FERNANDO                                                                          "
+    },
+    {
+      "ccod_cli": "48127826   ",
+      "sum_ndebe": 2700.0,
+      "sum_nhaber": 3000.0,
+      "total": 300.0,
+      "crazon": "SALGADO CANCHAYA JESUS                                                                              "
+    },
+    {
+      "ccod_cli": "20015797   ",
+      "sum_ndebe": 300.0,
+      "sum_nhaber": 450.0,
+      "total": 150.0,
+      "crazon": "ROJAS BALBIN PABLO ROGER                                                                            "
+    },
+    {
+      "ccod_cli": "20103370   ",
+      "sum_ndebe": 65.0,
+      "sum_nhaber": 130.0,
+      "total": 65.0,
+      "crazon": "AYALA ALLCAHUAMAN DELIA                                                                             "
+    }
+  ]
+}

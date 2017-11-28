@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "ccod_cli": "20107480979",
+      "sum_ndebe": 50339.77,
+      "sum_nhaber": 60217.87,
+      "total": 9878.1,
+      "crazon": "COMERCIALIZADORA DE LLANTAS SAC                                                                     "
+    },
+    {
+      "ccod_cli": "19909710   ",
+      "sum_ndebe": 28802.66,
+      "sum_nhaber": 32000.0,
+      "total": 3197.34,
+      "crazon": "HINOSTROZA ROMANI HERMENEGILDO                                                                      "
+    },
+    {
+      "ccod_cli": "20485967894",
+      "sum_ndebe": 3074.0,
+      "sum_nhaber": 5044.01,
+      "total": 1970.01,
+      "crazon": "EDITORA GRAFICA LL. RICALDI EIRL                                                                    "
+    },
+    {
+      "ccod_cli": "20600084837",
+      "sum_ndebe": 0.0,
+      "sum_nhaber": 1626.0,
+      "total": 1626.0,
+      "crazon": "INVERSIONES Y REPRESENTACIONES PUE RAM E.I.R.L.                                                     "
+    },
+    {
+      "ccod_cli": "20600314883",
+      "sum_ndebe": 150.0,
+      "sum_nhaber": 1574.0,
+      "total": 1424.0,
+      "crazon": "NEGOCIOS LALITA MARIELA E.I.R.L.                                                                    "
+    },
+    {
+      "ccod_cli": "10458341571",
+      "sum_ndebe": 15302.14,
+      "sum_nhaber": 15404.64,
+      "total": 102.5,
+      "crazon": "DAMIAN HINOSTROZA LISETTE KATERINE                                                                  "
+    },
+    {
+      "ccod_cli": "10090968861",
+      "sum_ndebe": 1393.01,
+      "sum_nhaber": 1448.01,
+      "total": 55.0,
+      "crazon": "HUAMANI SULCA LUCILA                                                                                "
+    },
+    {
+      "ccod_cli": "10096794091",
+      "sum_ndebe": 171.0,
+      "sum_nhaber": 226.0,
+      "total": 55.0,
+      "crazon": "XIE CHAU SHAO XIAU                                                                                  "
+    },
+    {
+      "ccod_cli": "20341198217",
+      "sum_ndebe": 318.88,
+      "sum_nhaber": 366.26,
+      "total": 47.38,
+      "crazon": "COMPAñIA PERUANA DE MEDIOS DE PAGO S.A.C                                                            "
+    },
+    {
+      "ccod_cli": "20120638140",
+      "sum_ndebe": 13.0,
+      "sum_nhaber": 33.0,
+      "total": 20.0,
+      "crazon": "EMPRESA SORIA Y CIA S.C                                                                             "
+    },
+    {
+      "ccod_cli": "20600205707",
+      "sum_ndebe": 85.0,
+      "sum_nhaber": 104.01,
+      "total": 19.01,
+      "crazon": "INVERSIONES SEÑOR PESCAO SOCIEDAD ANONIMA CERRADA - INVERSIONES SEÑOR PESCAO S.A.C.                 "
+    },
+    {
+      "ccod_cli": "20120576365",
+      "sum_ndebe": 20.0,
+      "sum_nhaber": 36.0,
+      "total": 16.0,
+      "crazon": "ESTAC.DE SERV.VILLA RICA DE OROPESA SRL                                                             "
+    }
+  ]
+}
