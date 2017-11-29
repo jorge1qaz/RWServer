@@ -1,0 +1,14 @@
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\Jorge Luis\Back End\AppWebReportes\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.pdb
