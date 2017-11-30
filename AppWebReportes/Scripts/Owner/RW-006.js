@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     $("#monthHeader").text("");
     $("#monthtitle").text("");
-    $("#blockFiltrosAvanzados").hide();
+    //$("#blockFiltrosAvanzados").hide();
 
     if (mes < 10) {
         mes = '0' + mes;

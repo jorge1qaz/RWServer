@@ -348,6 +348,7 @@
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
+    <Content Include="pruebas.aspx" />
     <Content Include="Reportes\CuentasPendientes.aspx" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\user.jpg" />
@@ -768,6 +769,13 @@
     </Compile>
     <Compile Include="Perfiles\frmRegistroUsuario.aspx.designer.cs">
       <DependentUpon>frmRegistroUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pruebas.aspx.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pruebas.aspx.designer.cs">
+      <DependentUpon>pruebas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\CuentasPendientes.aspx.cs">
       <DependentUpon>CuentasPendientes.aspx</DependentUpon>

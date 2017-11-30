@@ -5,9 +5,11 @@ namespace BusinessLayer
 {
     public class Paths
     {
-        public string pathDatosZip = @"D:\git\ReportesWeb\Web\AppWebReportes\Datos\";
-        public string pathDatosZipExtract = @"D:\git\ReportesWeb\Web\AppWebReportes\Cls\";
-        public string pathNameRPC = @"\rptCntsPndts\";
+        //public string pathDatosZip = @"D:\git\ReportesWeb\Web\AppWebReportes\Datos\";
+        //public string pathDatosZipExtract = @"D:\git\ReportesWeb\Web\AppWebReportes\Cls\";
+        public string pathDatosZip = "/Datos/";
+        public string pathDatosZipExtract = "/Cls/";
+        public string pathNameRPC = "/rptCntsPndts/";
         //Jorge Luis|07/11/2017|RW-19
         /*Método para leer un archivo*/
         public string readFile(string path)

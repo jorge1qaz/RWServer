@@ -11,6 +11,8 @@ namespace AppWebReportes.Reportes
         Paths paths = new Paths();
         Zips zips = new Zips();
         Directorios dirs = new Directorios();
+        Calculos cal = new Calculos();
+        #region VariablesToCalculate
         static double totalUnidades;
         static double totalPuVentas;
         static double totalPuCosto;
@@ -23,14 +25,20 @@ namespace AppWebReportes.Reportes
         static decimal margenUtil;
         static string descripcion;
         static string medida;
-
+        #endregion
         protected void Page_Load(object sender, EventArgs e)
         {
+            String rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null)
                 Response.Redirect("~/Acceso");
+            if (Session["prueba"] != null)
+            {
+                Response.Write(Session["prueba"].ToString());
+
+            }
             if (!Page.IsPostBack)
             {
-                string JsonQuerys = paths.readFile(@paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" + "2017" + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+                string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" + "2017" + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
 
                 DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
                 DataTable datatableQuerys0 = dataSetQuerys.Tables["data0"];
@@ -40,6 +48,7 @@ namespace AppWebReportes.Reportes
                 DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
                 DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
                 Session["queryJson"] = "";
+                #region Filters
                 lstAlmacenes.DataSource = dataSetQuerys.Tables[0].DefaultView;
                 lstAlmacenes.DataTextField = "cdsc";
                 lstAlmacenes.DataValueField = "ccod_alma";
@@ -51,6 +60,7 @@ namespace AppWebReportes.Reportes
                 lstCOSTO1.DataValueField = "a";
                 lstCOSTO1.DataBind();
                 lstCOSTO1.Items.Insert(0, "Seleccione");
+                #endregion
             }
             if (Session["valLstAlmacen"] != null)
             {
@@ -59,9 +69,7 @@ namespace AppWebReportes.Reportes
                 lblFilter.Text += "Almacén ( " + lstAlmacenes.SelectedItem.ToString() + ")";
             }
             else
-            {
                 spanFilters.Visible = false;
-            }
             //Bloques de filtros bloqueados
             blockAlcance.Visible = false;
             blockCosto2.Visible = false;
@@ -71,25 +79,33 @@ namespace AppWebReportes.Reportes
 
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            string JsonProductsByMonth = paths.readFile(@paths.pathDatosZipExtract + Session["IdUser"].ToString() +
+            String rootPath = Server.MapPath("~");
+            string JsonProductsByMonth = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() +
                 "/rptsMrgTld/" + "01" + "/" + "2017" + "/" + "Products" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
-            string JsonProductsByStore = paths.readFile(@paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" + 
-                "2017" + "/" + lstAlmacenes.SelectedValue.ToString() + "StoreProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            string JsonProductsByStore = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" + 
+                "2017" + "/" + "StoreProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            string JsonProductsByCosto1 = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" +
+                "2017" + "/" + "Costo1Products" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+
             if (Session["valLstAlmacen"] != null)
-                GenerateReport(JsonProductsByStore, "storeProducts");
+                GenerateReport(JsonProductsByStore, "storeProducts"); //Indica que el filtro debe ser en base al almacén
+                if (Session["valLstCosto1"] != null)
+                    GenerateReport(JsonProductsByCosto1, "costo1Products"); //Indica que el filtro debe ser en base al costo1
             else
                 GenerateReport(JsonProductsByMonth, "allProducts");
         }
-        public void GenerateReport(string filtro, string typeFilter)
+        public void GenerateReport(string filter, string typeFilter)
         {
-            string JsonCadena = paths.readFile(@paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01"+ "/" + "2017" + "/" + "Fulltable" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            String rootPath = Server.MapPath("~");
+            // dataTable => Fulltable; dataTableProducts = el json que tengo el respectivo filtro (filter)
+            string JsonCadena = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01"+ "/" + "2017" +"/" + "Fulltable" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(JsonCadena);
-            DataTable dataTable = dataSet.Tables["data"];
+            DataTable dataTable = dataSet.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
 
-            DataSet dataSetProducts = JsonConvert.DeserializeObject<DataSet>(filtro);
-            DataTable dataTableProducts = dataSetProducts.Tables["data"];
+            DataSet dataSetProducts = JsonConvert.DeserializeObject<DataSet>(filter); //Se trae la lista de productos con su respectivo filtro
+            DataTable dataTableProducts; //Obtiene la tabla con sus datos
 
-            DataTable tablaReporte = new DataTable();
+            DataTable tablaReporte = new DataTable(); //Declaración de la tabla contenedora del reporte a generar
             DataColumn column;
             #region DeclaracionColumnas
             column = new DataColumn();
@@ -113,54 +129,61 @@ namespace AppWebReportes.Reportes
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "PV";
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "PC";
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "MUU";
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "MV";
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "MC";
             tablaReporte.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
+            column.DataType = Type.GetType("System.String");
             column.ColumnName = "MU";
             tablaReporte.Columns.Add(column);
-            #endregion
+            #endregion 
             DataSet dsReporte = new DataSet();
             dsReporte.Tables.Add(tablaReporte);
             dsReporte.Tables[0].TableName = "data";
-            string idFiltro = "";
             switch (typeFilter)
             {
                 case "allProducts":
-                    idFiltro = "a";
+                    dataTableProducts = dataSetProducts.Tables["data"]; //Obtiene la tabla con sus datos
+                    //El recorrido de este bucle es para la lista de todos los productos
+                    //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
+                    Response.Write("con pana");
+                    foreach (DataRow row in dataTableProducts.Rows)
+                        ProcesarDatos(row["a"].ToString().Trim(), row["a"].ToString().Trim(), "a", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
                     break;
                 case "storeProducts":
-                    idFiltro = "b";
+                    dataTableProducts = dataSetProducts.Tables[lstAlmacenes.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                    //El recorrido de este bucle es para la lista de todos los productos con su filtro de almacén
+                    foreach (DataRow row in dataTableProducts.Rows)
+                        ProcesarDatos(row["a"].ToString().Trim(), lstAlmacenes.SelectedValue.ToString(), "k", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
                     break;
-                default:
-                    idFiltro = "a";
+                case "costo1Products":
+                    dataTableProducts = dataSetProducts.Tables[lstCOSTO1.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                    //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
+                    foreach (DataRow row in dataTableProducts.Rows)
+                        ProcesarDatos(row["a"].ToString().Trim(), lstCOSTO1.SelectedValue.ToString(), "m", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
                     break;
             }
-            //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
-            foreach (DataRow row in dataTableProducts.Rows)
-                ProcesarDatos(row["a"].ToString().Trim(), row[idFiltro].ToString().Trim(), idFiltro, tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
             string queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
             Session["queryJson"] = queryJson;
         }
@@ -174,6 +197,7 @@ namespace AppWebReportes.Reportes
                 { npu = "e"; ncosto = "g"; }
             else //dolares
                 { npu = "h"; ncosto = "i"; }
+
             #region CalculosMatematicos
             descripcion = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
                             Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("b")).FirstOrDefault();
@@ -193,7 +217,7 @@ namespace AppWebReportes.Reportes
                             (x => x.Field<double>("c") * (x.Field<double>(npu) / (1 + (x.Field<double>("f") / 100))))).Sum();
             }
             catch (Exception)
-            { totalPuVentas = 0; }
+                { totalPuVentas = 0; }
             try
             {
                 totalPuCosto = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
@@ -211,7 +235,7 @@ namespace AppWebReportes.Reportes
                 PuCosto = Convert.ToDecimal(totalPuCosto) / Convert.ToDecimal(totalUnidades);
             }
             else
-            { PuVentas = 0; PuCosto = 0; }
+                { PuVentas = 0; PuCosto = 0; }
             muUnitario = PuVentas - PuCosto;
             if (PuCosto != 0)
                 mu = (muUnitario / PuCosto) * 100;
@@ -227,25 +251,32 @@ namespace AppWebReportes.Reportes
             row["C"] = idProduct.Trim();
             row["D"] = Convert.ToString(descripcion);
             row["M"] = Convert.ToString(medida);
-            row["U"] = Math.Round(Convert.ToDecimal(totalUnidades), 2);
-            row["PV"] = Math.Round(Convert.ToDecimal(PuVentas), 4);
-            row["PC"] = Math.Round(Convert.ToDecimal(PuCosto), 4);
-            row["MUU"] = Math.Round(Convert.ToDecimal(muUnitario), 4);
-            row["MV"] = Math.Round(Convert.ToDecimal(montoVentas), 4);
-            row["MC"] = Math.Round(Convert.ToDecimal(montoCosto), 4);
-            row["MU"] = Math.Round(Convert.ToDecimal(margenUtil), 4);
+            row["U"] =  Math.Round(Convert.ToDecimal(totalUnidades), 2);
+            row["PV"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(PuVentas), 4));
+            row["PC"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(PuCosto), 4));
+            row["MUU"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(muUnitario), 4));
+            row["MV"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(montoVentas), 4));
+            row["MC"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(montoCosto), 4));
+            row["MU"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(margenUtil), 4));
             tableContent.Rows.Add(row);
         }
-
         protected void lstAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Guarda en una variable de sesión, el valor de la lista de almacenes
             Session["valLstAlmacen"] = lstAlmacenes.SelectedValue.ToString();
             lblFilter.Text = "";
+            Session.Remove("valLstCosto1");
         }
-
+        protected void lstCOSTO1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Guarda en una variable de sesión, el valor de la lista de costo1
+            Session["valLstCosto1"] = lstAlmacenes.SelectedValue.ToString();
+            lblFilter.Text = "";
+            Session.Remove("valLstAlmacen");
+        }
         protected void btnDeleteFilter_Click(object sender, EventArgs e)
         {
-            Session["valLstAlmacen"] = null;
+            Session.Remove("valLstAlmacen");
             spanFilters.Visible = false;
             Session["queryJson"] = "";
         }

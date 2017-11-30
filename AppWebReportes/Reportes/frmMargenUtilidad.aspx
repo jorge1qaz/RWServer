@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="lstCOSTO1">COSTO 1</label>
-                                    <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server">
+                                    <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server" OnSelectedIndexChanged="lstCOSTO1_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group" runat="server" id="blockCosto2">

@@ -32,6 +32,7 @@ namespace BusinessLayer
             List<string> listIdCompany = new List<string>();
             try
             {
+                //Este maldito lastid tiene problemas
                 string dirPath = path + lastId;
                 var dirs = from dir in Directory.EnumerateDirectories(dirPath, "*") select dir;
                 foreach (var dir in dirs)

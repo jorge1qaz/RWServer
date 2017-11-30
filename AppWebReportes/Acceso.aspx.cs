@@ -40,6 +40,7 @@ namespace AppWebReportes
         }
         protected async void btnAcceder_Click(object sender, EventArgs e)
         {
+            String rootPath = Server.MapPath("~");
             Cliente cliente = new Cliente()
             {
                 IdCliente = txtCorreo.Text.ToString(),
@@ -47,7 +48,7 @@ namespace AppWebReportes
             };
             if (cliente.TwoParametersUser("RW_Security_authenticate_User"))
             {
-                if (zips.checkZipExists(paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
                 {
                     btnAcceder.Enabled = false;
                     txtContrasenia.Enabled = false;
@@ -77,9 +78,9 @@ namespace AppWebReportes
         }
         private void Descomprimir()
         {
-            Directory.CreateDirectory(paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            //zips.ExtractDataZip(paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", paths.pathDatosZipExtract + Session["IdUser"].ToString());
-
+            String rootPath = Server.MapPath("~");
+            Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+            zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
         }
     }
 }

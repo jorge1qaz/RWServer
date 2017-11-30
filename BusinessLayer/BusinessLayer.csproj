@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="Calculos.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Datos.cs" />
