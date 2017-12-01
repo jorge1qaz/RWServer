@@ -43,6 +43,13 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group">
+                                    <label>Cliente</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon" role="button" id="triggerCostumer">Buscar</div>
+                                        <asp:TextBox ID="txtClienteRUC" CssClass="form-control" placeholder="Ingrese el RUC" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="lstCOSTO1">COSTO 1</label>
                                     <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server" OnSelectedIndexChanged="lstCOSTO1_SelectedIndexChanged">
                                     </asp:DropDownList>
@@ -126,6 +133,43 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal" id="modalListCostumer" tabindex="-1" role="dialog" aria-labelledby="modalListCostumerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalListCostumerLabel">Cuentas contables</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-10 col-sm-12">
+                                <table class="table table-striped table-bordered center" id="tablaCostumer">
+                                    <thead>
+                                        <tr>
+                                            <th>RUC</th>
+                                            <th>Detalle</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>RUC</th>
+                                            <th>Detalle</th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -133,6 +177,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script>
+        var listCostumer = <% Response.Write(Session["listCostumer"].ToString()); %>;
+    </script>
     <script>
         var dataSet = <% Response.Write(Session["queryJson"].ToString()); %>;
     </script>

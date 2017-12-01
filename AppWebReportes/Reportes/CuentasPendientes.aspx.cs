@@ -14,18 +14,23 @@ namespace AppWebReportes.CP_Reportes
             List<string> listYears = new List<string>();
             if (!Page.IsPostBack)
             {
+                //Response.Write(@rootPath + paths.pathDatosZipExtract.ToString() + Session["IdUser"].ToString() + " separate " + paths.pathNameRPC + "<br>");
+                //Response.Write(rootPath);
                 List<string> listIdCompanies = new List<string>();
-                listIdCompanies = dirs.ListarDirectorios(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString(), paths.pathNameRPC);
+                listIdCompanies = dirs.ListarDirectorios(@rootPath +  paths.pathDatosZipExtract + Session["IdUser"].ToString(), paths.pathNameRPC);
                 lstEmpresas.DataSource = listIdCompanies;
                 lstEmpresas.DataBind();
-                listYears = dirs.ListarDirectorios(@rootPath +  paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC, listIdCompanies[0].ToString());
-                lstAnios.DataSource = listYears;
-                lstAnios.DataBind();
+                //Response.Write(paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC + " separate " + listIdCompanies[0].ToString());
+                //listYears = dirs.ListarDirectorios(paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC, listIdCompanies[0].ToString());
+                //listYears = dirs.ListarDirectorios(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC, );
+
+                //lstAnios.DataSource = listYears;
+               // lstAnios.DataBind();
                 Session["idCompany"] = listIdCompanies[0].ToString();
             }
             else
             {
-                listYears = dirs.ListarDirectorios(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC, lstEmpresas.SelectedValue.ToString());
+                listYears = dirs.ListarDirectorios(paths.pathDatosZipExtract + Session["IdUser"].ToString() + paths.pathNameRPC, lstEmpresas.SelectedValue.ToString());
                 lstAnios.DataSource = listYears;
                 lstAnios.DataBind();
             }

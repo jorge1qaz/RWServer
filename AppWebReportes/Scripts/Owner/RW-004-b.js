@@ -145,8 +145,6 @@ $(document).ready(function() {
     $("#MainContent_lstAnios").change(function () {
         $("#MainContent_lstAnios option:selected").each(function () {
             idAnio = $(this).val();
-            
-            
             $.UrlExists = function (url) {
                 var http = new XMLHttpRequest();
                 http.open('HEAD', url, false);
@@ -157,9 +155,7 @@ $(document).ready(function() {
                 listarCuentas();
             } else {
                 alert("No encontramos ningún registro en su base de datos, para ésta consulta.");
-            }
-            
-            
+            }   
         });
     });
 

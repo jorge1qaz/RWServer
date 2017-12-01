@@ -58,6 +58,16 @@
             </div>
         </div>
     </div>
+    <br />
+    <div class="row">
+        <div runat="server" id="blockRegisterSuccess" class="col offset-m2 offset-s1 offset-l3 m8 s10 l6">
+            <div class="card teal accent-3">
+                <div class="card-content white-text center">
+                    <span class="card-title">¡Se ha registrado con éxito!</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="ModalProcesamientoDatos" class="modal bottom-sheet green accent-1">
         <div class="modal-content">

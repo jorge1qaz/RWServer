@@ -17,6 +17,10 @@ namespace AppWebReportes
             {
                 if ((string)Session["IdUser"] != null)
                     Session.Remove("IdUser");
+                if (Session["RegisterSuccess"] != null)
+                    blockRegisterSuccess.Visible = true;
+                else
+                    blockRegisterSuccess.Visible = false;
                 blockContrasenia.Visible = false;
                 btnAcceder.Visible = false;
                 btnLinkCambiarContrasenia.Visible = false;
@@ -37,6 +41,9 @@ namespace AppWebReportes
             }
             else
                 lblDoesNotExistUser.Text = "No pudimos encontrar tu cuenta de Contasis";
+            if (Session["RegisterSuccess"] != null)
+                blockRegisterSuccess.Visible = false;
+            Session.Remove("RegisterSuccess");
         }
         protected async void btnAcceder_Click(object sender, EventArgs e)
         {
@@ -60,7 +67,8 @@ namespace AppWebReportes
                     {
                         while (t2.Status != TaskStatus.RanToCompletion)
                         { }
-                        Response.Redirect("~/Reportes/CuentasPendientes.aspx");
+                        //Response.Redirect("~/Reportes/CuentasPendientes.aspx");
+                        Response.Redirect("~/Reportes/frmMargenUtilidad.aspx");
                     });
                     t3.Start();
                     await t3;

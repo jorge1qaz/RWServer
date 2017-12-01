@@ -123,8 +123,8 @@
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>
-        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
-        var idEmpresa = "<% Response.Write(Session["idCompany"].ToString());%>";
+        //var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
+        //var idEmpresa = <%--"<% Response.Write(Session["idCompany"].ToString());%>";--%>
         console.log(idEmpresa);
     </script>
     <script src="../Scripts/Owner/RW-004-b.js"></script>

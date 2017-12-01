@@ -22,6 +22,18 @@ $(document).ready(function () {
     var fechaCompleto = anio + "." + mes + "." + dia;
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
+    $("#triggerCostumer").on("click", function () {
+        $('#modalListCostumer').modal('show');
+        $("tr").find(".material-icons").hover(function () {
+            $(this).addClass("text-info")
+                    .css("cursor", "pointer");
+        }, function () {
+            $(this).removeClass("text-info")
+                    .css("cursor", "initial");
+        }).on("click", function () {
+            $('#modalListCostumer').modal('hide');
+        });
+    });
     $("#MainContent_lstTipoMoneda").on("change", function () {
         $tipoMoneda = $(this).val();
         return $tipoMoneda;
@@ -149,14 +161,31 @@ $(document).ready(function () {
         $("#monthtitle").text(" para el mes de ");
         $("#monthHeader").text(meses[localStorage.getItem("mesAlmacenado")]);
     }
-    //var estadoMoneda;
-    //$("#MainContent_lstTipoMoneda").on("change", function () {
-    //    estadoMoneda = $(this).val();
-    //    localStorage.setItem("monedaAlmacenada", estadoMoneda);
-    //    console.log($(this).val());
-    //    console.log(localStorage.getItem("monedaAlmacenada"));
-    //});
-    console.log("Estado actual de moneda: " + localStorage.getItem("monedaAlmacenada"));
+
+    
+    var listarCostumer = function () {
+        var tblCostumer = $('#tablaCostumer').DataTable({
+            "destroy": true,
+            "processing": true,
+            responsive: true,
+            data: listCostumer.data,
+            "columns": [
+                { "data": "a" },
+                { "data": "b" },
+                { "defaultContent": "<i class='material-icons'>check_circle</i>" }
+            ],
+            "language": idioma
+        });
+        GetIdCostumer("#tablaCostumer", tblCostumer);
+    }
+
+    var GetIdCostumer = function (tbody, table) {
+        $(tbody).on("click", "i.material-icons", function () {
+            var data = table.row($(this).parents("tr")).data();
+            var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
+        });
+    }
+    listarCostumer();
     $("#MainContent_btnGenerarReporte").on("click", function () {
         if (typeof (Storage) !== "undefined") {
             localStorage.setItem("mesAlmacenado", parseInt($("#MainContent_lstMes").val()) - 1);
@@ -168,7 +197,6 @@ $(document).ready(function () {
     });
 
     if (localStorage.getItem("mesAlmacenado") != null) {
-        //alert("Estado actual de moneda: " + localStorage.getItem("monedaAlmacenada"));
         listarReporte(parseInt(localStorage.getItem("mesAlmacenado")) + 1);
         $("#MainContent_lstMes").val(parseInt(localStorage.getItem("mesAlmacenado")) + 1).attr("selected");
     }

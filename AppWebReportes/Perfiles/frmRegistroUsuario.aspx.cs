@@ -58,9 +58,20 @@ namespace AppWebReportes.Perfiles
                 IdRol = lstRol.SelectedValue.ToString(),
             };
             if (cliente.AllParametersUser("RW_Security_Create_User"))
+            {
+                Session["RegisterSuccess"] = "success";
                 Response.Redirect("~/Acceso.aspx");
+            }
             else
-                Response.Write("Algo falló, intentalo mas tarde.");
+            {
+                Cliente confirmarCorreo = new Cliente() {
+                    IdCliente = txtConfirmarEmail.Text.ToString()
+                };
+                if (confirmarCorreo.IdParameterUser("RW_Security_Check_User"))
+                    Response.Write("Este correo electrónico ya existe, por favor intente con otro.");
+                else
+                    Response.Write("Algo falló, intentalo mas tarde.");
+            }
         }
     }
 }

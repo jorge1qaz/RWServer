@@ -31,35 +31,32 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null)
                 Response.Redirect("~/Acceso");
-            if (Session["prueba"] != null)
-            {
-                Response.Write(Session["prueba"].ToString());
-
-            }
             if (!Page.IsPostBack)
             {
                 string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" + "2017" + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
-
                 DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
-                DataTable datatableQuerys0 = dataSetQuerys.Tables["data0"];
-                DataTable datatableQuerys1 = dataSetQuerys.Tables["data1"];
-                DataTable datatableQuerys2 = dataSetQuerys.Tables["data2"];
-                DataTable datatableQuerys3 = dataSetQuerys.Tables["data3"];
-                DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
-                DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
+                DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
+                DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
+                DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
+                //DataTable datatableQuerys3 = dataSetQuerys.Tables["data3"];
+                //DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
+                //DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
                 Session["queryJson"] = "";
                 #region Filters
-                lstAlmacenes.DataSource = dataSetQuerys.Tables[0].DefaultView;
-                lstAlmacenes.DataTextField = "cdsc";
-                lstAlmacenes.DataValueField = "ccod_alma";
+                lstAlmacenes.DataSource = dataSetQuerys.Tables["almacenes"].DefaultView;
+                lstAlmacenes.DataTextField = "b";
+                lstAlmacenes.DataValueField = "a";
                 lstAlmacenes.DataBind();
                 lstAlmacenes.Items.Insert(0, "Seleccione");
 
-                lstCOSTO1.DataSource = dataSetQuerys.Tables[1].DefaultView;
+                lstCOSTO1.DataSource = dataSetQuerys.Tables["costo1"].DefaultView;
                 lstCOSTO1.DataTextField = "b";
                 lstCOSTO1.DataValueField = "a";
                 lstCOSTO1.DataBind();
                 lstCOSTO1.Items.Insert(0, "Seleccione");
+
+                string listCostumer = JsonConvert.SerializeObject(dataSetQuerys, Formatting.None).ToString();
+                Session["listCostumer"] = listCostumer;
                 #endregion
             }
             if (Session["valLstAlmacen"] != null)
@@ -86,6 +83,7 @@ namespace AppWebReportes.Reportes
                 "2017" + "/" + "StoreProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
             string JsonProductsByCosto1 = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + "01" + "/" +
                 "2017" + "/" + "Costo1Products" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+
 
             if (Session["valLstAlmacen"] != null)
                 GenerateReport(JsonProductsByStore, "storeProducts"); //Indica que el filtro debe ser en base al almacén
@@ -167,7 +165,6 @@ namespace AppWebReportes.Reportes
                     dataTableProducts = dataSetProducts.Tables["data"]; //Obtiene la tabla con sus datos
                     //El recorrido de este bucle es para la lista de todos los productos
                     //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
-                    Response.Write("con pana");
                     foreach (DataRow row in dataTableProducts.Rows)
                         ProcesarDatos(row["a"].ToString().Trim(), row["a"].ToString().Trim(), "a", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
                     break;
