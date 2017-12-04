@@ -31,6 +31,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DropDownList lstMes;
         
         /// <summary>
+        /// Control blockStore.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl blockStore;
+        
+        /// <summary>
         /// Control lstAlmacenes.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DropDownList lstAlmacenes;
         
         /// <summary>
+        /// Control blockCostumers.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl blockCostumers;
+        
+        /// <summary>
         /// Control txtClienteRUC.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace AppWebReportes.Reportes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClienteRUC;
+        
+        /// <summary>
+        /// Control blockCosto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl blockCosto1;
         
         /// <summary>
         /// Control lstCOSTO1.
@@ -164,5 +191,41 @@ namespace AppWebReportes.Reportes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDeleteFilter;
+        
+        /// <summary>
+        /// Control chbStore.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbStore;
+        
+        /// <summary>
+        /// Control chbCostumers.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbCostumers;
+        
+        /// <summary>
+        /// Control chbCosto1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbCosto1;
+        
+        /// <summary>
+        /// Control btnSaveFilters.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveFilters;
     }
 }

@@ -497,6 +497,7 @@
     <Content Include="Fonts\README.md" />
     <Content Include="Bootstrap.master" />
     <Content Include="Datos\pruebas%40gmail.com.zip" />
+    <None Include="Properties\PublishProfiles\ReportesContasis.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

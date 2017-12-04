@@ -1,0 +1,6 @@
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\BusinessLayer.pdb
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\DotNetZip.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\DotNetZip.xml
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.pdb

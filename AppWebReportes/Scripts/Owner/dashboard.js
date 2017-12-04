@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    alert("Funciona!");
     var mesProcesamiento;
     var fecha = new Date();
     var anio = fecha.getFullYear();
@@ -45,31 +44,72 @@
             }
         }
     }
-    var listarReporte = function () {
-        var tblReportes = $('#tablaReporte').DataTable({
+    var listarReporteRCP = function () {
+        var dataTableRCP = $('#dataRCP').DataTable({
             "destroy": true,
             "processing": true,
             responsive: true,
-            "ajax": "../Cls/" + idCliente.trim() + "GeneralInfoElectronico.json",
+            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoElectronico.json",
             "columns": [
                 { "data": "a" },
                 { "data": "b" },
                 { "data": "c" },
                 { "data": "d" },
-                { "defaultContent": "<i class='material-icons'>check_circle</i>" }
+                { "defaultContent": "<i class='material-icons' onclick='redireccionarRCP()' role='button' id='linkRCP' data-toggle='tooltip' data-placement='right' title='Seleccione'>check_circle</i>" }
             ],
             "language": idioma,
             dom: 'Bfrtip',
             "order": [[0, "desc"]]
         });
-        GetIdCostumer("#tablaReporte", tblReportes);
-    }
-    var GetIdCostumer = function (tbody, table) {
+        GetIdsRCP("#dataRCP", dataTableRCP);
+    };
+    var listarReporteRMU = function () {
+        var dataTableRMU = $('#dataRMU').DataTable({
+            "destroy": true,
+            "processing": true,
+            responsive: true,
+            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoStock.json",
+            "columns": [
+                { "data": "a" },
+                { "data": "b" },
+                { "data": "c" },
+                { "data": "d" },
+                { "defaultContent": "<i class='material-icons' role='button' id='linkRMU' data-toggle='tooltip' data-placement='right' title='Seleccione'>check_circle</i>" }
+            ],
+            "language": idioma,
+            dom: 'Bfrtip',
+            "order": [[0, "desc"]]
+        });
+        GetIdsRMU("#dataRMU", dataTableRMU);
+    };
+    var GetIdsRCP = function (tbody, table) {
         $(tbody).on("click", "i.material-icons", function () {
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
-            alert(data.a.trim());
+            //alert(data.a.trim() + " " + data.c.trim());
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
-    listarReporte();
+    var GetIdsRMU = function (tbody, table) {
+        $(tbody).on("click", "i.material-icons", function () {
+            var data = table.row($(this).parents("tr")).data();
+            //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
+            //alert(data.a.trim() + " " + data.c.trim());
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+        });
+    }
+
+    $("#triggerNavRPC").on("click", function () {
+        $("#navRPC").addClass("active");
+        $("#navRMU").removeClass("active");
+    });
+
+    $("#triggerNavRMU").on("click", function () {
+        $("#navRPC").removeClass("active");
+        $("#navRMU").addClass("active");
+    });
+
+    listarReporteRMU();
+    listarReporteRCP();
+    
 });
