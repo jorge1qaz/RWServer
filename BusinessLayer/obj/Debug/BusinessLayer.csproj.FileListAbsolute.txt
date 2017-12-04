@@ -12,3 +12,11 @@ D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.xml
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb

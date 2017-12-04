@@ -68,7 +68,7 @@ namespace AppWebReportes
                         while (t2.Status != TaskStatus.RanToCompletion)
                         { }
                         //Response.Redirect("~/Reportes/CuentasPendientes.aspx");
-                        Response.Redirect("~/Reportes/frmMargenUtilidad.aspx");
+                        Response.Redirect("~/Reportes/Dashboard.aspx");
                     });
                     t3.Start();
                     await t3;
@@ -87,8 +87,8 @@ namespace AppWebReportes
         private void Descomprimir()
         {
             String rootPath = Server.MapPath("~");
-            Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+            //Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+            //zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
         }
     }
 }

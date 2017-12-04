@@ -17,7 +17,7 @@ namespace AppWebReportes.Perfiles
             
             if (!Page.IsPostBack)
             {
-                Session["IdUser"] = "";
+                Session.Remove("IdUser");
 
                 lstRol.DataSource = dat.Extrae("RW_Profiles_List_roles");
                 lstRol.DataTextField = "Descripcion";

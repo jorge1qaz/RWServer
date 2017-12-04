@@ -19,6 +19,7 @@ namespace BusinessLayer
             SqlDataAdapter da = new SqlDataAdapter();
             SqlCommand cmd = new SqlCommand();
             tabla = new DataTable();
+            //cmd.Connection = con.cadena;
             cmd.Connection = con.cadena;
             cmd.CommandText = consulta;
             cmd.CommandType = CommandType.StoredProcedure;
