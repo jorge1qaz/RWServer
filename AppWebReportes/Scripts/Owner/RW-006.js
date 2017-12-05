@@ -198,9 +198,4 @@ $(document).ready(function () {
         listarReporte(parseInt(localStorage.getItem("mesAlmacenado")) + 1);
         $("#MainContent_lstMes").val(parseInt(localStorage.getItem("mesAlmacenado")) + 1).attr("selected");
     }
-
-    $("#MainContent_chbStore").addClass("custom-control-input");
-    $("#MainContent_chbCostumers").addClass("custom-control-input");
-    $("#MainContent_chbCosto1").addClass("custom-control-input");
-
 });

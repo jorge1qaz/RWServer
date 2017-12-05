@@ -19,9 +19,6 @@
 </head>
 <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-    <%--<a runat="server" class="navbar-brand" href="~/Reportes/CuentasPendientes.aspx" aria-disabled="true">Cuentas pendientes</a>--%>
-    <a runat="server" class="navbar-brand" href="javascript: void(0)" aria-disabled="true">Cuentas pendientes</a>
-    <a runat="server" class="navbar-brand" href="~/Reportes/frmMargenUtilidad.aspx">Margen de utilidad por producto</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active"><a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a></li>

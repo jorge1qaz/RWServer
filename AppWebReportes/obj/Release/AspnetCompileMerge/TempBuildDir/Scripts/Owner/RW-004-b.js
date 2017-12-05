@@ -139,29 +139,29 @@ $(document).ready(function() {
             alert(e);
         }
     });
-    var idAnio = "";
 
-
-    $("#MainContent_lstAnios").change(function () {
-        $("#MainContent_lstAnios option:selected").each(function () {
-            idAnio = $(this).val();
-            $.UrlExists = function (url) {
-                var http = new XMLHttpRequest();
-                http.open('HEAD', url, false);
-                http.send();
-                return http.status != 404;
-            }
-            if ($.UrlExists("../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json")) {
-                listarCuentas();
-            } else {
-                alert("No encontramos ningún registro en su base de datos, para ésta consulta.");
-            }   
-        });
-    });
+    //$("#MainContent_lstAnios").change(function () {
+    //    $("#MainContent_lstAnios option:selected").each(function () {
+    //        idAnio = $(this).val();
+    //        $.UrlExists = function (url) {
+    //            var http = new XMLHttpRequest();
+    //            http.open('HEAD', url, false);
+    //            http.send();
+    //            return http.status != 404;
+    //        }
+    //        if ($.UrlExists("../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json")) {
+    //            listarCuentas();
+    //        } else {
+    //            alert("No encontramos ningún registro en su base de datos, para ésta consulta.");
+    //        }   
+    //    });
+    //});
 
     var listarReporte = function(idCuenta, idMesProceso) {
         var tblReportes = $('#tablaReporte').DataTable( {
-            "destroy":true,
+            "destroy": true,
+            "processing": true,
+            responsive: true,
             "ajax": "../Cls/" + idCliente.trim() + "/" + "rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/" + idCuenta + "ReporteCP" + idMesProceso + ".json",
             "columns": [
                 { "data": "ccod_cli" },
@@ -176,5 +176,8 @@ $(document).ready(function() {
                 'copy', 'csv', 'excelHtml5', 'pdf', 'print'
             ],
             "order": [[ 3, "desc" ]]
-        } );
+        });
+        $(".buttons-html5").addClass("btn btn-primary");
+        $(".buttons-print").addClass("btn btn-primary").css("margin-bottom", "5px");
+        $(".buttons-copy span:first").text("Copiar");
     }

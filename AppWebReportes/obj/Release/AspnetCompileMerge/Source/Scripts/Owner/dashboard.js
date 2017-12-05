@@ -87,6 +87,7 @@
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
+            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
             window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
@@ -95,7 +96,8 @@
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
-            window.location.href = "http://localhost:3243/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
 
@@ -113,10 +115,3 @@
     listarReporteRCP();
     
 });
-    function redireccionarRCP() {
-        window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx";
-    }
-    function redireccionarRMU() {
-        //window.location.href = "http://localhost:3243/Reportes/frmMargenUtilidad" + "?idCompany=" + ;
-
-    }

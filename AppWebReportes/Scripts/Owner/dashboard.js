@@ -49,7 +49,7 @@
             "destroy": true,
             "processing": true,
             responsive: true,
-            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoElectronico.json",
+            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoConta.json",
             "columns": [
                 { "data": "a" },
                 { "data": "b" },
@@ -88,6 +88,7 @@
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
             window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
     var GetIdsRMU = function (tbody, table) {
@@ -96,6 +97,7 @@
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
             window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
 

@@ -15,8 +15,8 @@ namespace AppWebReportes
         {
             if (!Page.IsPostBack)
             {
-                if ((string)Session["IdUser"] != null)
-                    Session.Remove("IdUser");
+                //if ((string)Session["IdUser"] != null)
+                //    Session.Remove("IdUser");
                 if (Session["RegisterSuccess"] != null)
                     blockRegisterSuccess.Visible = true;
                 else

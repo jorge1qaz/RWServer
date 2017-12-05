@@ -43,7 +43,7 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group">
-                                    <label>Cliente</label>
+                                    <asp:Label ID="lblTitleCliente" runat="server" Text="Cliente"></asp:Label>
                                     <div class="input-group" runat="server" id="blockCostumers">
                                         <div class="input-group-addon" role="button" id="triggerCostumer">Buscar</div>
                                         <asp:TextBox ID="txtClienteRUC" CssClass="form-control" placeholder="Ingrese el RUC" runat="server"></asp:TextBox>
@@ -87,7 +87,7 @@
                             <h4 class="card-title">Reporte de Margen de utilidad <span id="monthtitle">para el mes de </span><span id="monthHeader"></span></h4>
                             <div runat="server" class="row" id="spanFilters" style="margin-bottom: 5px;">
                                 <div class="offset-lg-3 col-lg-3 offset-md-2 col-md-5 offset-sm-1 col-sm-6">
-                                    <asp:Label ID="lblFilter" runat="server" Text="Se ha agregado el filtro de: "></asp:Label>
+                                    <asp:Label ID="lblFilter" runat="server" Text="Se ha agregado el filtro de, "></asp:Label>
                                 </div>
                                 <div class="offset-lg-1 col-lg-2 offset-md-1 col-md-2 offset-sm-1 col-sm-4">
                                     <asp:Button ID="btnDeleteFilter" CssClass="btn btn-outline-danger" runat="server" Text="Eliminar filtro" OnClick="btnDeleteFilter_Click" />
@@ -176,40 +176,47 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Seleccione los filtros a emplear</h5>
+                    <h5 class="modal-title">Seleccione el filtro a emplear</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <label class="custom-control custom-checkbox">
-                        <asp:CheckBox ID="chbStore" runat="server" />
+                        <asp:CheckBox ID="chbStore" runat="server" OnCheckedChanged="chbStore_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Almacén</span>
                     </label><br />
                     <label class="custom-control custom-checkbox">
-                        <asp:CheckBox ID="chbCostumers" runat="server" />
+                        <asp:CheckBox ID="chbCostumers" runat="server" OnCheckedChanged="chbCostumers_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Clientes</span>
                     </label><br />
                     <label class="custom-control custom-checkbox">
-                        <asp:CheckBox ID="chbCosto1" runat="server" />
+                        <asp:CheckBox ID="chbCosto1" runat="server" OnCheckedChanged="chbCosto1_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Centro de costo 1</span>
                     </label><br />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <asp:Button ID="btnSaveFilters" CssClass="btn btn-primary" runat="server" Text="Guardar filtros" OnClick="btnSaveFilters_Click" />
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $("#MainContent_chbStore").addClass("custom-control-input");
+        $("#MainContent_chbCostumers").addClass("custom-control-input");
+        $("#MainContent_chbCosto1").addClass("custom-control-input");
+    </script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>--%>
+    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>--%>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>

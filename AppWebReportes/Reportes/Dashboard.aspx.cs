@@ -12,10 +12,8 @@ namespace AppWebReportes.Reportes
         protected void Page_Load(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");
-            if (Session["IdUser"] == null)
-                Response.Redirect("~/Acceso");
-            if (!Page.IsPostBack)
-            { }
-            }
+            //if (Session["IdUser"] == null)
+            //    Response.Redirect("~/Acceso");
+        }
     }
 }

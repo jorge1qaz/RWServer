@@ -15,10 +15,7 @@
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" type="button" id="triggerModal">Buscar cuenta</button>
                             </div>
-                            <div class="form-group">
-                                <label for="lstEmpresas">Código de empresa</label>
-                                <asp:DropDownList ID="lstEmpresas" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstEmpresas_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="exampleSelect1">Mes de proceso</label>
                                 <select class="form-control" id="optMes">
@@ -37,10 +34,6 @@
                                     <option value="11">Noviembre</option>
                                     <option value="12">Diciembre</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Año de proceso</label>
-                                <asp:DropDownList ID="lstAnios" CssClass="form-control" runat="server"></asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-success form-control" id="btnPruebas" type="button">
@@ -118,13 +111,17 @@
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>--%>
+    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>--%>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>
-        //var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
+        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
         //var idEmpresa = <%--"<% Response.Write(Session["idCompany"].ToString());%>";--%>
+        var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
+        var idAnio = "<% Response.Write(Request.QueryString["year"].ToString());%>";
         console.log(idEmpresa);
     </script>
     <script src="../Scripts/Owner/RW-004-b.js"></script>
