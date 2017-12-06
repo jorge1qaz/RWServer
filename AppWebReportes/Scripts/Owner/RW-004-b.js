@@ -83,8 +83,8 @@ $(document).ready(function() {
         var tblCuentas = $('#tablaCuentas').DataTable( {
             "ajax": "../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json",
             "columns": [
-                { "data": "ccod_cue" },
-                { "data": "cdsc" },
+                { "data": "a" },
+                { "data": "b" },
                 { "defaultContent": "<i class='material-icons'>check_circle</i>"}
             ],
             "language": idioma,
@@ -164,11 +164,11 @@ $(document).ready(function() {
             responsive: true,
             "ajax": "../Cls/" + idCliente.trim() + "/" + "rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/" + idCuenta + "ReporteCP" + idMesProceso + ".json",
             "columns": [
-                { "data": "ccod_cli" },
-                { "data": "sum_ndebe" },
-                { "data": "sum_nhaber" },
-                { "data": "total" },
-                { "data": "crazon" }
+                { "data": "a" },
+                { "data": "b" },
+                { "data": "c" },
+                { "data": "d" },
+                { "data": "e" }
             ],
             "language": idioma,
             dom: 'Bfrtip',
