@@ -96,7 +96,7 @@ $(document).ready(function() {
     var GetIdCuenta = function(tbody, table) {
         $(tbody).on("click", "i.material-icons", function() {
             var data = table.row($(this).parents("tr")).data();
-            var idCuenta = $("#txtCuenta").val(data.ccod_cue.trim());
+            var idCuenta = $("#txtCuenta").val(data.a.trim());
         });
     }
     var idioma = {

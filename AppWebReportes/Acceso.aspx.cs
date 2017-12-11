@@ -15,8 +15,8 @@ namespace AppWebReportes
         {
             if (!Page.IsPostBack)
             {
-                //if ((string)Session["IdUser"] != null)
-                //    Session.Remove("IdUser");
+                if ((string)Session["IdUser"] != null)
+                    Session.Remove("IdUser");
                 if (Session["RegisterSuccess"] != null)
                     blockRegisterSuccess.Visible = true;
                 else
@@ -45,7 +45,7 @@ namespace AppWebReportes
                 blockRegisterSuccess.Visible = false;
             Session.Remove("RegisterSuccess");
         }
-        protected async void btnAcceder_Click(object sender, EventArgs e)
+        protected  void btnAcceder_Click(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");
             Cliente cliente = new Cliente()
@@ -55,40 +55,11 @@ namespace AppWebReportes
             };
             if (cliente.TwoParametersUser("RW_Security_authenticate_User"))
             {
-                if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
-                {
-                    btnAcceder.Enabled = false;
-                    txtContrasenia.Enabled = false;
-                    btnAcceder.Visible = false;
-                    lblErrorPassword.Text = "";
-                    Task t2 = new Task(Descomprimir);
-                    t2.Start();
-                    Task t3 = new Task(() =>
-                    {
-                        while (t2.Status != TaskStatus.RanToCompletion)
-                        { }
-                        //Response.Redirect("~/Reportes/CuentasPendientes.aspx");
-                        Response.Redirect("~/Reportes/Dashboard.aspx");
-                    });
-                    t3.Start();
-                    await t3;
-                }
-                else
-                {
-                    Task t0 = new Task(() => {
-                        Response.Redirect("~/Reportes/NoZip.aspx");
-                    });
-                    t0.Start();
-                }
+                lblErrorPassword.Text = "";
+                Response.Redirect("~/Reportes/Dashboard.aspx");
             }
             else
                 lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
-        }
-        private void Descomprimir()
-        {
-            String rootPath = Server.MapPath("~");
-            Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
         }
     }
 }

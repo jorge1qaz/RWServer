@@ -1,6 +1,5 @@
 ﻿using BusinessLayer;
 using System;
-using System.Collections.Generic;
 
 namespace AppWebReportes.CP_Reportes
 {
@@ -8,13 +7,11 @@ namespace AppWebReportes.CP_Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            String rootPath = Server.MapPath("~");
-            if (Session["IdUser"] == null)
+            if (Session["IdUser"] == null || Request.QueryString["idCompany"] == null || Request.QueryString["year"] == null)
                 Response.Redirect("~/Acceso");
+            Cliente cliente = new Cliente()
+            { IdCliente = Session["IdUser"].ToString() };
+            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
         }
-        Directorios dirs = new Directorios();
-        Paths paths = new Paths();
-        Zips zips = new Zips();
-
     }
 }
