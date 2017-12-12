@@ -1,6 +1,20 @@
 ﻿<%@ Page EnableEventValidation="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmMargenUtilidad.aspx.cs" Inherits="AppWebReportes.Reportes.frmMargenUtilidad" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx">Inicio</a></li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
+                <a href="~/Acceso.aspx" class="btn btn-outline-info my-2 my-sm-0" runat="server">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="form" id="Formulario">
         <div class="container">
             <br />
@@ -17,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="lstMes">Mes de proceso</label>
-                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server">
+                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True">
                                     <asp:ListItem Value="1">Enero</asp:ListItem>
                                     <asp:ListItem Value="2">Febrero</asp:ListItem>
                                     <asp:ListItem Value="3">Marzo</asp:ListItem>
@@ -170,7 +184,6 @@
             </div>
         </div>
     </div>
-    <%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Filtros</button>--%>
 
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -186,17 +199,20 @@
                         <asp:CheckBox ID="chbStore" runat="server" OnCheckedChanged="chbStore_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Almacén</span>
-                    </label><br />
+                    </label>
+                    <br />
                     <label class="custom-control custom-checkbox">
                         <asp:CheckBox ID="chbCostumers" runat="server" OnCheckedChanged="chbCostumers_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Clientes</span>
-                    </label><br />
+                    </label>
+                    <br />
                     <label class="custom-control custom-checkbox">
                         <asp:CheckBox ID="chbCosto1" runat="server" OnCheckedChanged="chbCosto1_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Centro de costo 1</span>
-                    </label><br />
+                    </label>
+                    <br />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -214,9 +230,7 @@
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>--%>
     <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>--%>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>

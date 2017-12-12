@@ -31,33 +31,11 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null || Request.QueryString["idCompany"] == null || Request.QueryString["year"] == null)
                 Response.Redirect("~/Acceso");
+            Cliente cliente = new Cliente()
+                { IdCliente = Session["IdUser"].ToString() };
+            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
             if (!Page.IsPostBack)
             {
-                string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
-                DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
-                DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
-                DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
-                DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
-                //DataTable datatableQuerys3 = dataSetQuerys.Tables["data3"];
-                //DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
-                //DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
-                Session["queryJson"] = "";
-                #region Filters
-                lstAlmacenes.DataSource = dataSetQuerys.Tables["almacenes"].DefaultView;
-                lstAlmacenes.DataTextField = "b";
-                lstAlmacenes.DataValueField = "a";
-                lstAlmacenes.DataBind();
-                lstAlmacenes.Items.Insert(0, "Seleccione");
-
-                lstCOSTO1.DataSource = dataSetQuerys.Tables["costo1"].DefaultView;
-                lstCOSTO1.DataTextField = "b";
-                lstCOSTO1.DataValueField = "a";
-                lstCOSTO1.DataBind();
-                lstCOSTO1.Items.Insert(0, "Seleccione");
-
-                string listCostumer = JsonConvert.SerializeObject(dataSetQuerys, Formatting.None).ToString();
-                Session["listCostumer"] = listCostumer;
-                #endregion
                 //Bloques de filtros bloqueados
                 blockStore.Visible = false;
                 blockCostumers.Visible = false;
@@ -68,6 +46,31 @@ namespace AppWebReportes.Reportes
                 blockStock.Visible = false;
                 blockVendedor.Visible = false;
             }
+            string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
+            DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
+            DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
+            DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
+            //DataTable datatableQuerys3 = dataSetQuerys.Tables["data3"];
+            //DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
+            //DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
+            Session["queryJson"] = "";
+            #region Filters
+            lstAlmacenes.DataSource = dataSetQuerys.Tables["almacenes"].DefaultView;
+            lstAlmacenes.DataTextField = "b";
+            lstAlmacenes.DataValueField = "a";
+            lstAlmacenes.DataBind();
+            lstAlmacenes.Items.Insert(0, "Seleccione");
+
+            lstCOSTO1.DataSource = dataSetQuerys.Tables["costo1"].DefaultView;
+            lstCOSTO1.DataTextField = "b";
+            lstCOSTO1.DataValueField = "a";
+            lstCOSTO1.DataBind();
+            lstCOSTO1.Items.Insert(0, "Seleccione");
+
+            string listCostumer = JsonConvert.SerializeObject(dataSetQuerys, Formatting.None).ToString();
+            Session["listCostumer"] = listCostumer;
+            #endregion
             if (Session["filtersState"] != null)
             {
                 //spanFilters.Visible = true;

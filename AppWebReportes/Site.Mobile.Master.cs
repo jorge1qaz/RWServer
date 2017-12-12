@@ -7,13 +7,7 @@ namespace AppWebReportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["IdUser"] == null)
-                Response.Redirect("~/Acceso");
-            Cliente cliente = new Cliente()
-            {
-                IdCliente = Session["IdUser"].ToString()
-            };
-            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
+            
         }
     }
 }
