@@ -51,7 +51,7 @@ namespace AppWebReportes.Reportes
             DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
             DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
             DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
-            //DataTable datatableQuerys3 = dataSetQuerys.Tables["data3"];
+            DataTable datatableQuerys3 = dataSetQuerys.Tables["vendedor"];
             //DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
             //DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
             Session["queryJson"] = "";
@@ -70,11 +70,17 @@ namespace AppWebReportes.Reportes
 
             string listCostumer = JsonConvert.SerializeObject(dataSetQuerys, Formatting.None).ToString();
             Session["listCostumer"] = listCostumer;
+
+            lstVendedor.DataSource = dataSetQuerys.Tables["vendedor"].DefaultView;
+            lstVendedor.DataTextField = "b";
+            lstVendedor.DataValueField = "a";
+            lstVendedor.DataBind();
+            lstVendedor.Items.Insert(0, "Seleccione");
             #endregion
             if (Session["filtersState"] != null)
             {
-                //spanFilters.Visible = true;
-                //lblFilter.Text += "Almacén ( " + lstAlmacenes.SelectedItem.ToString() + ")";
+                spanFilters.Visible = true;
+                lblFilter.Text += "Almacén ( " + lstAlmacenes.SelectedItem.ToString() + ")";
             }
             else
                 spanFilters.Visible = false;
@@ -91,7 +97,8 @@ namespace AppWebReportes.Reportes
                 Request.QueryString["year"].ToString() + "/" + "Costo1Products" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
             string JsonProductsByCostumer = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
                 Request.QueryString["year"].ToString() + "/" + "CustomerProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
-
+            string JsonProductsByEmployee = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
+                Request.QueryString["year"].ToString() + "/" + "EmployeeProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
 
             // dataTable => Fulltable; dataTableProducts = el json que tengo el respectivo filtro (filter)
             string JsonCadena = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Fulltable" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
