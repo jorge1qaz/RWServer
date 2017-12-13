@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var $btnTriggerModal = $("#triggerModal");
+    $('#modalLeyenda').modal('show');
     $btnTriggerModal.on("click", function () {
         $('#modalBuscarCuenta').modal('show');
         $("tr").find(".material-icons").hover(function() {
@@ -83,8 +84,8 @@ $(document).ready(function() {
         var tblCuentas = $('#tablaCuentas').DataTable( {
             "ajax": "../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json",
             "columns": [
-                { "data": "ccod_cue" },
-                { "data": "cdsc" },
+                { "data": "a" },
+                { "data": "b" },
                 { "defaultContent": "<i class='material-icons'>check_circle</i>"}
             ],
             "language": idioma,
@@ -96,7 +97,7 @@ $(document).ready(function() {
     var GetIdCuenta = function(tbody, table) {
         $(tbody).on("click", "i.material-icons", function() {
             var data = table.row($(this).parents("tr")).data();
-            var idCuenta = $("#txtCuenta").val(data.ccod_cue.trim());
+            var idCuenta = $("#txtCuenta").val(data.a.trim());
         });
     }
     var idioma = {
@@ -139,23 +140,7 @@ $(document).ready(function() {
             alert(e);
         }
     });
-
-    //$("#MainContent_lstAnios").change(function () {
-    //    $("#MainContent_lstAnios option:selected").each(function () {
-    //        idAnio = $(this).val();
-    //        $.UrlExists = function (url) {
-    //            var http = new XMLHttpRequest();
-    //            http.open('HEAD', url, false);
-    //            http.send();
-    //            return http.status != 404;
-    //        }
-    //        if ($.UrlExists("../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json")) {
-    //            listarCuentas();
-    //        } else {
-    //            alert("No encontramos ningún registro en su base de datos, para ésta consulta.");
-    //        }   
-    //    });
-    //});
+    listarCuentas();
 
     var listarReporte = function(idCuenta, idMesProceso) {
         var tblReportes = $('#tablaReporte').DataTable( {
@@ -164,11 +149,11 @@ $(document).ready(function() {
             responsive: true,
             "ajax": "../Cls/" + idCliente.trim() + "/" + "rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/" + idCuenta + "ReporteCP" + idMesProceso + ".json",
             "columns": [
-                { "data": "ccod_cli" },
-                { "data": "sum_ndebe" },
-                { "data": "sum_nhaber" },
-                { "data": "total" },
-                { "data": "crazon" }
+                { "data": "a" },
+                { "data": "b" },
+                { "data": "c" },
+                { "data": "d" },
+                { "data": "e" }
             ],
             "language": idioma,
             dom: 'Bfrtip',

@@ -34,9 +34,16 @@ namespace AppWebReportes.Reportes
             Cliente cliente = new Cliente()
                 { IdCliente = Session["IdUser"].ToString() };
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
+            string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
+            DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
+            DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
+            DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
+            DataTable datatableQuerys3 = dataSetQuerys.Tables["vendedor"];
+            DataTable datatableQuerys4 = dataSetQuerys.Tables["costo2"];
             if (!Page.IsPostBack)
             {
-                //Bloques de filtros bloqueados
+                #region Filtros bloqueados
                 blockStore.Visible = false;
                 blockCostumers.Visible = false;
                 lblTitleCliente.Visible = false;
@@ -45,28 +52,20 @@ namespace AppWebReportes.Reportes
                 blockCosto2.Visible = false;
                 blockStock.Visible = false;
                 blockVendedor.Visible = false;
+                Session["valLstEmployee"] = "";
+                #endregion
+                Session["queryJson"] = "";
             }
-            string JsonQuerys = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Querys" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
-            DataSet dataSetQuerys = JsonConvert.DeserializeObject<DataSet>(JsonQuerys);
-            DataTable datatableQuerys0 = dataSetQuerys.Tables["almacenes"];
-            DataTable datatableQuerys1 = dataSetQuerys.Tables["costo1"];
-            DataTable datatableQuerys2 = dataSetQuerys.Tables["data"];
-            DataTable datatableQuerys3 = dataSetQuerys.Tables["vendedor"];
-            //DataTable datatableQuerys4 = dataSetQuerys.Tables["data4"];
-            //DataTable datatableQuerys5 = dataSetQuerys.Tables["data5"];
-            Session["queryJson"] = "";
             #region Filters
             lstAlmacenes.DataSource = dataSetQuerys.Tables["almacenes"].DefaultView;
             lstAlmacenes.DataTextField = "b";
             lstAlmacenes.DataValueField = "a";
             lstAlmacenes.DataBind();
-            lstAlmacenes.Items.Insert(0, "Seleccione");
 
             lstCOSTO1.DataSource = dataSetQuerys.Tables["costo1"].DefaultView;
             lstCOSTO1.DataTextField = "b";
             lstCOSTO1.DataValueField = "a";
             lstCOSTO1.DataBind();
-            lstCOSTO1.Items.Insert(0, "Seleccione");
 
             string listCostumer = JsonConvert.SerializeObject(dataSetQuerys, Formatting.None).ToString();
             Session["listCostumer"] = listCostumer;
@@ -75,17 +74,17 @@ namespace AppWebReportes.Reportes
             lstVendedor.DataTextField = "b";
             lstVendedor.DataValueField = "a";
             lstVendedor.DataBind();
-            lstVendedor.Items.Insert(0, "Seleccione");
+
+            lstCOSTO2.DataSource = dataSetQuerys.Tables["costo2"].DefaultView;
+            lstCOSTO2.DataTextField = "b";
+            lstCOSTO2.DataValueField = "a";
+            lstCOSTO2.DataBind();
             #endregion
             if (Session["filtersState"] != null)
-            {
                 spanFilters.Visible = true;
-                lblFilter.Text += "Almacén ( " + lstAlmacenes.SelectedItem.ToString() + ")";
-            }
             else
                 spanFilters.Visible = false;
         }
-
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");
@@ -99,6 +98,12 @@ namespace AppWebReportes.Reportes
                 Request.QueryString["year"].ToString() + "/" + "CustomerProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
             string JsonProductsByEmployee = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
                 Request.QueryString["year"].ToString() + "/" + "EmployeeProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            string JsonProductsByAlcance = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
+                Request.QueryString["year"].ToString() + "/" + "AlcanceProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            string JsonProductsByStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
+                Request.QueryString["year"].ToString() + "/" + "StockProducts" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
+            string JsonProductsByCosto2 = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" +
+                Request.QueryString["year"].ToString() + "/" + "Costo2Products" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
 
             // dataTable => Fulltable; dataTableProducts = el json que tengo el respectivo filtro (filter)
             string JsonCadena = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptsMrgTld/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "Fulltable" + lstMes.SelectedValue.ToString() + ".json").Trim().Replace("\\'", "'");
@@ -166,9 +171,11 @@ namespace AppWebReportes.Reportes
             dsReporte.Tables[0].TableName = "data";
             if (Session["filtersState"] == null)
                 Session["filtersState"] = "none";
+            string queryJson = "";
             switch (Session["filtersState"].ToString())
             {
-                case "000":
+                #region Un solo filtro
+                case "0000000":
                     spanFilters.Visible = false;
                     dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByMonth);
                     dataTableProducts = dataSetProducts.Tables["data"]; //Obtiene la tabla con sus datos
@@ -176,9 +183,71 @@ namespace AppWebReportes.Reportes
                     //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
                     foreach (DataRow row in dataTableProducts.Rows)
                         ProcesarDatos(row["a"].ToString().Trim(), row["a"].ToString().Trim(), "a", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                    queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                    Session["queryJson"] = queryJson;
                     break;
-                case "001": // único filtro para Costo 1
-                    if (lstCOSTO1.SelectedValue.ToString() == "Seleccione")
+                case "0000001": // único filtro para costo2
+                    if (lstCOSTO2.SelectedValue.ToString() == "")
+                        Response.Write("<script>alert('Antes de continuar, debe seleccionar el centro de costo 2.');</script>");
+                    else
+                    {
+                        spanFilters.Visible = true;
+                        lblFilter.Text = "Se ha agregado el filtro de, Centro de costo 2:  " + lstCOSTO2.SelectedItem.ToString();
+                        dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByCosto2);
+                        dataTableProducts = dataSetProducts.Tables[lstCOSTO2.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                        foreach (DataRow row in dataTableProducts.Rows)                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
+                            ProcesarDatos(row["a"].ToString().Trim(), lstCOSTO2.SelectedValue.ToString(), "n", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
+                    }
+                    break;
+                case "0000010": // único filtro para Alcance
+                    if (lstAlcance.SelectedValue.ToString() == "")
+                        Response.Write("<script>alert('Antes de continuar, debe seleccionar el alcance.');</script>");
+                    else
+                    {
+                        spanFilters.Visible = true;
+                        lblFilter.Text = "Se ha agregado el filtro de, Alcance:  " + lstAlcance.SelectedItem.ToString();
+                        dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByAlcance);
+                        dataTableProducts = dataSetProducts.Tables[lstAlcance.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                        foreach (DataRow row in dataTableProducts.Rows)                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
+                            ProcesarDatos(row["a"].ToString().Trim(), lstAlcance.SelectedValue.ToString(), "q", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
+                    }
+                    break;
+                case "0000100": // único filtro para stock
+                    if (lstVendedor.SelectedValue.ToString() == "")
+                        Response.Write("<script>alert('Antes de continuar, debe seleccionar algún stock.');</script>");
+                    else
+                    {
+                        spanFilters.Visible = true;
+                        lblFilter.Text = "Se ha agregado el filtro de, stock:  " + lstTipoStock.SelectedItem.ToString();
+                        dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByStock);
+                        dataTableProducts = dataSetProducts.Tables[lstTipoStock.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                        foreach (DataRow row in dataTableProducts.Rows)                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
+                            ProcesarDatos(row["a"].ToString().Trim(), lstTipoStock.SelectedValue.ToString(), "p", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
+                    }
+                    break;
+                case "0001000": // único filtro para vendedor
+                    if (lstVendedor.SelectedValue.ToString() == "")
+                        Response.Write("<script>alert('Antes de continuar, debe seleccionar algún vendedor.');</script>");
+                    else
+                    {
+                        spanFilters.Visible = true;
+                        lblFilter.Text = "Se ha agregado el filtro de, Vendedor:  " + lstVendedor.SelectedItem.ToString();
+                        dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByEmployee);
+                        dataTableProducts = dataSetProducts.Tables[lstVendedor.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
+                        foreach (DataRow row in dataTableProducts.Rows)                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
+                            ProcesarDatos(row["a"].ToString().Trim(), lstVendedor.SelectedValue.ToString(), "o", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
+                    }
+                    break;
+                case "0010000": // único filtro para Costo 1
+                    if (lstCOSTO1.SelectedValue.ToString() == "")
                         Response.Write("<script>alert('Antes de continuar, debe seleccionar algún centro de Costo 1.');</script>");
                     else {
                         spanFilters.Visible = true;
@@ -187,9 +256,11 @@ namespace AppWebReportes.Reportes
                         dataTableProducts = dataSetProducts.Tables[lstCOSTO1.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
                         foreach (DataRow row in dataTableProducts.Rows)                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de costo1
                             ProcesarDatos(row["a"].ToString().Trim(), lstCOSTO1.SelectedValue.ToString(), "m", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
                     }
                     break;
-                case "010": // único filtro para clientes
+                case "0100000": // único filtro para clientes
                     if (txtClienteRUC.Text.ToString() == "")
                         Response.Write("<script>alert('Antes de continuar, debe seleccionar un RUC de cliente.');</script>");
                     else
@@ -203,6 +274,8 @@ namespace AppWebReportes.Reportes
                                                                                                        //El recorrido de este bucle es para la lista de todos los productos con su filtro de cliente
                             foreach (DataRow row in dataTableProducts.Rows)
                                 ProcesarDatos(row["a"].ToString().Trim(), txtClienteRUC.Text.ToString(), "j", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                            queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                            Session["queryJson"] = queryJson;
                         }
                         catch (Exception)
                         {
@@ -210,10 +283,8 @@ namespace AppWebReportes.Reportes
                         }
                     }
                     break;
-                case "011":
-                    break;
-                case "100": // único filtro para almacén
-                    if (lstAlmacenes.SelectedValue.ToString() == "Seleccione")
+                case "1000000": // único filtro para almacén
+                    if (lstAlmacenes.SelectedValue.ToString() == "")
                         Response.Write("<script>alert('Antes de continuar, debe seleccionar algún almacén.');</script>");
                     else
                     {
@@ -223,14 +294,23 @@ namespace AppWebReportes.Reportes
                         dataTableProducts = dataSetProducts.Tables[lstAlmacenes.SelectedValue.ToString().Trim()]; //Obtiene la tabla con sus datos
                         //El recorrido de este bucle es para la lista de todos los productos con su filtro de almacén
                         foreach (DataRow row in dataTableProducts.Rows)
-                            ProcesarDatos(row["a"].ToString().Trim(), lstAlmacenes.SelectedValue.ToString(), "k", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));    
+                            ProcesarDatos(row["a"].ToString().Trim(), lstAlmacenes.SelectedValue.ToString(), "k", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                        queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                        Session["queryJson"] = queryJson;
                     }
                     break;
-                case "101":
+                #endregion
+                case "0000011":
+                    spanFilters.Visible = false;
+                    dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByMonth);
+                    dataTableProducts = dataSetProducts.Tables["data"]; //Obtiene la tabla con sus datos
+                    //El recorrido de este bucle es para la lista de todos los productos
+                    //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
+                    foreach (DataRow row in dataTableProducts.Rows)
+                        ProcesarDatos(row["a"].ToString().Trim(), row["a"].ToString().Trim(), "a", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
+                    queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                    Session["queryJson"] = queryJson;
                     break;
-                case "110":
-                    break;
-                case "111":
                 default:
                     spanFilters.Visible = false;
                     dataSetProducts = JsonConvert.DeserializeObject<DataSet>(JsonProductsByMonth);
@@ -239,11 +319,10 @@ namespace AppWebReportes.Reportes
                     //Sí se hace la consulta sin filtros los parametros son "a" para idProducto, idFiltro (aun no se programa)
                     foreach (DataRow row in dataTableProducts.Rows)
                         ProcesarDatos(row["a"].ToString().Trim(), row["a"].ToString().Trim(), "a", tablaReporte, dataTable, bool.Parse(lstTipoMoneda.SelectedValue));
-
+                    queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
+                    Session["queryJson"] = queryJson;
                     break;
             }
-            string queryJson = JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString();
-            Session["queryJson"] = queryJson;
         }
         public void GenerateReport(string filter, string typeFilter)
         {
@@ -410,7 +489,6 @@ namespace AppWebReportes.Reportes
             row["MU"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(margenUtil), 4));
             tableContent.Rows.Add(row);
         }
-
         public void ProcesarDatos(string idProduct, string idFiltro, string filtro, string idFiltro2, string filtro2, DataTable tableContent, DataTable tableData, bool moneda)
         {
             /*Si la elección del cliente fue en soles la variable "moneda" debería estar en true, en caso contrarío 
@@ -485,21 +563,6 @@ namespace AppWebReportes.Reportes
             row["MU"] = cal.CompleteZeros(Math.Round(Convert.ToDecimal(margenUtil), 4));
             tableContent.Rows.Add(row);
         }
-
-        protected void lstAlmacenes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Guarda en una variable de sesión, el valor de la lista de almacenes
-            Session["valLstAlmacen"] = lstAlmacenes.SelectedValue.ToString();
-            lblFilter.Text = "";
-            Session.Remove("valLstCosto1");
-        }
-        protected void lstCOSTO1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Guarda en una variable de sesión, el valor de la lista de costo1
-            Session["valLstCosto1"] = lstAlmacenes.SelectedValue.ToString();
-            lblFilter.Text = "";
-            Session.Remove("valLstAlmacen");
-        }
         protected void btnDeleteFilter_Click(object sender, EventArgs e)
         {
             Session.Remove("filtersState");
@@ -516,8 +579,9 @@ namespace AppWebReportes.Reportes
         }
         protected void btnSaveFilters_Click(object sender, EventArgs e)
         {
-            Int16[] chbSelected = new Int16[] { 0, 0, 0 };
+            Int16[] chbSelected = new Int16[] { 0, 0, 0, 0, 0, 0, 0 }; //chbStore, chbCostumers, chbCosto1, chbVendedor, chbStock, chbAlcance, chbCosto2
             int chbSelectedCount = 0;
+            #region chbStore
             if (chbStore.Checked) {
                 chbSelected[0] = 1;
                 blockStore.Visible = true;
@@ -529,6 +593,8 @@ namespace AppWebReportes.Reportes
                 blockStock.Visible = false;
                 blockVendedor.Visible = false;
             }
+            #endregion
+            #region chbCostumers
             if (chbCostumers.Checked)
             {
                 chbSelected[1] = 1;
@@ -541,6 +607,8 @@ namespace AppWebReportes.Reportes
                 blockStock.Visible = false;
                 blockVendedor.Visible = false;
             }
+            #endregion
+            #region chbCosto1
             if (chbCosto1.Checked) {
                 chbSelected[2] = 1;
                 blockCosto1.Visible = true;
@@ -552,26 +620,82 @@ namespace AppWebReportes.Reportes
                 blockStock.Visible = false;
                 blockVendedor.Visible = false;
             }
-            chbSelectedCount = chbSelected[0] + chbSelected[1] + chbSelected[2];
-            Session["filtersState"] = chbSelected[0].ToString() + chbSelected[1].ToString() + chbSelected[2].ToString();
+            #endregion
+            #region chbVendedor
+            if (chbVendedor.Checked)
+            {
+                chbSelected[3] = 1;
+                blockVendedor.Visible = true;
+                blockCosto1.Visible = false;
+                blockStore.Visible = false;
+                blockCostumers.Visible = false;
+                lblTitleCliente.Visible = false;
+                blockAlcance.Visible = false;
+                blockCosto2.Visible = false;
+                blockStock.Visible = false;
+            }
+            #endregion
+            #region chbStock
+            if (chbStock.Checked)
+            {
+                chbSelected[4] = 1;
+                blockStock.Visible = true;
+                blockVendedor.Visible = false;
+                blockCosto1.Visible = false;
+                blockStore.Visible = false;
+                blockCostumers.Visible = false;
+                lblTitleCliente.Visible = false;
+                blockAlcance.Visible = false;
+                blockCosto2.Visible = false;
+            }
+            #endregion
+            #region chbAlcance
+            if (chbAlcance.Checked)
+            {
+                chbSelected[5] = 1;
+                blockAlcance.Visible = true;
+                blockStock.Visible = false;
+                blockVendedor.Visible = false;
+                blockCosto1.Visible = false;
+                blockStore.Visible = false;
+                blockCostumers.Visible = false;
+                lblTitleCliente.Visible = false;
+                blockCosto2.Visible = false;
+            }
+            #endregion
+            #region chbCosto2
+            if (chbCosto2.Checked)
+            {
+                chbSelected[6] = 1;
+                blockCosto2.Visible = true;
+                blockAlcance.Visible = false;
+                blockStock.Visible = false;
+                blockVendedor.Visible = false;
+                blockCosto1.Visible = false;
+                blockStore.Visible = false;
+                blockCostumers.Visible = false;
+                lblTitleCliente.Visible = false;
+            }
+            #endregion
+            chbSelectedCount = chbSelected[0] + chbSelected[1] + chbSelected[2] + chbSelected[3] + chbSelected[4] + chbSelected[5] + chbSelected[6];
+            Session["filtersState"] = chbSelected[0].ToString() + chbSelected[1].ToString() + chbSelected[2].ToString() + chbSelected[3].ToString() + chbSelected[4].ToString() + chbSelected[5].ToString() + chbSelected[6].ToString();
         }
-
         protected void chbStore_CheckedChanged(object sender, EventArgs e)
-        {
-            chbCostumers.Checked = false;
-            chbCosto1.Checked = false;
-        }
-
+            { chbCostumers.Checked = false; chbCosto1.Checked = false; chbVendedor.Checked = false; chbStock.Checked = false; chbAlcance.Checked = false; }
         protected void chbCostumers_CheckedChanged(object sender, EventArgs e)
-        {
-            chbStore.Checked = false;
-            chbCosto1.Checked = false;
-        }
-
+            { chbStore.Checked = false; chbCosto1.Checked = false; chbVendedor.Checked = false; chbStock.Checked = false; chbAlcance.Checked = false; chbCosto2.Checked = false; }
         protected void chbCosto1_CheckedChanged(object sender, EventArgs e)
-        {
-            chbCostumers.Checked = false;
-            chbStore.Checked = false;
-        }
+            { chbCostumers.Checked = false; chbStore.Checked = false; chbVendedor.Checked = false; chbStock.Checked = false; chbAlcance.Checked = false; chbCosto2.Checked = false; }
+        protected void chbVendedor_CheckedChanged(object sender, EventArgs e)
+            { chbCostumers.Checked = false; chbStore.Checked = false; chbCosto1.Checked = false; chbStock.Checked = false; chbAlcance.Checked = false; chbCosto2.Checked = false; }
+        protected void chbStock_CheckedChanged(object sender, EventArgs e)
+            { chbCostumers.Checked = false; chbStore.Checked = false; chbCosto1.Checked = false; chbAlcance.Checked = false; chbVendedor.Checked = false; chbCosto2.Checked = false; }
+        protected void chbAlcance_CheckedChanged(object sender, EventArgs e)
+            { chbCostumers.Checked = false; chbStore.Checked = false; chbCosto1.Checked = false; chbStock.Checked = false; chbVendedor.Checked = false; chbCosto2.Checked = false; }
+        protected void chbCosto2_CheckedChanged(object sender, EventArgs e)
+            { chbCostumers.Checked = false; chbStore.Checked = false; chbCosto1.Checked = false; chbStock.Checked = false; chbVendedor.Checked = false; chbAlcance.Checked = false; }
+
+        protected void lstMes_SelectedIndexChanged(object sender, EventArgs e)
+            { Session["queryJson"] = ""; }
     }
 }

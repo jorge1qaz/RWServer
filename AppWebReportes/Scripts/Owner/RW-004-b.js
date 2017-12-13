@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var $btnTriggerModal = $("#triggerModal");
+    $('#modalLeyenda').modal('show');
     $btnTriggerModal.on("click", function () {
         $('#modalBuscarCuenta').modal('show');
         $("tr").find(".material-icons").hover(function() {
@@ -104,7 +105,7 @@ $(document).ready(function() {
         "sLengthMenu":     "Mostrar _MENU_ registros",
         "sZeroRecords":    "No se encontraron resultados",
         "sEmptyTable":     "Ningún dato disponible en esta tabla",
-        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix":    "",
@@ -140,22 +141,6 @@ $(document).ready(function() {
         }
     });
     listarCuentas();
-    //$("#MainContent_lstAnios").change(function () {
-    //    $("#MainContent_lstAnios option:selected").each(function () {
-    //        idAnio = $(this).val();
-    //        $.UrlExists = function (url) {
-    //            var http = new XMLHttpRequest();
-    //            http.open('HEAD', url, false);
-    //            http.send();
-    //            return http.status != 404;
-    //        }
-    //        if ($.UrlExists("../Cls/" + idCliente.trim() + "/rptCntsPndts/" + idEmpresa.trim() + "/" + idAnio.trim() + "/listaCuentas.json")) {
-    //            listarCuentas();
-    //        } else {
-    //            alert("No encontramos ningún registro en su base de datos, para ésta consulta.");
-    //        }   
-    //    });
-    //});
 
     var listarReporte = function(idCuenta, idMesProceso) {
         var tblReportes = $('#tablaReporte').DataTable( {
@@ -171,7 +156,7 @@ $(document).ready(function() {
                 { "data": "e" }
             ],
             "language": idioma,
-            dom: 'Bfrtip',
+            dom: '<lf<t>ip>',
             buttons: [
                 'copy', 'csv', 'excelHtml5', 'pdf', 'print'
             ],

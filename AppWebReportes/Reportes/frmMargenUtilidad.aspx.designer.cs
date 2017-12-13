@@ -247,6 +247,42 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.CheckBox chbCosto1;
         
         /// <summary>
+        /// Control chbVendedor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbVendedor;
+        
+        /// <summary>
+        /// Control chbStock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbStock;
+        
+        /// <summary>
+        /// Control chbAlcance.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbAlcance;
+        
+        /// <summary>
+        /// Control chbCosto2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chbCosto2;
+        
+        /// <summary>
         /// Control btnSaveFilters.
         /// </summary>
         /// <remarks>

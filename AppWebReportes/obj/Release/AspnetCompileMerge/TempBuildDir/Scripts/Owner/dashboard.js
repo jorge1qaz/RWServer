@@ -19,7 +19,7 @@
         "sZeroRecords": "No se encontraron resultados",
         "sEmptyTable": "Ningún dato disponible en esta tabla",
         "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 <br /> de un total de 0 registros",
         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix": "",
         "sSearch": "Buscar:",
@@ -49,7 +49,7 @@
             "destroy": true,
             "processing": true,
             responsive: true,
-            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoElectronico.json",
+            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoConta.json",
             "columns": [
                 { "data": "a" },
                 { "data": "b" },
@@ -87,8 +87,8 @@
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
-            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
-            window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
     var GetIdsRMU = function (tbody, table) {
@@ -96,8 +96,8 @@
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
-            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
-            window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
 
@@ -111,7 +111,8 @@
         $("#navRMU").addClass("active");
     });
 
-    listarReporteRMU();
     listarReporteRCP();
+    listarReporteRMU();
     
+
 });

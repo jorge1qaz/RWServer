@@ -29,7 +29,6 @@
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" type="button" id="triggerModal">Buscar cuenta</button>
                             </div>
-
                             <div class="form-group">
                                 <label for="exampleSelect1">Mes de proceso</label>
                                 <select class="form-control" id="optMes">
@@ -122,6 +121,50 @@
             </div>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg" id="modalLeyenda" tabindex="-1" role="dialog" aria-labelledby="modalLeyendaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLeyendaLabel">Cuentas contables</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12</td>
+                                <td>Clientes</td>
+                            </tr>
+                            <tr>
+                                <td>42</td>
+                                <td>Proveedores</td>
+                            </tr>
+                            <tr>
+                                <td>45</td>
+                                <td>Bancos</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Cuenta</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <br />
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -129,6 +172,9 @@
     <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script>
+
+    </script>
     <script>
         var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
         var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";

@@ -1,6 +1,20 @@
 ﻿<%@ Page EnableEventValidation="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmMargenUtilidad.aspx.cs" Inherits="AppWebReportes.Reportes.frmMargenUtilidad" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx">Inicio</a></li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
+                <a href="~/Acceso.aspx" class="btn btn-outline-info my-2 my-sm-0" runat="server">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="form" id="Formulario">
         <div class="container">
             <br />
@@ -17,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="lstMes">Mes de proceso</label>
-                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server">
+                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
                                     <asp:ListItem Value="1">Enero</asp:ListItem>
                                     <asp:ListItem Value="2">Febrero</asp:ListItem>
                                     <asp:ListItem Value="3">Marzo</asp:ListItem>
@@ -30,7 +44,6 @@
                                     <asp:ListItem Value="10">Octubre</asp:ListItem>
                                     <asp:ListItem Value="11">Noviembre</asp:ListItem>
                                     <asp:ListItem Value="12">Diciembre</asp:ListItem>
-                                    <asp:ListItem Value="12">Acumulado hasta la fecha</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
@@ -39,7 +52,7 @@
                             <div id="blockFiltrosAvanzados">
                                 <div class="form-group" runat="server" id="blockStore">
                                     <label for="lstAlmacenes">Almacén</label>
-                                    <asp:DropDownList ID="lstAlmacenes" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstAlmacenes_SelectedIndexChanged">
+                                    <asp:DropDownList ID="lstAlmacenes" CssClass="form-control" runat="server">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group">
@@ -51,7 +64,7 @@
                                 </div>
                                 <div class="form-group" runat="server" id="blockCosto1">
                                     <label for="lstCOSTO1">COSTO 1</label>
-                                    <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server" OnSelectedIndexChanged="lstCOSTO1_SelectedIndexChanged">
+                                    <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group" runat="server" id="blockCosto2">
@@ -65,13 +78,17 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group" runat="server" id="blockStock">
-                                    <label for="lstTipoStock">Stock</label>
+                                    <label for="lstTipoStock">Tipo</label>
                                     <asp:DropDownList ID="lstTipoStock" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="true">Inciden en stock</asp:ListItem>
+                                        <asp:ListItem Value="false">No inciden en stock</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="form-group" runat="server" id="blockAlcance">
                                     <label for="lstAlcance">Alcance</label>
                                     <asp:DropDownList ID="lstAlcance" CssClass="form-control" runat="server">
+                                        <asp:ListItem Value="true">Incide a registros</asp:ListItem>
+                                        <asp:ListItem Value="false">No incide a registros</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -170,7 +187,6 @@
             </div>
         </div>
     </div>
-    <%--<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Filtros</button>--%>
 
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -186,17 +202,44 @@
                         <asp:CheckBox ID="chbStore" runat="server" OnCheckedChanged="chbStore_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Almacén</span>
-                    </label><br />
+                    </label>
+                    <br />
                     <label class="custom-control custom-checkbox">
                         <asp:CheckBox ID="chbCostumers" runat="server" OnCheckedChanged="chbCostumers_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Clientes</span>
-                    </label><br />
+                    </label>
+                    <br />
                     <label class="custom-control custom-checkbox">
                         <asp:CheckBox ID="chbCosto1" runat="server" OnCheckedChanged="chbCosto1_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">Centro de costo 1</span>
-                    </label><br />
+                    </label>
+                    <br />
+                    <label class="custom-control custom-checkbox">
+                        <asp:CheckBox ID="chbVendedor" runat="server" OnCheckedChanged="chbVendedor_CheckedChanged" />
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Vendedor</span>
+                    </label>
+                    <br />
+                    <label class="custom-control custom-checkbox">
+                        <asp:CheckBox ID="chbStock" runat="server" OnCheckedChanged="chbStock_CheckedChanged" />
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Tipo</span>
+                    </label>
+                    <br />
+                    <label class="custom-control custom-checkbox">
+                        <asp:CheckBox ID="chbAlcance" runat="server" OnCheckedChanged="chbAlcance_CheckedChanged" />
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Alcance</span>
+                    </label>
+                    <br />
+                    <label class="custom-control custom-checkbox">
+                        <asp:CheckBox ID="chbCosto2" runat="server" OnCheckedChanged="chbCosto2_CheckedChanged" />
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Centro de costo 2</span>
+                    </label>
+                    <br />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -209,16 +252,18 @@
         $("#MainContent_chbStore").addClass("custom-control-input");
         $("#MainContent_chbCostumers").addClass("custom-control-input");
         $("#MainContent_chbCosto1").addClass("custom-control-input");
+        $("#MainContent_chbVendedor").addClass("custom-control-input");
+        $("#MainContent_chbStock").addClass("custom-control-input");
+        $("#MainContent_chbAlcance").addClass("custom-control-input");
+        $("#MainContent_chbCosto2").addClass("custom-control-input");
     </script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>--%>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>--%>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+        <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>
         var idEmpresa = "01";
     </script>

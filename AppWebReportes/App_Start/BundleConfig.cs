@@ -40,7 +40,7 @@ namespace AppWebReportes
                             "~/Scripts/DataTables/dataTables.responsive.min.js",
                             "~/Scripts/DataTables/responsive.bootstrap4.min.js",
                             "~/Scripts/DataTables/autoFill.bootstrap4.min.js",
-                            "~/Scripts/DataTables/buttons.bootstrap4.min.js"));
+                            "~/Scripts/DataTables/buttons.bootstrap4.js"));
             // Validaciones
             bundles.Add(new ScriptBundle("~/bundles/validaciones").Include(
                              "~/Scripts/jquery.validate.min.js",
