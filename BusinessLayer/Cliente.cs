@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace BusinessLayer
@@ -13,6 +14,7 @@ namespace BusinessLayer
         public string ImagenEmpresa { get; set; }
         public string ImagenPerfil { get; set; }
         public string IdRol { get; set; }
+        public DateTime LastUpdate { get; set; }
 
         //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, con todos los atributos de Cliente y un parámetro de salida.*/
@@ -159,6 +161,64 @@ namespace BusinessLayer
             paramContrasenia.ParameterName = "@Contrasenia";
             paramContrasenia.Value = Contrasenia;
             cmd.Parameters.Add(paramContrasenia);
+
+            SqlParameter paramComprobacion = new SqlParameter();
+            paramComprobacion.Direction = ParameterDirection.Output;
+            paramComprobacion.SqlDbType = SqlDbType.Bit;
+            paramComprobacion.ParameterName = "@Comprobacion";
+            cmd.Parameters.Add(paramComprobacion);
+
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+        }
+        //Jorge Luis|08/11/2017|RW-19
+        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, correo) del Cliente y un parámetro de salida.*/
+        public DateTime ReadParametersUserLastUpdate(string storeProcedure)
+        {
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            SqlParameter paramLastUpdate = new SqlParameter();
+            paramLastUpdate.Direction = ParameterDirection.Output;
+            paramLastUpdate.SqlDbType = SqlDbType.DateTime;
+            paramLastUpdate.ParameterName = "@LastUpdate";
+            cmd.Parameters.Add(paramLastUpdate);
+
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            return DateTime.Parse(cmd.Parameters["@LastUpdate"].Value.ToString());
+        }
+        public bool WriteParametersUserLastUpdate(string storeProcedure)
+        {
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            SqlParameter paramLastUpdate = new SqlParameter();
+            paramLastUpdate.SqlDbType = SqlDbType.DateTime;
+            paramLastUpdate.ParameterName = "@LastUpdate";
+            paramLastUpdate.Value = LastUpdate;
+            cmd.Parameters.Add(paramLastUpdate);
 
             SqlParameter paramComprobacion = new SqlParameter();
             paramComprobacion.Direction = ParameterDirection.Output;

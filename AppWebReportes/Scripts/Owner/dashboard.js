@@ -10,11 +10,6 @@
     if (dia < 10) {
         dia = '0' + dia;
     }
-
-    $("#triggerNavRMU").on("click", function () {
-        $("div").addClass("active");
-        console.log("active");
-    });
     var fechaCompleto = anio + "." + mes + "." + dia;
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -105,16 +100,6 @@
             window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
-
-    $("#triggerNavRPC").on("click", function () {
-        $("#navRPC").addClass("active");
-        $("#navRMU").removeClass("active");
-    });
-
-    $("#triggerNavRMU").on("click", function () {
-        $("#navRPC").removeClass("active");
-        $("#navRMU").addClass("active");
-    });
 
     listarReporteRCP();
     listarReporteRMU();

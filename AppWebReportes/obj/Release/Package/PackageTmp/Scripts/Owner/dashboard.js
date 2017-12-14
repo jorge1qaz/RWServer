@@ -18,8 +18,8 @@
         "sLengthMenu": "Mostrar _MENU_ registros",
         "sZeroRecords": "No se encontraron resultados",
         "sEmptyTable": "Ningún dato disponible en esta tabla",
-        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando registros del 0 al 0 <br /> de un total de 0 registros",
+        "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 al 0 de un total de 0 registros",
         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix": "",
         "sSearch": "Buscar:",
@@ -100,16 +100,6 @@
             //window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
-
-    $("#triggerNavRPC").on("click", function () {
-        $("#navRPC").addClass("active");
-        $("#navRMU").removeClass("active");
-    });
-
-    $("#triggerNavRMU").on("click", function () {
-        $("#navRPC").removeClass("active");
-        $("#navRMU").addClass("active");
-    });
 
     listarReporteRCP();
     listarReporteRMU();

@@ -9,6 +9,7 @@ namespace AppWebReportes.Reportes
         Paths paths = new Paths();
         Zips zips = new Zips();
         Directorios dirs = new Directorios();
+        AccesoDatos dat = new AccesoDatos();
         protected void Page_Load(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");
@@ -17,14 +18,12 @@ namespace AppWebReportes.Reportes
             Cliente cliente = new Cliente()
                 { IdCliente = Session["IdUser"].ToString() };
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
-
             try
             {
-                DateTime lastUpadateBefore = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/" + "LastUpdate.txt"));
+                DateTime lastUpadateBefore = cliente.ReadParametersUserLastUpdate("RW_header_lastUpdate_user");
                 zips.ExtractFile(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/temp");
                 DateTime lastUpadateNow = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/temp/LastUpdate.txt"));
                 TimeSpan datediff = lastUpadateBefore.Subtract(lastUpadateNow);
-            
                 if (Convert.ToDecimal(datediff.TotalMinutes) != 0)
                 {
                     blockUpdateData.Visible = true;
@@ -65,6 +64,15 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
             zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+            DateTime lastUpadateFile = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/" + "LastUpdate.txt"));
+            Cliente cliente = new Cliente() {
+                IdCliente = Session["IdUser"].ToString(),
+                LastUpdate = lastUpadateFile,
+            };
+            if (cliente.WriteParametersUserLastUpdate("RW_Profiles_LastUpdate"))
+                Response.Write("Registro de última actualización");
+            Response.Write(lastUpadateFile.ToString());
+            blockUpdateData.Visible = false;
         }
     }
 }

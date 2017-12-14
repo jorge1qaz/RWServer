@@ -47,12 +47,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-md-2 col-md-8 offset-sm-1 col-sm-10">
+                        <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-sm-0 col-sm-12 ">
                             <div class="">
                                 <div class="card">
                                     <div class="card-block">
                                         <div class="tab-content">
-                                            <div class="tab-pane active" id="navRPC" role="tabpanel">
+                                            <div class="tab-pane fade show active" id="navRPC" role="tabpanel">
                                                 <p class="card-text">Seleccione la empresa para el reporte de cuentas pendientes</p>
                                                 <table class="table table-striped table-bordered table-responsive" id="dataRCP" role="grid">
                                                     <thead>
@@ -75,7 +75,7 @@
                                                     </tfoot>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane active" id="navRMU" role="tabpanel">
+                                            <div class="tab-pane fade active" id="navRMU" role="tabpanel">
                                                 <p class="card-text">Seleccione la empresa para el reporte de margen de utilidad</p>
                                                 <table class="table table-striped table-bordered table-responsive" id="dataRMU">
                                                     <thead>
