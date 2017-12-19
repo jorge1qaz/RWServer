@@ -14,6 +14,7 @@
             </div>
         </div>
     </nav>
+    <br />
     <div class="container">
         <div class="col-sm-12">
             <div class="card text-center">
@@ -21,6 +22,7 @@
                     <ul class="nav nav-pills nav-fill" role="tablist">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#navRPC" role="tab" id="triggerNavRPC">Cuentas pendientes</a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#navRMU" role="tab" id="triggerNavRMU">Margen de utilidad por producto</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#navRMND" role="tab" id="triggerNavRMND">Mi negocio al día</a></li>
                     </ul>
                 </div>
                 <div class="card-block">
@@ -78,6 +80,29 @@
                                             <div class="tab-pane fade active" id="navRMU" role="tabpanel">
                                                 <p class="card-text">Seleccione la empresa para el reporte de margen de utilidad</p>
                                                 <table class="table table-striped table-bordered table-responsive" id="dataRMU">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código de empresa</th>
+                                                            <th>Razón social</th>
+                                                            <th>Año de proceso</th>
+                                                            <th>RUC</th>
+                                                            <th>Seleccione</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>Código de empresa</th>
+                                                            <th>Razón social</th>
+                                                            <th>Año de proceso</th>
+                                                            <th>RUC</th>
+                                                            <th>Seleccione</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade active" id="navRMND" role="tabpanel">
+                                                <p class="card-text">Seleccione la empresa para el reporte de Mi negocio al día</p>
+                                                <table class="table table-striped table-bordered table-responsive" id="dataRMND">
                                                     <thead>
                                                         <tr>
                                                             <th>Código de empresa</th>

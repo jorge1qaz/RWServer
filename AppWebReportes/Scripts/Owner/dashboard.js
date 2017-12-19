@@ -82,6 +82,25 @@
         });
         GetIdsRMU("#dataRMU", dataTableRMU);
     };
+    var listarReporteRMND = function () {
+        var dataTableRMND = $('#dataRMND').DataTable({
+            "destroy": true,
+            "processing": true,
+            responsive: true,
+            "ajax": "../Cls/" + idCliente.trim() + "/" + "GeneralInfoConta2.json",
+            "columns": [
+                { "data": "a" },
+                { "data": "b" },
+                { "data": "c" },
+                { "data": "d" },
+                { "defaultContent": "<i class='material-icons' role='button' id='linkRMND' data-toggle='tooltip' data-placement='right' title='Seleccione'>check_circle</i>" }
+            ],
+            "language": idioma,
+            dom: 'Bfrtip',
+            "order": [[0, "desc"]]
+        });
+        GetIdsRMND("#dataRMND", dataTableRMND);
+    };
     var GetIdsRCP = function (tbody, table) {
         $(tbody).on("click", "i.material-icons", function () {
             var data = table.row($(this).parents("tr")).data();
@@ -100,9 +119,19 @@
             window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
     }
+    var GetIdsRMND = function (tbody, table) {
+        $(tbody).on("click", "i.material-icons", function () {
+            var data = table.row($(this).parents("tr")).data();
+            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://localhost:3243/reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+        });
+    }
 
     listarReporteRCP();
     listarReporteRMU();
-    
+    listarReporteRMND();
 
+    $("#navRMU").trigger("click");
+    $("#navRMND").trigger("click");
+    //dataRMND
 });
