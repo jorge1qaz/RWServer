@@ -64,7 +64,7 @@
                             
                             <div class="row">
                                 <div class="col-lg-12 col-md-11 col-xs-12">
-                                    <table class="highchart table table-striped table-bordered table-responsive" data-graph-container-before="1" data-graph-type="column" id="tablaReporte">
+                                    <table class="highchart table table-striped table-bordered table-responsive" data-graph-container-before="1" data-graph-type="column" id="tablaReporte" data-graph-datalabels-enabled="1" data-graph-datalabels-formatter="foo.myAwesomeCallback">
                                         <thead>
                                             <tr>
                                                 <th>Resultado</th>
