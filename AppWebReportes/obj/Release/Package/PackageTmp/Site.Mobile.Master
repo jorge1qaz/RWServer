@@ -17,13 +17,16 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
+    <form id="Formulario" runat="server">
+       <div class="body-content">
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
             <friendlyUrls:ViewSwitcher runat="server" />
+           <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Reportes Contasis</p>
+            </footer>
         </div>
     </form>
 </body>

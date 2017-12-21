@@ -271,6 +271,7 @@ namespace AppWebReportes.Reportes
             #endregion
             #region Declaración de tablas
             DataSet dataSetCajaBancos = JsonConvert.DeserializeObject<DataSet>(JsonA105);
+            DataTable datatableCajaBancosMes0 = dataSetCajaBancos.Tables["0"];
             DataTable datatableCajaBancosMes1 = dataSetCajaBancos.Tables["1"];
             DataTable datatableCajaBancosMes2 = dataSetCajaBancos.Tables["2"];
             DataTable datatableCajaBancosMes3 = dataSetCajaBancos.Tables["3"];
@@ -288,38 +289,29 @@ namespace AppWebReportes.Reportes
             switch (lstMes.SelectedValue.ToString())
             {
                 case "1":
-                    try
-                    { totalCajaBancosHaber = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == "104101").Select(x => x.Field<double>("b")).Sum(); }
-                    catch (Exception)
-                    { //totalCajaBancosHaber = 0;
-                        totalCajaBancosHaber = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == "104101").Select(x => x.Field<double>("c")).Sum();
-                    }
-                    try
-                    { totalCajaBancosDebe = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == "104101").Select(x => x.Field<double>("b")).Sum(); }
-                    catch (Exception)
-                    { //totalCajaBancosDebe = 0;
-                        totalCajaBancosDebe = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == "104101").Select(x => x.Field<double>("c")).Sum();
-                    }
-                    totalCajaBancos = Convert.ToDecimal(totalCajaBancosDebe) - Convert.ToDecimal(totalCajaBancosHaber);
-                    lblCajaBancos.Text = totalCajaBancos.ToString();
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "2":
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "3":
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "4":
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "5":
                     datatableCajaBancosMes4.Merge(datatableCajaBancosMes5);
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "6":
                     datatableCajaBancosMes5.Merge(datatableCajaBancosMes6);
@@ -327,6 +319,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "7":
                     datatableCajaBancosMes6.Merge(datatableCajaBancosMes7);
@@ -335,6 +328,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "8":
                     datatableCajaBancosMes7.Merge(datatableCajaBancosMes8);
@@ -344,6 +338,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "9":
                     datatableCajaBancosMes8.Merge(datatableCajaBancosMes9);
@@ -354,6 +349,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "10":
                     datatableCajaBancosMes9.Merge(datatableCajaBancosMes10);
@@ -365,6 +361,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "11":
                     datatableCajaBancosMes10.Merge(datatableCajaBancosMes11);
@@ -377,6 +374,7 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
                 case "12":
                     datatableCajaBancosMes11.Merge(datatableCajaBancosMes12);
@@ -390,56 +388,48 @@ namespace AppWebReportes.Reportes
                     datatableCajaBancosMes3.Merge(datatableCajaBancosMes4);
                     datatableCajaBancosMes2.Merge(datatableCajaBancosMes3);
                     datatableCajaBancosMes1.Merge(datatableCajaBancosMes2);
+                    datatableCajaBancosMes0.Merge(datatableCajaBancosMes1);
                     break;
             }
             #endregion
-            List<string> cuentas = new List<string>() { "104101", "1011"}; //Recontra temporal hasta que haga listas ricolinas de las cuentas mi hedmano
             DataRow row;
-            List<string> cuen = new List<string>();
-            DataTable distintos = tableSumByCount.DefaultView.ToTable(true, "a");
             DataTable dtNew = new DataTable();
-            foreach (DataColumn dcName in tableSumByCount.Columns)
+            try
             {
-                dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
+                DataTable distintos = datatableCajaBancosMes0.DefaultView.ToTable(true, "a");
+                foreach (DataColumn dcName in datatableCajaBancosMes0.Columns)
+                    dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
+                foreach (DataRow drRow in distintos.Rows)
+                    dtNew.ImportRow(datatableCajaBancosMes0.Select("a" + " = '" + drRow[0] + "'")[0]);
+                foreach (DataRow item in distintos.Rows)
+                {
+                    try
+                    { totalCajaBancosHaber = datatableCajaBancosMes0.AsEnumerable().Where(x => x.Field<string>("a") == item[0].ToString()).Select(x => x.Field<double>("b")).Sum(); }
+                    catch (Exception)
+                    { totalCajaBancosHaber = 0; }
+                    try
+                    { totalCajaBancosDebe = datatableCajaBancosMes0.AsEnumerable().Where(x => x.Field<string>("a") == item[0].ToString()).Select(x => x.Field<double>("c")).Sum(); }
+                    catch (Exception)
+                    { totalCajaBancosDebe = 0; }
+                    totalCajaBancos = Convert.ToDecimal(totalCajaBancosDebe) - Convert.ToDecimal(totalCajaBancosHaber);
+                    row = tableSumByCount.NewRow();
+                    row["Cuenta"] = item.ToString();
+                    row["Total"] = totalCajaBancos;
+                    tableSumByCount.Rows.Add(row);
+                }
+                decimal valor = 0;
+                foreach (DataRow item in tableSumByCount.Rows)
+                {
+                    if (decimal.Parse(item[1].ToString()) > 0)
+                        valor += decimal.Parse(item[1].ToString());
+                }
+                lblCajaBancos.Text = valor.ToString();
             }
-            foreach (DataRow drRow in distintos.Rows)
+            catch (Exception)
             {
-                dtNew.ImportRow(tableSumByCount.Select("a" + " = '" + drRow[0] + "'")[0]);
+                Response.Write("<script>alert('No se obtuvieron datos, intenta con otro mes.');</script>");
             }
-            foreach (DataRow item in distintos.Rows)
-            {
-                Response.Write(item[0].ToString());
-            }
-            //cuen.Add(datatableCajaBancosMes1.AsEnumerable().Select(x => x.Field<string>("a")).Single());
-            //string cue = datatableCajaBancosMes1.AsEnumerable().Select(x => x.Field<string>("a")).FirstOrDefault();
-            foreach (string item in cuen)
-            {
 
-                Response.Write("esto: " + item.ToString());
-            }
-            foreach (string item in cuentas)
-            {
-                try
-                { totalCajaBancosHaber = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == item).Select(x => x.Field<double>("b")).Sum(); }
-                catch (Exception)
-                { totalCajaBancosHaber = 0; }
-                try
-                { totalCajaBancosDebe = datatableCajaBancosMes1.AsEnumerable().Where(x => x.Field<string>("a") == item).Select(x => x.Field<double>("c")).Sum(); }
-                catch (Exception)
-                { totalCajaBancosDebe = 0; }
-                totalCajaBancos = Convert.ToDecimal(totalCajaBancosDebe) - Convert.ToDecimal(totalCajaBancosHaber);
-                row = tableSumByCount.NewRow();
-                row["Cuenta"] = item.ToString();
-                row["Total"] = totalCajaBancos;
-                tableSumByCount.Rows.Add(row);
-            }
-            decimal valor = 0;
-            foreach (DataRow item in tableSumByCount.Rows)
-            {
-                if (decimal.Parse(item[1].ToString()) > 0)
-                    valor += decimal.Parse(item[1].ToString());
-            }
-            lblCajaBancos.Text = valor.ToString();
         }
     } 
 }

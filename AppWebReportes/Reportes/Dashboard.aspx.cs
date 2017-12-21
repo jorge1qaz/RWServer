@@ -36,15 +36,15 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             {
                 blockUpdateData.Visible = false;
-                try
-                {
-                    if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
-                        Descomprimir();
-                }
-                catch (Exception)
-                {
-                    Response.Redirect("~/Reportes/NoZip.aspx");
-                }
+                Descomprimir();
+                //try
+                //{
+                //    if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                //}
+                //catch (Exception)
+                //{
+                //    Response.Redirect("~/Reportes/NoZip.aspx");
+                //}
             }
         }
         protected void btnCloseBlockUpdate_Click(object sender, EventArgs e)
@@ -64,7 +64,15 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
             zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            DateTime lastUpadateFile = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/" + "LastUpdate.txt"));
+            DateTime lastUpadateFile;
+            try
+            {
+                lastUpadateFile = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/" + "LastUpdate.txt"));
+            }
+            catch (Exception)
+            {
+                lastUpadateFile = Convert.ToDateTime("1800/01/01");
+            }
             Cliente cliente = new Cliente() {
                 IdCliente = Session["IdUser"].ToString(),
                 LastUpdate = lastUpadateFile,
