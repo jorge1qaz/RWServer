@@ -53,7 +53,7 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
-                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-success form-control" Text="Generar reporte"/>
+                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-success form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click"/>
                             </div>
                         </div>
                     </div>

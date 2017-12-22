@@ -20,3 +20,5 @@ D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\Busin
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
