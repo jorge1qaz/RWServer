@@ -143,8 +143,7 @@ namespace BusinessLayer
                 dtNew.ImportRow(table.Select(NameColumn + " = '" + drRow[0] + "'")[0]);
             return distincts;
         }
-        public string GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2) {
-            string total = "";
+        public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue) {
             DataTable tableSumByCount = new DataTable();
             DataColumn column;
             DataRow row;
@@ -183,39 +182,70 @@ namespace BusinessLayer
                 tableSumByCount.Rows.Add(row);
             }
             decimal value = 0;
-            foreach (DataRow item in tableSumByCount.Rows)
-                if (decimal.Parse(item[1].ToString()) > 0)
-                    value += decimal.Parse(item[1].ToString());
-            total = value.ToString();
-            return total;
+            if (discriminative) // True: Sólo toma los positivos
+            {
+                if (negativeValue) // Sí es verdadero, sólo se toma los valores que sean negativos
+                {
+                    foreach (DataRow item in tableSumByCount.Rows)
+                        if (decimal.Parse(item[1].ToString()) < 0)
+                            value += decimal.Parse(item[1].ToString());
+                }
+                else 
+                {
+                    foreach (DataRow item in tableSumByCount.Rows)
+                        if (decimal.Parse(item[1].ToString()) > 0)
+                            value += decimal.Parse(item[1].ToString());
+                }
+            }
+            else
+            {
+                foreach (DataRow itemDefault in tableSumByCount.Rows)
+                    value += decimal.Parse(itemDefault[1].ToString()); // Suma todo 
+            }
+            return value;
         }
-        public decimal GetTotalByTable(DataTable tableData, string NameColumn)
+        public decimal GetTotalByTable(DataTable tableData, string columnName)
         {
             decimal totalTable;
             try
             {
-                totalTable = Convert.ToDecimal(tableData.AsEnumerable().Select(x => x.Field<double>(NameColumn)).Sum());
+                totalTable = Convert.ToDecimal(tableData.AsEnumerable().Select(x => x.Field<double>(columnName)).Sum());
             }
             catch (Exception)
             { totalTable = 0; }
             return totalTable;
         }
-        public string GetSumTotal(string JsonTable, string mes, string columnName)
+        public decimal GeTotalByAccumulatedTables(string jsonTable, string mes, string columnName)
         {
-            string total = "";
+            decimal totalTable;
             DataTable tabla = new DataTable();
             try
             {
-
+                tabla = GetAccumulatedTables(jsonTable, mes);
+                totalTable = GetTotalByTable(tabla, columnName);
             }
             catch (Exception)
             {
-
-                throw;
+                totalTable = 0;
             }
-            tabla = GetAccumulatedTables(JsonTable, mes);
-            //total = GetTotalByTable(tabla, columnName);
-            return total;
+            return totalTable;
+        }
+        public decimal GeTotalByAccumulatedTables(string jsonTable, string mes, string columnName1, string columnName2, string columnName3, bool discriminative, bool negativeValue)
+        {
+            decimal totalTable;
+            DataTable tabla = new DataTable();
+            DataTable ListCuentas = new DataTable();
+            try
+            {
+                tabla = GetAccumulatedTables(jsonTable, mes);
+                ListCuentas = GetListDist(tabla, columnName1);
+                totalTable = GetTotalByTable(tabla, ListCuentas, columnName1, columnName2, columnName3, discriminative, negativeValue);
+            }
+            catch (Exception)
+            {
+                totalTable = 0;
+            }
+            return totalTable;
         }
     }
 }

@@ -36,15 +36,15 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             {
                 blockUpdateData.Visible = false;
-                Descomprimir();
-                //try
-                //{
-                //    if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
-                //}
-                //catch (Exception)
-                //{
-                //    Response.Redirect("~/Reportes/NoZip.aspx");
-                //}
+                try
+                {
+                    if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                        Descomprimir();
+                }
+                catch (Exception)
+                {
+                    Response.Redirect("~/Reportes/NoZip.aspx");
+                }
             }
         }
         protected void btnCloseBlockUpdate_Click(object sender, EventArgs e)
@@ -78,11 +78,11 @@ namespace AppWebReportes.Reportes
                 LastUpdate = lastUpadateFile,
             };
             if (cliente.WriteParametersUserLastUpdate("RW_Profiles_LastUpdate"))
-                Response.Write("Registro de última actualización");
+                Response.Write("<script>alert(Se ha actualizado con éxito!);</script>");
+            else
+                Response.Write("<script>alert(Ocurrió un error al momento de actualizar.);</script>");
             Response.Write(lastUpadateFile.ToString());
             blockUpdateData.Visible = false;
         }
-
-
     }
 }

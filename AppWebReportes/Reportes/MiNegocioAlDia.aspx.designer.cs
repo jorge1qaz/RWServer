@@ -94,12 +94,12 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.Label lblDeben;
         
         /// <summary>
-        /// Control lblDebo.
+        /// Control lbldebo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDebo;
+        protected global::System.Web.UI.WebControls.Label lbldebo;
     }
 }

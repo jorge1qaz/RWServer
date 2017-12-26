@@ -15,6 +15,7 @@ namespace BusinessLayer
         public string ImagenPerfil { get; set; }
         public string IdRol { get; set; }
         public DateTime LastUpdate { get; set; }
+        public DateTime DateUpdate { get; set; }
 
         //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, con todos los atributos de Cliente y un parámetro de salida.*/
