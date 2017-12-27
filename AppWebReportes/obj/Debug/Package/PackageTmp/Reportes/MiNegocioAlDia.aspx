@@ -3,10 +3,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script>
 
- <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
+    <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -53,7 +53,7 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
-                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-success form-control" Text="Generar reporte"/>
+                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-success form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
                             </div>
                         </div>
                     </div>
@@ -62,12 +62,13 @@
                     <div class="card card-outline-secondary text-center">
                         <div class="card-block">
                             <h4 class="card-title">Reporte de Mi negocio al día <span id="monthtitle">para el mes de </span><span id="monthHeader"></span></h4>
-                            
+
                             <div class="row">
                                 <div class="col-lg-12 col-md-11 col-xs-12">
                                     <table class="highchart table table-striped table-bordered table-responsive" data-graph-container-before="1" data-graph-type="column" id="tablaReporte" data-graph-datalabels-enabled="1" data-graph-datalabels-formatter="foo.myAwesomeCallback">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Resultado</th>
                                                 <th>Ventas</th>
                                                 <th>Caja y bancos</th>
@@ -77,15 +78,17 @@
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                <td></td>
                                                 <td><asp:Label ID="lblResultado" runat="server"></asp:Label></td>
                                                 <td><asp:Label ID="lblVentas" runat="server"></asp:Label></td>
                                                 <td><asp:Label ID="lblCajaBancos" runat="server"></asp:Label></td>
                                                 <td><asp:Label ID="lblDeben" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblDebo" runat="server"></asp:Label></td>
+                                                <td><asp:label id="lbldebo" runat="server"></asp:label></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th></th>
                                                 <th>Resultado</th>
                                                 <th>Ventas</th>
                                                 <th>Caja y bancos</th>
@@ -102,23 +105,14 @@
             </div>
         </div>
     </div>
-    <script>
-        $("#MainContent_chbStore").addClass("custom-control-input");
-        $("#MainContent_chbCostumers").addClass("custom-control-input");
-        $("#MainContent_chbCosto1").addClass("custom-control-input");
-        $("#MainContent_chbVendedor").addClass("custom-control-input");
-        $("#MainContent_chbStock").addClass("custom-control-input");
-        $("#MainContent_chbAlcance").addClass("custom-control-input");
-        $("#MainContent_chbCosto2").addClass("custom-control-input");
-    </script>
-        <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-        <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
 
-    
+
     <script src="../Scripts/Owner/RW-007.js"></script>
 </asp:Content>

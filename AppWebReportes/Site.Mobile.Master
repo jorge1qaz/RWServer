@@ -28,6 +28,11 @@
                 <p>&copy; <%: DateTime.Now.Year %> - Reportes Contasis</p>
             </footer>
         </div>
+        <script>
+            $(window).resize(function () {
+                location.reload(true);
+            });
+        </script>
     </form>
 </body>
 </html>

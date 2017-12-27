@@ -134,4 +134,60 @@
     $("#navRMU").trigger("click");
     $("#navRMND").trigger("click");
     //dataRMND
+
+    $('[data-toggle="tooltip"]').tooltip();
+    var statusRCP = 0;
+    var statusRMUP = 0;
+    var statusRMNA = 0;
+    //$("#dataRCP").toggle();
+    //$("#dataRMU").toggle();
+    //$("#dataRMND").toggle();
+    $("#btnCuentasPendientes").on("click", function () {
+        if(statusRCP == 0) {
+            $("#btnCuentasPendientes").text("Ocultar detalles");
+            $("#blockCuentasPendientes").removeClass("col-md-4").addClass("col-md-12");
+            $("#blockMargenUtilidad").hide("200");
+            $("#blockMinegocioAlDia").hide("200");
+            statusRCP = 1;
+        } else {
+            $("#btnCuentasPendientes").text("Ver detalles");
+            $("#blockCuentasPendientes").removeClass("col-md-12").addClass("col-md-4");
+            $("#blockMargenUtilidad").show("200");
+            $("#blockMinegocioAlDia").show("200");
+            statusRCP = 0;
+        }
+        $("#dataRCP").toggle("slow");
+    });
+    $("#btnMargenUtilidad").on("click", function () {
+        if(statusRMUP == 0) {
+            $("#btnMargenUtilidad").text("Ocultar detalles");
+            $("#blockMargenUtilidad").removeClass("col-md-4").addClass("col-md-12");
+            $("#blockCuentasPendientes").hide("200");
+            $("#blockMinegocioAlDia").hide("200");
+            statusRMUP = 1;
+        } else {
+            $("#btnMargenUtilidad").text("Ver detalles");
+            $("#blockMargenUtilidad").removeClass("col-md-12").addClass("col-md-4");
+            $("#blockCuentasPendientes").show("200");
+            $("#blockMinegocioAlDia").show("200");
+            statusRMUP = 0;
+        }
+        $("#dataRMU").toggle("slow");
+    });
+    $("#btnMinegocioAlDia").on("click", function () {
+        if(statusRMNA == 0) {
+            $("#btnMinegocioAlDia").text("Ocultar detalles");
+            $("#blockMinegocioAlDia").removeClass("col-md-4").addClass("col-md-12");
+            $("#blockCuentasPendientes").hide("200");
+            $("#blockMargenUtilidad").hide("200");
+            statusRMNA = 1;
+        } else {
+            $("#btnMinegocioAlDia").text("Ver detalles");
+            $("#blockMinegocioAlDia").removeClass("col-md-12").addClass("col-md-4");
+            $("#blockCuentasPendientes").show("200");
+            $("#blockMargenUtilidad").show("200");
+            statusRMNA = 0;
+        }
+        $("#dataRMND").toggle("slow");
+    });
 });

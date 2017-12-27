@@ -19,20 +19,18 @@
         <div class="col-sm-12">
             <div class="card text-center">
                 <div class="card-header">
-                    <ul class="nav nav-pills nav-fill" role="tablist">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#navRPC" role="tab" id="triggerNavRPC">Cuentas pendientes</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#navRMU" role="tab" id="triggerNavRMU">Margen de utilidad por producto</a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#navRMND" role="tab" id="triggerNavRMND">Mi negocio al día</a></li>
-                    </ul>
+                    <h2 class="text-center">Inicio</h2>
                 </div>
                 <div class="card-block">
                     <h4 class="card-title">Bienvenido al sistema de reportes web Contasis</h4>
                     <div class="row" runat="server" id="blockUpdateData">
                         <div class="card card-inverse card-success text-center">
                             <div class="card-block">
-                                <p>Hemos detectado una nueva actualización a sus datos correspondiente a la fecha
+                                <p>
+                                    Hemos detectado una nueva actualización a sus datos correspondiente a la fecha
                                     <asp:Label ID="lblCurrentData" runat="server"></asp:Label>. Su última actualización fue
-                                    <asp:Label ID="lblOutdatedData" runat="server"></asp:Label>, La actualización a sus datos puede tardar varios segundos en terminar de ser procesados. ¿Desea actualizar sus datos?</p>
+                                    <asp:Label ID="lblOutdatedData" runat="server"></asp:Label>, La actualización a sus datos puede tardar varios segundos en terminar de ser procesados. ¿Desea actualizar sus datos?
+                                </p>
                                 <div class="row">
                                     <div class="offset-md-3 col-md-3 offset-sm-1 col-sm-5">
                                         <div class="d-flex justify-content-center">
@@ -49,85 +47,120 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-sm-0 col-sm-12 ">
-                            <div class="">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="navRPC" role="tabpanel">
-                                                <p class="card-text">Seleccione la empresa para el reporte de cuentas pendientes</p>
-                                                <table class="table table-striped table-bordered table-responsive" id="dataRCP" role="grid">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Bienvenido al sistema de reportes web Contasis</h4>
+                                <p class="card-text">Seleccione</p>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12" id="blockCuentasPendientes">
+                                        <div class="card card-outline-primary text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p>Cuentas pendientes</p>
+                                                    <br />
+                                                    <footer>
+                                                        <button type="button" class="btn btn-info" id="btnCuentasPendientes" role="button">Ver detalles</button>
+                                                    </footer>
+                                                </blockquote>
                                             </div>
-                                            <div class="tab-pane fade active" id="navRMU" role="tabpanel">
-                                                <p class="card-text">Seleccione la empresa para el reporte de margen de utilidad</p>
-                                                <table class="table table-striped table-bordered table-responsive" id="dataRMU">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12" id="blockMargenUtilidad">
+                                        <div class="card card-outline-primary text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p>Margen de utilidad por producto</p>
+                                                    <footer>
+                                                        <button type="button" class="btn btn-info" id="btnMargenUtilidad" role="button">Ver detalles</button>
+                                                    </footer>
+                                                </blockquote>
                                             </div>
-                                            <div class="tab-pane fade active" id="navRMND" role="tabpanel">
-                                                <p class="card-text">Seleccione la empresa para el reporte de Mi negocio al día</p>
-                                                <table class="table table-striped table-bordered table-responsive" id="dataRMND">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>Código de empresa</th>
-                                                            <th>Razón social</th>
-                                                            <th>Año de proceso</th>
-                                                            <th>RUC</th>
-                                                            <th>Seleccione</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12" id="blockMinegocioAlDia">
+                                        <div class="card card-outline-primary text-center">
+                                            <div class="card-block">
+                                                <blockquote class="card-blockquote">
+                                                    <p>Mi negocio al día</p>
+                                                    <br />
+                                                    <footer>
+                                                        <button type="button" class="btn btn-info" id="btnMinegocioAlDia" role="button">Ver detalles</button>
+                                                    </footer>
+                                                </blockquote>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <p class="card-text">Seleccione la empresa para el reporte de cuentas pendientes</p>
+                        <table class="table table-striped table-bordered table-responsive" id="dataRCP" role="grid" style="margin: auto;">
+                            <thead>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <p class="card-text">Seleccione la empresa para el reporte de margen de utilidad</p>
+                        <table class="table table-striped table-bordered table-responsive" id="dataRMU">
+                            <thead>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        <p class="card-text">Seleccione la empresa para el reporte de Mi negocio al día</p>
+                        <table class="table table-striped table-bordered table-responsive" id="dataRMND">
+                            <thead>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Código de empresa</th>
+                                    <th>Razón social</th>
+                                    <th>Año de proceso</th>
+                                    <th>RUC</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
                     </div>
                 </div>
             </div>

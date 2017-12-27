@@ -17,6 +17,9 @@ namespace AppWebReportes.Reportes
                 Response.Redirect("~/Acceso");
             Cliente cliente = new Cliente()
                 { IdCliente = Session["IdUser"].ToString() };
+
+            DateTime pruebaspe = cliente.ReadParametersUserLastUpdate("RW_header_lastUpdate_user");
+            Response.Write("Fecha ricolina: " + pruebaspe.ToString());
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
             try
             {
@@ -78,9 +81,9 @@ namespace AppWebReportes.Reportes
                 LastUpdate = lastUpadateFile,
             };
             if (cliente.WriteParametersUserLastUpdate("RW_Profiles_LastUpdate"))
-                Response.Write("<script>alert(Se ha actualizado con éxito!);</script>");
+                Response.Write("<script>alert('Se ha actualizado con éxito!');</script>");
             else
-                Response.Write("<script>alert(Ocurrió un error al momento de actualizar.);</script>");
+                Response.Write("<script>alert('Ocurrió un error al momento de actualizar.');</script>");
             Response.Write(lastUpadateFile.ToString());
             blockUpdateData.Visible = false;
         }
