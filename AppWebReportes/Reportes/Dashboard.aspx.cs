@@ -1,5 +1,7 @@
 ﻿using BusinessLayer;
+using Newtonsoft.Json;
 using System;
+using System.Data;
 using System.IO;
 
 namespace AppWebReportes.Reportes
@@ -16,22 +18,20 @@ namespace AppWebReportes.Reportes
             if (Session["IdUser"] == null)
                 Response.Redirect("~/Acceso");
             Cliente cliente = new Cliente()
-                { IdCliente = Session["IdUser"].ToString() };
-
-            DateTime pruebaspe = cliente.ReadParametersUserLastUpdate("RW_header_lastUpdate_user");
-            Response.Write("Fecha ricolina: " + pruebaspe.ToString());
+            { IdCliente = Session["IdUser"].ToString() };
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
             try
             {
-                DateTime lastUpadateBefore = cliente.ReadParametersUserLastUpdate("RW_header_lastUpdate_user");
+                DateTime dateUpdate = cliente.ReadParametersUserDateUpdate("RW_Profiles_Read_DateUpdate");
+                DateTime lastUpdate = cliente.ReadParametersUserLastUpdate("RW_Profiles_Read_LastUpdate");
                 zips.ExtractFile(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/temp");
-                DateTime lastUpadateNow = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/temp/LastUpdate.txt"));
-                TimeSpan datediff = lastUpadateBefore.Subtract(lastUpadateNow);
-                if (Convert.ToDecimal(datediff.TotalMinutes) != 0)
+                TimeSpan datediff = lastUpdate.Subtract(dateUpdate);
+                lblDateUpdate.Text = dateUpdate.ToString();
+                if (Convert.ToDecimal(datediff.TotalMinutes) < 0)
                 {
                     blockUpdateData.Visible = true;
-                    lblCurrentData.Text = lastUpadateNow.ToString();
-                    lblOutdatedData.Text = lastUpadateBefore.ToString();
+                    lblCurrentData.Text = dateUpdate.ToString();
+                    lblOutdatedData.Text = lastUpdate.ToString();
                 }
                 else
                     blockUpdateData.Visible = false;
@@ -41,7 +41,7 @@ namespace AppWebReportes.Reportes
                 blockUpdateData.Visible = false;
                 try
                 {
-                    if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                    if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
                         Descomprimir();
                 }
                 catch (Exception)
@@ -49,15 +49,21 @@ namespace AppWebReportes.Reportes
                     Response.Redirect("~/Reportes/NoZip.aspx");
                 }
             }
+            //Tables data company
+            string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
+            string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
+            DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
+            DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
+            DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
+            DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
+            grdConta.DataSource = dataTableGeneralInfoConta;
+            grdConta.DataBind();
         }
-        protected void btnCloseBlockUpdate_Click(object sender, EventArgs e)
-        {
-            blockUpdateData.Visible = false;
-        }
+        protected void btnCloseBlockUpdate_Click(object sender, EventArgs e) => blockUpdateData.Visible = false;
         protected void btnUpdateData_Click(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");
-            if (zips.checkZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+            if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
                 Descomprimir();
             else
                 Response.Redirect("~/Reportes/NoZip.aspx");
@@ -67,25 +73,15 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
             zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            DateTime lastUpadateFile;
-            try
-            {
-                lastUpadateFile = Convert.ToDateTime(zips.ReadFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/" + "LastUpdate.txt"));
-            }
-            catch (Exception)
-            {
-                lastUpadateFile = Convert.ToDateTime("1800/01/01");
-            }
+            DateTime lastUpdate = DateTime.Now;
             Cliente cliente = new Cliente() {
                 IdCliente = Session["IdUser"].ToString(),
-                LastUpdate = lastUpadateFile,
+                LastUpdate = lastUpdate,
             };
-            if (cliente.WriteParametersUserLastUpdate("RW_Profiles_LastUpdate"))
-                Response.Write("<script>alert('Se ha actualizado con éxito!');</script>");
+            if (cliente.WriteParametersUserLastUpdate("RW_Profiles_Register_LastUpdate"))
+                blockUpdateData.Visible = false;
             else
                 Response.Write("<script>alert('Ocurrió un error al momento de actualizar.');</script>");
-            Response.Write(lastUpadateFile.ToString());
-            blockUpdateData.Visible = false;
         }
     }
 }

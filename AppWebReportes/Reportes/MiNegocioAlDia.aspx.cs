@@ -17,12 +17,12 @@ namespace AppWebReportes.Reportes
         MergeTables mergeTables = new MergeTables();
 
         double totalVentas;
-        double totalCajaBancosHaber;
-        double totalCajaBancosDebe;
-        decimal totalCajaBancos;
-        double totalCobrarHaber;
-        double totalCobrarDebe;
-        decimal totalCobrar;
+        //double totalCajaBancosHaber;
+        //double totalCajaBancosDebe;
+        //decimal totalCajaBancos;
+        //double totalCobrarHaber;
+        //double totalCobrarDebe;
+        //decimal totalCobrar;
         protected void Page_Load(object sender, EventArgs e)
         {
             String rootPath = Server.MapPath("~");

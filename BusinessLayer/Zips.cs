@@ -5,7 +5,7 @@ namespace BusinessLayer
 {
     public class Zips
     {
-        public bool checkZipExists(string pathZip) {
+        public bool CheckZipExists(string pathZip) {
             bool validate = false;
             if (File.Exists(pathZip))
                 validate = true;
@@ -14,7 +14,7 @@ namespace BusinessLayer
         public bool ExtractDataZip(string pathZip, string pathDirectoryExtract)
         {
             bool validate = false;
-            if (checkZipExists(pathZip))
+            if (CheckZipExists(pathZip))
             {
                 using (ZipFile zip1 = ZipFile.Read(pathZip))
                 {

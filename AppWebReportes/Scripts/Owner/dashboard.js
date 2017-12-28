@@ -43,7 +43,7 @@
                 1: 'Copiado 1 fila al portapapeles',
             }
         }
-    }
+    };
     var listarReporteRCP = function () {
         var dataTableRCP = $('#dataRCP').DataTable({
             "destroy": true,
@@ -109,23 +109,23 @@
             //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
             window.location.href = "http://localhost:3243/Reportes/CuentasPendientes.aspx?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
-    }
+    };
     var GetIdsRMU = function (tbody, table) {
         $(tbody).on("click", "i.material-icons", function () {
             var data = table.row($(this).parents("tr")).data();
             //var idCostumer = $("#MainContent_txtClienteRUC").val(data.a.trim());
             //alert(data.a.trim() + " " + data.c.trim());
-            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
-            window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/reportes/frmMargenUtilidad?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
-    }
+    };
     var GetIdsRMND = function (tbody, table) {
         $(tbody).on("click", "i.material-icons", function () {
             var data = table.row($(this).parents("tr")).data();
-            //window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
-            window.location.href = "http://localhost:3243/reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            window.location.href = "http://licenciacontasis.net/ReportWeb/Reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
+            //window.location.href = "http://localhost:3243/reportes/MiNegocioAlDia?idCompany=" + data.a.trim() + "&year=" + data.c.trim();
         });
-    }
+    };
 
     listarReporteRCP();
     listarReporteRMU();
@@ -133,17 +133,16 @@
 
     $("#navRMU").trigger("click");
     $("#navRMND").trigger("click");
-    //dataRMND
 
     $('[data-toggle="tooltip"]').tooltip();
     var statusRCP = 0;
     var statusRMUP = 0;
     var statusRMNA = 0;
-    //$("#dataRCP").toggle();
-    //$("#dataRMU").toggle();
-    //$("#dataRMND").toggle();
+    $("#blockCompanyDetailsForRCP").toggle();
+    $("#blockCompanyDetailsForRMU").toggle();
+    $("#blockCompanyDetailsForRMND").toggle();
     $("#btnCuentasPendientes").on("click", function () {
-        if(statusRCP == 0) {
+        if(statusRCP === 0) {
             $("#btnCuentasPendientes").text("Ocultar detalles");
             $("#blockCuentasPendientes").removeClass("col-md-4").addClass("col-md-12");
             $("#blockMargenUtilidad").hide("200");
@@ -156,10 +155,10 @@
             $("#blockMinegocioAlDia").show("200");
             statusRCP = 0;
         }
-        $("#dataRCP").toggle("slow");
+        $("#blockCompanyDetailsForRCP").toggle("slow");
     });
     $("#btnMargenUtilidad").on("click", function () {
-        if(statusRMUP == 0) {
+        if(statusRMUP === 0) {
             $("#btnMargenUtilidad").text("Ocultar detalles");
             $("#blockMargenUtilidad").removeClass("col-md-4").addClass("col-md-12");
             $("#blockCuentasPendientes").hide("200");
@@ -172,10 +171,10 @@
             $("#blockMinegocioAlDia").show("200");
             statusRMUP = 0;
         }
-        $("#dataRMU").toggle("slow");
+        $("#blockCompanyDetailsForRMU").toggle("slow");
     });
     $("#btnMinegocioAlDia").on("click", function () {
-        if(statusRMNA == 0) {
+        if(statusRMNA === 0) {
             $("#btnMinegocioAlDia").text("Ocultar detalles");
             $("#blockMinegocioAlDia").removeClass("col-md-4").addClass("col-md-12");
             $("#blockCuentasPendientes").hide("200");
@@ -188,6 +187,6 @@
             $("#blockMargenUtilidad").show("200");
             statusRMNA = 0;
         }
-        $("#dataRMND").toggle("slow");
+        $("#blockCompanyDetailsForRMND").toggle("slow");
     });
 });
