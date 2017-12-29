@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AppWebReportes.Reportes
 {
@@ -49,15 +51,50 @@ namespace AppWebReportes.Reportes
                     Response.Redirect("~/Reportes/NoZip.aspx");
                 }
             }
-            //Tables data company
-            string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
-            string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
-            DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
-            DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
-            DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
-            DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
-            grdConta.DataSource = dataTableGeneralInfoConta;
-            grdConta.DataBind();
+            if (!Page.IsPostBack)
+            {
+                try
+                {
+                    //Tables data company
+                    string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
+                        Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
+                    string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
+                        Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
+                    DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
+                    DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
+                    DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
+                    DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
+                    dlstCuentasPendientes.DataSource = dataTableGeneralInfoConta;
+                    dlstCuentasPendientes.DataBind();
+                    dlstMiNegocioAlDia.DataSource = dataTableGeneralInfoConta;
+                    dlstMiNegocioAlDia.DataBind();
+                    dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoConta;
+                    dlstMargenDeUtilidad.DataBind();
+                    DataRow[] idCompany = dataTableGeneralInfoConta.Select();
+                    Session["idCompany"] = idCompany[0][0].ToString();
+                }
+                catch (Exception)
+                {
+                    Descomprimir();
+                    //Tables data company
+                    string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
+                        Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
+                    string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
+                        Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
+                    DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
+                    DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
+                    DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
+                    DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
+                    dlstCuentasPendientes.DataSource = dataTableGeneralInfoConta;
+                    dlstCuentasPendientes.DataBind();
+                    dlstMiNegocioAlDia.DataSource = dataTableGeneralInfoConta;
+                    dlstMiNegocioAlDia.DataBind();
+                    dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoConta;
+                    dlstMargenDeUtilidad.DataBind();
+                    DataRow[] idCompany = dataTableGeneralInfoConta.Select();
+                    Session["idCompany"] = idCompany[0][0].ToString();
+                }
+            }
         }
         protected void btnCloseBlockUpdate_Click(object sender, EventArgs e) => blockUpdateData.Visible = false;
         protected void btnUpdateData_Click(object sender, EventArgs e)
@@ -82,6 +119,21 @@ namespace AppWebReportes.Reportes
                 blockUpdateData.Visible = false;
             else
                 Response.Write("<script>alert('Ocurrió un error al momento de actualizar.');</script>");
+        }
+        protected void SelectCompanyByYearRCP(object source, DataListCommandEventArgs e)
+        {
+            string id = dlstCuentasPendientes.DataKeys[e.Item.ItemIndex].ToString();
+            Response.Redirect("~/Reportes/CuentasPendientes.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+        }
+        protected void SelectCompanyByYearRMU(object source, DataListCommandEventArgs e)
+        {
+            string id = dlstMargenDeUtilidad.DataKeys[e.Item.ItemIndex].ToString();
+            Response.Redirect("~/Reportes/frmMargenUtilidad.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+        }
+        protected void SelectCompanyByYearRMND(object source, DataListCommandEventArgs e)
+        {
+            string id = dlstMiNegocioAlDia.DataKeys[e.Item.ItemIndex].ToString();
+            Response.Redirect("~/Reportes/MiNegocioAlDia.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
         }
     }
 }

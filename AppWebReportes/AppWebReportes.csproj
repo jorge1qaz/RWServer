@@ -349,6 +349,7 @@
     <Content Include="icon_rw.ico" />
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
+    <Content Include="Images\icon_rw.ico" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="pruebas.aspx" />
     <Content Include="Reportes\CuentasPendientes.aspx" />

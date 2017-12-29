@@ -14,8 +14,7 @@
         <%: Scripts.Render("~/bundles/validaciones") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link href="~/Images/icon_rw.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
     <form runat="server" id="Formulario">
@@ -28,9 +27,9 @@
             </footer>
         </div>
         <script>
-            $(window).resize(function () {
-                location.reload(true);
-            });
+            //$(window).resize(function () {
+            //    location.reload(true);
+            //});
         </script>
     </form>
 </body>

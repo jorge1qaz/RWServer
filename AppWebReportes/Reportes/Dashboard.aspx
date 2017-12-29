@@ -6,7 +6,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li>
-                    <label>Usted tiene datos hasta la fecha: <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>
+                    <label>
+                        Usted tiene datos hasta la fecha:
+                        <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>
                 </li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
@@ -15,7 +17,8 @@
             </div>
         </div>
     </nav>
-    <br /><br />
+    <br />
+    <br />
     <div class="container">
         <div class="card text-center">
             <div class="card-header">
@@ -35,8 +38,8 @@
                                 <div class="offset-md-3 col-md-3 offset-sm-1 col-sm-5">
                                     <div class="d-flex justify-content-center">
                                         <asp:Button ID="btnCloseBlockUpdate" CssClass="btn btn-danger btn-block" runat="server" Text="Por ahora, No." OnClick="btnCloseBlockUpdate_Click" />
-                                    
-                                        
+
+
                                     </div>
                                 </div>
                                 <div class="offset-md-0 col-md-3 offset-sm-1 col-sm-5">
@@ -58,7 +61,6 @@
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRCP">
-                                                <asp:GridView ID="grdConta" runat="server"></asp:GridView>
                                                 <table class="table table-striped table-bordered table-responsive">
                                                     <thead>
                                                         <tr>
@@ -70,26 +72,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">Seleccione</button>
-                                                            </td>
-                                                            <td>
-                                                                <select class="custom-select" id="lstAnioCompany1" name="lst">
-                                                                    <option value="2017">2017</option>
-                                                                    <option value="2017">2016</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <span>01</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>PRUEBAS</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>12345678910</span>
-                                                            </td>
-                                                        </tr>
+                                                        <asp:DataList ID="dlstCuentasPendientes" runat="server" RepeatLayout="Flow" DataKeyField="c" OnItemCommand="SelectCompanyByYearRCP">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lblCodigoEmpresa" runat="server" Text='<%# Eval("a") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("b") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("d") %>'></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:DataList>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -121,26 +124,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">Seleccione</button>
-                                                            </td>
-                                                            <td>
-                                                                <select class="custom-select" id="lstAnioCompany2" name="lst">
-                                                                    <option value="2017">2017</option>
-                                                                    <option value="2017">2016</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <span>01</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>PRUEBAS</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>12345678910</span>
-                                                            </td>
-                                                        </tr>
+                                                        <asp:DataList ID="dlstMargenDeUtilidad" runat="server" DataKeyField="c" RepeatLayout="Flow" OnItemCommand="SelectCompanyByYearRMU">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lblCodigoEmpresa" runat="server" Text='<%# Eval("a") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("b") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("d") %>'></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:DataList>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -172,26 +176,27 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">Seleccione</button>
-                                                            </td>
-                                                            <td>
-                                                                <select class="custom-select" id="lstAnioCompany3" name="lst">
-                                                                    <option value="2017">2017</option>
-                                                                    <option value="2017">2016</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <span>01</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>PRUEBAS</span>
-                                                            </td>
-                                                            <td>
-                                                                <span>12345678910</span>
-                                                            </td>
-                                                        </tr>
+                                                        <asp:DataList ID="dlstMiNegocioAlDia" runat="server" DataKeyField="c" RepeatLayout="Flow" OnItemCommand="SelectCompanyByYearRMND">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lblCodigoEmpresa" runat="server" Text='<%# Eval("a") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("b") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("d") %>'></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:DataList>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -231,5 +236,15 @@
         }
         responsive();
     </script>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

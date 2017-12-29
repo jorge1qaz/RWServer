@@ -85,12 +85,30 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.Button btnUpdateData;
         
         /// <summary>
-        /// grdConta control.
+        /// dlstCuentasPendientes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdConta;
+        protected global::System.Web.UI.WebControls.DataList dlstCuentasPendientes;
+        
+        /// <summary>
+        /// dlstMargenDeUtilidad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlstMargenDeUtilidad;
+        
+        /// <summary>
+        /// dlstMiNegocioAlDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlstMiNegocioAlDia;
     }
 }

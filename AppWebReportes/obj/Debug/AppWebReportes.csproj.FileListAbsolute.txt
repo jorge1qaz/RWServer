@@ -254,4 +254,3 @@ D:\Proyectos\Contasis\Reporteador web\Web\RWServer\AppWebReportes\obj\Debug\AppW
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.dll
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.pdb
-D:\git\ReportesWeb\Web\AppWebReportes\obj\Debug\AppWebReportes.csproj.CoreCompileInputs.cache
