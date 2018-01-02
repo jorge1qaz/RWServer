@@ -24,6 +24,9 @@ namespace BusinessLayer
             DataTable datatableMes10 = dataSet.Tables["10"];
             DataTable datatableMes11 = dataSet.Tables["11"];
             DataTable datatableMes12 = dataSet.Tables["12"];
+            DataTable datatableMes13 = dataSet.Tables["13"];
+            DataTable datatableMes14 = dataSet.Tables["14"];
+            DataTable datatableMes15 = dataSet.Tables["15"];
             #endregion
             #region Fusión de tablas... Fuuuuuu...sión!
             switch (mes.ToString())
@@ -117,6 +120,9 @@ namespace BusinessLayer
                     datatableMes0.Merge(datatableMes1);
                     break;
                 case "12":
+                    datatableMes14.Merge(datatableMes15);
+                    datatableMes13.Merge(datatableMes14);
+                    datatableMes12.Merge(datatableMes13);
                     datatableMes11.Merge(datatableMes12);
                     datatableMes10.Merge(datatableMes11);
                     datatableMes9.Merge(datatableMes10);

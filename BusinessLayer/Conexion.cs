@@ -10,7 +10,7 @@ namespace BusinessLayer
         public SqlConnection cadena = new SqlConnection("data source=70.38.70.172;initial catalog=reportesweb;user id=jorge;password=X@cH7k+t^aC[;MultipleActiveResultSets=True;");
         // Cadena local casa
         //public SqlConnection cadenaHome = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
-        //Cadena resplandor final
+        //Cadena 
         //public SqlConnection cadena = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
         //Jorge Luis|08/11/2017|RW-19
         /*Método para realizar la conexión a la base de datos*/
