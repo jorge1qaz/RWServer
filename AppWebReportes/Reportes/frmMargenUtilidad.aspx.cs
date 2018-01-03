@@ -499,7 +499,6 @@ namespace AppWebReportes.Reportes
             { npu = "e"; ncosto = "g"; }
             else //dolares
             { npu = "h"; ncosto = "i"; }
-
             #region CalculosMatematicos
             descripcion = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
                             Where(x => x.Field<string>(filtro).Trim() == idFiltro).Where(x => x.Field<string>(filtro2).Trim() == idFiltro2)
@@ -512,7 +511,7 @@ namespace AppWebReportes.Reportes
                             Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<double>("c")).Sum();
             }
             catch (Exception)
-            { totalUnidades = 0; }
+                { totalUnidades = 0; }
             try
             {
                 totalPuVentas = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
@@ -528,7 +527,7 @@ namespace AppWebReportes.Reportes
                             (x => x.Field<double>(ncosto) * x.Field<double>("c"))).Sum();
             }
             catch (Exception)
-            { totalPuCosto = 0; }
+                { totalPuCosto = 0; }
             Convert.ToDecimal(totalUnidades);
             Convert.ToDecimal(totalPuVentas);
             Convert.ToDecimal(totalPuCosto);
@@ -538,7 +537,7 @@ namespace AppWebReportes.Reportes
                 PuCosto = Convert.ToDecimal(totalPuCosto) / Convert.ToDecimal(totalUnidades);
             }
             else
-            { PuVentas = 0; PuCosto = 0; }
+                { PuVentas = 0; PuCosto = 0; }
             muUnitario = PuVentas - PuCosto;
             if (PuCosto != 0)
                 mu = (muUnitario / PuCosto) * 100;
@@ -695,7 +694,6 @@ namespace AppWebReportes.Reportes
         protected void chbCosto2_CheckedChanged(object sender, EventArgs e)
             { chbCostumers.Checked = false; chbStore.Checked = false; chbCosto1.Checked = false; chbStock.Checked = false; chbVendedor.Checked = false; chbAlcance.Checked = false; }
 
-        protected void lstMes_SelectedIndexChanged(object sender, EventArgs e)
-            { Session["queryJson"] = ""; }
+        protected void lstMes_SelectedIndexChanged(object sender, EventArgs e) => Session["queryJson"] = "";
     }
 }

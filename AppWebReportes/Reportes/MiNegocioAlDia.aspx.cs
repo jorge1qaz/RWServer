@@ -3,19 +3,13 @@ using BusinessLayer;
 using System.Data;
 using Newtonsoft.Json;
 using System.Linq;
-using System.Collections.Generic;
-using System.IO;
 
 namespace AppWebReportes.Reportes
 {
     public partial class MiNegocioAlDia : System.Web.UI.Page
     {
         Paths paths = new Paths();
-        Zips zips = new Zips();
-        Directorios dirs = new Directorios();
-        Calculos cal = new Calculos();
         MergeTables mergeTables = new MergeTables();
-
         double totalVentas;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -270,16 +264,20 @@ namespace AppWebReportes.Reportes
             totalCuentasPorPagar = (nSumP120N + nSumP120 + nSumP110 + nSumP121 + nSumP105 + nSumP105N) * -1;
             lbldebo.Text = totalCuentasPorPagar.ToString();
         }
+        //Jorge Luis|26/12/2017|RW-91
+        /*Método para obtener una dataset json de tipo (N) con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
         public string GetPathFile(string nameFile) {
             String rootPath = Server.MapPath("~");
-            string JsonTable = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
-            return JsonTable;
+            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            return JsonDataset;
         }
+        //Jorge Luis|26/12/2017|RW-91
+        /*Método para obtener una dataset json de tipo (N) con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
         public string GetPathFileN(string nameFile)
         {
             String rootPath = Server.MapPath("~");
-            string JsonTable = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/NRubro" + nameFile + ".json").Trim().Replace("\\'", "'");
-            return JsonTable;
+            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/NRubro" + nameFile + ".json").Trim().Replace("\\'", "'");
+            return JsonDataset;
         }
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {

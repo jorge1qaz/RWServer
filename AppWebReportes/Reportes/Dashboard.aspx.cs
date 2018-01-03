@@ -55,7 +55,6 @@ namespace AppWebReportes.Reportes
             {
                 try
                 {
-                    //Tables data company
                     string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
                         Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
                     string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
@@ -70,8 +69,12 @@ namespace AppWebReportes.Reportes
                     dlstMiNegocioAlDia.DataBind();
                     dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoConta;
                     dlstMargenDeUtilidad.DataBind();
+                    dlstEstadoResultadoPMS.DataSource = dataTableGeneralInfoConta;
+                    dlstEstadoResultadoPMS.DataBind();
                     DataRow[] idCompany = dataTableGeneralInfoConta.Select();
                     Session["idCompany"] = idCompany[0][0].ToString();
+                    Session["EDRPMSTipoReporte"] = "naturaleza";
+                    Session["EDRPMSTipoMoneda"] = "soles";
                 }
                 catch (Exception)
                 {
@@ -93,6 +96,8 @@ namespace AppWebReportes.Reportes
                     dlstMargenDeUtilidad.DataBind();
                     DataRow[] idCompany = dataTableGeneralInfoConta.Select();
                     Session["idCompany"] = idCompany[0][0].ToString();
+                    Session["EDRPMSTipoReporte"] = "naturaleza";
+                    Session["EDRPMSTipoMoneda"] = "soles";
                 }
             }
         }
@@ -135,5 +140,14 @@ namespace AppWebReportes.Reportes
             string id = dlstMiNegocioAlDia.DataKeys[e.Item.ItemIndex].ToString();
             Response.Redirect("~/Reportes/MiNegocioAlDia.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
         }
+        protected void SelectCompanyByYearEDRPMS(object source, DataListCommandEventArgs e)
+        {
+            string id = dlstEstadoResultadoPMS.DataKeys[e.Item.ItemIndex].ToString();
+            Response.Redirect("~/Reportes/EstadoResultadoPMS.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+        }
+        protected void chbEDRPMSNaturaleza_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "naturaleza";
+        protected void chbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "funcion";
+        protected void chbchbEDRPMSSoles_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "soles";
+        protected void chbchbEDRPMSDolares_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "dolares";
     }
 }

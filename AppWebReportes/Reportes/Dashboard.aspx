@@ -53,11 +53,11 @@
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-4 col-sm-12" id="blockCuentasPendientes">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="blockCuentasPendientes">
                         <div class="card card-outline-secondary text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <p>Cuentas pendientes</p>
+                                    <label class="font-weight-bold">Cuentas pendientes</label>
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRCP">
@@ -76,7 +76,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-secondary" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -105,11 +105,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12" id="blockMargenUtilidad">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="blockMargenUtilidad">
                         <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <p>Margen de utilidad por producto</p>
+                                    <label class="font-weight-bold">Margen de utilidad por producto</label>
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRMU">
@@ -157,11 +157,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12" id="blockMinegocioAlDia">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="blockMinegocioAlDia">
                         <div class="card card-outline-info text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <p>Mi negocio al día</p>
+                                    <label class="font-weight-bold">Mi negocio al día</label>
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRMND">
@@ -180,7 +180,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-info" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -210,10 +210,124 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="blockEstadoResultadoPMS">
+                        <div class="card card-outline-warning  text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <label class="font-weight-bold">Estado de resultado mensual</label>
+                                    <div class="row">
+                                        <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
+                                            <div id="blockCompanyDetailsForREDRPMS">
+                                                <table class="table table-striped table-bordered table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Seleccione</th>
+                                                            <th>Año de proceso</th>
+                                                            <th>Código de empresa</th>
+                                                            <th>Razón social</th>
+                                                            <th>RUC</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <asp:DataList ID="dlstEstadoResultadoPMS" runat="server" RepeatLayout="Flow" DataKeyField="c" OnItemCommand="SelectCompanyByYearEDRPMS">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-warning" runat="server" Text="Seleccione" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lblCodigoEmpresa" runat="server" Text='<%# Eval("a") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("b") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("d") %>'></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:DataList>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#" id="btnTriggerModalREDRPMS" class="btn btn-outline-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <button type="button" class="btn btn-info" id="btnEstadoResultadoPMS" role="button">Ver detalles</button>
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-outline-secondary">
+                        <div class="card-block">
+                            <label class="font-weight-bold">Estado financiero comparativo</label>
+                            <label class="custom-control custom-checkbox">
+                                <asp:CheckBox ID="chbEDRPMSNaturaleza" runat="server" OnCheckedChanged="chbEDRPMSNaturaleza_CheckedChanged" Checked="true" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">EGP por naturaleza</span>
+                            </label>
+                            <br />
+                            <label class="custom-control custom-checkbox">
+                                <asp:CheckBox ID="chbEDRPMSFuncion" runat="server" OnCheckedChanged="chbEDRPMSFuncion_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">EGP por función</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card card-outline-secondary">
+                        <div class="card-block">
+                            <label class="font-weight-bold">Tipo de moneda</label>
+                            <br />
+                            <label class="custom-control custom-checkbox">
+                                <asp:CheckBox ID="chbchbEDRPMSSoles" runat="server" OnCheckedChanged="chbchbEDRPMSSoles_CheckedChanged" Checked="true" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Soles</span>
+                            </label>
+                            <br />
+                            <label class="custom-control custom-checkbox">
+                                <asp:CheckBox ID="chbchbEDRPMSDolares" runat="server" OnCheckedChanged="chbchbEDRPMSDolares_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Dólares</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <asp:Button ID="btnSaveFilters" CssClass="btn btn-primary" runat="server" Text="Guardar filtros" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#MainContent_chbEDRPMSNaturaleza").addClass("custom-control-input");
+        $("#MainContent_chbEDRPMSFuncion").addClass("custom-control-input");
+        $("#MainContent_chbchbEDRPMSSoles").addClass("custom-control-input");
+        $("#MainContent_chbchbEDRPMSDolares").addClass("custom-control-input");
+    </script>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
@@ -236,11 +350,6 @@
         }
         responsive();
     </script>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <br />
     <br />
     <br />
