@@ -8,7 +8,7 @@
         "sInfoEmpty": "Mostrando _START_ al _END_ de _TOTAL_ registros",
         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix": "",
-        "sSearch": "Buscar:",
+        "sSearch": "Filtrar por:",
         "sUrl": "",
         "sInfoThousands": ",",
         "sLoadingRecords": "Cargando...",
@@ -84,9 +84,6 @@
         $(".buttons-html5").addClass("btn btn-primary");
         $(".buttons-print").addClass("btn btn-primary").css("margin-bottom", "5px");
         $(".buttons-copy span:first").text("Copiar");
-
-        $("#monthtitle").text(" para el mes de ");
-        $("#monthHeader").text(meses[localStorage.getItem("mesAlmacenado")]);
     }
     listarReporte();
 });

@@ -253,5 +253,127 @@ namespace BusinessLayer
             }
             return totalTable;
         }
+        public decimal[] GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda)
+        {
+            //decimal totalTable;
+            DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
+            DataTable datatable = dataSet.Tables["data"];
+            string moneda = "";
+            decimal aTotal = 0, bTotal = 0, cTotal = 0, dTotal = 0, eTotal = 0, fTotal = 0, gTotal = 0, hTotal = 0, iTotal = 0, jTotal = 0, kTotal = 0, lTotal = 0, mTotal = 0, nTotal = 0, oTotal = 0, pTotal = 0, total = 0;
+            decimal[] listValues = new decimal[12];
+            if (!tipoMoneda)
+                moneda = "d";
+            try
+            {
+                aTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("a" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            {
+                aTotal = 0;
+            }
+            try
+            {
+                bTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("b" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { bTotal = 0; }
+            try
+            {
+                cTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("c" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { cTotal = 0; }
+            try
+            {
+                dTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("d" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { dTotal = 0; }
+            try
+            {
+                eTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("e" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { eTotal = 0; }
+            try
+            {
+                fTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("f" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { fTotal = 0; }
+            try
+            {
+                gTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("g" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { gTotal = 0; }
+            try
+            {
+                hTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("h" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { hTotal = 0; }
+            try
+            {
+                iTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("i" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { iTotal = 0; }
+            try
+            {
+                jTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("j" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { jTotal = 0; }
+            try
+            {
+                kTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("k" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { kTotal = 0; }
+            try
+            {
+                lTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("l" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { lTotal = 0; }
+            try
+            {
+                mTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("m" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { mTotal = 0; }
+            try
+            {
+                nTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("n" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { nTotal = 0; }
+            try
+            {
+                oTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("o" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { oTotal = 0; }
+            try
+            {
+                pTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("p" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { pTotal = 0; }
+            listValues[0] = aTotal + bTotal;
+            listValues[1] = aTotal + bTotal + cTotal;
+            listValues[2] = aTotal + bTotal + cTotal + dTotal;
+            listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
+            listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
+            listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
+            listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
+            listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
+            listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
+            listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
+            listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
+            listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal + nTotal + oTotal + pTotal;
+            return listValues;
+        }
     }
 }
