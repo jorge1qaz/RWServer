@@ -258,6 +258,7 @@
                                         <div class="col-md-2">
                                             <a href="#" id="btnTriggerModalREDRPMS" class="btn btn-outline-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
                                         </div>
+                                        <br /><br />
                                     </div>
                                     <footer>
                                         <button type="button" class="btn btn-info" id="btnEstadoResultadoPMS" role="button">Ver detalles</button>
@@ -284,14 +285,13 @@
                     <div class="card card-outline-secondary">
                         <div class="card-block">
                             <label class="font-weight-bold">Estado financiero comparativo</label>
-                            <label class="custom-control custom-checkbox">
-                                <asp:CheckBox ID="chbEDRPMSNaturaleza" runat="server" OnCheckedChanged="chbEDRPMSNaturaleza_CheckedChanged" Checked="true" />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEDRPMSNaturaleza" runat="server" GroupName="radioEGP" OnCheckedChanged="rdbEDRPMSNaturaleza_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">EGP por naturaleza</span>
                             </label>
-                            <br />
-                            <label class="custom-control custom-checkbox">
-                                <asp:CheckBox ID="chbEDRPMSFuncion" runat="server" OnCheckedChanged="chbEDRPMSFuncion_CheckedChanged" />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEDRPMSFuncion" runat="server" GroupName="radioEGP" OnCheckedChanged="rdbEDRPMSFuncion_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">EGP por función</span>
                             </label>
@@ -301,14 +301,14 @@
                         <div class="card-block">
                             <label class="font-weight-bold">Tipo de moneda</label>
                             <br />
-                            <label class="custom-control custom-checkbox">
-                                <asp:CheckBox ID="chbchbEDRPMSSoles" runat="server" OnCheckedChanged="chbchbEDRPMSSoles_CheckedChanged" Checked="true" />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEDRPMSSoles" runat="server" GroupName="radioMonedaERPMS" OnCheckedChanged="rdbEDRPMSSoles_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">Soles</span>
                             </label>
                             <br />
-                            <label class="custom-control custom-checkbox">
-                                <asp:CheckBox ID="chbchbEDRPMSDolares" runat="server" OnCheckedChanged="chbchbEDRPMSDolares_CheckedChanged" />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEDRPMSDolares" runat="server" GroupName="radioMonedaERPMS" OnCheckedChanged="rdbEDRPMSDolares_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">Dólares</span>
                             </label>
@@ -317,16 +317,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <asp:Button ID="btnSaveFilters" CssClass="btn btn-primary" runat="server" Text="Guardar filtros" />
                 </div>
             </div>
         </div>
     </div>
     <script>
-        $("#MainContent_chbEDRPMSNaturaleza").addClass("custom-control-input");
-        $("#MainContent_chbEDRPMSFuncion").addClass("custom-control-input");
-        $("#MainContent_chbchbEDRPMSSoles").addClass("custom-control-input");
-        $("#MainContent_chbchbEDRPMSDolares").addClass("custom-control-input");
+        $("#MainContent_rdbEDRPMSNaturaleza").addClass("custom-control-input");
+        $("#MainContent_rdbEDRPMSFuncion").addClass("custom-control-input");
+        $("#MainContent_rdbEDRPMSSoles").addClass("custom-control-input");
+        $("#MainContent_rdbEDRPMSDolares").addClass("custom-control-input");
     </script>
     <script>
         $(function () {

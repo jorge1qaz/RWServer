@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12 col-md-11 col-xs-12">
+                                <div class="col-lg-11 col-md-11 col-xs-12">
                                     <table class="table table-striped table-bordered display table-responsive" id="tablaReporte">
                                         <thead>
                                             <tr>

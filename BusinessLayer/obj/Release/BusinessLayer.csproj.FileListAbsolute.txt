@@ -5,3 +5,6 @@ D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\DotNetZip.xml
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.dll
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.pdb
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\Newtonsoft.Json.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\Newtonsoft.Json.xml
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache

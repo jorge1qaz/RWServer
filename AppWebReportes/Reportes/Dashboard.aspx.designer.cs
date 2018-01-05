@@ -121,48 +121,39 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DataList dlstEstadoResultadoPMS;
         
         /// <summary>
-        /// chbEDRPMSNaturaleza control.
+        /// rdbEDRPMSNaturaleza control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEDRPMSNaturaleza;
+        protected global::System.Web.UI.WebControls.RadioButton rdbEDRPMSNaturaleza;
         
         /// <summary>
-        /// chbEDRPMSFuncion control.
+        /// rdbEDRPMSFuncion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbEDRPMSFuncion;
+        protected global::System.Web.UI.WebControls.RadioButton rdbEDRPMSFuncion;
         
         /// <summary>
-        /// chbchbEDRPMSSoles control.
+        /// rdbEDRPMSSoles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbchbEDRPMSSoles;
+        protected global::System.Web.UI.WebControls.RadioButton rdbEDRPMSSoles;
         
         /// <summary>
-        /// chbchbEDRPMSDolares control.
+        /// rdbEDRPMSDolares control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chbchbEDRPMSDolares;
-        
-        /// <summary>
-        /// btnSaveFilters control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveFilters;
+        protected global::System.Web.UI.WebControls.RadioButton rdbEDRPMSDolares;
     }
 }

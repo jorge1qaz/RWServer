@@ -6,15 +6,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width" />
-    <title></title>
-    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <title>Smarth Report</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/datatables") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/validaciones") %>
     </asp:PlaceHolder>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Images/icon_rw.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
     <form id="Formulario" runat="server">
@@ -35,4 +35,5 @@
         </script>
     </form>
 </body>
+<script src="../Scripts/Owner/general.js"></script>
 </html>

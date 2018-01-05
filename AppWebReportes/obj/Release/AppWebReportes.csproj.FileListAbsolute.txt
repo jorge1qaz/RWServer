@@ -83,3 +83,4 @@ D:\git\ReportesWeb\Web\AppWebReportes\bin\es\Microsoft.Owin.Security.MicrosoftAc
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.csprojResolveAssemblyReference.cache
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.dll
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.pdb
+D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.csproj.CoreCompileInputs.cache

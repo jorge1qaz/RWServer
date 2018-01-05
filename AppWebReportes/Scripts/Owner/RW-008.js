@@ -1,4 +1,16 @@
 ﻿$(document).ready(function () {
+    var fecha = new Date();
+    var anio = fecha.getFullYear();
+    var mes = fecha.getMonth() + 1;
+    var dia = fecha.getDate();
+    if (mes < 10) {
+        mes = '0' + mes;
+    }
+    if (dia < 10) {
+        dia = '0' + dia;
+    }
+    var fechaCompletoFile = dia + "." + mes + "." + anio;
+    var fechaCompleto = dia + "/" + mes + "/" + anio;
     var idioma = {
         "sProcessing": "Procesando...",
         "sLengthMenu": "Mostrar _MENU_ registros",
@@ -31,47 +43,37 @@
         }
     }
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"];
-    var listarReporte = function (mes) {
-        var simboloMoneda = "";
-        
-        var tblReportes = $('#example').DataTable({
+    var listarReporte = function () {
+        var tblReportes = $('#tableNaturaleza').DataTable({
             "destroy": true,
             "processing": true,
             responsive: true,
-            "columns": [
-                { "data": "Codigo" },
-                { "data": "Descripcion" },
-                { "data": meses[0] },
-                { "data": meses[1] },
-                { "data": meses[2] },
-                { "data": meses[3] },
-                { "data": meses[4] },
-                { "data": meses[5] },
-                { "data": meses[6] },
-                { "data": meses[7] },
-                { "data": meses[8] },
-                { "data": meses[9] },
-                { "data": meses[10] },
-                { "data": meses[11] }
-            ],
+            paging: false,
             "language": idioma,
-            dom: '<lf<t>ip>',
+            dom: 'Bfrtip',
+            info: false,
+            "columnDefs": [
+                {
+                    "targets": [1],
+                    "visible": true,
+                    "searchable": true
+                }],
             buttons: [
-                'copy', 'csv', {
+                'copy', {
                     extend: 'excel',
                     text: 'Excel',
-                    title: 'Reporte: Margen de utilidad por producto - Para el mes de ',
-                    filename: 'Margen de utilidad por producto ',
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
+                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompletoFile,
                 }, {
                     extend: 'pdf',
                     text: 'PDF',
                     orientation: 'landscape',
-                    title: 'Reporte: Margen de utilidad por producto - Para el mes de ',
-                    filename: 'Margen de utilidad por producto ',
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
+                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompletoFile,
                 }, {
                     extend: 'print',
                     text: 'Imprimir',
-                    title: 'Reporte:  Margen de utilidad por producto',
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
                     exportOptions: {
                         modifier: {
                             page: 'current'
@@ -82,7 +84,8 @@
             "order": [[3, "desc"]]
         });
         $(".buttons-html5").addClass("btn btn-primary");
-        $(".buttons-print").addClass("btn btn-primary").css("margin-bottom", "5px");
+        $(".buttons-print").addClass("btn btn-primary").css("margin-top", "5px");
+        $(".btn-primary").addClass("btn btn-primary").css("margin-top", "5px");
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();

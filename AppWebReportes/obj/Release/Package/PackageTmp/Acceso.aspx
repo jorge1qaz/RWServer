@@ -9,7 +9,7 @@
                 <br />
                 <br />
                 <br />
-                <div class="col offset-m2 offset-s1 offset-l3 m8 s10 l6">
+                <div class="col offset-m2 offset-s0 offset-l3 m8 s12 l6">
                     <div class="card-panel z-depth-4">
                         <div class="center">
                             <div class="row">

@@ -87,6 +87,7 @@ $(document).ready(function () {
             "destroy": true,
             "processing": true,
             responsive: true,
+            info: false,
             data: dataSet.data,
             "columns": [
                 { "data": "C" },
@@ -126,7 +127,7 @@ $(document).ready(function () {
                 }
             ],
             "language": idioma,
-            dom: '<lf<t>ip>',
+            dom: 'Bfrtip',
             buttons: [
                 'copy', 'csv', {
                     extend: 'excel',

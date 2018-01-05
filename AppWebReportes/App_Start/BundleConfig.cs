@@ -43,8 +43,9 @@ namespace AppWebReportes
                             "~/Scripts/DataTables/buttons.bootstrap4.js"));
             // Validaciones
             bundles.Add(new ScriptBundle("~/bundles/validaciones").Include(
-                             "~/Scripts/jquery.validate.min.js",
-                            "~/Scripts/additional-methods.min.js"));
+                            "~/Scripts/jquery.validate.min.js",
+                            "~/Scripts/additional-methods.min.js"
+                            ));
 
             // Use la versión de desarrollo de Modernizr para desarrollar y aprender. Luego, cuando esté listo
             // para la producción, use la herramienta de creación en http://modernizr.com para elegir solo las pruebas que necesite

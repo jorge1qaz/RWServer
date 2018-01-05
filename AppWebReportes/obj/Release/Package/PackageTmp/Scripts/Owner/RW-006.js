@@ -50,7 +50,7 @@ $(document).ready(function () {
         "sZeroRecords": "No se encontraron resultados",
         "sEmptyTable": "Ningún dato disponible en esta tabla",
         "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoEmpty": "Mostrando _START_ al _END_ de _TOTAL_ registros",
         "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
         "sInfoPostFix": "",
         "sSearch": "Buscar:",
@@ -87,6 +87,7 @@ $(document).ready(function () {
             "destroy": true,
             "processing": true,
             responsive: true,
+            info: false,
             data: dataSet.data,
             "columns": [
                 { "data": "C" },
@@ -126,7 +127,7 @@ $(document).ready(function () {
                 }
             ],
             "language": idioma,
-            dom: '<lf<t>ip>',
+            dom: 'Bfrtip',
             buttons: [
                 'copy', 'csv', {
                     extend: 'excel',

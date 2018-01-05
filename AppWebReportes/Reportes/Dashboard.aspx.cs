@@ -74,7 +74,7 @@ namespace AppWebReportes.Reportes
                     DataRow[] idCompany = dataTableGeneralInfoConta.Select();
                     Session["idCompany"] = idCompany[0][0].ToString();
                     Session["EDRPMSTipoReporte"] = "naturaleza";
-                    Session["EDRPMSTipoMoneda"] = "soles";
+                    Session["EDRPMSTipoMoneda"] = "Nuevos soles";
                 }
                 catch (Exception)
                 {
@@ -97,7 +97,7 @@ namespace AppWebReportes.Reportes
                     DataRow[] idCompany = dataTableGeneralInfoConta.Select();
                     Session["idCompany"] = idCompany[0][0].ToString();
                     Session["EDRPMSTipoReporte"] = "naturaleza";
-                    Session["EDRPMSTipoMoneda"] = "soles";
+                    Session["EDRPMSTipoMoneda"] = "Nuevos soles";
                 }
             }
         }
@@ -145,9 +145,9 @@ namespace AppWebReportes.Reportes
             string id = dlstEstadoResultadoPMS.DataKeys[e.Item.ItemIndex].ToString();
             Response.Redirect("~/Reportes/EstadoResultadoPMS.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
         }
-        protected void chbEDRPMSNaturaleza_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "naturaleza";
-        protected void chbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "funcion";
-        protected void chbchbEDRPMSSoles_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "soles";
-        protected void chbchbEDRPMSDolares_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "dolares";
+        protected void rdbEDRPMSNaturaleza_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "naturaleza";
+        protected void rdbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "funcion";
+        protected void rdbEDRPMSSoles_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Nuevos soles";
+        protected void rdbEDRPMSDolares_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Dólares";
     }
 }
