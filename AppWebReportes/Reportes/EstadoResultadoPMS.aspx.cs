@@ -16,15 +16,9 @@ namespace AppWebReportes.Reportes
             { IdCliente = Session["IdUser"].ToString() };
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
             if (Session["EDRPMSTipoMoneda"].ToString() == "Nuevos soles")
-                if (Session["EDRPMSTipoReporte"].ToString() == "naturaleza")
-                    GetEstadoResultadoNaturaleza(true);
-                else
-                    GetEstadoResultadoFuncion(true);
+                GetEstadoResultadoNaturaleza(true);
             else
-                if (Session["EDRPMSTipoReporte"].ToString() == "naturaleza")
-                    GetEstadoResultadoNaturaleza(false);
-                else
-                    GetEstadoResultadoFuncion(false);
+                GetEstadoResultadoNaturaleza(false);
         }
         //Jorge Luis|26/12/2017|RW-103
         /*Método para */
@@ -309,14 +303,6 @@ namespace AppWebReportes.Reportes
             N999lbl3.Text = simboloMoneda + sumN999[3].ToString(); N999lbl4.Text = simboloMoneda + sumN999[4].ToString(); N999lbl5.Text = simboloMoneda + sumN999[5].ToString();
             N999lbl6.Text = simboloMoneda + sumN999[6].ToString(); N999lbl7.Text = simboloMoneda + sumN999[7].ToString(); N999lbl8.Text = simboloMoneda + sumN999[8].ToString();
             N999lbl9.Text = simboloMoneda + sumN999[9].ToString(); N999lbl10.Text = simboloMoneda + sumN999[10].ToString(); N999lbl11.Text = simboloMoneda + sumN999[11].ToString();
-        }
-        //Jorge Luis|26/12/2017|RW-103
-        /*Método para */
-        public void GetEstadoResultadoFuncion(bool moneda)
-        {
-            string valorMoneda1 = "a";
-            string valorMoneda2 = "b";
-            string valorMoneda3 = "d";
         }
         //Jorge Luis|26/12/2017|RW-103
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/

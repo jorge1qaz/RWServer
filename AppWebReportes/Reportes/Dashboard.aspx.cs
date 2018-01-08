@@ -143,10 +143,13 @@ namespace AppWebReportes.Reportes
         protected void SelectCompanyByYearEDRPMS(object source, DataListCommandEventArgs e)
         {
             string id = dlstEstadoResultadoPMS.DataKeys[e.Item.ItemIndex].ToString();
-            Response.Redirect("~/Reportes/EstadoResultadoPMS.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+            if (Session["EDRPMSTipoReporte"].ToString() == "Función")
+                Response.Redirect("~/Reportes/EstadoResultadoPMSF.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+            else
+                Response.Redirect("~/Reportes/EstadoResultadoPMS.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
         }
-        protected void rdbEDRPMSNaturaleza_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "naturaleza";
-        protected void rdbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "funcion";
+        protected void rdbEDRPMSNaturaleza_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "Naturaleza";
+        protected void rdbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "Función";
         protected void rdbEDRPMSSoles_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Nuevos soles";
         protected void rdbEDRPMSDolares_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Dólares";
     }

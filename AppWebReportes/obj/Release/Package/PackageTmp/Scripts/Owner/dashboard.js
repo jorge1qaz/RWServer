@@ -207,7 +207,7 @@
             $("#blockMinegocioAlDia").hide("200");
             statusREDRPMS = 1;
         } else {
-            $("#btnMinegocioAlDia").text("Ver detalles");
+            $("#btnEstadoResultadoPMS").text("Ver detalles");
             $("#blockEstadoResultadoPMS").removeClass("col-md-12").addClass("col-lg-4 col-md-6");
             $("#blockCuentasPendientes").show("200");
             $("#blockMargenUtilidad").show("200");

@@ -1083,5 +1083,6 @@
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
     <script>var moneda = "<% Response.Write(Session["EDRPMSTipoMoneda"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-008.js"></script>
 </asp:Content>

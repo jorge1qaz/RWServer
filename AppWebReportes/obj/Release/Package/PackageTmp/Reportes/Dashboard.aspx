@@ -258,7 +258,6 @@
                                         <div class="col-md-2">
                                             <a href="#" id="btnTriggerModalREDRPMS" class="btn btn-outline-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
                                         </div>
-                                        <br /><br />
                                     </div>
                                     <footer>
                                         <button type="button" class="btn btn-info" id="btnEstadoResultadoPMS" role="button">Ver detalles</button>

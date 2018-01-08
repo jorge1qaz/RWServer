@@ -62,26 +62,25 @@
                 'copy', {
                     extend: 'excel',
                     text: 'Excel',
-                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
-                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompletoFile,
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por ' + tipoReporte + ' - ' + moneda + " - " + fechaCompleto,
+                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por ' + tipoReporte + ' - ' + moneda + " - " + fechaCompletoFile,
                 }, {
                     extend: 'pdf',
                     text: 'PDF',
                     orientation: 'landscape',
-                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
-                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompletoFile,
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por ' + tipoReporte + ' - ' + moneda + " - " + fechaCompleto,
+                    filename: 'Estados financieros comparativos - Estado de resultado - EGP por ' + tipoReporte + ' - ' + moneda + " - " + fechaCompletoFile,
                 }, {
                     extend: 'print',
                     text: 'Imprimir',
-                    title: 'Estados financieros comparativos - Estado de resultado - EGP por naturaleza - ' + moneda + " - " + fechaCompleto,
+                    title: 'Estados financieros comparativos - Estado de resultado - EGP por ' + tipoReporte + ' - ' + moneda + " - " + fechaCompleto,
                     exportOptions: {
                         modifier: {
                             page: 'current'
                         }
                     },
                 }
-            ],
-            "order": [[3, "desc"]]
+            ]
         });
         $(".buttons-html5").addClass("btn btn-primary");
         $(".buttons-print").addClass("btn btn-primary").css("margin-top", "5px");

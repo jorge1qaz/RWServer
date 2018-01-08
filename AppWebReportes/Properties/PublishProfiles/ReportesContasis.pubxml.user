@@ -71,16 +71,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>01/05/2018 17:43:51</publishTime>
+      <publishTime>01/08/2018 11:59:02</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>01/05/2018 17:43:51</publishTime>
+      <publishTime>01/08/2018 11:59:02</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>01/05/2018 17:44:12</publishTime>
+      <publishTime>01/08/2018 14:12:29</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>01/05/2018 17:44:12</publishTime>
+      <publishTime>01/08/2018 14:12:29</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
@@ -1190,7 +1190,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/28/2017 14:24:19</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/05/2018 17:43:57</publishTime>
+      <publishTime>01/08/2018 14:12:20</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1199,10 +1199,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/19/2017 12:47:20</publishTime>
     </File>
     <File Include="Reportes/Dashboard.aspx">
-      <publishTime>01/05/2018 14:49:28</publishTime>
+      <publishTime>01/08/2018 13:00:45</publishTime>
     </File>
     <File Include="Reportes/EstadoResultadoPMS.aspx">
-      <publishTime>01/05/2018 17:38:03</publishTime>
+      <publishTime>01/08/2018 11:53:40</publishTime>
+    </File>
+    <File Include="Reportes/EstadoResultadoPMSF.aspx">
+      <publishTime>01/08/2018 11:51:58</publishTime>
     </File>
     <File Include="Reportes/frmMargenUtilidad.aspx">
       <publishTime>01/05/2018 12:33:43</publishTime>
@@ -1511,7 +1514,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 14:31:30</publishTime>
     </File>
     <File Include="Scripts/Owner/dashboard.js">
-      <publishTime>01/03/2018 17:11:47</publishTime>
+      <publishTime>01/08/2018 14:11:21</publishTime>
     </File>
     <File Include="Scripts/Owner/general.js">
       <publishTime>01/05/2018 15:59:27</publishTime>
@@ -1541,7 +1544,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/20/2017 15:25:21</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-008.js">
-      <publishTime>01/05/2018 17:21:13</publishTime>
+      <publishTime>01/08/2018 11:53:02</publishTime>
     </File>
     <File Include="Scripts/respond.js">
       <publishTime>11/07/2017 13:43:51</publishTime>
@@ -1619,10 +1622,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/19/2017 09:21:08</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>01/05/2018 15:38:59</publishTime>
+      <publishTime>01/08/2018 13:59:02</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
-      <publishTime>01/05/2018 15:38:09</publishTime>
+      <publishTime>01/08/2018 13:58:12</publishTime>
     </File>
     <File Include="ViewSwitcher.ascx">
       <publishTime>11/07/2017 13:43:57</publishTime>
