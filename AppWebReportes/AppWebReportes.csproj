@@ -359,6 +359,7 @@
     <Content Include="Reportes\Dashboard.aspx" />
     <Content Include="Reportes\EstadoResultadoPMS.aspx" />
     <Content Include="Reportes\EstadoResultadoPMSF.aspx" />
+    <Content Include="Reportes\EFEstadoSitucionFinanciera.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -835,6 +836,13 @@
     </Compile>
     <Compile Include="Reportes\EstadoResultadoPMSF.aspx.designer.cs">
       <DependentUpon>EstadoResultadoPMSF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\EFEstadoSitucionFinanciera.aspx.cs">
+      <DependentUpon>EFEstadoSitucionFinanciera.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\EFEstadoSitucionFinanciera.aspx.designer.cs">
+      <DependentUpon>EFEstadoSitucionFinanciera.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

@@ -49,13 +49,13 @@ namespace AppWebReportes.Reportes
             if (!moneda)                    // Moneda: Dólares
             { simboloMoneda = "$ "; }
 
-            sumF005 = mergeTables.GeTotalByTablePlan(JsonDatasetF005, moneda);
+            sumF005 = mergeTables.GeTotalByTablePlan(JsonDatasetF005, moneda, false);
             F005lbl0.Text = simboloMoneda + sumF005[0].ToString(); F005lbl1.Text = simboloMoneda + sumF005[1].ToString(); F005lbl2.Text = simboloMoneda + sumF005[2].ToString();
             F005lbl3.Text = simboloMoneda + sumF005[3].ToString(); F005lbl4.Text = simboloMoneda + sumF005[4].ToString(); F005lbl5.Text = simboloMoneda + sumF005[5].ToString();
             F005lbl6.Text = simboloMoneda + sumF005[6].ToString(); F005lbl7.Text = simboloMoneda + sumF005[7].ToString(); F005lbl8.Text = simboloMoneda + sumF005[8].ToString();
             F005lbl9.Text = simboloMoneda + sumF005[9].ToString(); F005lbl10.Text = simboloMoneda + sumF005[10].ToString(); F005lbl11.Text = simboloMoneda + sumF005[11].ToString();
 
-            sumF105 = mergeTables.GeTotalByTablePlan(JsonDatasetF105, moneda);
+            sumF105 = mergeTables.GeTotalByTablePlan(JsonDatasetF105, moneda, false);
             F105lbl0.Text = simboloMoneda + sumF105[0].ToString(); F105lbl1.Text = simboloMoneda + sumF105[1].ToString(); F105lbl2.Text = simboloMoneda + sumF105[2].ToString();
             F105lbl3.Text = simboloMoneda + sumF105[3].ToString(); F105lbl4.Text = simboloMoneda + sumF105[4].ToString(); F105lbl5.Text = simboloMoneda + sumF105[5].ToString();
             F105lbl6.Text = simboloMoneda + sumF105[6].ToString(); F105lbl7.Text = simboloMoneda + sumF105[7].ToString(); F105lbl8.Text = simboloMoneda + sumF105[8].ToString();
@@ -72,37 +72,37 @@ namespace AppWebReportes.Reportes
             F199lbl6.Text = simboloMoneda + sumF199[6].ToString(); F199lbl7.Text = simboloMoneda + sumF199[7].ToString(); F199lbl8.Text = simboloMoneda + sumF199[8].ToString();
             F199lbl9.Text = simboloMoneda + sumF199[9].ToString(); F199lbl10.Text = simboloMoneda + sumF199[10].ToString(); F199lbl11.Text = simboloMoneda + sumF199[11].ToString();
 
-            sumF206 = mergeTables.GeTotalByTablePlan(JsonDatasetF206, moneda);
+            sumF206 = mergeTables.GeTotalByTablePlan(JsonDatasetF206, moneda, false);
             F206lbl0.Text = simboloMoneda + sumF206[0].ToString(); F206lbl1.Text = simboloMoneda + sumF206[1].ToString(); F206lbl2.Text = simboloMoneda + sumF206[2].ToString();
             F206lbl3.Text = simboloMoneda + sumF206[3].ToString(); F206lbl4.Text = simboloMoneda + sumF206[4].ToString(); F206lbl5.Text = simboloMoneda + sumF206[5].ToString();
             F206lbl6.Text = simboloMoneda + sumF206[6].ToString(); F206lbl7.Text = simboloMoneda + sumF206[7].ToString(); F206lbl8.Text = simboloMoneda + sumF206[8].ToString();
             F206lbl9.Text = simboloMoneda + sumF206[9].ToString(); F206lbl10.Text = simboloMoneda + sumF206[10].ToString(); F206lbl11.Text = simboloMoneda + sumF206[11].ToString();
 
-            sumF211 = mergeTables.GeTotalByTablePlan(JsonDatasetF211, moneda);
+            sumF211 = mergeTables.GeTotalByTablePlan(JsonDatasetF211, moneda, false);
             F211lbl0.Text = simboloMoneda + sumF211[0].ToString(); F211lbl1.Text = simboloMoneda + sumF211[1].ToString(); F211lbl2.Text = simboloMoneda + sumF211[2].ToString();
             F211lbl3.Text = simboloMoneda + sumF211[3].ToString(); F211lbl4.Text = simboloMoneda + sumF211[4].ToString(); F211lbl5.Text = simboloMoneda + sumF211[5].ToString();
             F211lbl6.Text = simboloMoneda + sumF211[6].ToString(); F211lbl7.Text = simboloMoneda + sumF211[7].ToString(); F211lbl8.Text = simboloMoneda + sumF211[8].ToString();
             F211lbl9.Text = simboloMoneda + sumF211[9].ToString(); F211lbl10.Text = simboloMoneda + sumF211[10].ToString(); F211lbl11.Text = simboloMoneda + sumF211[11].ToString();
 
-            sumF212 = mergeTables.GeTotalByTablePlan(JsonDatasetF212, moneda);
+            sumF212 = mergeTables.GeTotalByTablePlan(JsonDatasetF212, moneda, false);
             F212lbl0.Text = simboloMoneda + sumF212[0].ToString(); F212lbl1.Text = simboloMoneda + sumF212[1].ToString(); F212lbl2.Text = simboloMoneda + sumF212[2].ToString();
             F212lbl3.Text = simboloMoneda + sumF212[3].ToString(); F212lbl4.Text = simboloMoneda + sumF212[4].ToString(); F212lbl5.Text = simboloMoneda + sumF212[5].ToString();
             F212lbl6.Text = simboloMoneda + sumF212[6].ToString(); F212lbl7.Text = simboloMoneda + sumF212[7].ToString(); F212lbl8.Text = simboloMoneda + sumF212[8].ToString();
             F212lbl9.Text = simboloMoneda + sumF212[9].ToString(); F212lbl10.Text = simboloMoneda + sumF212[10].ToString(); F212lbl11.Text = simboloMoneda + sumF212[11].ToString();
 
-            sumF213 = mergeTables.GeTotalByTablePlan(JsonDatasetF213, moneda);
+            sumF213 = mergeTables.GeTotalByTablePlan(JsonDatasetF213, moneda, false);
             F213lbl0.Text = simboloMoneda + sumF213[0].ToString(); F213lbl1.Text = simboloMoneda + sumF213[1].ToString(); F213lbl2.Text = simboloMoneda + sumF213[2].ToString();
             F213lbl3.Text = simboloMoneda + sumF213[3].ToString(); F213lbl4.Text = simboloMoneda + sumF213[4].ToString(); F213lbl5.Text = simboloMoneda + sumF213[5].ToString();
             F213lbl6.Text = simboloMoneda + sumF213[6].ToString(); F213lbl7.Text = simboloMoneda + sumF213[7].ToString(); F213lbl8.Text = simboloMoneda + sumF213[8].ToString();
             F213lbl9.Text = simboloMoneda + sumF213[9].ToString(); F213lbl10.Text = simboloMoneda + sumF213[10].ToString(); F213lbl11.Text = simboloMoneda + sumF213[11].ToString();
 
-            sumF214 = mergeTables.GeTotalByTablePlan(JsonDatasetF214, moneda);
+            sumF214 = mergeTables.GeTotalByTablePlan(JsonDatasetF214, moneda, false);
             F214lbl0.Text = simboloMoneda + sumF214[0].ToString(); F214lbl1.Text = simboloMoneda + sumF214[1].ToString(); F214lbl2.Text = simboloMoneda + sumF214[2].ToString();
             F214lbl3.Text = simboloMoneda + sumF214[3].ToString(); F214lbl4.Text = simboloMoneda + sumF214[4].ToString(); F214lbl5.Text = simboloMoneda + sumF214[5].ToString();
             F214lbl6.Text = simboloMoneda + sumF214[6].ToString(); F214lbl7.Text = simboloMoneda + sumF214[7].ToString(); F214lbl8.Text = simboloMoneda + sumF214[8].ToString();
             F214lbl9.Text = simboloMoneda + sumF214[9].ToString(); F214lbl10.Text = simboloMoneda + sumF214[10].ToString(); F214lbl11.Text = simboloMoneda + sumF214[11].ToString();
 
-            sumF215 = mergeTables.GeTotalByTablePlan(JsonDatasetF215, moneda);
+            sumF215 = mergeTables.GeTotalByTablePlan(JsonDatasetF215, moneda, false);
             F215lbl0.Text = simboloMoneda + sumF215[0].ToString(); F215lbl1.Text = simboloMoneda + sumF215[1].ToString(); F215lbl2.Text = simboloMoneda + sumF215[2].ToString();
             F215lbl3.Text = simboloMoneda + sumF215[3].ToString(); F215lbl4.Text = simboloMoneda + sumF215[4].ToString(); F215lbl5.Text = simboloMoneda + sumF215[5].ToString();
             F215lbl6.Text = simboloMoneda + sumF215[6].ToString(); F215lbl7.Text = simboloMoneda + sumF215[7].ToString(); F215lbl8.Text = simboloMoneda + sumF215[8].ToString();
@@ -119,37 +119,37 @@ namespace AppWebReportes.Reportes
             F299lbl6.Text = simboloMoneda + sumF299[6].ToString(); F299lbl7.Text = simboloMoneda + sumF299[7].ToString(); F299lbl8.Text = simboloMoneda + sumF299[8].ToString();
             F299lbl9.Text = simboloMoneda + sumF299[9].ToString(); F299lbl10.Text = simboloMoneda + sumF299[10].ToString(); F299lbl11.Text = simboloMoneda + sumF299[11].ToString();
 
-            sumF320 = mergeTables.GeTotalByTablePlan(JsonDatasetF320, moneda);
+            sumF320 = mergeTables.GeTotalByTablePlan(JsonDatasetF320, moneda, false);
             F320lbl0.Text = simboloMoneda + sumF320[0].ToString(); F320lbl1.Text = simboloMoneda + sumF320[1].ToString(); F320lbl2.Text = simboloMoneda + sumF320[2].ToString();
             F320lbl3.Text = simboloMoneda + sumF320[3].ToString(); F320lbl4.Text = simboloMoneda + sumF320[4].ToString(); F320lbl5.Text = simboloMoneda + sumF320[5].ToString();
             F320lbl6.Text = simboloMoneda + sumF320[6].ToString(); F320lbl7.Text = simboloMoneda + sumF320[7].ToString(); F320lbl8.Text = simboloMoneda + sumF320[8].ToString();
             F320lbl9.Text = simboloMoneda + sumF320[9].ToString(); F320lbl10.Text = simboloMoneda + sumF320[10].ToString(); F320lbl11.Text = simboloMoneda + sumF320[11].ToString();
 
-            sumF350 = mergeTables.GeTotalByTablePlan(JsonDatasetF350, moneda);
+            sumF350 = mergeTables.GeTotalByTablePlan(JsonDatasetF350, moneda, false);
             F350lbl0.Text = simboloMoneda + sumF350[0].ToString(); F350lbl1.Text = simboloMoneda + sumF350[1].ToString(); F350lbl2.Text = simboloMoneda + sumF350[2].ToString();
             F350lbl3.Text = simboloMoneda + sumF350[3].ToString(); F350lbl4.Text = simboloMoneda + sumF350[4].ToString(); F350lbl5.Text = simboloMoneda + sumF350[5].ToString();
             F350lbl6.Text = simboloMoneda + sumF350[6].ToString(); F350lbl7.Text = simboloMoneda + sumF350[7].ToString(); F350lbl8.Text = simboloMoneda + sumF350[8].ToString();
             F350lbl9.Text = simboloMoneda + sumF350[9].ToString(); F350lbl10.Text = simboloMoneda + sumF350[10].ToString(); F350lbl11.Text = simboloMoneda + sumF350[11].ToString();
 
-            sumF380 = mergeTables.GeTotalByTablePlan(JsonDatasetF380, moneda);
+            sumF380 = mergeTables.GeTotalByTablePlan(JsonDatasetF380, moneda, false);
             F380lbl0.Text = simboloMoneda + sumF380[0].ToString(); F380lbl1.Text = simboloMoneda + sumF380[1].ToString(); F380lbl2.Text = simboloMoneda + sumF380[2].ToString();
             F380lbl3.Text = simboloMoneda + sumF380[3].ToString(); F380lbl4.Text = simboloMoneda + sumF380[4].ToString(); F380lbl5.Text = simboloMoneda + sumF380[5].ToString();
             F380lbl6.Text = simboloMoneda + sumF380[6].ToString(); F380lbl7.Text = simboloMoneda + sumF380[7].ToString(); F380lbl8.Text = simboloMoneda + sumF380[8].ToString();
             F380lbl9.Text = simboloMoneda + sumF380[9].ToString(); F380lbl10.Text = simboloMoneda + sumF380[10].ToString(); F380lbl11.Text = simboloMoneda + sumF380[11].ToString();
 
-            sumF403 = mergeTables.GeTotalByTablePlan(JsonDatasetF403, moneda);
+            sumF403 = mergeTables.GeTotalByTablePlan(JsonDatasetF403, moneda, false);
             F403lbl0.Text = simboloMoneda + sumF403[0].ToString(); F403lbl1.Text = simboloMoneda + sumF403[1].ToString(); F403lbl2.Text = simboloMoneda + sumF403[2].ToString();
             F403lbl3.Text = simboloMoneda + sumF403[3].ToString(); F403lbl4.Text = simboloMoneda + sumF403[4].ToString(); F403lbl5.Text = simboloMoneda + sumF403[5].ToString();
             F403lbl6.Text = simboloMoneda + sumF403[6].ToString(); F403lbl7.Text = simboloMoneda + sumF403[7].ToString(); F403lbl8.Text = simboloMoneda + sumF403[8].ToString();
             F403lbl9.Text = simboloMoneda + sumF403[9].ToString(); F403lbl10.Text = simboloMoneda + sumF403[10].ToString(); F403lbl11.Text = simboloMoneda + sumF403[11].ToString();
 
-            sumF405 = mergeTables.GeTotalByTablePlan(JsonDatasetF405, moneda);
+            sumF405 = mergeTables.GeTotalByTablePlan(JsonDatasetF405, moneda, false);
             F405lbl0.Text = simboloMoneda + sumF405[0].ToString(); F405lbl1.Text = simboloMoneda + sumF405[1].ToString(); F405lbl2.Text = simboloMoneda + sumF405[2].ToString();
             F405lbl3.Text = simboloMoneda + sumF405[3].ToString(); F405lbl4.Text = simboloMoneda + sumF405[4].ToString(); F405lbl5.Text = simboloMoneda + sumF405[5].ToString();
             F405lbl6.Text = simboloMoneda + sumF405[6].ToString(); F405lbl7.Text = simboloMoneda + sumF405[7].ToString(); F405lbl8.Text = simboloMoneda + sumF405[8].ToString();
             F405lbl9.Text = simboloMoneda + sumF405[9].ToString(); F405lbl10.Text = simboloMoneda + sumF405[10].ToString(); F405lbl11.Text = simboloMoneda + sumF405[11].ToString();
 
-            sumF415 = mergeTables.GeTotalByTablePlan(JsonDatasetF415, moneda);
+            sumF415 = mergeTables.GeTotalByTablePlan(JsonDatasetF415, moneda, false);
             F415lbl0.Text = simboloMoneda + sumF415[0].ToString(); F415lbl1.Text = simboloMoneda + sumF415[1].ToString(); F415lbl2.Text = simboloMoneda + sumF415[2].ToString();
             F415lbl3.Text = simboloMoneda + sumF415[3].ToString(); F415lbl4.Text = simboloMoneda + sumF415[4].ToString(); F415lbl5.Text = simboloMoneda + sumF415[5].ToString();
             F415lbl6.Text = simboloMoneda + sumF415[6].ToString(); F415lbl7.Text = simboloMoneda + sumF415[7].ToString(); F415lbl8.Text = simboloMoneda + sumF415[8].ToString();
@@ -166,7 +166,7 @@ namespace AppWebReportes.Reportes
             F699lbl6.Text = simboloMoneda + sumF699[6].ToString(); F699lbl7.Text = simboloMoneda + sumF699[7].ToString(); F699lbl8.Text = simboloMoneda + sumF699[8].ToString();
             F699lbl9.Text = simboloMoneda + sumF699[9].ToString(); F699lbl10.Text = simboloMoneda + sumF699[10].ToString(); F699lbl11.Text = simboloMoneda + sumF699[11].ToString();
 
-            sumF710 = mergeTables.GeTotalByTablePlan(JsonDatasetF710, moneda);
+            sumF710 = mergeTables.GeTotalByTablePlan(JsonDatasetF710, moneda, false);
             F710lbl0.Text = simboloMoneda + sumF710[0].ToString(); F710lbl1.Text = simboloMoneda + sumF710[1].ToString(); F710lbl2.Text = simboloMoneda + sumF710[2].ToString();
             F710lbl3.Text = simboloMoneda + sumF710[3].ToString(); F710lbl4.Text = simboloMoneda + sumF710[4].ToString(); F710lbl5.Text = simboloMoneda + sumF710[5].ToString();
             F710lbl6.Text = simboloMoneda + sumF710[6].ToString(); F710lbl7.Text = simboloMoneda + sumF710[7].ToString(); F710lbl8.Text = simboloMoneda + sumF710[8].ToString();
@@ -183,7 +183,7 @@ namespace AppWebReportes.Reportes
             F799lbl6.Text = simboloMoneda + sumF799[6].ToString(); F799lbl7.Text = simboloMoneda + sumF799[7].ToString(); F799lbl8.Text = simboloMoneda + sumF799[8].ToString();
             F799lbl9.Text = simboloMoneda + sumF799[9].ToString(); F799lbl10.Text = simboloMoneda + sumF799[10].ToString(); F799lbl11.Text = simboloMoneda + sumF799[11].ToString();
 
-            sumF805 = mergeTables.GeTotalByTablePlan(JsonDatasetF805, moneda);
+            sumF805 = mergeTables.GeTotalByTablePlan(JsonDatasetF805, moneda, false);
             F805lbl0.Text = simboloMoneda + sumF805[0].ToString(); F805lbl1.Text = simboloMoneda + sumF805[1].ToString(); F805lbl2.Text = simboloMoneda + sumF805[2].ToString();
             F805lbl3.Text = simboloMoneda + sumF805[3].ToString(); F805lbl4.Text = simboloMoneda + sumF805[4].ToString(); F805lbl5.Text = simboloMoneda + sumF805[5].ToString();
             F805lbl6.Text = simboloMoneda + sumF805[6].ToString(); F805lbl7.Text = simboloMoneda + sumF805[7].ToString(); F805lbl8.Text = simboloMoneda + sumF805[8].ToString();

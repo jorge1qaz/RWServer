@@ -26,7 +26,6 @@ namespace BusinessLayer
             DataTable datatableMes12 = dataSet.Tables["12"];
             DataTable datatableMes13 = dataSet.Tables["13"];
             DataTable datatableMes14 = dataSet.Tables["14"];
-            DataTable datatableMes15 = dataSet.Tables["15"];
             #endregion
             #region Fusión de tablas... Fuuuuuu...sión!
             switch (mes.ToString())
@@ -120,7 +119,6 @@ namespace BusinessLayer
                     datatableMes0.Merge(datatableMes1);
                     break;
                 case "12":
-                    datatableMes14.Merge(datatableMes15);
                     datatableMes13.Merge(datatableMes14);
                     datatableMes12.Merge(datatableMes13);
                     datatableMes11.Merge(datatableMes12);
@@ -253,13 +251,13 @@ namespace BusinessLayer
             }
             return totalTable;
         }
-        public decimal[] GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda)
+        public decimal[] GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, bool limitarMeses)
         {
             //decimal totalTable;
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
             DataTable datatable = dataSet.Tables["data"];
             string moneda = "";
-            decimal aTotal = 0, bTotal = 0, cTotal = 0, dTotal = 0, eTotal = 0, fTotal = 0, gTotal = 0, hTotal = 0, iTotal = 0, jTotal = 0, kTotal = 0, lTotal = 0, mTotal = 0, nTotal = 0, oTotal = 0, pTotal = 0, total = 0;
+            decimal aTotal = 0, bTotal = 0, cTotal = 0, dTotal = 0, eTotal = 0, fTotal = 0, gTotal = 0, hTotal = 0, iTotal = 0, jTotal = 0, kTotal = 0, lTotal = 0, mTotal = 0, nTotal = 0, oTotal = 0;
             decimal[] listValues = new decimal[12];
             if (!tipoMoneda)
                 moneda = "d";
@@ -355,24 +353,36 @@ namespace BusinessLayer
             }
             catch (Exception)
             { oTotal = 0; }
-            try
+            if (!limitarMeses)
             {
-                pTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("p" + moneda)).FirstOrDefault());
+                listValues[0] = aTotal + bTotal;
+                listValues[1] = aTotal + bTotal + cTotal;
+                listValues[2] = aTotal + bTotal + cTotal + dTotal;
+                listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
+                listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
+                listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
+                listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
+                listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
+                listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
+                listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
+                listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
+                listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal + nTotal + oTotal;
             }
-            catch (Exception)
-            { pTotal = 0; }
-            listValues[0] = aTotal + bTotal;
-            listValues[1] = aTotal + bTotal + cTotal;
-            listValues[2] = aTotal + bTotal + cTotal + dTotal;
-            listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
-            listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
-            listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
-            listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
-            listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
-            listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
-            listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
-            listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
-            listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal + nTotal + oTotal + pTotal;
+            else
+            {
+                listValues[0] = aTotal + bTotal;
+                listValues[1] = aTotal + bTotal + cTotal;
+                listValues[2] = aTotal + bTotal + cTotal + dTotal;
+                listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
+                listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
+                listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
+                listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
+                listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
+                listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
+                listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
+                listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
+                listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal;
+            }
             return listValues;
         }
     }
