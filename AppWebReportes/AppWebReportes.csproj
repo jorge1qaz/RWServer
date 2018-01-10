@@ -357,9 +357,12 @@
     <Content Include="Images\user.jpg" />
     <Content Include="Acceso.aspx" />
     <Content Include="Reportes\Dashboard.aspx" />
+    <Content Include="Reportes\EFNTBalanceGeneral.aspx" />
+    <Content Include="Reportes\EFNTEstadoGananciasPerdidas.aspx" />
+    <Content Include="Reportes\EFNTEstadoResultado.aspx" />
     <Content Include="Reportes\EstadoResultadoPMS.aspx" />
     <Content Include="Reportes\EstadoResultadoPMSF.aspx" />
-    <Content Include="Reportes\EFEstadoSitucionFinanciera.aspx" />
+    <Content Include="Reportes\EFNTEstadoSitucionFinanciera.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -823,6 +826,27 @@
     <Compile Include="Reportes\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\EFNTBalanceGeneral.aspx.cs">
+      <DependentUpon>EFNTBalanceGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\EFNTBalanceGeneral.aspx.designer.cs">
+      <DependentUpon>EFNTBalanceGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\EFNTEstadoGananciasPerdidas.aspx.cs">
+      <DependentUpon>EFNTEstadoGananciasPerdidas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\EFNTEstadoGananciasPerdidas.aspx.designer.cs">
+      <DependentUpon>EFNTEstadoGananciasPerdidas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\EFNTEstadoResultado.aspx.cs">
+      <DependentUpon>EFNTEstadoResultado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\EFNTEstadoResultado.aspx.designer.cs">
+      <DependentUpon>EFNTEstadoResultado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\EstadoResultadoPMS.aspx.cs">
       <DependentUpon>EstadoResultadoPMS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -837,12 +861,12 @@
     <Compile Include="Reportes\EstadoResultadoPMSF.aspx.designer.cs">
       <DependentUpon>EstadoResultadoPMSF.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\EFEstadoSitucionFinanciera.aspx.cs">
-      <DependentUpon>EFEstadoSitucionFinanciera.aspx</DependentUpon>
+    <Compile Include="Reportes\EFNTEstadoSitucionFinanciera.aspx.cs">
+      <DependentUpon>EFNTEstadoSitucionFinanciera.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\EFEstadoSitucionFinanciera.aspx.designer.cs">
-      <DependentUpon>EFEstadoSitucionFinanciera.aspx</DependentUpon>
+    <Compile Include="Reportes\EFNTEstadoSitucionFinanciera.aspx.designer.cs">
+      <DependentUpon>EFNTEstadoSitucionFinanciera.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

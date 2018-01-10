@@ -121,6 +121,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DataList dlstEstadoResultadoPMS;
         
         /// <summary>
+        /// dlstEFNT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlstEFNT;
+        
+        /// <summary>
         /// rdbEDRPMSNaturaleza control.
         /// </summary>
         /// <remarks>
@@ -155,5 +164,59 @@ namespace AppWebReportes.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rdbEDRPMSDolares;
+        
+        /// <summary>
+        /// rdbEFNT1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNT1;
+        
+        /// <summary>
+        /// rdbEFNT2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNT2;
+        
+        /// <summary>
+        /// rdbEFNT3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNT3;
+        
+        /// <summary>
+        /// rdbEFNT4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNT4;
+        
+        /// <summary>
+        /// rdbEFNTSoles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNTSoles;
+        
+        /// <summary>
+        /// rdbEFNTDolares control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbEFNTDolares;
     }
 }

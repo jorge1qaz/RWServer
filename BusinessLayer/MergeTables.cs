@@ -261,6 +261,7 @@ namespace BusinessLayer
             decimal[] listValues = new decimal[12];
             if (!tipoMoneda)
                 moneda = "d";
+            #region Asignación columnas
             try
             {
                 aTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("a" + moneda)).FirstOrDefault());
@@ -353,37 +354,170 @@ namespace BusinessLayer
             }
             catch (Exception)
             { oTotal = 0; }
+            #endregion
             if (!limitarMeses)
             {
                 listValues[0] = aTotal + bTotal;
-                listValues[1] = aTotal + bTotal + cTotal;
-                listValues[2] = aTotal + bTotal + cTotal + dTotal;
-                listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
-                listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
-                listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
-                listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
-                listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
-                listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
-                listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
-                listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
-                listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal + nTotal + oTotal;
+                listValues[1] = listValues[0] + cTotal;
+                listValues[2] = listValues[1] + dTotal;
+                listValues[3] = listValues[2] + eTotal;
+                listValues[4] = listValues[3] + fTotal;
+                listValues[5] = listValues[4] + gTotal;
+                listValues[6] = listValues[5] + hTotal;
+                listValues[7] = listValues[6] + iTotal;
+                listValues[8] = listValues[7] + jTotal;
+                listValues[9] = listValues[8] + kTotal;
+                listValues[10] = listValues[9] + lTotal;
+                listValues[11] = listValues[10] + mTotal + nTotal + oTotal;
             }
             else
             {
                 listValues[0] = aTotal + bTotal;
-                listValues[1] = aTotal + bTotal + cTotal;
-                listValues[2] = aTotal + bTotal + cTotal + dTotal;
-                listValues[3] = aTotal + bTotal + cTotal + dTotal + eTotal;
-                listValues[4] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal;
-                listValues[5] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal;
-                listValues[6] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal;
-                listValues[7] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal;
-                listValues[8] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal;
-                listValues[9] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal;
-                listValues[10] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal;
-                listValues[11] = aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal + mTotal;
+                listValues[1] = KeepPositive(listValues[0], cTotal);
+                listValues[2] = KeepPositive(listValues[1], dTotal);
+                listValues[3] = KeepPositive(listValues[2], eTotal);
+                listValues[4] = KeepPositive(listValues[3], fTotal);
+                listValues[5] = KeepPositive(listValues[4], gTotal);
+                listValues[6] = KeepPositive(listValues[5], hTotal);
+                listValues[7] = KeepPositive(listValues[6], iTotal);
+                listValues[8] = KeepPositive(listValues[7], jTotal);
+                listValues[9] = KeepPositive(listValues[8], kTotal);
+                listValues[10] = KeepPositive(listValues[9], lTotal);
+                listValues[11] = KeepPositive(KeepPositive(KeepPositive(listValues[10], mTotal), nTotal), oTotal);
             }
             return listValues;
+        }
+        public decimal GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, int mesProceso)
+        {
+            //decimal totalTable;
+            DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
+            DataTable datatable = dataSet.Tables["data"];
+            string moneda = "";
+            decimal aTotal = 0, bTotal = 0, cTotal = 0, dTotal = 0, eTotal = 0, fTotal = 0, gTotal = 0, hTotal = 0, iTotal = 0, jTotal = 0, kTotal = 0, lTotal = 0, mTotal = 0, nTotal = 0, oTotal = 0;
+            decimal[] listValues = new decimal[12];
+            if (!tipoMoneda)
+                moneda = "d";
+            #region Asignación columnas
+            try
+            {
+                aTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("a" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            {
+                aTotal = 0;
+            }
+            try
+            {
+                bTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("b" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { bTotal = 0; }
+            try
+            {
+                cTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("c" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { cTotal = 0; }
+            try
+            {
+                dTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("d" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { dTotal = 0; }
+            try
+            {
+                eTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("e" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { eTotal = 0; }
+            try
+            {
+                fTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("f" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { fTotal = 0; }
+            try
+            {
+                gTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("g" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { gTotal = 0; }
+            try
+            {
+                hTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("h" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { hTotal = 0; }
+            try
+            {
+                iTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("i" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { iTotal = 0; }
+            try
+            {
+                jTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("j" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { jTotal = 0; }
+            try
+            {
+                kTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("k" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { kTotal = 0; }
+            try
+            {
+                lTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("l" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { lTotal = 0; }
+            try
+            {
+                mTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("m" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { mTotal = 0; }
+            try
+            {
+                nTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("n" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { nTotal = 0; }
+            try
+            {
+                oTotal = Convert.ToDecimal(datatable.AsEnumerable().Select(x => x.Field<double>("o" + moneda)).FirstOrDefault());
+            }
+            catch (Exception)
+            { oTotal = 0; }
+            #endregion
+            listValues[0] = KeepPositive(aTotal, bTotal);
+            listValues[1] = KeepPositive(aTotal + bTotal, cTotal);
+            listValues[2] = KeepPositive(aTotal + bTotal + cTotal, dTotal);
+            listValues[3] = KeepPositive(aTotal + bTotal + cTotal + dTotal, eTotal);
+            listValues[4] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal, fTotal);
+            listValues[5] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal, gTotal);
+            listValues[6] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal, hTotal);
+            listValues[7] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal, iTotal);
+            listValues[8] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal, jTotal);
+            listValues[9] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal, kTotal);
+            listValues[10] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal, lTotal);
+            listValues[11] = KeepPositive(KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal), oTotal);
+            return listValues[mesProceso];
+        }
+        public decimal KeepPositive(decimal anterior, decimal actual) {
+            decimal temp = 0;
+            temp = anterior + actual;
+            if (temp > 0)
+                return temp;
+            else
+            {
+                if (anterior < 0)
+                    temp = 0;
+                else
+                    temp = anterior;
+            }
+            return temp;
         }
     }
 }

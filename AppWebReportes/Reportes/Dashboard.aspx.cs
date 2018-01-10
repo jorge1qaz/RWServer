@@ -47,59 +47,47 @@ namespace AppWebReportes.Reportes
                         Descomprimir();
                 }
                 catch (Exception)
-                {
-                    Response.Redirect("~/Reportes/NoZip.aspx");
-                }
+                { Response.Redirect("~/Reportes/NoZip.aspx"); }
             }
             if (!Page.IsPostBack)
             {
                 try
-                {
-                    string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
-                        Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
-                    string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
-                        Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
-                    DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
-                    DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
-                    DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
-                    DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
-                    dlstCuentasPendientes.DataSource = dataTableGeneralInfoConta;
-                    dlstCuentasPendientes.DataBind();
-                    dlstMiNegocioAlDia.DataSource = dataTableGeneralInfoConta;
-                    dlstMiNegocioAlDia.DataBind();
-                    dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoConta;
-                    dlstMargenDeUtilidad.DataBind();
-                    dlstEstadoResultadoPMS.DataSource = dataTableGeneralInfoConta;
-                    dlstEstadoResultadoPMS.DataBind();
-                    DataRow[] idCompany = dataTableGeneralInfoConta.Select();
-                    Session["idCompany"] = idCompany[0][0].ToString();
-                    Session["EDRPMSTipoReporte"] = "naturaleza";
-                    Session["EDRPMSTipoMoneda"] = "Nuevos soles";
-                }
+                { LoadPage(); }
                 catch (Exception)
                 {
                     Descomprimir();
-                    //Tables data company
-                    string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
-                        Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
-                    string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + 
-                        Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
-                    DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
-                    DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
-                    DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
-                    DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
-                    dlstCuentasPendientes.DataSource = dataTableGeneralInfoConta;
-                    dlstCuentasPendientes.DataBind();
-                    dlstMiNegocioAlDia.DataSource = dataTableGeneralInfoConta;
-                    dlstMiNegocioAlDia.DataBind();
-                    dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoConta;
-                    dlstMargenDeUtilidad.DataBind();
-                    DataRow[] idCompany = dataTableGeneralInfoConta.Select();
-                    Session["idCompany"] = idCompany[0][0].ToString();
-                    Session["EDRPMSTipoReporte"] = "naturaleza";
-                    Session["EDRPMSTipoMoneda"] = "Nuevos soles";
+                    LoadPage();
                 }
             }
+        }
+        public void LoadPage() {
+            String rootPath = Server.MapPath("~");
+            string generalInfoConta = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoConta.json").Trim().Replace("\\'", "'");
+            string generalInfoStock = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/GeneralInfoStock.json").Trim().Replace("\\'", "'");
+            DataSet dataSetGeneralInfoConta = JsonConvert.DeserializeObject<DataSet>(generalInfoConta);
+            DataSet dataSetGeneralInfoStock = JsonConvert.DeserializeObject<DataSet>(generalInfoStock);
+            DataTable dataTableGeneralInfoConta = dataSetGeneralInfoConta.Tables["data"]; //Declaración de la tabla donde se va a hacer la extracción de datos
+            DataTable dataTableGeneralInfoStock = dataSetGeneralInfoStock.Tables["data"];
+            dlstCuentasPendientes.DataSource = dataTableGeneralInfoConta;
+            dlstCuentasPendientes.DataBind();
+            dlstMiNegocioAlDia.DataSource = dataTableGeneralInfoConta;
+            dlstMiNegocioAlDia.DataBind();
+            dlstMargenDeUtilidad.DataSource = dataTableGeneralInfoStock;
+            dlstMargenDeUtilidad.DataBind();
+            dlstEstadoResultadoPMS.DataSource = dataTableGeneralInfoConta;
+            dlstEstadoResultadoPMS.DataBind();
+            dlstEFNT.DataSource = dataTableGeneralInfoConta;
+            dlstEFNT.DataBind();
+            DataRow[] idCompany = dataTableGeneralInfoConta.Select();
+            Session["idCompany"] = idCompany[0][0].ToString();
+            #region Estados de resultado
+            Session["EDRPMSTipoReporte"] = "naturaleza";
+            Session["EDRPMSTipoMoneda"] = "Nuevos soles";
+            #endregion
+            #region Estados financieros NIFF y Tributario
+            Session["TipoReporteEFNT"] = "Estado de situación financiera";
+            Session["TipoMonedaEFNT"] = "Nuevos soles";
+            #endregion
         }
         protected void btnCloseBlockUpdate_Click(object sender, EventArgs e) => blockUpdateData.Visible = false;
         protected void btnUpdateData_Click(object sender, EventArgs e)
@@ -152,5 +140,34 @@ namespace AppWebReportes.Reportes
         protected void rdbEDRPMSFuncion_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoReporte"] = "Función";
         protected void rdbEDRPMSSoles_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Nuevos soles";
         protected void rdbEDRPMSDolares_CheckedChanged(object sender, EventArgs e) => Session["EDRPMSTipoMoneda"] = "Dólares";
+
+        protected void SelectCompanyByYearEFNT(object source, DataListCommandEventArgs e)
+        {
+            string id = dlstMiNegocioAlDia.DataKeys[e.Item.ItemIndex].ToString();
+            switch (Session["TipoReporteEFNT"].ToString())
+            {
+                case "Estado de situación financiera":
+                    Response.Redirect("~/Reportes/EFNTEstadoSitucionFinanciera.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Estado de resultado":
+                    Response.Redirect("~/Reportes/EFNTEstadoResultado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Balance general":
+                    Response.Redirect("~/Reportes/EFNTBalanceGeneral.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Estado de ganancias y pérdidas":
+                    Response.Redirect("~/Reportes/EFEstadoSitucionFinanciera.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                default:
+                    Response.Redirect("~/Reportes/EFNTEstadoGananciasPerdidas.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+            }
+        }
+        protected void rdbEFNT1_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de situación financiera";
+        protected void rdbEFNT2_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de resultado";
+        protected void rdbEFNT3_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Balance general";
+        protected void rdbEFNT4_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de ganancias y pérdidas";
+        protected void rdbEFNTSoles_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaEFNT"] = "Nuevos soles";
+        protected void rdbEFNTDolares_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaEFNT"] = "Dólares";
     }
 }
