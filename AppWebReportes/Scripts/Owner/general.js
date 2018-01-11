@@ -8,6 +8,21 @@ $(window).resize(function () {
         location.reload(true);
     }
 });
+
+var statusBtnFullScreen = 0;
+$("#btnFullScreen").on("click", function () {
+    if (statusBtnFullScreen == 0) {
+        $("#blockOptions").hide();
+        $("#blockReportContent").removeClass("col-md-9").slideUp(100).addClass("col-md-12").fadeIn(400);
+        $("#btnFullScreen").text("fullscreen_exit");
+        statusBtnFullScreen = 1;
+    } else {
+        $("#btnFullScreen").text("fullscreen");
+        $("#blockReportContent").removeClass("col-md-12").slideUp(100).addClass("col-md-9").fadeIn(400);
+        $("#blockOptions").fadeIn(400);
+        statusBtnFullScreen = 0;
+    }
+});
 $(function () {
     $('[type=search]').addClass("col-7");
 });

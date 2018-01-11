@@ -18,7 +18,7 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-3 col-sm-12" id="blockOptions">
                 <div class="card card-inverse card-info text-center">
                     <div class="card-block">
                         <div class="form-group">
@@ -30,30 +30,38 @@
                         </div>
                         <div class="form-group">
                             <label for="lstMes">Mes de proceso</label>
-                            <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True">
-                                <asp:ListItem Value="1">Enero</asp:ListItem>
-                                <asp:ListItem Value="2">Febrero</asp:ListItem>
-                                <asp:ListItem Value="3">Marzo</asp:ListItem>
-                                <asp:ListItem Value="4">Abril</asp:ListItem>
-                                <asp:ListItem Value="5">Mayo</asp:ListItem>
-                                <asp:ListItem Value="6">Junio</asp:ListItem>
-                                <asp:ListItem Value="7">Julio</asp:ListItem>
-                                <asp:ListItem Value="8">Agosto</asp:ListItem>
-                                <asp:ListItem Value="9">Septiembre</asp:ListItem>
-                                <asp:ListItem Value="10">Octubre</asp:ListItem>
-                                <asp:ListItem Value="11">Noviembre</asp:ListItem>
-                                <asp:ListItem Value="12">Diciembre</asp:ListItem>
+                            <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
+                                <asp:ListItem Value="0">Enero</asp:ListItem>
+                                <asp:ListItem Value="1">Febrero</asp:ListItem>
+                                <asp:ListItem Value="2">Marzo</asp:ListItem>
+                                <asp:ListItem Value="3">Abril</asp:ListItem>
+                                <asp:ListItem Value="4">Mayo</asp:ListItem>
+                                <asp:ListItem Value="5">Junio</asp:ListItem>
+                                <asp:ListItem Value="6">Julio</asp:ListItem>
+                                <asp:ListItem Value="7">Agosto</asp:ListItem>
+                                <asp:ListItem Value="8">Septiembre</asp:ListItem>
+                                <asp:ListItem Value="9">Octubre</asp:ListItem>
+                                <asp:ListItem Value="10">Noviembre</asp:ListItem>
+                                <asp:ListItem Value="11">Diciembre</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-12">
+            <div class="col-md-9 col-sm-12" id="blockReportContent">
                 <div class="card card-outline-secondary text-center">
                     <div class="card-block">
-                        <h4 class="card-title">Estados financieros NIIF y tributario</h4>
-                        <asp:Label ID="lblTipoReporte" runat="server" Text="Label"></asp:Label><span> - Expresado en </span>
-                        <asp:Label ID="lblTipoMoneda" runat="server" Text="Label"></asp:Label>
+                        <div class="row">
+                            <div class="offset-md-2 col-md-8">
+                                <h4 class="card-title">Estados financieros NIIF y tributario</h4>
+                            </div>
+                            <div class="col-md-2" id="blockbtnFullScreen">
+                                <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
+                            </div>
+                        </div>
+                        <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
+                        <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
+                        <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
                         <table class="table table-bordered table-responsive table-hover table-sm table-striped">
                             <tbody>
                                 <tr>
@@ -489,7 +497,7 @@
                                         <label></label>
                                     </td>
                                     <td>
-                                        <span>S/ ------------</span>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </td>
                                     <td>
                                         <label>Resultados acumulados</label>
@@ -503,7 +511,7 @@
                                         <label></label>
                                     </td>
                                     <td>
-                                        <span>S/ ------------</span>
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </td>
                                     <td>
                                         <label>Otras reservas de patrimonio</label>
@@ -540,6 +548,20 @@
                                         <asp:Label ID="lblP999" runat="server"></asp:Label>
                                     </th>
                                 </tr>
+                                <tr>
+                                    <th class="text-center">
+                                        <label></label>
+                                    </th>
+                                    <th class="text-center">
+                                        <span></span>
+                                    </th>
+                                    <th class="text-center">
+                                        <label></label>
+                                    </th>
+                                    <th class="text-center">
+                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </th>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -547,4 +569,5 @@
             </div>
         </div>
     </div>
+    <script src="../Scripts/Owner/RW-009.js"></script>
 </asp:Content>

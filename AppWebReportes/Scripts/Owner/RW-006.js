@@ -18,7 +18,7 @@ $(document).ready(function () {
         dia = '0' + dia;
     }
     var fechaCompleto = anio + "." + mes + "." + dia;
-    var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"];
 
     $("#triggerCostumer").on("click", function () {
         $('#modalListCostumer').modal('show');

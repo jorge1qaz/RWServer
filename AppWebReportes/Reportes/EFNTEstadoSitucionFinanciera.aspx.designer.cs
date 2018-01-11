@@ -67,6 +67,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.Label lblTipoMoneda;
         
         /// <summary>
+        /// lblMesProceso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMesProceso;
+        
+        /// <summary>
         /// lblA105 control.
         /// </summary>
         /// <remarks>

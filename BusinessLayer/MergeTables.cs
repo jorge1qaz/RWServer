@@ -355,36 +355,18 @@ namespace BusinessLayer
             catch (Exception)
             { oTotal = 0; }
             #endregion
-            if (!limitarMeses)
-            {
-                listValues[0] = aTotal + bTotal;
-                listValues[1] = listValues[0] + cTotal;
-                listValues[2] = listValues[1] + dTotal;
-                listValues[3] = listValues[2] + eTotal;
-                listValues[4] = listValues[3] + fTotal;
-                listValues[5] = listValues[4] + gTotal;
-                listValues[6] = listValues[5] + hTotal;
-                listValues[7] = listValues[6] + iTotal;
-                listValues[8] = listValues[7] + jTotal;
-                listValues[9] = listValues[8] + kTotal;
-                listValues[10] = listValues[9] + lTotal;
-                listValues[11] = listValues[10] + mTotal + nTotal + oTotal;
-            }
-            else
-            {
-                listValues[0] = aTotal + bTotal;
-                listValues[1] = KeepPositive(listValues[0], cTotal);
-                listValues[2] = KeepPositive(listValues[1], dTotal);
-                listValues[3] = KeepPositive(listValues[2], eTotal);
-                listValues[4] = KeepPositive(listValues[3], fTotal);
-                listValues[5] = KeepPositive(listValues[4], gTotal);
-                listValues[6] = KeepPositive(listValues[5], hTotal);
-                listValues[7] = KeepPositive(listValues[6], iTotal);
-                listValues[8] = KeepPositive(listValues[7], jTotal);
-                listValues[9] = KeepPositive(listValues[8], kTotal);
-                listValues[10] = KeepPositive(listValues[9], lTotal);
-                listValues[11] = KeepPositive(KeepPositive(KeepPositive(listValues[10], mTotal), nTotal), oTotal);
-            }
+            listValues[0] = aTotal + bTotal;
+            listValues[1] = listValues[0] + cTotal;
+            listValues[2] = listValues[1] + dTotal;
+            listValues[3] = listValues[2] + eTotal;
+            listValues[4] = listValues[3] + fTotal;
+            listValues[5] = listValues[4] + gTotal;
+            listValues[6] = listValues[5] + hTotal;
+            listValues[7] = listValues[6] + iTotal;
+            listValues[8] = listValues[7] + jTotal;
+            listValues[9] = listValues[8] + kTotal;
+            listValues[10] = listValues[9] + lTotal;
+            listValues[11] = listValues[10] + mTotal + nTotal + oTotal;
             return listValues;
         }
         public decimal GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, int mesProceso)
