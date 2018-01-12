@@ -62,15 +62,15 @@
                         <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
-                        <table class="table table-bordered table-responsive table-hover table-sm table-striped">
+                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tableReport">
                             <tbody>
                                 <tr>
-                                    <th class="text-center" colspan="2">Activo</th>
-                                    <th class="text-center" colspan="2">Pasivo y patrimonio </th>
+                                    <th class="text-center" colspan="1">Activo</th>
+                                    <th class="text-center" colspan="1">Pasivo y patrimonio </th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center" colspan="2">Activo corriente</th>
-                                    <th class="text-center" colspan="2">Pasivo corriente</th>
+                                    <th class="text-center" colspan="1">Activo corriente</th>
+                                    <th class="text-center" colspan="1">Pasivo corriente</th>
                                 </tr>
                                 <tr>
                                     <td>
@@ -569,5 +569,14 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-009.js"></script>
 </asp:Content>

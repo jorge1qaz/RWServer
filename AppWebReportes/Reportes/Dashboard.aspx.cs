@@ -156,7 +156,7 @@ namespace AppWebReportes.Reportes
                     Response.Redirect("~/Reportes/EFNTBalanceGeneral.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
                 case "Estado de ganancias y pérdidas":
-                    Response.Redirect("~/Reportes/EFEstadoSitucionFinanciera.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    Response.Redirect("~/Reportes/EFNTEstadoGananciasPerdidas.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
                 default:
                     Response.Redirect("~/Reportes/EFNTEstadoGananciasPerdidas.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);

@@ -26,7 +26,7 @@
                                 <label for="lstTipoMoneda">Tipo de moneda</label>
                                 <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server">
                                     <asp:ListItem Value="true">Nuevos soles</asp:ListItem>
-                                    <asp:ListItem Value="false">Dolares</asp:ListItem>
+                                    <asp:ListItem Value="false">Dólares</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">

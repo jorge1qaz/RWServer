@@ -17,9 +17,9 @@ namespace AppWebReportes.Reportes
         decimal totalA105, totalA110, totalA115, totalA120, totalA125, totalA128, totalA130, totalA131, totalA133, totalA140, totalA210, totalA220, totalA510, totalA513,
                 totalA515, totalA517, totalA520, totalA525, totalA530, totalA540, totalA550, totalA560, totalA570, totalA575, totalA580, totalA199, totalA399, totalA599, totalA999;
         string JsonDatasetP105 = "", JsonDatasetP110 = "", JsonDatasetP120 = "", JsonDatasetP121 = "", JsonDatasetP123 = "", JsonDatasetP125 = "", JsonDatasetP130 = "", JsonDatasetP135 = "", JsonDatasetP137 = "",
-                JsonDatasetP210 = "", JsonDatasetP410 = "", JsonDatasetP415 = "", JsonDatasetP420 = "", JsonDatasetP425 = "", JsonDatasetP430 = "", JsonDatasetP435 = "", JsonDatasetP440 = "", JsonDatasetP445 = "", 
+                JsonDatasetP210 = "", JsonDatasetP410 = "", JsonDatasetP415 = "", JsonDatasetP420 = "", JsonDatasetP425 = "", JsonDatasetP430 = "", JsonDatasetP435 = "", JsonDatasetP440 = "", JsonDatasetP445 = "",
                 JsonDatasetP450 = "", JsonDatasetP805 = "", JsonDatasetP810 = "", JsonDatasetP815 = "", JsonDatasetP820 = "", JsonDatasetP830 = "", JsonDatasetP835 = "", JsonDatasetP840 = "";
-        decimal totalP105, totalP110, totalP120, totalP121, totalP123, totalP125, totalP130, totalP135, totalP137, totalP210, totalP410, totalP415, totalP420, totalP425, totalP430, 
+        decimal totalP105, totalP110, totalP120, totalP121, totalP123, totalP125, totalP130, totalP135, totalP137, totalP210, totalP410, totalP415, totalP420, totalP425, totalP430,
                 totalP435, totalP440, totalP445, totalP450, totalP805, totalP810, totalP815, totalP820, totalP830, totalP835, totalP840, totalP199, totalP399, totalP499, totalP899, totalP999;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,30 +29,28 @@ namespace AppWebReportes.Reportes
             Cliente cliente = new Cliente()
             { IdCliente = Session["IdUser"].ToString() };
             lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
-            if (!Page.IsPostBack)
-            {
-                lblTipoReporte.Text = Session["TipoReporteEFNT"].ToString();
-                lblTipoMoneda.Text = Session["TipoMonedaEFNT"].ToString();
-            }
+            lblTipoReporte.Text = Session["TipoReporteEFNT"].ToString();
         }
         protected void lstMes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Session["EDRPMSTipoMoneda"].ToString() == "Nuevos soles")
+            if (Session["TipoMonedaEFNT"].ToString() == "Nuevos soles")
+            {
                 GetReport(true, int.Parse(lstMes.SelectedValue));
+            }
             else
                 GetReport(false, int.Parse(lstMes.SelectedValue));
         }
         protected void lstTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session.Remove("EDRPMSTipoMoneda");
+            Session.Remove("TipoMonedaEFNT");
             if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
             {
-                Session["EDRPMSTipoMoneda"] = "Nuevos soles";
+                Session["TipoMonedaEFNT"] = "Nuevos soles";
                 GetReport(true, int.Parse(lstMes.SelectedValue));
             }
             else
             {
-                Session["EDRPMSTipoMoneda"] = "Dólares";
+                Session["TipoMonedaEFNT"] = "Dólares";
                 GetReport(false, int.Parse(lstMes.SelectedValue));
             }
         }
@@ -72,24 +70,24 @@ namespace AppWebReportes.Reportes
             JsonDatasetP450 = GetPathFile("P450"); JsonDatasetP805 = GetPathFile("P805"); JsonDatasetP810 = GetPathFile("P810"); JsonDatasetP815 = GetPathFile("P815"); JsonDatasetP820 = GetPathFile("P820"); JsonDatasetP830 = GetPathFile("P830");
             JsonDatasetP835 = GetPathFile("P835"); JsonDatasetP840 = GetPathFile("P840");
 
-            totalA105 = mergeTables.GeTotalByTablePlan(JsonDatasetA105, moneda, mesProceso); totalA110 = mergeTables.GeTotalByTablePlan(JsonDatasetA110, moneda, mesProceso); totalA115 = mergeTables.GeTotalByTablePlan(JsonDatasetA115, moneda, mesProceso);
-            totalA120 = mergeTables.GeTotalByTablePlan(JsonDatasetA120, moneda, mesProceso); totalA125 = mergeTables.GeTotalByTablePlan(JsonDatasetA125, moneda, mesProceso); totalA128 = mergeTables.GeTotalByTablePlan(JsonDatasetA128, moneda, mesProceso);
-            totalA130 = mergeTables.GeTotalByTablePlan(JsonDatasetA130, moneda, mesProceso); totalA131 = mergeTables.GeTotalByTablePlan(JsonDatasetA131, moneda, mesProceso); totalA133 = mergeTables.GeTotalByTablePlan(JsonDatasetA133, moneda, mesProceso);
-            totalA140 = mergeTables.GeTotalByTablePlan(JsonDatasetA140, moneda, mesProceso); totalA210 = mergeTables.GeTotalByTablePlan(JsonDatasetA210, moneda, mesProceso); totalA220 = mergeTables.GeTotalByTablePlan(JsonDatasetA220, moneda, mesProceso);
-            totalA510 = mergeTables.GeTotalByTablePlan(JsonDatasetA510, moneda, mesProceso); totalA513 = mergeTables.GeTotalByTablePlan(JsonDatasetA513, moneda, mesProceso); totalA515 = mergeTables.GeTotalByTablePlan(JsonDatasetA515, moneda, mesProceso);
-            totalA517 = mergeTables.GeTotalByTablePlan(JsonDatasetA517, moneda, mesProceso); totalA520 = mergeTables.GeTotalByTablePlan(JsonDatasetA520, moneda, mesProceso); totalA525 = mergeTables.GeTotalByTablePlan(JsonDatasetA525, moneda, mesProceso);
-            totalA530 = mergeTables.GeTotalByTablePlan(JsonDatasetA530, moneda, mesProceso); totalA540 = mergeTables.GeTotalByTablePlan(JsonDatasetA540, moneda, mesProceso); totalA550 = mergeTables.GeTotalByTablePlan(JsonDatasetA550, moneda, mesProceso);
-            totalA560 = mergeTables.GeTotalByTablePlan(JsonDatasetA560, moneda, mesProceso); totalA570 = mergeTables.GeTotalByTablePlan(JsonDatasetA570, moneda, mesProceso); totalA575 = mergeTables.GeTotalByTablePlan(JsonDatasetA575, moneda, mesProceso);
-            totalA580 = mergeTables.GeTotalByTablePlan(JsonDatasetA580, moneda, mesProceso);
-            totalP105 = mergeTables.GeTotalByTablePlan(JsonDatasetP105, moneda, mesProceso); totalP110 = mergeTables.GeTotalByTablePlan(JsonDatasetP110, moneda, mesProceso); totalP120 = mergeTables.GeTotalByTablePlan(JsonDatasetP120, moneda, mesProceso);
-            totalP121 = mergeTables.GeTotalByTablePlan(JsonDatasetP121, moneda, mesProceso); totalP123 = mergeTables.GeTotalByTablePlan(JsonDatasetP123, moneda, mesProceso); totalP125 = mergeTables.GeTotalByTablePlan(JsonDatasetP125, moneda, mesProceso);
-            totalP130 = mergeTables.GeTotalByTablePlan(JsonDatasetP130, moneda, mesProceso); totalP135 = mergeTables.GeTotalByTablePlan(JsonDatasetP135, moneda, mesProceso); totalP137 = mergeTables.GeTotalByTablePlan(JsonDatasetP137, moneda, mesProceso);
-            totalP210 = mergeTables.GeTotalByTablePlan(JsonDatasetP210, moneda, mesProceso); totalP410 = mergeTables.GeTotalByTablePlan(JsonDatasetP410, moneda, mesProceso); totalP415 = mergeTables.GeTotalByTablePlan(JsonDatasetP415, moneda, mesProceso);
-            totalP420 = mergeTables.GeTotalByTablePlan(JsonDatasetP420, moneda, mesProceso); totalP425 = mergeTables.GeTotalByTablePlan(JsonDatasetP425, moneda, mesProceso); totalP430 = mergeTables.GeTotalByTablePlan(JsonDatasetP430, moneda, mesProceso);
-            totalP435 = mergeTables.GeTotalByTablePlan(JsonDatasetP435, moneda, mesProceso); totalP440 = mergeTables.GeTotalByTablePlan(JsonDatasetP440, moneda, mesProceso); totalP445 = mergeTables.GeTotalByTablePlan(JsonDatasetP445, moneda, mesProceso);
-            totalP450 = mergeTables.GeTotalByTablePlan(JsonDatasetP450, moneda, mesProceso); totalP805 = mergeTables.GeTotalByTablePlan(JsonDatasetP805, moneda, mesProceso); totalP810 = mergeTables.GeTotalByTablePlan(JsonDatasetP810, moneda, mesProceso);
-            totalP815 = mergeTables.GeTotalByTablePlan(JsonDatasetP815, moneda, mesProceso); totalP820 = mergeTables.GeTotalByTablePlan(JsonDatasetP820, moneda, mesProceso); totalP830 = mergeTables.GeTotalByTablePlan(JsonDatasetP830, moneda, mesProceso);
-            totalP835 = mergeTables.GeTotalByTablePlan(JsonDatasetP835, moneda, mesProceso); totalP840 = mergeTables.GeTotalByTablePlan(JsonDatasetP840, moneda, mesProceso);
+            totalA105 = mergeTables.GeTotalByTablePlan(JsonDatasetA105, moneda, mesProceso, false); totalA110 = mergeTables.GeTotalByTablePlan(JsonDatasetA110, moneda, mesProceso, false); totalA115 = mergeTables.GeTotalByTablePlan(JsonDatasetA115, moneda, mesProceso, false);
+            totalA120 = mergeTables.GeTotalByTablePlan(JsonDatasetA120, moneda, mesProceso, false); totalA125 = mergeTables.GeTotalByTablePlan(JsonDatasetA125, moneda, mesProceso, false); totalA128 = mergeTables.GeTotalByTablePlan(JsonDatasetA128, moneda, mesProceso, false);
+            totalA130 = mergeTables.GeTotalByTablePlan(JsonDatasetA130, moneda, mesProceso, false); totalA131 = mergeTables.GeTotalByTablePlan(JsonDatasetA131, moneda, mesProceso, false); totalA133 = mergeTables.GeTotalByTablePlan(JsonDatasetA133, moneda, mesProceso, false);
+            totalA140 = mergeTables.GeTotalByTablePlan(JsonDatasetA140, moneda, mesProceso, false); totalA210 = mergeTables.GeTotalByTablePlan(JsonDatasetA210, moneda, mesProceso, false); totalA220 = mergeTables.GeTotalByTablePlan(JsonDatasetA220, moneda, mesProceso, false);
+            totalA510 = mergeTables.GeTotalByTablePlan(JsonDatasetA510, moneda, mesProceso, false); totalA513 = mergeTables.GeTotalByTablePlan(JsonDatasetA513, moneda, mesProceso, false); totalA515 = mergeTables.GeTotalByTablePlan(JsonDatasetA515, moneda, mesProceso, false);
+            totalA517 = mergeTables.GeTotalByTablePlan(JsonDatasetA517, moneda, mesProceso, false); totalA520 = mergeTables.GeTotalByTablePlan(JsonDatasetA520, moneda, mesProceso, false); totalA525 = mergeTables.GeTotalByTablePlan(JsonDatasetA525, moneda, mesProceso, false);
+            totalA530 = mergeTables.GeTotalByTablePlan(JsonDatasetA530, moneda, mesProceso, false); totalA540 = mergeTables.GeTotalByTablePlan(JsonDatasetA540, moneda, mesProceso, false); totalA550 = mergeTables.GeTotalByTablePlan(JsonDatasetA550, moneda, mesProceso, false);
+            totalA560 = mergeTables.GeTotalByTablePlan(JsonDatasetA560, moneda, mesProceso, false); totalA570 = mergeTables.GeTotalByTablePlan(JsonDatasetA570, moneda, mesProceso, false); totalA575 = mergeTables.GeTotalByTablePlan(JsonDatasetA575, moneda, mesProceso, false);
+            totalA580 = mergeTables.GeTotalByTablePlan(JsonDatasetA580, moneda, mesProceso, false);
+            totalP105 = mergeTables.GeTotalByTablePlan(JsonDatasetP105, moneda, mesProceso, false); totalP110 = mergeTables.GeTotalByTablePlan(JsonDatasetP110, moneda, mesProceso, false); totalP120 = mergeTables.GeTotalByTablePlan(JsonDatasetP120, moneda, mesProceso, false);
+            totalP121 = mergeTables.GeTotalByTablePlan(JsonDatasetP121, moneda, mesProceso, false); totalP123 = mergeTables.GeTotalByTablePlan(JsonDatasetP123, moneda, mesProceso, false); totalP125 = mergeTables.GeTotalByTablePlan(JsonDatasetP125, moneda, mesProceso, false);
+            totalP130 = mergeTables.GeTotalByTablePlan(JsonDatasetP130, moneda, mesProceso, false); totalP135 = mergeTables.GeTotalByTablePlan(JsonDatasetP135, moneda, mesProceso, false); totalP137 = mergeTables.GeTotalByTablePlan(JsonDatasetP137, moneda, mesProceso, false);
+            totalP210 = mergeTables.GeTotalByTablePlan(JsonDatasetP210, moneda, mesProceso, false); totalP410 = mergeTables.GeTotalByTablePlan(JsonDatasetP410, moneda, mesProceso, false); totalP415 = mergeTables.GeTotalByTablePlan(JsonDatasetP415, moneda, mesProceso, false);
+            totalP420 = mergeTables.GeTotalByTablePlan(JsonDatasetP420, moneda, mesProceso, false); totalP425 = mergeTables.GeTotalByTablePlan(JsonDatasetP425, moneda, mesProceso, false); totalP430 = mergeTables.GeTotalByTablePlan(JsonDatasetP430, moneda, mesProceso, false);
+            totalP435 = mergeTables.GeTotalByTablePlan(JsonDatasetP435, moneda, mesProceso, false); totalP440 = mergeTables.GeTotalByTablePlan(JsonDatasetP440, moneda, mesProceso, false); totalP445 = mergeTables.GeTotalByTablePlan(JsonDatasetP445, moneda, mesProceso, false);
+            totalP450 = mergeTables.GeTotalByTablePlan(JsonDatasetP450, moneda, mesProceso, false); totalP805 = mergeTables.GeTotalByTablePlan(JsonDatasetP805, moneda, mesProceso, false); totalP810 = mergeTables.GeTotalByTablePlan(JsonDatasetP810, moneda, mesProceso, false);
+            totalP815 = mergeTables.GeTotalByTablePlan(JsonDatasetP815, moneda, mesProceso, false); totalP820 = mergeTables.GeTotalByTablePlan(JsonDatasetP820, moneda, mesProceso, false); totalP830 = mergeTables.GeTotalByTablePlan(JsonDatasetP830, moneda, mesProceso, false);
+            totalP835 = mergeTables.GeTotalByTablePlan(JsonDatasetP835, moneda, mesProceso, false); totalP840 = mergeTables.GeTotalByTablePlan(JsonDatasetP840, moneda, mesProceso, false);
 
             if (moneda)
             { simboloMoneda = "S/ "; lblTipoMoneda.Text = "Nuevos soles"; }

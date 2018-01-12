@@ -35,9 +35,9 @@
             </footer>
         </div>
         <script>
-            //$(window).resize(function () {
-            //    location.reload(true);
-            //});
+            $(function () {
+                $("#blockbtnFullScreen").hide();
+            });
         </script>
     </form>
 </body>

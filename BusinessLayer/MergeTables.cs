@@ -251,9 +251,8 @@ namespace BusinessLayer
             }
             return totalTable;
         }
-        public decimal[] GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, bool limitarMeses)
+        public decimal[] GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda)
         {
-            //decimal totalTable;
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
             DataTable datatable = dataSet.Tables["data"];
             string moneda = "";
@@ -366,10 +365,10 @@ namespace BusinessLayer
             listValues[8] = listValues[7] + jTotal;
             listValues[9] = listValues[8] + kTotal;
             listValues[10] = listValues[9] + lTotal;
-            listValues[11] = listValues[10] + mTotal + nTotal + oTotal;
+            listValues[11] = listValues[10] + mTotal + nTotal /*+ oTotal*/;
             return listValues;
         }
-        public decimal GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, int mesProceso)
+        public decimal GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, int mesProceso, bool limitarMeses)
         {
             //decimal totalTable;
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
@@ -473,18 +472,37 @@ namespace BusinessLayer
             catch (Exception)
             { oTotal = 0; }
             #endregion
-            listValues[0] = KeepPositive(aTotal, bTotal);
-            listValues[1] = KeepPositive(aTotal + bTotal, cTotal);
-            listValues[2] = KeepPositive(aTotal + bTotal + cTotal, dTotal);
-            listValues[3] = KeepPositive(aTotal + bTotal + cTotal + dTotal, eTotal);
-            listValues[4] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal, fTotal);
-            listValues[5] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal, gTotal);
-            listValues[6] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal, hTotal);
-            listValues[7] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal, iTotal);
-            listValues[8] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal, jTotal);
-            listValues[9] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal, kTotal);
-            listValues[10] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal, lTotal);
-            listValues[11] = KeepPositive(KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal), oTotal);
+            if (limitarMeses)
+            {
+                listValues[0] = KeepPositive(aTotal, bTotal);
+                listValues[1] = KeepPositive(aTotal + bTotal, cTotal);
+                listValues[2] = KeepPositive(aTotal + bTotal + cTotal, dTotal);
+                listValues[3] = KeepPositive(aTotal + bTotal + cTotal + dTotal, eTotal);
+                listValues[4] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal, fTotal);
+                listValues[5] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal, gTotal);
+                listValues[6] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal, hTotal);
+                listValues[7] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal, iTotal);
+                listValues[8] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal, jTotal);
+                listValues[9] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal, kTotal);
+                listValues[10] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal, lTotal);
+                //listValues[11] = KeepPositive(KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal), oTotal);
+                listValues[11] = KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal);
+            }
+            else
+            {
+                listValues[0] = aTotal + bTotal;
+                listValues[1] = listValues[0] + cTotal;
+                listValues[2] = listValues[1] + dTotal;
+                listValues[3] = listValues[2] + eTotal;
+                listValues[4] = listValues[3] + fTotal;
+                listValues[5] = listValues[4] + gTotal;
+                listValues[6] = listValues[5] + hTotal;
+                listValues[7] = listValues[6] + iTotal;
+                listValues[8] = listValues[7] + jTotal;
+                listValues[9] = listValues[8] + kTotal;
+                listValues[10] = listValues[9] + lTotal;
+                listValues[11] = listValues[10] + mTotal + nTotal /*+ oTotal*/;
+            }
             return listValues[mesProceso];
         }
         public decimal KeepPositive(decimal anterior, decimal actual) {

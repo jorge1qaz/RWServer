@@ -266,12 +266,67 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12" id="blockEstadosFinancierosNT">
+                        <div class="card card-outline-secondary  text-center">
+                            <div class="card-block">
+                                <blockquote class="card-blockquote">
+                                    <label class="font-weight-bold">Estados financieros NIFF y tributario</label>
+                                    <div class="row">
+                                        <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
+                                            <div id="blockCompanyDetailsForEFNT">
+                                                <table class="table table-striped table-bordered table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Seleccione</th>
+                                                            <th>Año de proceso</th>
+                                                            <th>Código de empresa</th>
+                                                            <th>Razón social</th>
+                                                            <th>RUC</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <asp:DataList ID="dlstEFNT" runat="server" RepeatLayout="Flow" DataKeyField="c" OnItemCommand="SelectCompanyByYearEFNT">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td>
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-secondary" runat="server" Text="Seleccione" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="lblCodigoEmpresa" runat="server" Text='<%# Eval("a") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label2" runat="server" Text='<%# Eval("b") %>'></asp:Label>
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Label ID="Label3" runat="server" Text='<%# Eval("d") %>'></asp:Label>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:DataList>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="#" id="btnTriggerModalEFNT" class="btn btn-outline-secondary" data-toggle="modal" data-target="modalEFNT">Configuración</a>
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <button type="button" class="btn btn-info" id="btnEFNT" role="button">Ver detalles</button>
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-sm" id="modalREDRPMS" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -285,7 +340,7 @@
                         <div class="card-block">
                             <label class="font-weight-bold">Estado financiero comparativo</label>
                             <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbEDRPMSNaturaleza" runat="server" GroupName="radioEGP" OnCheckedChanged="rdbEDRPMSNaturaleza_CheckedChanged" />
+                                <asp:RadioButton ID="rdbEDRPMSNaturaleza" runat="server" GroupName="radioEGP" OnCheckedChanged="rdbEDRPMSNaturaleza_CheckedChanged" Checked="true" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">EGP por naturaleza</span>
                             </label>
@@ -301,7 +356,7 @@
                             <label class="font-weight-bold">Tipo de moneda</label>
                             <br />
                             <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbEDRPMSSoles" runat="server" GroupName="radioMonedaERPMS" OnCheckedChanged="rdbEDRPMSSoles_CheckedChanged" />
+                                <asp:RadioButton ID="rdbEDRPMSSoles" runat="server" GroupName="radioMonedaERPMS" OnCheckedChanged="rdbEDRPMSSoles_CheckedChanged" Checked="true" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">Soles</span>
                             </label>
@@ -320,11 +375,77 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade bd-example-modal-sm" id="modalEFNT" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-outline-secondary">
+                        <div class="card-block">
+                            <label class="font-weight-bold">Tipo de reporte</label>
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNT1" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT1_CheckedChanged"  Checked="true"/>
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Estado de situación financiera</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNT2" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT2_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Estado de resultado</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNT3" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT3_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Balance general</span>
+                            </label>
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNT4" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT4_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Estado de ganancias y pérdidas</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card card-outline-secondary">
+                        <div class="card-block">
+                            <label class="font-weight-bold">Tipo de moneda</label>
+                            <br />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNTSoles" runat="server" GroupName="radioTipoMonedaEFNT" Checked="true" OnCheckedChanged="rdbEFNTSoles_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Soles</span>
+                            </label>
+                            <br />
+                            <label class="custom-control custom-radio">
+                                <asp:RadioButton ID="rdbEFNTDolares" runat="server" GroupName="radioTipoMonedaEFNT" OnCheckedChanged="rdbEFNTDolares_CheckedChanged" />
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Dólares</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         $("#MainContent_rdbEDRPMSNaturaleza").addClass("custom-control-input");
         $("#MainContent_rdbEDRPMSFuncion").addClass("custom-control-input");
         $("#MainContent_rdbEDRPMSSoles").addClass("custom-control-input");
         $("#MainContent_rdbEDRPMSDolares").addClass("custom-control-input");
+        $("#MainContent_rdbEFNT1").addClass("custom-control-input");
+        $("#MainContent_rdbEFNT2").addClass("custom-control-input");
+        $("#MainContent_rdbEFNT3").addClass("custom-control-input");
+        $("#MainContent_rdbEFNT4").addClass("custom-control-input");
+        $("#MainContent_rdbEFNTSoles").addClass("custom-control-input");
+        $("#MainContent_rdbEFNTDolares").addClass("custom-control-input");
     </script>
     <script>
         $(function () {
