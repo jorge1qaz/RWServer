@@ -472,7 +472,7 @@ namespace BusinessLayer
             catch (Exception)
             { oTotal = 0; }
             #endregion
-            if (limitarMeses)
+            if (limitarMeses == true)
             {
                 listValues[0] = KeepPositive(aTotal, bTotal);
                 listValues[1] = KeepPositive(aTotal + bTotal, cTotal);

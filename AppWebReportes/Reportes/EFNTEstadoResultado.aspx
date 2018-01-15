@@ -62,17 +62,25 @@
                         <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
-                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tableReport">
+                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tableReport" width="100%">
                             <thead>
                                 <tr>
-                                    <th colspan="3">Estado de resultados (por naturaleza)</th>
-                                    <th colspan="3">Estado de resultados (por función)</th>
+                                    <th>Código</th>
+                                    <th>Estado de resultados (por naturaleza)</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Código</th>
+                                    <th>Estado de resultados (por función)</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th colspan="3">Estado de resultados (por naturaleza)</th>
-                                    <th colspan="3">Estado de resultados (por función)</th>
+                                    <th>Código</th>
+                                    <th>Estado de resultados (por naturaleza)</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>Código</th>
+                                    <th>Estado de resultados (por función)</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -298,6 +306,9 @@
                                     <td>
                                         <asp:Label ID="lblN315" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <th>N399</th>
@@ -329,6 +340,9 @@
                                     <td>
                                         <asp:Label ID="lblN410" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N415</td>
@@ -348,6 +362,9 @@
                                     <td>
                                         <asp:Label ID="lblN420" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N425</td>
@@ -367,6 +384,9 @@
                                     <td>
                                         <asp:Label ID="lblN430" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <th>N499</th>
@@ -374,6 +394,9 @@
                                     <th>
                                         <asp:Label ID="lblN499" runat="server"></asp:Label>
                                     </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N505</td>
@@ -381,6 +404,9 @@
                                     <td>
                                         <asp:Label ID="lblN505" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N510</td>
@@ -388,6 +414,9 @@
                                     <td>
                                         <asp:Label ID="lblN510" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N515</td>
@@ -395,6 +424,9 @@
                                     <td>
                                         <asp:Label ID="lblN515" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N520</td>
@@ -402,6 +434,9 @@
                                     <td>
                                         <asp:Label ID="lblN520" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N525</td>
@@ -409,6 +444,9 @@
                                     <td>
                                         <asp:Label ID="lblN525" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <th>N599</th>
@@ -416,6 +454,9 @@
                                     <th>
                                         <asp:Label ID="lblN599" runat="server"></asp:Label>
                                     </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N805</td>
@@ -423,6 +464,9 @@
                                     <td>
                                         <asp:Label ID="lblN805" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>N810</td>
@@ -430,6 +474,9 @@
                                     <td>
                                         <asp:Label ID="lblN810" runat="server"></asp:Label>
                                     </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <th>N999</th>
@@ -437,14 +484,9 @@
                                     <th>
                                         <asp:Label ID="lblN999" runat="server"></asp:Label>
                                     </th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>

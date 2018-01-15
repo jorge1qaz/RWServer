@@ -62,15 +62,29 @@
                         <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
-                        <table class="table table-bordered table-responsive table-hover table-sm table-striped">
+                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tableReport" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Activo</th>
+                                    <th class="text-center">Monto</th>
+                                    <th class="text-center">Pasivo y patrimonio </th>
+                                    <th class="text-center">Monto</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">Activo</th>
+                                    <th class="text-center"></th>
+                                    <th class="text-center">Pasivo y patrimonio </th>
+                                    <th class="text-center"></th>
+                                </tr>
+                            </tfoot>
                             <tbody>
                                 <tr>
-                                    <th class="text-center" colspan="2">Activo</th>
-                                    <th class="text-center" colspan="2">Pasivo y patrimonio </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center" colspan="2">Activo corriente</th>
-                                    <th class="text-center" colspan="2">Pasivo corriente</th>
+                                    <td><strong>Activo corriente</strong></td>
+                                    <td></td>
+                                    <td><strong>Pasivo corriente</strong></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -208,9 +222,9 @@
                                     <th class="text-center">
                                         <label>Total pasivo corriente distintos mantenidos para la venta</label>
                                     </th>
-                                    <td>
+                                    <th>
                                         <asp:Label ID="lblP199" runat="server"></asp:Label>
-                                    </td>
+                                    </th>
                                 </tr>
                                 <tr>
                                     <th class="text-center">
@@ -251,7 +265,7 @@
                                         <label>Pasivos no corrientes</label>
                                     </th>
                                     <th class="text-center">
-                                        <asp:Label ID="lblP400" runat="server"></asp:Label>
+                                        <label> - </label>
                                     </th>
                                 </tr>
                                 <tr>
@@ -259,7 +273,7 @@
                                         <label>Activo no corriente mantenidos para la venta y operaciones discontinuadas</label>
                                     </th>
                                     <th class="text-center">
-                                        <asp:Label ID="lblA299" runat="server"></asp:Label>
+                                        <label> - </label>
                                     </th>
                                     <td>
                                         <label>Otros pasivos financieros</label>
@@ -287,7 +301,7 @@
                                         <label>Activos no corrientes</label>
                                     </th>
                                     <th class="text-center">
-                                        <asp:Label ID="lblA500" runat="server"></asp:Label>
+                                        <label> - </label>
                                     </th>
                                     <td>
                                         <label>Otras cuentas por pagar</label>
@@ -419,7 +433,7 @@
                                         <label>Patrimonio</label>
                                     </th>
                                     <th class="text-center">
-                                        <asp:Label ID="lblP800" runat="server"></asp:Label>
+                                        <p> - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </th>
                                 </tr>
                                 <tr>
@@ -494,10 +508,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label></label>
+                                        <label> - </label>
                                     </td>
                                     <td>
-                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                        <p> - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </td>
                                     <td>
                                         <label>Resultados acumulados</label>
@@ -508,10 +522,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label></label>
+                                        <label> - </label>
                                     </td>
                                     <td>
-                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                        <p> - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </td>
                                     <td>
                                         <label>Otras reservas de patrimonio</label>
@@ -536,30 +550,16 @@
                                 </tr>
                                 <tr>
                                     <th class="text-center">
-                                        <label></label>
+                                        <label> - </label>
                                     </th>
                                     <th class="text-center">
-                                        <span></span>
+                                        <span> - </span>
                                     </th>
                                     <th class="text-center">
                                         <label>Total pasivo y patrimonio neto</label>
                                     </th>
                                     <th class="text-center">
                                         <asp:Label ID="lblP999" runat="server"></asp:Label>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">
-                                        <label></label>
-                                    </th>
-                                    <th class="text-center">
-                                        <span></span>
-                                    </th>
-                                    <th class="text-center">
-                                        <label></label>
-                                    </th>
-                                    <th class="text-center">
-                                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                                     </th>
                                 </tr>
                             </tbody>
@@ -569,5 +569,14 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
+    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-009.js"></script>
 </asp:Content>

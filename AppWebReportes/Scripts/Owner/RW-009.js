@@ -48,7 +48,8 @@
         var tblReportes = $('#tableReport').DataTable({
             "destroy": true,
             "processing": true,
-            responsive: false,
+            "ordering": false,
+            "scrollX": true,
             paging: false,
             "language": idioma,
             dom: 'Bfrtip',

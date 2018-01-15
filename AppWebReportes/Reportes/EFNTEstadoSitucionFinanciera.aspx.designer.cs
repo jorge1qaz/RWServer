@@ -301,24 +301,6 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.Label lblA220;
         
         /// <summary>
-        /// lblP400 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblP400;
-        
-        /// <summary>
-        /// lblA299 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblA299;
-        
-        /// <summary>
         /// lblP410 control.
         /// </summary>
         /// <remarks>
@@ -344,15 +326,6 @@ namespace AppWebReportes.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblP415;
-        
-        /// <summary>
-        /// lblA500 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblA500;
         
         /// <summary>
         /// lblP420 control.
@@ -515,15 +488,6 @@ namespace AppWebReportes.Reportes {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblA550;
-        
-        /// <summary>
-        /// lblP800 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblP800;
         
         /// <summary>
         /// lblA560 control.
