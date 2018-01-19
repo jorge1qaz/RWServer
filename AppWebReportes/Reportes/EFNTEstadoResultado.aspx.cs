@@ -106,7 +106,6 @@ namespace AppWebReportes.Reportes
         }
         protected void lstTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session.Remove("TipoMonedaEFNT");
             if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
             {
                 Session["TipoMonedaEFNT"] = "Nuevos soles";

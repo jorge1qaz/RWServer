@@ -49,7 +49,7 @@
             "destroy": true,
             "processing": true,
             "ordering": false,
-            "scrollX": true,
+            "scrollX": false,
             paging: false,
             "language": idioma,
             dom: 'Bfrtip',
@@ -81,6 +81,7 @@
         $(".buttons-html5").addClass("btn btn-primary");
         $(".buttons-print").addClass("btn btn-primary").css("margin-top", "5px");
         $(".btn-primary").addClass("btn btn-primary").css("margin-top", "5px");
+        $("input[type='search']").css("margin-top", "5px");
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();

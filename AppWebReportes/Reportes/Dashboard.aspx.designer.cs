@@ -130,6 +130,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DataList dlstEFNT;
         
         /// <summary>
+        /// dlstFCD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dlstFCD;
+        
+        /// <summary>
         /// rdbEDRPMSNaturaleza control.
         /// </summary>
         /// <remarks>
@@ -202,21 +211,39 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.RadioButton rdbEFNT4;
         
         /// <summary>
-        /// rdbEFNTSoles control.
+        /// rdbFCDSimple control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEFNTSoles;
+        protected global::System.Web.UI.WebControls.RadioButton rdbFCDSimple;
         
         /// <summary>
-        /// rdbEFNTDolares control.
+        /// rdbFCDDetallado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbEFNTDolares;
+        protected global::System.Web.UI.WebControls.RadioButton rdbFCDDetallado;
+        
+        /// <summary>
+        /// rdbFCDSoles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbFCDSoles;
+        
+        /// <summary>
+        /// rdbFCDDolares control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rdbFCDDolares;
     }
 }

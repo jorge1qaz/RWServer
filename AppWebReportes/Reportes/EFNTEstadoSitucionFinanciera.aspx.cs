@@ -45,7 +45,6 @@ namespace AppWebReportes.Reportes
         }
         protected void lstTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Session.Remove("TipoMonedaEFNT");
             if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
             {
                 Session["TipoMonedaEFNT"] = "Nuevos soles";
@@ -77,7 +76,7 @@ namespace AppWebReportes.Reportes
             totalF699 = totalF320 + totalF350 + totalF380 + totalF403 + totalF405 + totalF415 + totalF299;
 
             totalF710 = mergeTables.GeTotalByTablePlan(JsonDatasetF710, moneda, mesProceso, false); totalF799 = totalF710 + totalF699;
-            totalF805 = mergeTables.GeTotalByTablePlan(JsonDatasetF805, moneda, mesProceso, false); totalF999 = totalF805 + totalF799;
+            totalF805 = mergeTables.GeTotalByTablePlan(JsonDatasetF805, moneda, mesProceso, false); totalF999 = totalF805 + totalF799; // totalF999 Es el total que se busca para el resultado
             //Fin estado de resultado
 
             lblMesProceso.Text = meses[mesProceso];
@@ -147,7 +146,7 @@ namespace AppWebReportes.Reportes
         public string GetPathFile(string nameFile)
         {
             String rootPath = Server.MapPath("~");
-            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdFncr/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdFncr/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "1" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         }
         //Jorge Luis|26/12/2017|RW-103

@@ -78,6 +78,8 @@ namespace AppWebReportes.Reportes
             dlstEstadoResultadoPMS.DataBind();
             dlstEFNT.DataSource = dataTableGeneralInfoConta;
             dlstEFNT.DataBind();
+            dlstFCD.DataSource = dataTableGeneralInfoConta;
+            dlstFCD.DataBind();
             DataRow[] idCompany = dataTableGeneralInfoConta.Select();
             Session["idCompany"] = idCompany[0][0].ToString();
             #region Estados de resultado
@@ -167,7 +169,10 @@ namespace AppWebReportes.Reportes
         protected void rdbEFNT2_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de resultado";
         protected void rdbEFNT3_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Balance general";
         protected void rdbEFNT4_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de ganancias y pérdidas";
-        protected void rdbEFNTSoles_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaEFNT"] = "Nuevos soles";
-        protected void rdbEFNTDolares_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaEFNT"] = "Dólares";
+
+        protected void SelectCompanyByYearFCD(object source, DataListCommandEventArgs e)
+        {
+
+        }
     }
 }

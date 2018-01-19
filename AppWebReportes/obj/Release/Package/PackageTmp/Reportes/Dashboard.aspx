@@ -390,7 +390,7 @@
                         <div class="card-block">
                             <label class="font-weight-bold">Tipo de reporte</label>
                             <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbEFNT1" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT1_CheckedChanged"  Checked="true"/>
+                                <asp:RadioButton ID="rdbEFNT1" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT1_CheckedChanged" Checked="true" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">Estado de situación financiera</span>
                             </label>
@@ -411,26 +411,27 @@
                             </label>
                         </div>
                     </div>
-                    <div class="card card-outline-secondary">
-                        <div class="card-block">
-                            <label class="font-weight-bold">Tipo de moneda</label>
-                            <br />
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbEFNTSoles" runat="server" GroupName="radioTipoMonedaEFNT" Checked="true" OnCheckedChanged="rdbEFNTSoles_CheckedChanged" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Soles</span>
-                            </label>
-                            <br />
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbEFNTDolares" runat="server" GroupName="radioTipoMonedaEFNT" OnCheckedChanged="rdbEFNTDolares_CheckedChanged" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Dólares</span>
-                            </label>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-sm" id="modalProgress" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Procesando datos</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="card card-outline-secondary">
+                        <div class="card-block">
+                            <div class="progress">
+                                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -455,20 +456,7 @@
     <script>
         var idCliente = "<% Response.Write(Session["IdUser"].ToString()); %>";
     </script>
-
     <script src="../Scripts/Owner/dashboard.js"></script>
-    <script>
-        $("#Formulario").ready(function () {
-            $('#modalProgress').modal('hide');
-        });
-    </script>
-    <script>
-        function responsive() {
-            $("#dataRCP_info").hide();
-            $("#dataRMU_info").hide();
-        }
-        responsive();
-    </script>
     <br />
     <br />
     <br />

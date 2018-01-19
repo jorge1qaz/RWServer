@@ -71,25 +71,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>01/15/2018 18:29:43</publishTime>
+      <publishTime>01/18/2018 12:23:01</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>01/15/2018 18:29:43</publishTime>
+      <publishTime>01/18/2018 12:23:01</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>12/01/2018 17:37:02</publishTime>
+      <publishTime>01/18/2018 12:23:41</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>12/01/2018 17:37:02</publishTime>
+      <publishTime>01/18/2018 12:23:41</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll">
-      <publishTime>01/15/2018 18:29:39</publishTime>
+      <publishTime>01/16/2018 16:43:27</publishTime>
     </File>
     <File Include="bin/BusinessLayer.pdb">
-      <publishTime>01/15/2018 18:29:39</publishTime>
+      <publishTime>01/16/2018 16:43:27</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -1190,7 +1190,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/28/2017 14:24:19</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>01/15/2018 18:29:51</publishTime>
+      <publishTime>01/18/2018 12:23:22</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1199,16 +1199,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/19/2017 12:47:20</publishTime>
     </File>
     <File Include="Reportes/Dashboard.aspx">
-      <publishTime>01/10/2018 15:25:13</publishTime>
+      <publishTime>01/18/2018 12:11:27</publishTime>
     </File>
     <File Include="Reportes/EFNTBalanceGeneral.aspx">
-      <publishTime>01/10/2018 14:20:51</publishTime>
+      <publishTime>01/17/2018 15:49:47</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoGananciasPerdidas.aspx">
-      <publishTime>01/10/2018 14:22:21</publishTime>
+      <publishTime>01/17/2018 18:14:19</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoResultado.aspx">
-      <publishTime>12/01/2018 15:12:22</publishTime>
+      <publishTime>01/15/2018 18:29:21</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoSitucionFinanciera.aspx">
       <publishTime>01/15/2018 18:28:33</publishTime>
@@ -1526,7 +1526,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 14:31:30</publishTime>
     </File>
     <File Include="Scripts/Owner/dashboard.js">
-      <publishTime>01/10/2018 15:00:31</publishTime>
+      <publishTime>01/17/2018 17:34:02</publishTime>
     </File>
     <File Include="Scripts/Owner/general.js">
       <publishTime>01/11/2018 12:56:44</publishTime>
@@ -1559,7 +1559,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>01/08/2018 11:53:02</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-009.js">
-      <publishTime>01/15/2018 18:22:31</publishTime>
+      <publishTime>01/17/2018 18:06:56</publishTime>
     </File>
     <File Include="Scripts/respond.js">
       <publishTime>11/07/2017 13:43:51</publishTime>
