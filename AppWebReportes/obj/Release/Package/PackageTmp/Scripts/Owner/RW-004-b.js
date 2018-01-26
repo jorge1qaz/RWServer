@@ -156,7 +156,7 @@ $(document).ready(function() {
                 { "data": "e" }
             ],
             "language": idioma,
-            dom: '<lf<t>ip>',
+            dom: 'Bfrtip',
             buttons: [
                 'copy', 'csv', 'excelHtml5', 'pdf', 'print'
             ],

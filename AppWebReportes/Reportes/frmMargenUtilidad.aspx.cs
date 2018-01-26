@@ -114,9 +114,8 @@ namespace AppWebReportes.Reportes
             DataTable dataTableProducts; //Obtiene la tabla con sus datos
 
             DataTable tablaReporte = new DataTable(); //Declaración de la tabla contenedora del reporte a generar
-            DataColumn column;
+            DataColumn column = new DataColumn();
             #region DeclaracionColumnas
-            column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "C";
             tablaReporte.Columns.Add(column);

@@ -147,15 +147,16 @@ namespace BusinessLayer
                 dtNew.ImportRow(table.Select(NameColumn + " = '" + drRow[0] + "'")[0]);
             return distincts;
         }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
         public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue) {
-            DataTable tableSumByCount = new DataTable();
-            DataColumn column;
+            DataTable tableSumByCount = new DataTable(); // Instancia de tabla para las cuentas en específico
+            DataColumn column = new DataColumn();
             DataRow row;
             double total1;
             double total2;
             decimal amount;
             #region Declaración de columnas
-            column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Cuenta";
             tableSumByCount.Columns.Add(column);
@@ -165,7 +166,7 @@ namespace BusinessLayer
             column.ColumnName = "Total";
             tableSumByCount.Columns.Add(column);
             #endregion
-            foreach (DataRow item in tableList.Rows)
+            foreach (DataRow item in tableList.Rows) // Lista de cuentas con los cuales se obtienen los totales 
             {
                 try
                 {
@@ -182,7 +183,7 @@ namespace BusinessLayer
                 amount = Convert.ToDecimal(total2) - Convert.ToDecimal(total1);
                 row = tableSumByCount.NewRow();
                 row["Cuenta"] = item.ToString();
-                row["Total"] = amount;
+                row["Total"] = amount;  
                 tableSumByCount.Rows.Add(row);
             }
             decimal value = 0;
@@ -206,6 +207,55 @@ namespace BusinessLayer
                 foreach (DataRow itemDefault in tableSumByCount.Rows)
                     value += decimal.Parse(itemDefault[1].ToString()); // Suma todo 
             }
+            return value;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método eeeesteeeee*/
+        public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string nameColumn1, string nameColumn2, string nameColumnFilter, string nameFilter)
+        {
+            DataTable tableSumByCount = new DataTable(); // Instancia de tabla para las cuentas en específico
+            DataColumn column = new DataColumn();
+            DataRow row;
+            double total1;
+            double total2;
+            decimal amount;
+            #region Declaración de columnas
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Cuenta";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.Decimal");
+            column.ColumnName = "Total";
+            tableSumByCount.Columns.Add(column);
+            #endregion
+            foreach (DataRow item in tableList.Rows) // Lista de cuentas con los cuales se obtienen los totales 
+            {
+                try
+                {
+                    total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                        Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
+                }
+                catch (Exception)
+                { total1 = 0; }
+                try
+                {
+                    total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                        Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
+                }
+                catch (Exception)
+                { total2 = 0; }
+                amount = Convert.ToDecimal(total1) - Convert.ToDecimal(total2);
+                row = tableSumByCount.NewRow();
+                row["Cuenta"] = item[0].ToString();
+                row["Total"] = amount;
+                tableSumByCount.Rows.Add(row);
+            }
+            decimal value = 0;
+            
+            foreach (DataRow item in tableSumByCount.Rows)
+                if (decimal.Parse(item[1].ToString()) >= 0)
+                    value += decimal.Parse(item[1].ToString());
             return value;
         }
         public decimal GetTotalByTable(DataTable tableData, string columnName)
@@ -518,6 +568,15 @@ namespace BusinessLayer
                     temp = anterior;
             }
             return temp;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable GetTableByDate(DataTable table, DateTime startDate)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>() where (DateTime)row[1] < startDate select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
         }
     }
 }

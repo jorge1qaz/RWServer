@@ -192,4 +192,13 @@
             }
         }
     });
+
+    $(function () {
+        $('#MainContent_txtFechaInicio').datepicker({
+            autoHide: true,
+            zIndex: 2048,
+            format: 'dd/mm/yyyy',
+            language: 'es-ES',
+        });
+    });
 });

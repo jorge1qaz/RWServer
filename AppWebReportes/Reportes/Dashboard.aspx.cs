@@ -14,19 +14,24 @@ namespace AppWebReportes.Reportes
         Zips zips = new Zips();
         Directorios dirs = new Directorios();
         AccesoDatos dat = new AccesoDatos();
+        DateTime dateUpdate = new DateTime();
+        DateTime lastUpdate = new DateTime();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write(" => " + Request.Browser.Type.ToString() + " <= "); //Contains
+            Response.Write(" => " + Request.Browser.Version.ToString() + " <= ");
+            Response.Write(" => " + Request.Browser.MajorVersion.ToString() + " <= ");
+
             String rootPath = Server.MapPath("~");
-            if (Session["IdUser"] == null)
-                Response.Redirect("~/Acceso");
-            Cliente cliente = new Cliente()
-            { IdCliente = Session["IdUser"].ToString() };
-            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
-            try
+            if (Session["IdUser"] == null) //Compruebo que el usuario se haya logeado
+                Response.Redirect("~/Acceso"); //En caso de que no, lo redireciono a la pagina "Acceso"
+            Cliente cliente = new Cliente() // Instancio el objeto CLIENTE
+            { IdCliente = Session["IdUser"].ToString() }; // Guardo en la variable IdCliente el ID del cliente
+            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
+            try // Primer intento, busca la diferencia entre 
             {
-                DateTime dateUpdate = cliente.ReadParametersUserDateUpdate("RW_Profiles_Read_DateUpdate");
-                DateTime lastUpdate = cliente.ReadParametersUserLastUpdate("RW_Profiles_Read_LastUpdate");
-                zips.ExtractFile(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/temp");
+                dateUpdate = cliente.ReadParametersUserDateUpdate("RW_Profiles_Read_DateUpdate");
+                lastUpdate = cliente.ReadParametersUserLastUpdate("RW_Profiles_Read_LastUpdate");
                 TimeSpan datediff = lastUpdate.Subtract(dateUpdate);
                 lblDateUpdate.Text = dateUpdate.ToString();
                 if (Convert.ToDecimal(datediff.TotalMinutes) < 0)
@@ -36,18 +41,18 @@ namespace AppWebReportes.Reportes
                     lblOutdatedData.Text = lastUpdate.ToString();
                 }
                 else
+                {
                     blockUpdateData.Visible = false;
+                }
             }
             catch (Exception)
             {
+                Descomprimir();
+                dateUpdate = cliente.ReadParametersUserDateUpdate("RW_Profiles_Read_DateUpdate");
+                lastUpdate = cliente.ReadParametersUserLastUpdate("RW_Profiles_Read_LastUpdate");
+                TimeSpan datediff = lastUpdate.Subtract(dateUpdate);
+                lblDateUpdate.Text = dateUpdate.ToString();
                 blockUpdateData.Visible = false;
-                try
-                {
-                    if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
-                        Descomprimir();
-                }
-                catch (Exception)
-                { Response.Redirect("~/Reportes/NoZip.aspx"); }
             }
             if (!Page.IsPostBack)
             {
@@ -90,30 +95,42 @@ namespace AppWebReportes.Reportes
             Session["TipoReporteEFNT"] = "Estado de situación financiera";
             Session["TipoMonedaEFNT"] = "Nuevos soles";
             #endregion
+            Session["TipoReporteFCD"] = "Formato simple";
+            Session["TipoMonedaFCD"] = "Nuevos soles";
         }
         protected void btnCloseBlockUpdate_Click(object sender, EventArgs e) => blockUpdateData.Visible = false;
-        protected void btnUpdateData_Click(object sender, EventArgs e)
-        {
-            String rootPath = Server.MapPath("~");
-            if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
-                Descomprimir();
-            else
-                Response.Redirect("~/Reportes/NoZip.aspx");
-        }
+        protected void btnUpdateData_Click(object sender, EventArgs e) => Descomprimir();
         private void Descomprimir()
         {
-            String rootPath = Server.MapPath("~");
-            Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-            DateTime lastUpdate = DateTime.Now;
-            Cliente cliente = new Cliente() {
-                IdCliente = Session["IdUser"].ToString(),
-                LastUpdate = lastUpdate,
-            };
-            if (cliente.WriteParametersUserLastUpdate("RW_Profiles_Register_LastUpdate"))
-                blockUpdateData.Visible = false;
-            else
-                Response.Write("<script>alert('Ocurrió un error al momento de actualizar.');</script>");
+            try
+            {
+                String rootPath = Server.MapPath("~"); // Obtiene la ruta absoluta del servidor
+                if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                {
+                    Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+                    zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+                    DateTime lastUpdate = DateTime.Now;
+                    Cliente cliente = new Cliente()
+                    {
+                        IdCliente = Session["IdUser"].ToString(),
+                        LastUpdate = lastUpdate,
+                    };
+                    if (cliente.WriteParametersUserLastUpdate("RW_Profiles_Register_LastUpdate") == true)
+                    {
+                        blockUpdateData.Visible = false;
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Ocurrió un error al momento de actualizar.');</script>");
+                    }
+                }
+                else
+                    Response.Redirect("~/Reportes/NoZip.aspx");
+            }
+            catch (Exception)
+            {
+                Response.Redirect("~/Reportes/NoZip.aspx");
+            }
         }
         protected void SelectCompanyByYearRCP(object source, DataListCommandEventArgs e)
         {
@@ -172,7 +189,38 @@ namespace AppWebReportes.Reportes
 
         protected void SelectCompanyByYearFCD(object source, DataListCommandEventArgs e)
         {
-
+            string id = dlstFCD.DataKeys[e.Item.ItemIndex].ToString();
+            Session["FCDFechaInicio"] = txtFechaInicio.Text.ToString();
+            Session["FCDFrecuencia"] = lstFrecuenciaPerdiodoFCD.SelectedValue.ToString();
+            Session["FCDPeriodo"] = lstNumeroPeriodosFCD.SelectedValue.ToString();
+            switch (Session["TipoReporteFCD"].ToString())
+            {
+                case "Formato simple":
+                    if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    else
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Formato detallado":
+                    if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    else
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Balance general":
+                    Response.Redirect("~/Reportes/EFNTBalanceGeneral.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+                case "Estado de ganancias y pérdidas":
+                    if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    else
+                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                    break;
+            }
         }
+        protected void rdbFCDSimple_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteFCD"] = "Formato simple";
+        protected void rdbFCDDetallado_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteFCD"] = "Formato detallado";
+        protected void rdbFCDSoles_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaFCD"] = "Nuevos soles";
+        protected void rdbFCDDolares_CheckedChanged(object sender, EventArgs e) => Session["TipoMonedaFCD"] = "Dólares";
     }
 }

@@ -48,9 +48,8 @@
       <HintPath>..\packages\AspNet.ScriptManager.jQuery.3.0.0\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ionic.Zip, Version=1.10.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotNetZip.1.10.0\lib\net20\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -337,6 +336,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\DatePicker\datepicker.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\materialize\css\materialize.css" />
     <Content Include="Content\materialize\css\materialize.min.css" />
@@ -363,6 +363,7 @@
     <Content Include="Reportes\EstadoResultadoPMS.aspx" />
     <Content Include="Reportes\EstadoResultadoPMSF.aspx" />
     <Content Include="Reportes\EFNTEstadoSitucionFinanciera.aspx" />
+    <Content Include="Reportes\FlujoCajaDetallado.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -574,6 +575,11 @@
     <Content Include="Scripts\DataTables\dataTables.semanticui.min.js" />
     <Content Include="Scripts\DataTables\dataTables.uikit.js" />
     <Content Include="Scripts\DataTables\dataTables.uikit.min.js" />
+    <Content Include="Scripts\DataTables\export\buttons.flash.min.js" />
+    <Content Include="Scripts\DataTables\export\buttons.html5.min.js" />
+    <Content Include="Scripts\DataTables\export\buttons.print.min.js" />
+    <Content Include="Scripts\DataTables\export\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\export\jszip.min.js" />
     <Content Include="Scripts\DataTables\export\pdfmake.min.js" />
     <Content Include="Scripts\DataTables\export\vfs_fonts.js" />
     <Content Include="Scripts\DataTables\jquery.dataTables.js" />
@@ -588,6 +594,8 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\DatePicker\datepicker.es-ES.js" />
+    <Content Include="Scripts\DatePicker\datepicker.min.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
@@ -868,6 +876,13 @@
     </Compile>
     <Compile Include="Reportes\EFNTEstadoSitucionFinanciera.aspx.designer.cs">
       <DependentUpon>EFNTEstadoSitucionFinanciera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaDetallado.aspx.cs">
+      <DependentUpon>FlujoCajaDetallado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaDetallado.aspx.designer.cs">
+      <DependentUpon>FlujoCajaDetallado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

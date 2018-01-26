@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-block">
-                        <h4 class="card-title">Estado de Resultado por Naturaleza</h4>
+                        <h4 class="card-title">Estado de resultado por naturaleza</h4>
                         <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover">
                             <thead>
                                 <tr>
@@ -1075,13 +1075,13 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
+    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
+    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
     <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
     <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
+    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>var moneda = "<% Response.Write(Session["EDRPMSTipoMoneda"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-008.js"></script>

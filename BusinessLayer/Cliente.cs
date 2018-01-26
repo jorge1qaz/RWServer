@@ -232,7 +232,6 @@ namespace BusinessLayer
             con.Disconnect();
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
         }
-        //Aquííí mii hedmano
         //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, correo) del Cliente y un parámetro de salida.*/
         public DateTime ReadParametersUserDateUpdate(string storeProcedure)

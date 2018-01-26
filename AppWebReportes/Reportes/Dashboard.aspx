@@ -380,7 +380,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade bd-example-modal-sm" id="modalREDRPMS" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -392,7 +391,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card card-outline-secondary">
-                        <div class="card-block">
+                        <div class="card-block bg-faded">
                             <label class="font-weight-bold">Estado financiero comparativo</label>
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEDRPMSNaturaleza" runat="server" GroupName="radioEGP" OnCheckedChanged="rdbEDRPMSNaturaleza_CheckedChanged" Checked="true" />
@@ -407,7 +406,7 @@
                         </div>
                     </div>
                     <div class="card card-outline-secondary">
-                        <div class="card-block">
+                        <div class="card-block bg-faded">
                             <label class="font-weight-bold">Tipo de moneda</label>
                             <br />
                             <label class="custom-control custom-radio">
@@ -430,7 +429,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade bd-example-modal-sm" id="modalEFNT" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -442,7 +440,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card card-outline-secondary">
-                        <div class="card-block">
+                        <div class="card-block bg-faded">
                             <label class="font-weight-bold">Tipo de reporte</label>
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEFNT1" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT1_CheckedChanged" Checked="true" />
@@ -473,8 +471,9 @@
             </div>
         </div>
     </div>
-    <div class="modal fade bd-example-modal-sm" id="modalFCD" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
+
+    <div class="modal fade bd-example-modal-lg" id="modalFCD" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Seleccione</h5>
@@ -483,36 +482,72 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="card card-outline-secondary">
-                        <div class="card-block">
-                            <label class="font-weight-bold">Tipo de reporte</label>
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbFCDSimple" runat="server" GroupName="radioFCDTTypeReport" Checked="true" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Reporte simple</span>
-                            </label>
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbFCDDetallado" runat="server" GroupName="radioFCDTTypeReport" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Reporte detallado</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="card card-outline-secondary">
-                        <div class="card-block">
-                            <label class="font-weight-bold">Tipo de moneda</label>
-                            <br />
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbFCDSoles" runat="server" GroupName="radioMonedaFCD" Checked="true" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Nuevos soles</span>
-                            </label>
-                            <br />
-                            <label class="custom-control custom-radio">
-                                <asp:RadioButton ID="rdbFCDDolares" runat="server" GroupName="radioMonedaFCD" />
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Dólares</span>
-                            </label>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="card card-outline-secondary">
+                                    <div class="card-block bg-faded">
+                                        <label class="font-weight-bold">Tipo de reporte</label>
+                                        <br />
+                                        <label class="custom-control custom-radio">
+                                            <asp:RadioButton ID="rdbFCDSimple" runat="server" GroupName="radioFCDTTypeReport" Checked="true" OnCheckedChanged="rdbFCDSimple_CheckedChanged" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Reporte simple</span>
+                                        </label>
+                                        <label class="custom-control custom-radio">
+                                            <asp:RadioButton ID="rdbFCDDetallado" runat="server" GroupName="radioFCDTTypeReport" OnCheckedChanged="rdbFCDDetallado_CheckedChanged" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Reporte detallado</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="card card-outline-secondary">
+                                    <div class="card-block bg-faded">
+                                        <label class="font-weight-bold">Tipo de moneda</label>
+                                        <br />
+                                        <label class="custom-control custom-radio">
+                                            <asp:RadioButton ID="rdbFCDSoles" runat="server" GroupName="radioMonedaFCD" Checked="true" OnCheckedChanged="rdbFCDSoles_CheckedChanged" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Nuevos soles</span>
+                                        </label>
+                                        <br />
+                                        <label class="custom-control custom-radio">
+                                            <asp:RadioButton ID="rdbFCDDolares" runat="server" GroupName="radioMonedaFCD" OnCheckedChanged="rdbFCDDolares_CheckedChanged" />
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Dólares</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="card card-outline-secondary">
+                                    <div class="card-block bg-faded">
+                                        <label class="font-weight-bold">Opciones</label>
+                                        <div class="form-group">
+                                            <label for="txtFechaInicio">Fecha de inicio</label>
+                                            <asp:TextBox ID="txtFechaInicio" CssClass="form-control" runat="server"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lstFrecuenciaPerdiodoFCD">Frecuencia del periodo</label>
+                                            <asp:DropDownList ID="lstFrecuenciaPerdiodoFCD" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="7">7</asp:ListItem>
+                                                <asp:ListItem Value="15">15</asp:ListItem>
+                                                <asp:ListItem Value="30">30</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lstNumeroPeriodosFCD">Número de periodos</label>
+                                            <asp:DropDownList ID="lstNumeroPeriodosFCD" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="10">10</asp:ListItem>
+                                                <asp:ListItem Value="15">15</asp:ListItem>
+                                                <asp:ListItem Value="20">20</asp:ListItem>
+                                                <asp:ListItem Value="30">30</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

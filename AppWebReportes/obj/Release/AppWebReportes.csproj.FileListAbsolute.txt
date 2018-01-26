@@ -18,7 +18,6 @@ D:\git\ReportesWeb\Web\AppWebReportes\bin\AspNet.ScriptManager.jQuery.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\BusinessLayer.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\EntityFramework.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\EntityFramework.SqlServer.dll
-D:\git\ReportesWeb\Web\AppWebReportes\bin\Ionic.Zip.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.AspNet.FriendlyUrls.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.AspNet.Identity.Core.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -44,7 +43,6 @@ D:\git\ReportesWeb\Web\AppWebReportes\bin\System.Web.Providers.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\WebGrease.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\DotNetZip.dll
 D:\git\ReportesWeb\Web\AppWebReportes\bin\BusinessLayer.pdb
-D:\git\ReportesWeb\Web\AppWebReportes\bin\Ionic.Zip.xml
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.Owin.xml
 D:\git\ReportesWeb\Web\AppWebReportes\bin\Microsoft.Owin.Security.xml

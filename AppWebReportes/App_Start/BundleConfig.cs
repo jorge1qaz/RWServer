@@ -40,11 +40,13 @@ namespace AppWebReportes
                             "~/Scripts/DataTables/dataTables.responsive.min.js",
                             "~/Scripts/DataTables/responsive.bootstrap4.min.js",
                             "~/Scripts/DataTables/autoFill.bootstrap4.min.js",
-                            "~/Scripts/DataTables/buttons.bootstrap4.js"));
+                            "~/Scripts/DataTables/buttons.bootstrap4.min.js"));
             // Validaciones
             bundles.Add(new ScriptBundle("~/bundles/validaciones").Include(
                             "~/Scripts/jquery.validate.min.js",
-                            "~/Scripts/additional-methods.min.js"
+                            "~/Scripts/additional-methods.min.js",
+                            "~/Scripts/DatePicker/datepicker.min.js",
+                            "~/Scripts/DatePicker/datepicker.es-ES.js"
                             ));
 
             // Use la versión de desarrollo de Modernizr para desarrollar y aprender. Luego, cuando esté listo
