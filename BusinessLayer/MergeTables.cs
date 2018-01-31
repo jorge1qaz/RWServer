@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -138,6 +139,7 @@ namespace BusinessLayer
             #endregion 
             return datatableMes0;
         }
+
         public DataTable GetListDist(DataTable table, string NameColumn) {
             DataTable dtNew = new DataTable();
             DataTable distincts = table.DefaultView.ToTable(true, NameColumn);
@@ -211,7 +213,7 @@ namespace BusinessLayer
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método eeeesteeeee*/
-        public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string nameColumn1, string nameColumn2, string nameColumnFilter, string nameFilter)
+        public DataTable GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string nameColumn1, string nameColumn2, string nameColumnFilter, string nameFilter, string nameFirstColumn, bool moneda)
         {
             DataTable tableSumByCount = new DataTable(); // Instancia de tabla para las cuentas en específico
             DataColumn column = new DataColumn();
@@ -219,44 +221,95 @@ namespace BusinessLayer
             double total1;
             double total2;
             decimal amount;
+            if (!moneda) // True = soles, false = dólares
+            {
+                nameColumn1 = nameColumn1 + "d";
+                nameColumn2 = nameColumn2 + "d";
+            }
             #region Declaración de columnas
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Cuenta";
             tableSumByCount.Columns.Add(column);
 
             column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Documento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Número";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Moneda";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Descripción";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha documento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha vencimiento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Vencidos";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
             column.DataType = Type.GetType("System.Decimal");
-            column.ColumnName = "Total";
+            column.ColumnName = nameFirstColumn;
             tableSumByCount.Columns.Add(column);
             #endregion
             foreach (DataRow item in tableList.Rows) // Lista de cuentas con los cuales se obtienen los totales 
             {
                 try
                 {
-                    total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                        Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
+                    if (moneda) //soles
+                    {
+                        total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                            Where(x => x.Field<string>(nameColumnFilter) != nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
+                    }
+                    else
+                    {
+                        total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                            Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
+                    }
                 }
                 catch (Exception)
                 { total1 = 0; }
                 try
                 {
-                    total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                        Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
+                    if (moneda)
+                    {
+                        total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                            Where(x => x.Field<string>(nameColumnFilter) != nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
+                    }
+                    else
+                    {
+                        total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
+                            Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
+                    }
                 }
                 catch (Exception)
                 { total2 = 0; }
                 amount = Convert.ToDecimal(total1) - Convert.ToDecimal(total2);
                 row = tableSumByCount.NewRow();
                 row["Cuenta"] = item[0].ToString();
-                row["Total"] = amount;
+                row[nameFirstColumn] = amount;
                 tableSumByCount.Rows.Add(row);
             }
-            decimal value = 0;
-            
-            foreach (DataRow item in tableSumByCount.Rows)
-                if (decimal.Parse(item[1].ToString()) >= 0)
-                    value += decimal.Parse(item[1].ToString());
-            return value;
+            return tableSumByCount;
         }
         public decimal GetTotalByTable(DataTable tableData, string columnName)
         {
@@ -577,6 +630,24 @@ namespace BusinessLayer
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             return filteredTable;
+        }
+        //Jorge Luis|29/01/2018|RW-93
+        /*Método para*/
+        public string GetStringByIdInDataTable(DataTable table, string nameColumn1, string IdRow, string nameColumn2)
+        {
+            //DataRow[] foundRow;
+            //foundRow = table.Select(nameColumn + " Like '"+ IdRow + "%' ");
+            string descripcion = "";
+            try
+            {
+                descripcion = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1).Trim() == IdRow).
+                            Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                descripcion = "";
+            }
+            return descripcion;
         }
     }
 }

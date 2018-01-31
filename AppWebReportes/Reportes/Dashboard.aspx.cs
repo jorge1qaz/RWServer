@@ -18,9 +18,11 @@ namespace AppWebReportes.Reportes
         DateTime lastUpdate = new DateTime();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(" => " + Request.Browser.Type.ToString() + " <= "); //Contains
-            Response.Write(" => " + Request.Browser.Version.ToString() + " <= ");
-            Response.Write(" => " + Request.Browser.MajorVersion.ToString() + " <= ");
+            //Response.Write(" => " + Request.Browser.Type.ToString() + " <= ");
+            //Response.Write(" => " + Request.Browser.Version.ToString() + " <= ");
+            //Response.Write(" => " + Request.Browser.MajorVersion.ToString() + " <= ");
+            //if (decimal.Parse(Request.Browser.Version) < decimal.Parse(Request.Browser.MajorVersion.ToString()))
+            //    Response.Write("<script>alert('Tu navegador no está actualizado, las funcionalidades de la aplicación no serán iguales a menos que tengas actualizado tu navegador.')</script>");
 
             String rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null) //Compruebo que el usuario se haya logeado

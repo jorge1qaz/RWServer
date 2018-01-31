@@ -12,13 +12,19 @@ namespace AppWebReportes.Reportes
         Paths paths = new Paths();
         MergeTables mergeTables = new MergeTables();
         string list1 = "";
+        decimal totalSaldoInicial = 0;
+        decimal totalIngresos = 0;
+        decimal totalEgresos = 0;
+        int frecuencia = 0;
+        int periodo = 0;
+        bool moneda = true; // Por defecto en soles
         DateTime fechaInicial = new DateTime();
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            //DataTable dataTable = new DataTable();
-            //dataTable = GetFullTables();
+            frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString());
+            periodo     = int.Parse(Session["FCDPeriodo"].ToString());
             try
             {
                 fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString());
@@ -27,16 +33,21 @@ namespace AppWebReportes.Reportes
             {
                 fechaInicial = DateTime.Now;
             }
-            //Response.Write(Session["FCDFechaInicio"].ToString());
-            //grdPruebas.DataSource = GetTableEstadoInicial();
-            //grdPruebas.DataBind();
+            try
+            {
+                if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
+                    moneda = true;
+                else
+                    moneda = false;
+            }
+            catch (Exception)
+            {
 
-            //GetTableEstadoInicial();
-
-            MetodoDePruebas();
+                throw;
+            }
+            GenerateReport();
         }
-        
-        public void MetodoDePruebas() {
+        public void GenerateReport() {
             try
             {
                 fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString());
@@ -45,89 +56,152 @@ namespace AppWebReportes.Reportes
             {
                 fechaInicial = DateTime.Now;
             }
-            string cadenaDataSetListDatos = GetPathFile("ListDatos");       // Declaración de la varaible que contendrá todo el dataSet
-            DataSet dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(cadenaDataSetListDatos); // Deserealización del dataSet
-            DataTable tableInit = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
-            DataTable tableFiltered = mergeTables.GetTableByDate(tableInit, fechaInicial);
+            DataSet dataSetListDatos                = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
+            DataTable tableInitDatosSaldoInicial    = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
+            DataTable tableInitDatosIngresos        = dataSetListDatos.Tables["dataTableListIngresosDatos"];
+            DataTable tableInitDatosEgresos         = dataSetListDatos.Tables["dataTableListEgresosDatos"];
 
-            DataTable dataTableListSaldoInicialDatosListNames = mergeTables.GetListDist(tableFiltered, "a");
-            //decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue)
+            DataSet dataSetListDescripcion              = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
+            DataTable tableInitDescripcionSaldoInicial  = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
+            DataTable tableInitDescripcionIngresos      = dataSetListDatos.Tables["dataTableListIngresosDescripcion"];
+            DataTable tableInitDescripcionEgresos       = dataSetListDatos.Tables["dataTableListEgresosDescripcion"];
+            DataTable tableInitDescripcionCostumer      = dataSetListDatos.Tables["dataTableListCustumers"];
 
-            decimal valoorrrr = mergeTables.GetTotalByTable(tableFiltered, dataTableListSaldoInicialDatosListNames, "a", "c", "d", "g", "S");
+            // Tablas con descripciones
+            DataTable tableNamesOnlySaldoInicial            = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
 
-            Response.Write(valoorrrr.ToString());
+            //DataTable tableInitdataTableListCustumers     = dataSetListDescripcion.Tables["dataTableListCustumers"];
+            DataTable tableNamesOnlyListCustumers           = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
 
-            DataTable tableSumByCount = new DataTable();
+            ///DataTable tableNamesOnlyIngresosClientes     = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
+            // Fin Tablas con descripciones
 
-            int frecuencia = int.Parse(Session["FCDFrecuencia"].ToString()); // 7 días
-            int periodo = int.Parse(Session["FCDPeriodo"].ToString()); // Periodo es de 10
-            int frecuenciaIncremetado = frecuencia;
-            //DataColumn[] column = new DataColumn[periodo];
-
+            DataTable tableReport = new DataTable();
+            int frecuenciaIncremetado = 0;
             List<string> listDates = new List<string>();
-
             DataColumn column = new DataColumn();
             #region Declaración de columnas
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Cuenta";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Documento";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Número";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Moneda";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Descripción";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Fecha documento";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Fecha vencimiento";
-            tableSumByCount.Columns.Add(column);
+            tableReport.Columns.Add(column);
 
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
-            column.ColumnName = "SolesDolares vencidos";
-            tableSumByCount.Columns.Add(column);
+            column.ColumnName = "Vencidos";
+            tableReport.Columns.Add(column);
             #endregion
 
             for (int i = 0; i < periodo; i++)
             { 
                 frecuenciaIncremetado += frecuencia;
-
                 Type columnType = Type.GetType("System.Decimal");
                 String columnName = fechaInicial.AddDays(frecuenciaIncremetado - 1).ToShortDateString().Trim();
                 listDates.Add(columnName);
-                tableSumByCount.Columns.Add(new DataColumn(columnName, columnType));
+                tableReport.Columns.Add(new DataColumn(columnName, columnType));
             }
-            DataRow row = tableSumByCount.NewRow();
-
-            int val = 5; 
-            for (int i = 0; i < listDates.Count; i++)
+            DataRow row = tableReport.NewRow();
+            row["Cuenta"]       = "Saldo";
+            row["Descripción"]  = "Saldo inicial";
+            tableReport.Rows.Add(row);
+            
+            DataTable tableResultSaldoInicial = mergeTables.GetTotalByTable(mergeTables.GetTableByDate(tableInitDatosSaldoInicial, fechaInicial), 
+                tableNamesOnlySaldoInicial, "a", "c", "d", "g", "D", listDates[0], moneda); //True moneda soles
+            string nameByCuentaSaldoInicial = "";
+            foreach (DataRow dataRow in tableResultSaldoInicial.Rows)
             {
-                row[listDates[i]] = val++;
+                nameByCuentaSaldoInicial = mergeTables.GetStringByIdInDataTable(tableInitDescripcionSaldoInicial, "a", dataRow[0].ToString().Trim(), "b");
+                dataRow[4] = nameByCuentaSaldoInicial;
+                totalSaldoInicial += decimal.Parse(dataRow[8].ToString());
 
             }
-            tableSumByCount.Rows.Add(row);
-            grdPruebas.DataSource = tableSumByCount; // GridView de pruebas
+            tableReport.Merge(tableResultSaldoInicial);
+            row = tableReport.NewRow();
+            row["Descripción"] = "Total saldo inicial";
+            row[listDates[0]] = totalSaldoInicial;
+            tableReport.Rows.Add(row);
+
+            //Ingresos
+            //Response.Write(" fechaInicial: " + fechaInicial.ToString() + " fecha para ingresos: " + fechaInicial.AddDays(frecuencia).ToString());
+            DataTable tableResultIngresos = mergeTables.GetTotalByTable(mergeTables.GetTableByDate(tableInitDatosSaldoInicial, fechaInicial.AddDays(frecuencia)), 
+                tableNamesOnlySaldoInicial, "a", "c", "d", "g", "D", listDates[0], moneda); //True moneda soles
+            string nameByCuentaIngresos = "";
+            foreach (DataRow dataRow in tableResultSaldoInicial.Rows)
+            {
+                nameByCuentaIngresos = mergeTables.GetStringByIdInDataTable(tableInitDescripcionSaldoInicial, "a", dataRow[0].ToString().Trim(), "b");
+                dataRow[4] = nameByCuentaIngresos;
+                totalIngresos += decimal.Parse(dataRow[8].ToString());
+            }
+
+            row = tableReport.NewRow();
+            row["Descripción"] = "Ingresos";
+            tableReport.Rows.Add(row);
+
+            row = tableReport.NewRow();
+            row["Descripción"] = "Total ingresos";
+            row[listDates[0]] = "0.0";
+            tableReport.Rows.Add(row);
+
+            row = tableReport.NewRow();
+            row["Descripción"] = "Egresos";
+            tableReport.Rows.Add(row);
+
+            row = tableReport.NewRow();
+            row["Descripción"] = "Total egresos";
+            row[listDates[0]] = "0.0";
+            tableReport.Rows.Add(row);
+
+            row = tableReport.NewRow();
+            row["Descripción"] = "Saldo final";
+            row[listDates[0]] = totalSaldoInicial + totalIngresos + totalEgresos ;
+            tableReport.Rows.Add(row);
+            
+            for (int i = 4; i < listDates.Count; i++)
+                row[listDates[i]] = totalSaldoInicial + totalIngresos + totalEgresos;
+
+            DataRow[] customerRow = tableReport.Select("Cuenta = 'Saldo'");
+
+            customerRow[0][listDates[0]] = totalSaldoInicial + totalIngresos + totalEgresos;
+            customerRow[0][listDates[1]] = totalSaldoInicial + totalIngresos + totalEgresos;
+
+            //grdPruebas.DataSource = tableReport; // GridView de pruebas
+            //grdPruebas.DataBind();
+
+
+            //Pruebas ingresos
+            //DataTable pruebas = mergeTables.GetTableByDate(tableInitDatosIngresos, fechaInicial.AddDays(frecuencia));
+            grdPruebas.DataSource = tableInitDatosIngresos;
             grdPruebas.DataBind();
+
         }
         
         //Jorge Luis|19/01/2018|RW-93
@@ -155,7 +229,6 @@ namespace AppWebReportes.Reportes
             {
                 Response.Write("tabla " + item[0].ToString());
             }
-            //Response.Write();
             Response.Write("Aquí " + valooooor.ToString());
             int frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString());
             int periodo     = int.Parse(Session["FCDPeriodo"].ToString());
