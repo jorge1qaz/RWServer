@@ -624,9 +624,11 @@ namespace BusinessLayer
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
-        public DataTable GetTableByDate(DataTable table, DateTime startDate)
+        public DataTable GetTableByDate(DataTable table, DateTime startDate, DateTime endDate, int columnNumber)
         {
-            var filteredRows = from row in table.Rows.OfType<DataRow>() where (DateTime)row[1] < startDate select row;
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where (DateTime)row[columnNumber] > startDate
+                               where (DateTime)row[columnNumber] < endDate select row;
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             return filteredTable;
@@ -649,5 +651,29 @@ namespace BusinessLayer
             }
             return descripcion;
         }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable GetTableByFilters(DataTable table, DateTime startDate, DateTime endDate, Int16 columnNumber, string filterId1, Int16 columnNumberFilterId1, string filterId2, Int16 columnNumberFilterId2)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where (DateTime)row[columnNumber] > startDate
+                               where (DateTime)row[columnNumber] <= endDate
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable GetTableByFilters(DataTable table, string filterId1, Int16 columnNumberFilterId1)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where (string)row[columnNumberFilterId1] == filterId1
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+
     }
 }
