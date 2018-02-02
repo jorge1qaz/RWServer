@@ -48,19 +48,22 @@ namespace AppWebReportes.Reportes
             frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString());
             periodo     = int.Parse(Session["FCDPeriodo"].ToString());
 
-            dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
-            tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
-            tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
-            tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
+            if (!Page.IsPostBack)
+            {
+                dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
+                tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
+                tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
+                tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
 
-            dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
-            tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
-            tableInitDescripcionIngresos = dataSetListDatos.Tables["dataTableListIngresosDescripcion"];
-            tableInitDescripcionEgresos = dataSetListDatos.Tables["dataTableListEgresosDescripcion"];
-            tableInitDescripcionCostumer = dataSetListDatos.Tables["dataTableListCustumers"];
+                dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
+                tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
+                tableInitDescripcionIngresos = dataSetListDatos.Tables["dataTableListIngresosDescripcion"];
+                tableInitDescripcionEgresos = dataSetListDatos.Tables["dataTableListEgresosDescripcion"];
+                tableInitDescripcionCostumer = dataSetListDatos.Tables["dataTableListCustumers"];
 
-            tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
-            tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+                tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
+                tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+            }
             try
             {
                 fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString());
@@ -231,11 +234,72 @@ namespace AppWebReportes.Reportes
                 Response.Write(" i " + item + " f ");
             }
             DataTable tempDtListDistCuentas = mergeTables.GetListDist(tableInitDatosIngresos, "a");
-            DataTable tempSoles = mergeTables.GetTableByFilters(tableInitDatosIngresos, "S", 6);
-            DataTable tempDolares = mergeTables.GetTableByFilters(tableInitDatosIngresos, "D", 6);
 
-            grdPruebas.DataSource = tempDolares;
+            DataTable listCuentasTable = mergeTables.GetListDist(tableInitDatosIngresos, "a");
+
+            List<string> listCuentas    = new List<string>();
+            List<string> listDocumentos = new List<string>();
+
+            foreach (DataRow item in listCuentasTable.Rows)
+                listCuentas.Add(item[0].ToString());
+            
+            DataTable[] tableFirstBlockIngresos = new DataTable[listCuentas.Count + 1];
+
+            for (int i = 0; i < listCuentas.Count; i++)
+                tableFirstBlockIngresos[i] = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", listCuentas[i], "a");
+
+            DataTable[] tableSecondBlockIngresosSoles = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableSecondBlockIngresosDolares= new DataTable[listCuentas.Count + 1];
+
+            for (int i = 0; i < listCuentas.Count; i++)
+                tableSecondBlockIngresosSoles[i] = mergeTables.GetTableByFilters(tableFirstBlockIngresos[i], "b", "S", "f");
+
+            for (int i = 0; i < listCuentas.Count; i++)
+                tableSecondBlockIngresosDolares[i] = mergeTables.GetTableByFilters(tableFirstBlockIngresos[i], "b", "D", "f");
+
+            DataTable[] tableThirdBlockIngresosCFVSoles = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableThirdBlockIngresosSFVSoles = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableThirdBlockIngresosCFVDolares = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableThirdBlockIngresosSFVDolares = new DataTable[listCuentas.Count + 1];
+            
+            for (int i = 0; i < listCuentas.Count; i++) // Obtienes las tablas básicas, pero por cada cuenta
+            {
+                tableThirdBlockIngresosCFVSoles[i]  = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], conFechaVencimiento, DateTime.Now, 3);
+                tableThirdBlockIngresosSFVSoles[i]  = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], sinFechaVencimiento, DateTime.Now, 3);
+                tableThirdBlockIngresosCFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], conFechaVencimiento, DateTime.Now, 3);
+                tableThirdBlockIngresosSFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], sinFechaVencimiento, DateTime.Now, 3);
+            }
+
+            //Esto se debe de repetir en bucle joder
+            for (int i = 0; i < listCuentas.Count; i++) //si se tuviese 20 cuentas, el length sería 20
+            {
+                DataTable[] t1 = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVSoles[i], "g"); // i= 0 es la primera cuenta, g enumerados por ccod_doc
+                for (int j = 0; j < t1.Length; j++)
+                {
+                    DataTable[] t1A = mergeTables.GetTablesGroupsByColumn(t1[j], "e");
+                    for (int k = 0; k < length; k++)
+                    {
+                        DataTable xxx = mergeTables.GenerateResultBytable(t1A[1], 7, 8, "pruebas");
+
+                    }
+                }
+
+            }
+            
+            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVSoles[0], "g");
+            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosSFVSoles[0], "g");
+            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVDolares[0], "g");
+            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosSFVDolares[0], "g");
+            //DataTable[] temp2   = mergeTables.GetTablesGroupsByColumn(temp[0], "e");
+            
+            //DataTable tempd = mergeTables.GenerateResultBytable(t1A[1], 7, 8, "pruebas");
+            grdPruebas.DataSource = tempd;
             grdPruebas.DataBind();
+            
+
+            //DataTable tempSoles = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", "S", "f");
+            //DataTable tempDolares = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", "D", "f");
+            
         }
     }
 }

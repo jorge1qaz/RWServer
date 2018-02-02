@@ -653,27 +653,157 @@ namespace BusinessLayer
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
-        public DataTable GetTableByFilters(DataTable table, DateTime startDate, DateTime endDate, Int16 columnNumber, string filterId1, Int16 columnNumberFilterId1, string filterId2, Int16 columnNumberFilterId2)
+        public DataTable GetTableByFilters(DataTable table, DateTime startDate, DateTime endDate, Int16 columnNumberDate)
         {
             var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where (DateTime)row[columnNumber] > startDate
-                               where (DateTime)row[columnNumber] <= endDate
+                               where (DateTime)row[columnNumberDate] > startDate
+                               where (DateTime)row[columnNumberDate] < endDate
                                select row;
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             return filteredTable;
         }
         //Jorge Luis|19/01/2018|RW-93
-        /*Método para*/
-        public DataTable GetTableByFilters(DataTable table, string filterId1, Int16 columnNumberFilterId1)
+        /*Método para clonar una tabla según un sólo filtro*/
+        public DataTable GetTableByFilters(DataTable table, String filterId1, String columnNameFilterId1)
         {
             var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where (string)row[columnNumberFilterId1] == filterId1
+                               where row.Field<String>(columnNameFilterId1) == filterId1
                                select row;
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             return filteredTable;
         }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según un sólo filtro*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where row.Field<String>(columnNameFilterId1) == filterId1
+                               orderby row.Field<String>(ColumnNameOrdering) descending
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según dos filtros*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where row.Field<String>(columnNameFilterId1) == filterId1
+                               where row.Field<String>(columnNameFilterId2) == filterId2
+                               orderby row.Field<String>(ColumnNameOrdering) descending
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según un sólo filtro*/
+        public DataTable GetTableByFilters(DataTable table, DateTime startDate, DateTime endDate, String columnNameDate, String filterId1, String columnNameFilterId1)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where row.Field<DateTime>(columnNameDate) > startDate
+                               where row.Field<DateTime>(columnNameDate) < endDate
+                               where row.Field<String>(columnNameFilterId1) == filterId1
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //exclusivo ps papa
+        public DataTable[] GetTablesGroupsByColumn(DataTable table, String columnNameID)
+        {                                                               //ccod_doc          //
+            DataTable newTable = new DataTable();
+            DataTable listDistTable = GetListDist(table, columnNameID); // Table, ccod_doc
+            List<String> listIdsDist = new List<string>();              // Lista de ccod_doc
 
+            foreach (DataRow item in listDistTable.Rows)
+                listIdsDist.Add(item[0].ToString());                // Agregamos a la lista todos los códigos de forma única (01, 07, ..)
+                                                                    
+            DataTable[] temporalTable = new DataTable[listIdsDist.Count];
+            for (int i = 0; i <= listIdsDist.Count - 1; i++)
+                temporalTable[i] = GetTableByFilters(table, listIdsDist[i].ToString(), columnNameID);   // table, i, "g"
+            
+            return temporalTable;
+        }
+        //Devuelve una tabla con una única fila con los resultados esperados
+        public DataTable GenerateResultBytable(DataTable table, Int16 columnNameDebe, Int16 columnNameHaber, string columnNameResult) //de tipo datatable
+        {                                                               //ccod_doc          //
+            decimal resultado = 0;
+            decimal debe = 0;
+            decimal haber = 0;
+
+            foreach (DataRow item in table.Rows)
+            {
+                try
+                { debe += decimal.Parse(item[columnNameDebe].ToString()); }
+                catch (Exception)
+                { debe = 0; }
+                try
+                { haber = decimal.Parse(item[columnNameHaber].ToString()); }
+                catch (Exception)
+                { haber = 0; }
+            }
+            resultado = debe - haber;
+
+            //generar la estructura del reporte, pasarle como parámetro el número de columna al cual debe de enviar el resultado, joder
+
+            DataTable tableSumByCount = new DataTable(); // Instancia de tabla la cual se exportará al reporte
+            DataColumn column = new DataColumn();
+            DataRow row;
+            #region Declaración de columnas
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Cuenta";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Documento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Número";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Moneda";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Descripción";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha documento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha vencimiento";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Vencidos";
+            tableSumByCount.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.Decimal");
+            column.ColumnName = columnNameResult;
+            tableSumByCount.Columns.Add(column);
+            #endregion
+            
+            row = tableSumByCount.NewRow();
+            row[columnNameResult] = resultado;
+            tableSumByCount.Rows.Add(row);
+
+            return tableSumByCount;
+        }
     }
 }
