@@ -714,96 +714,107 @@ namespace BusinessLayer
         }
         //exclusivo ps papa
         public DataTable[] GetTablesGroupsByColumn(DataTable table, String columnNameID)
-        {                                                               //ccod_doc          //
-            DataTable newTable = new DataTable();
-            DataTable listDistTable = GetListDist(table, columnNameID); // Table, ccod_doc
-            List<String> listIdsDist = new List<string>();              // Lista de ccod_doc
+        {
+            try
+            {
+                 DataTable listDistTable = GetListDist(table, columnNameID); // Table, ccod_doc
+                List<String> listIdsDist = new List<string>();              // Lista de ccod_doc
 
-            foreach (DataRow item in listDistTable.Rows)
-                listIdsDist.Add(item[0].ToString());                // Agregamos a la lista todos los códigos de forma única (01, 07, ..)
-                                                                    
-            DataTable[] temporalTable = new DataTable[listIdsDist.Count];
-            for (int i = 0; i <= listIdsDist.Count - 1; i++)
-                temporalTable[i] = GetTableByFilters(table, listIdsDist[i].ToString(), columnNameID);   // table, i, "g"
-            
-            return temporalTable;
+                foreach (DataRow item in listDistTable.Rows)
+                    listIdsDist.Add(item[0].ToString());                // Agregamos a la lista todos los códigos de forma única (01, 07, ..)
+
+                DataTable[] temporalTable = new DataTable[listIdsDist.Count];
+                for (int i = 0; i <= listIdsDist.Count - 1; i++)
+                    temporalTable[i] = GetTableByFilters(table, listIdsDist[i].ToString(), columnNameID);   // table, i, "g"
+                return temporalTable;
+            }
+            catch {
+                DataTable[] tableEmpty = new DataTable[0];
+                return tableEmpty;
+            }
         }
         //Devuelve una tabla con una única fila con los resultados esperados
         public DataTable GenerateResultBytable(DataTable table, Int16 columnNameDebe, Int16 columnNameHaber, string columnNameResult) //de tipo datatable
         {                                                               //ccod_doc          //
-            decimal resultado = 0;
-            decimal debe = 0;
-            decimal haber = 0;
-
-            foreach (DataRow item in table.Rows)
+            try
             {
-                try
-                { debe += decimal.Parse(item[columnNameDebe].ToString()); }
-                catch (Exception)
-                { debe = 0; }
-                try
-                { haber = decimal.Parse(item[columnNameHaber].ToString()); }
-                catch (Exception)
-                { haber = 0; }
+                decimal resultado = 0, debe = 0, haber = 0;
+
+                foreach (DataRow item in table.Rows)
+                {
+                    try
+                    { debe += decimal.Parse(item[columnNameDebe].ToString()); }
+                    catch (Exception)
+                    { debe = 0; }
+                    try
+                    { haber += decimal.Parse(item[columnNameHaber].ToString()); }
+                    catch (Exception)
+                    { haber = 0; }
+                }
+                resultado = debe - haber;
+
+                //generar la estructura del reporte, pasarle como parámetro el número de columna al cual debe de enviar el resultado, joder
+
+                DataTable tableSumByCount = new DataTable(); // Instancia de tabla la cual se exportará al reporte
+                DataColumn column = new DataColumn();
+                DataRow row;
+                #region Declaración de columnas
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Cuenta";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Documento";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Número";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Moneda";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Descripción";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Fecha documento";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Fecha vencimiento";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "Vencidos";
+                tableSumByCount.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.Decimal");
+                column.ColumnName = columnNameResult;
+                tableSumByCount.Columns.Add(column);
+                #endregion
+
+                row = tableSumByCount.NewRow();
+                row[columnNameResult] = resultado;
+                tableSumByCount.Rows.Add(row);
+
+                return tableSumByCount;
             }
-            resultado = debe - haber;
-
-            //generar la estructura del reporte, pasarle como parámetro el número de columna al cual debe de enviar el resultado, joder
-
-            DataTable tableSumByCount = new DataTable(); // Instancia de tabla la cual se exportará al reporte
-            DataColumn column = new DataColumn();
-            DataRow row;
-            #region Declaración de columnas
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Cuenta";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Documento";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Número";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Moneda";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Descripción";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Fecha documento";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Fecha vencimiento";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "Vencidos";
-            tableSumByCount.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.Decimal");
-            column.ColumnName = columnNameResult;
-            tableSumByCount.Columns.Add(column);
-            #endregion
-            
-            row = tableSumByCount.NewRow();
-            row[columnNameResult] = resultado;
-            tableSumByCount.Rows.Add(row);
-
-            return tableSumByCount;
+            catch
+            {
+                DataTable tableEmpty = new DataTable();
+                return tableEmpty;
+            }
         }
     }
 }

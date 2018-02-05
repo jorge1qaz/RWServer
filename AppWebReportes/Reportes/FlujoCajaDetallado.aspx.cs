@@ -45,8 +45,14 @@ namespace AppWebReportes.Reportes
         /*Método para*/
         protected void Page_Load(object sender, EventArgs e)
         {
-            frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString());
-            periodo     = int.Parse(Session["FCDPeriodo"].ToString());
+            try
+            { frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString()); }
+            catch (Exception)
+            { frecuencia = 7; }
+            try
+            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()); }
+            catch (Exception)
+            { periodo = 12; }
 
             if (!Page.IsPostBack)
             {
@@ -210,7 +216,15 @@ namespace AppWebReportes.Reportes
         public string GetPathFile(string nameFile)
         {
             String rootPath = Server.MapPath("~");
-            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            string JsonDataset = "";
+            try
+            {
+                JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            }
+            catch (Exception)
+            {
+                JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            }
             return JsonDataset;
         }
         public void temp()
@@ -265,41 +279,57 @@ namespace AppWebReportes.Reportes
             for (int i = 0; i < listCuentas.Count; i++) // Obtienes las tablas básicas, pero por cada cuenta
             {
                 tableThirdBlockIngresosCFVSoles[i]  = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], conFechaVencimiento, DateTime.Now, 3);
-                tableThirdBlockIngresosSFVSoles[i]  = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], sinFechaVencimiento, DateTime.Now, 3);
+                tableThirdBlockIngresosSFVSoles[i]  = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], sinFechaVencimiento, DateTime.Now, 3); // Tú tú
                 tableThirdBlockIngresosCFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], conFechaVencimiento, DateTime.Now, 3);
                 tableThirdBlockIngresosSFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], sinFechaVencimiento, DateTime.Now, 3);
             }
+            DataTable pum = new DataTable();
+            pum = resultado2(tableThirdBlockIngresosSFVSoles, 0);
 
-            //Esto se debe de repetir en bucle joder
-            for (int i = 0; i < listCuentas.Count; i++) //si se tuviese 20 cuentas, el length sería 20
+            grdPruebas.DataSource = pum;
+            grdPruebas.DataBind();
+        }
+        public DataTable resultado(DataTable[] tableBlock, Int16 index) {
+            DataTable[] tableContentDocumentoSingle = new DataTable[10000];
+            DataTable[] tableContentDocumentos      = new DataTable[10000];
+            DataTable tempDoc = new DataTable();
+            for (int j = 0; j < tableBlock.Length; j++) // Por cada third block SFVSoles
             {
-                DataTable[] t1 = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVSoles[i], "g"); // i= 0 es la primera cuenta, g enumerados por ccod_doc
-                for (int j = 0; j < t1.Length; j++)
+                DataTable[] tableArrayCodigoDocumento = mergeTables.GetTablesGroupsByColumn(tableBlock[index], "g");  //Código de doc por cod doc
+                for (int k = 0; k < tableArrayCodigoDocumento.Length; k++)
                 {
-                    DataTable[] t1A = mergeTables.GetTablesGroupsByColumn(t1[j], "e");
-                    for (int k = 0; k < length; k++)
-                    {
-                        DataTable xxx = mergeTables.GenerateResultBytable(t1A[1], 7, 8, "pruebas");
+                    DataTable[] tableArrayNumeroDocumento = mergeTables.GetTablesGroupsByColumn(tableArrayCodigoDocumento[k], "e"); // Documento por documento
+                    tableContentDocumentoSingle = new DataTable[tableArrayNumeroDocumento.Length];  // Instancia un nuevo arreglo donde almacenar los valores de doc por doc
 
+                    for (int i = 0; i < tableArrayNumeroDocumento.Length; i++) // Llena los resultados de la tabla en un array tableArrayNumeroDocumento
+                        tableContentDocumentoSingle[i] = mergeTables.GenerateResultBytable(tableArrayNumeroDocumento[i], 7, 8, "resss");
+
+                    for (int i = 0; i < tableContentDocumentoSingle.Length; i++)
+                    {
+                        tableContentDocumentoSingle[0].Merge(tableContentDocumentoSingle[i]);
+                        if (i == tableContentDocumentoSingle.Length - 1 && k == 0 && j == 0)
+                        {
+                            tempDoc.Merge(tableContentDocumentoSingle[0]);
+                        }
                     }
                 }
-
             }
-            
-            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVSoles[0], "g");
-            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosSFVSoles[0], "g");
-            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosCFVDolares[0], "g");
-            //DataTable[] temp    = mergeTables.GetTablesGroupsByColumn(tableThirdBlockIngresosSFVDolares[0], "g");
-            //DataTable[] temp2   = mergeTables.GetTablesGroupsByColumn(temp[0], "e");
-            
-            //DataTable tempd = mergeTables.GenerateResultBytable(t1A[1], 7, 8, "pruebas");
-            grdPruebas.DataSource = tempd;
-            grdPruebas.DataBind();
-            
+            //return tempDoc;
+            return tempDoc;
+        }
+        public DataTable resultado2(DataTable[] tableBlock, Int16 index)
+        {
+            DataTable[] tableArrayDocumentos = mergeTables.GetTablesGroupsByColumn(tableBlock[index], "g"); // Array con todos los documentos  (01, 07)
+            DataTable[] tableArrayNumerosDocumento = new DataTable[10000];                                                         // ejem 12
+            for (int i = 0; i < tableArrayDocumentos.Length; i++)                                           // Según la cantidad de documentos, ejem 2
+                tableArrayNumerosDocumento = mergeTables.GetTablesGroupsByColumn(tableArrayDocumentos[i], "e"); //Array con todos los números de documentos, ejem 01 => 8 facturas
 
-            //DataTable tempSoles = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", "S", "f");
-            //DataTable tempDolares = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", "D", "f");
-            
+            for (int i = 0; i < tableArrayDocumentos.Length; i++)                               // Array con los números de documento ejem 0005, 0001
+            {
+                
+            }
+            DataTable nuevo = new DataTable();
+            return nuevo;
         }
     }
 }
