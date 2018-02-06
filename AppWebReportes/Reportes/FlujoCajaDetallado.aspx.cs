@@ -9,9 +9,9 @@ namespace AppWebReportes.Reportes
 {
     public partial class FlujoCajaDetallado : System.Web.UI.Page
     {
+        #region Declaración de variables
         Paths paths                 = new Paths();
         MergeTables mergeTables     = new MergeTables();
-        string  list1               = "";
         decimal totalSaldoInicial   = 0;
         decimal totalIngresos       = 0;
         decimal totalEgresos        = 0;
@@ -40,7 +40,7 @@ namespace AppWebReportes.Reportes
         DataTable tableReport                       = new DataTable();
 
         List<string> listDates = new List<string>();
-
+        #endregion
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
         protected void Page_Load(object sender, EventArgs e)
@@ -56,6 +56,7 @@ namespace AppWebReportes.Reportes
 
             if (!Page.IsPostBack)
             {
+                #region Fill tables
                 dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
                 tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
                 tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
@@ -69,15 +70,12 @@ namespace AppWebReportes.Reportes
 
                 tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
                 tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+                #endregion
             }
             try
-            {
-                fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString());
-            }
+            { fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString()); }
             catch (Exception)
-            {
-                fechaInicial = DateTime.Now;
-            }
+            { fechaInicial = DateTime.Now; }
             try
             {
                 if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
@@ -137,7 +135,6 @@ namespace AppWebReportes.Reportes
                 listDates.Add(columnName);
                 tableReport.Columns.Add(new DataColumn(columnName, columnType));
             }
-            //GenerateReportSaldoInicial();
             temp();
         }
         public void GenerateReportSaldoInicial() {
@@ -207,9 +204,6 @@ namespace AppWebReportes.Reportes
 
             grdPruebas.DataSource = tableReport; // GridView de pruebas
             grdPruebas.DataBind();
-
-            //grdPruebas.DataSource = mergeTables.GetTableByDate(tableInitDatosIngresos, Convert.ToDateTime("30/12/1888"), fechaInicial.AddDays(frecuencia), 3);
-            //grdPruebas.DataBind();
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
@@ -218,12 +212,11 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~");
             string JsonDataset = "";
             try
-            {
-                JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
-            }
+            { JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'"); }
             catch (Exception)
             {
-                JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptFldcd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+                Response.Write("<script>alert('Ha ocurrido un error inesperado, vuelva a ingresar al reporte.')</script>");
+                Response.Redirect("~/Reportes/Dashboard.aspx");
             }
             return JsonDataset;
         }
@@ -248,7 +241,6 @@ namespace AppWebReportes.Reportes
                 Response.Write(" i " + item + " f ");
             }
             DataTable tempDtListDistCuentas = mergeTables.GetListDist(tableInitDatosIngresos, "a");
-
             DataTable listCuentasTable = mergeTables.GetListDist(tableInitDatosIngresos, "a");
 
             List<string> listCuentas    = new List<string>();
@@ -271,10 +263,10 @@ namespace AppWebReportes.Reportes
             for (int i = 0; i < listCuentas.Count; i++)
                 tableSecondBlockIngresosDolares[i] = mergeTables.GetTableByFilters(tableFirstBlockIngresos[i], "b", "D", "f");
 
-            DataTable[] tableThirdBlockIngresosCFVSoles = new DataTable[listCuentas.Count + 1];
-            DataTable[] tableThirdBlockIngresosSFVSoles = new DataTable[listCuentas.Count + 1];
-            DataTable[] tableThirdBlockIngresosCFVDolares = new DataTable[listCuentas.Count + 1];
-            DataTable[] tableThirdBlockIngresosSFVDolares = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableThirdBlockIngresosCFVSoles = new DataTable[listCuentas.Count];
+            DataTable[] tableThirdBlockIngresosSFVSoles = new DataTable[listCuentas.Count];
+            DataTable[] tableThirdBlockIngresosCFVDolares = new DataTable[listCuentas.Count];
+            DataTable[] tableThirdBlockIngresosSFVDolares = new DataTable[listCuentas.Count];
             
             for (int i = 0; i < listCuentas.Count; i++) // Obtienes las tablas básicas, pero por cada cuenta
             {
@@ -283,53 +275,125 @@ namespace AppWebReportes.Reportes
                 tableThirdBlockIngresosCFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], conFechaVencimiento, DateTime.Now, 3);
                 tableThirdBlockIngresosSFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], sinFechaVencimiento, DateTime.Now, 3);
             }
-            DataTable pum = new DataTable();
-            pum = resultado2(tableThirdBlockIngresosSFVSoles, 0);
+            //DataTable pum = new DataTable();
+            //pum = resultado2(tableThirdBlockIngresosSFVSoles, 0); // trigger
 
-            grdPruebas.DataSource = pum;
+            //grdPruebas.DataSource = pum;
+            //grdPruebas.DataBind();
+
+            DataTable[] arraySFVS = new DataTable[tableThirdBlockIngresosSFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
+            DataTable[] arraySFVD = new DataTable[tableThirdBlockIngresosSFVDolares.Length];
+
+            for (Int16 i = 0; i < tableThirdBlockIngresosSFVSoles.Length; i++)
+            {
+                arraySFVS[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosSFVSoles, i, true);
+                arraySFVS[0].Merge(arraySFVS[i]);
+            }
+            for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
+            {
+                arraySFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosSFVDolares, i, true);
+                arraySFVD[0].Merge(arraySFVD[i]);
+            }
+            arraySFVS[0].Merge(arraySFVD[0]);
+            grdPruebas.DataSource = arraySFVS[0];
             grdPruebas.DataBind();
         }
-        public DataTable resultado(DataTable[] tableBlock, Int16 index) {
-            DataTable[] tableContentDocumentoSingle = new DataTable[10000];
-            DataTable[] tableContentDocumentos      = new DataTable[10000];
-            DataTable tempDoc = new DataTable();
-            for (int j = 0; j < tableBlock.Length; j++) // Por cada third block SFVSoles
-            {
-                DataTable[] tableArrayCodigoDocumento = mergeTables.GetTablesGroupsByColumn(tableBlock[index], "g");  //Código de doc por cod doc
-                for (int k = 0; k < tableArrayCodigoDocumento.Length; k++)
-                {
-                    DataTable[] tableArrayNumeroDocumento = mergeTables.GetTablesGroupsByColumn(tableArrayCodigoDocumento[k], "e"); // Documento por documento
-                    tableContentDocumentoSingle = new DataTable[tableArrayNumeroDocumento.Length];  // Instancia un nuevo arreglo donde almacenar los valores de doc por doc
 
-                    for (int i = 0; i < tableArrayNumeroDocumento.Length; i++) // Llena los resultados de la tabla en un array tableArrayNumeroDocumento
-                        tableContentDocumentoSingle[i] = mergeTables.GenerateResultBytable(tableArrayNumeroDocumento[i], 7, 8, "resss");
-
-                    for (int i = 0; i < tableContentDocumentoSingle.Length; i++)
-                    {
-                        tableContentDocumentoSingle[0].Merge(tableContentDocumentoSingle[i]);
-                        if (i == tableContentDocumentoSingle.Length - 1 && k == 0 && j == 0)
-                        {
-                            tempDoc.Merge(tableContentDocumentoSingle[0]);
-                        }
-                    }
-                }
-            }
-            //return tempDoc;
-            return tempDoc;
-        }
-        public DataTable resultado2(DataTable[] tableBlock, Int16 index)
+        public DataTable ProcesarDatosSinFechaVencimiento(DataTable[] tableBlock, Int16 index, bool moneda)
         {
-            DataTable[] tableArrayDocumentos = mergeTables.GetTablesGroupsByColumn(tableBlock[index], "g"); // Array con todos los documentos  (01, 07)
-            DataTable[] tableArrayNumerosDocumento = new DataTable[10000];                                                         // ejem 12
-            for (int i = 0; i < tableArrayDocumentos.Length; i++)                                           // Según la cantidad de documentos, ejem 2
-                tableArrayNumerosDocumento = mergeTables.GetTablesGroupsByColumn(tableArrayDocumentos[i], "e"); //Array con todos los números de documentos, ejem 01 => 8 facturas
-
-            for (int i = 0; i < tableArrayDocumentos.Length; i++)                               // Array con los números de documento ejem 0005, 0001
+            string debe = "";
+            string haber = "";
+            if (moneda) // if true then soles else dólares
             {
-                
+                debe = "h"; haber = "i";
             }
-            DataTable nuevo = new DataTable();
-            return nuevo;
+            else
+            {
+                debe = "hd"; haber = "id";
+            }
+            DataTable finalFlash = new DataTable();
+            finalFlash = CalculoTotales(tableBlock[index], tableBlock[index].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c", "d"), "g", "e", debe, haber, "Vencidos");
+            return finalFlash; // Devuelve la tabla contenedora de todos los datos procesados, listos para la fuuuusión!
+        }
+        public DataTable CalculoTotales(DataTable tableDocumento, DataTable tableDist, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
+            string columnNameDebe, string columnNameHaber, string columnNameResult) { // columnNameFilter2 = número de documento [1]
+            double debe = 0, haber = 0;
+            decimal resultado = 0;
+            DataTable tableContent = new DataTable(); // Instancia de tabla la cual se exportará al reporte
+            DataColumn column = new DataColumn();
+            DataRow row;
+            #region Declaración de columnas
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Cuenta";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Documento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Número";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Moneda";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Descripción";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha documento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha vencimiento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Vencidos";
+            tableContent.Columns.Add(column);
+           
+            #endregion
+            foreach (DataRow item in tableDist.Rows)
+            {
+                try
+                { // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'debe'
+                    debe    = tableDocumento.AsEnumerable().Where(x => x.Field<string>(columnNameFilter1).Trim() == item[0].ToString()).
+                                Where(x => x.Field<string>(columnNameFilter2).Trim() == item[1].ToString()).Select(x => x.Field<double>(columnNameDebe)).Sum();
+                }
+                catch (Exception)
+                {   debe    = 0; }
+                try
+                { // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'haber'
+                    haber   = tableDocumento.AsEnumerable().Where(x => x.Field<string>(columnNameFilter1).Trim() == item[0].ToString()).
+                                Where(x => x.Field<string>(columnNameFilter2).Trim() == item[1].ToString()).Select(x => x.Field<double>(columnNameHaber)).Sum();
+                }
+                catch (Exception)
+                {   haber = 0; }
+                resultado   = Convert.ToDecimal(debe) - Convert.ToDecimal(haber);
+                DateTime fechaDocumento = DateTime.Parse(item[5].ToString());
+                DateTime fechaVencimiento = DateTime.Parse(item[6].ToString());
+                row         = tableContent.NewRow();
+                row["Cuenta"]               = item[2].ToString();
+                row["Documento"]            = item[1].ToString();
+                row["Número"]               = item[0].ToString();
+                row["Moneda"]               = item[3].ToString();
+                row["Descripción"]          = item[4].ToString();
+                row["Fecha documento"]      = fechaDocumento.ToShortDateString();
+                row["Fecha vencimiento"]    = fechaVencimiento.ToShortDateString();
+                row[columnNameResult] = resultado;
+                tableContent.Rows.Add(row);
+            }
+            return tableContent;
         }
     }
 }

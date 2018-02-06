@@ -141,14 +141,96 @@ namespace BusinessLayer
         }
 
         public DataTable GetListDist(DataTable table, string NameColumn) {
-            DataTable dtNew = new DataTable();
-            DataTable distincts = table.DefaultView.ToTable(true, NameColumn);
-            foreach (DataColumn dcName in table.Columns)
-                dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
-            foreach (DataRow drRow in distincts.Rows)
-                dtNew.ImportRow(table.Select(NameColumn + " = '" + drRow[0] + "'")[0]);
-            return distincts;
+            try
+            {
+                DataTable dtNew = new DataTable();
+                DataTable distincts = table.DefaultView.ToTable(true, NameColumn);
+                foreach (DataColumn dcName in table.Columns)
+                    dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
+                foreach (DataRow drRow in distincts.Rows)
+                    dtNew.ImportRow(table.Select(NameColumn + " = '" + drRow[0] + "'")[0]);
+                return distincts;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
+        public DataTable GetListDist2(DataTable table, string NameColumn1, string NameColumnFilter2, string NameColumn2)
+        {
+            try
+            {
+                DataTable dtNew = new DataTable();
+                DataTable distincts = table.DefaultView.ToTable(true, NameColumn1);
+                foreach (DataColumn dcName in table.Columns)
+                    dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
+                foreach (DataRow drRow in distincts.Rows)
+                    dtNew.ImportRow(table.Select(NameColumn1 + " = '" + drRow[0] + "'" )[0]);
+                return distincts;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+        public DataTable SelectRowDisctinct(DataTable dtData, string NameColumn1, string NameColumn2)
+        {
+            try
+            {
+                DataTable distintos = dtData.DefaultView.ToTable(true, NameColumn1, NameColumn2);
+                DataTable dtNew = new DataTable();
+                DataColumn column;
+                #region Declaración de columnas
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "documento";
+                dtNew.Columns.Add(column);
+
+                column = new DataColumn();
+                column.DataType = Type.GetType("System.String");
+                column.ColumnName = "numero";
+                dtNew.Columns.Add(column);
+                #endregion
+
+                DataRow row;
+                //foreach (DataRow drRow in distintos.Rows)
+                //{
+                //    dtNew.ImportRow(dtData.Select(NameColumn1 + " = '" + drRow[0].ToString() + "'")[0]);
+
+                //    row = dtNew.NewRow();
+                //    row["documento"] = drRow[0];
+                //    row["numero"] = drRow[1];
+                //    dtNew.Rows.Add(dtNew);
+                //}
+                return dtNew;
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+        //public DataTable GetListDist2(DataTable table, string NameColumn1, string NameColumn2)
+        //{
+        //    try
+        //    {
+        //        DataTable distintos = dtData.DefaultView.ToTable(true, sColumnName);
+        //        DataTable dtNew = new DataTable();
+        //        foreach (DataColumn dcName in dtData.Columns)
+        //        {
+        //            dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
+        //        }
+
+        //        foreach (DataRow drRow in distintos.Rows)
+        //        {
+        //            dtNew.ImportRow(dtData.Select(sColumnName + " = '" + drRow[0] + "'")[0]);
+        //        }
+        //        return dtNew;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw (ex);
+        //    }
+        //}
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
         public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue) {
@@ -588,7 +670,6 @@ namespace BusinessLayer
                 listValues[8] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal, jTotal);
                 listValues[9] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal, kTotal);
                 listValues[10] = KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal, lTotal);
-                //listValues[11] = KeepPositive(KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal), oTotal);
                 listValues[11] = KeepPositive(KeepPositive(aTotal + bTotal + cTotal + dTotal + eTotal + fTotal + gTotal + hTotal + iTotal + jTotal + kTotal + lTotal, mTotal), nTotal);
             }
             else
