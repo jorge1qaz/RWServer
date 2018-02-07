@@ -8,7 +8,7 @@ $(window).resize(function () {
         location.reload(true);
     }
 });
-
+$(".card-block").css("border-radius", "6px");
 var statusBtnFullScreen = 0;
 $("#btnFullScreen").on("click", function () {
     if (statusBtnFullScreen == 0) {

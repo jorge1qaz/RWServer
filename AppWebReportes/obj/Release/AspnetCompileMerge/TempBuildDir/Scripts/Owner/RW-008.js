@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    $("th").addClass("text-center");
     var fecha = new Date();
     var anio = fecha.getFullYear();
     var mes = fecha.getMonth() + 1;
@@ -49,6 +50,7 @@
             "processing": true,
             responsive: true,
             paging: false,
+            scrollCollapse: false,
             "language": idioma,
             dom: 'Bfrtip',
             info: false,

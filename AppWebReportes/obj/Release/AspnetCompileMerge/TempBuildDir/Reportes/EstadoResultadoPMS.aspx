@@ -16,7 +16,7 @@
     </nav>
     <br />
     <br />
-    <div class="container">
+    <div class="container"> <%--Se esta ocultando la clase "container" para hacer mas grande el reporte--%>
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-center">
@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Descripción</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Enero</th>
                                     <th>Febrero</th>
                                     <th>Marzo</th>
@@ -44,7 +44,7 @@
                             <tfoot>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Descripción</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Enero</th>
                                     <th>Febrero</th>
                                     <th>Marzo</th>

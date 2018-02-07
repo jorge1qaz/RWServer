@@ -270,7 +270,7 @@
                         <div class="card card-outline-secondary  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Estados financieros NIFF y tributario</label>
+                                    <label class="font-weight-bold">Estados financieros NIIF y tributario</label>
                                     <div class="row">
                                         <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForEFNT">
