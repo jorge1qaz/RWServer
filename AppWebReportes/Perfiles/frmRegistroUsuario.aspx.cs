@@ -1,11 +1,7 @@
 ﻿using BusinessLayer;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace AppWebReportes.Perfiles
 {
@@ -25,27 +21,33 @@ namespace AppWebReportes.Perfiles
                 lstRol.DataBind();
             }
         }
-
         protected void btnRegistrar_Click(object sender, EventArgs e)
         {
+            String rootPath = Server.MapPath("~");
             string imgProfile = "";
             string imgCompany = "";
             if (fileImagenPerfil.HasFile)
             {
-                string archivoPerfil = fileImagenEmpresa.FileName;
-                fileImagenEmpresa.SaveAs(MapPath("~/Images/FotoPerfil/" + txtConfirmarEmail.Text.ToString() + ".jpg"));
-                imgProfile = "~/Images/FotoPerfil/" + txtConfirmarEmail.Text.ToString() + ".jpg";
+                //string archivoPerfil = fileImagenEmpresa.FileName;
+                //fileImagenEmpresa.SaveAs(MapPath(rootPath + "/Images/FotoPerfil/" + txtConfirmarEmail.Text.ToString().Replace(".", "") + ".jpg"));
+                //imgProfile = rootPath + "/Images/FotoPerfil/" + txtConfirmarEmail.Text.ToString().Replace(".", "") + ".jpg";
+                string archivoPerfil = Path.Combine(Server.MapPath("~/Images/FotoPerfil"), fileImagenEmpresa.FileName);
+                fileImagenPerfil.SaveAs(archivoPerfil);
+                imgProfile = archivoPerfil;
             }
             else
-                imgProfile = "~/Images/FotoPerfil/" + "nopic.jpg";
+                imgProfile = rootPath + "/Images/FotoPerfil/" + "nopic.jpg";
             if (fileImagenEmpresa.HasFile)
             {
-                string archivoPerfil = fileImagenEmpresa.FileName;
-                fileImagenEmpresa.SaveAs(MapPath("~/Images/FotoEmpresa/" + txtConfirmarEmail.Text.ToString() + ".jpg"));
-                imgCompany = "~/Images/FotoEmpresa/" + txtConfirmarEmail.Text.ToString() + ".jpg";
+                //string archivoPerfil = fileImagenEmpresa.FileName;
+                //fileImagenEmpresa.SaveAs(MapPath(rootPath + "/Images/FotoEmpresa/" + txtConfirmarEmail.Text.ToString().Replace(".", "") + ".jpg"));
+                //imgCompany = rootPath + "/Images/FotoEmpresa/" + txtConfirmarEmail.Text.ToString().Replace(".", "") + ".jpg";
+                string archivoPerfilEmpresa = Path.Combine(Server.MapPath("~/Images/FotoEmpresa"), fileImagenEmpresa.FileName);
+                fileImagenPerfil.SaveAs(archivoPerfilEmpresa);
+                imgProfile = archivoPerfilEmpresa;
             }
             else
-                imgCompany = "~/Images/FotoEmpresa/" + "nopic.jpg";
+                imgCompany = rootPath + "/Images/FotoEmpresa/" + "nopic.jpg";
             Cliente cliente = new Cliente()
             {
                 IdCliente = txtConfirmarEmail.Text.ToString(),

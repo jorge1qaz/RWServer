@@ -301,7 +301,7 @@ namespace AppWebReportes.Reportes
             arraySFVS[0].Merge(arraySFVD[0]);
             tableReport.Merge(arraySFVS[0]);
 
-            //dd
+            // Bloques con fecha de vencimiento
             DataTable[] arrayCFVS = new DataTable[tableThirdBlockIngresosCFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
             DataTable[] arrayCFVD = new DataTable[tableThirdBlockIngresosCFVDolares.Length];
 
@@ -316,10 +316,15 @@ namespace AppWebReportes.Reportes
                 arrayCFVD[0].Merge(arrayCFVD[i]);
             }
             arrayCFVS[0].Merge(arrayCFVD[0]);
-
             tableReport.Merge(arrayCFVS[0]);
 
-            grdPruebas.DataSource = tableReport;
+            //grdPruebas.DataSource = from x in tableReport.AsEnumerable() where x.Field<string>("Cuenta") == "12121" select x;
+            DataTable[] tablesByCuenta = new DataTable[listCuentas.Count];
+            for (int i = 0; i < listCuentas.Count; i++)
+            {
+                tablesByCuenta[i] = mergeTables.GetTableByFilters(tableReport, listCuentas[i].ToString(), "Cuenta");
+            }
+            grdPruebas.DataSource = tablesByCuenta[0];
             grdPruebas.DataBind();
         }
         public DataTable ProcesarDatosSinFechaVencimiento(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)

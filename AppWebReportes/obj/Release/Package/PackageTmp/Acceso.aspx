@@ -23,7 +23,7 @@
                             <div class="form">
                                 <div class="row" id="blockCorreo" runat="server">
                                     <div class="input-field col offset-m1 offset-s1 m10 s10">
-                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server" onkeydown="javascript: sendEmail();"></asp:TextBox>
                                         <label for="txtCorreo">Correo electrónico</label>
                                         <div class="red-text center">
                                             <asp:Label ID="lblDoesNotExistUser" Text="" runat="server" />
@@ -91,6 +91,12 @@
             $(function () {
                 $('.modal').modal();
                 $('#ModalProcesamientoDatos').modal('close');
+            });
+        }
+        function sendEmail() {
+            $.ajax({
+                type: "POST",
+                url: "Acceso.aspx/ComprobarUsuario"
             });
         }
     </script>
