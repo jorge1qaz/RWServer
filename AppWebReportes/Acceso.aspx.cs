@@ -26,10 +26,11 @@ namespace AppWebReportes
                 btnLinkCambiarContrasenia.Visible = false;
             }
         }
-        protected void btnComprobarUsuario_Click(object sender, EventArgs e)
-        {
+        protected void btnComprobarUsuario_Click(object sender, EventArgs e) => ComprobarUsuario();
+        [System.Web.Services.WebMethod]
+        public void ComprobarUsuario() {
             Cliente cliente = new Cliente()
-                { IdCliente = txtCorreo.Text.ToString() };
+            { IdCliente = txtCorreo.Text.ToString() };
             if (cliente.IdParameterUser("RW_Security_Check_User"))
             {
                 blockContrasenia.Visible = true;
@@ -45,8 +46,8 @@ namespace AppWebReportes
                 blockRegisterSuccess.Visible = false;
             Session.Remove("RegisterSuccess");
         }
-        protected  void btnAcceder_Click(object sender, EventArgs e)
-        {
+        protected void btnAcceder_Click(object sender, EventArgs e) => Acceder();
+        public void Acceder() {
             String rootPath = Server.MapPath("~");
             Cliente cliente = new Cliente()
             {

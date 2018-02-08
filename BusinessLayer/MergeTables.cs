@@ -723,8 +723,8 @@ namespace BusinessLayer
             string descripcion = "";
             try
             {
-                descripcion = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1).Trim() == IdRow).
-                            Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
+                descripcion     = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1).Trim() == IdRow).
+                                Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
             }
             catch (Exception)
             {

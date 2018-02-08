@@ -302,22 +302,23 @@ namespace AppWebReportes.Reportes
             tableReport.Merge(arraySFVS[0]);
 
             //dd
-            //DataTable[] arrayCFVS = new DataTable[tableThirdBlockIngresosCFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
-            //DataTable[] arrayCFVD = new DataTable[tableThirdBlockIngresosCFVDolares.Length];
+            DataTable[] arrayCFVS = new DataTable[tableThirdBlockIngresosCFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
+            DataTable[] arrayCFVD = new DataTable[tableThirdBlockIngresosCFVDolares.Length];
 
-            //for (Int16 i = 0; i < tableThirdBlockIngresosSFVSoles.Length; i++)
-            //{
-            //    arrayCFVS[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVSoles, i, true, true);
-            //    arrayCFVS[0].Merge(arrayCFVS[i]);
-            //}
-            //for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
-            //{
-            //    arrayCFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVDolares, i, false, true);
-            //    arrayCFVD[0].Merge(arrayCFVD[i]);
-            //}
-            //arrayCFVS[0].Merge(arrayCFVD[0]);
-            //tableReport.Merge(arrayCFVS[0])
-            
+            for (Int16 i = 0; i < tableThirdBlockIngresosSFVSoles.Length; i++)
+            {
+                arrayCFVS[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVSoles, i, true, true);
+                arrayCFVS[0].Merge(arrayCFVS[i]);
+            }
+            for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
+            {
+                arrayCFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVDolares, i, false, true);
+                arrayCFVD[0].Merge(arrayCFVD[i]);
+            }
+            arrayCFVS[0].Merge(arrayCFVD[0]);
+
+            tableReport.Merge(arrayCFVS[0]);
+
             grdPruebas.DataSource = tableReport;
             grdPruebas.DataBind();
         }
@@ -339,12 +340,12 @@ namespace AppWebReportes.Reportes
             }
             else
             {
-                finalFlash = CalculoTotales(tableBlock[index], tableBlock[index].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c", "d"), "g", "e", debe, haber, "Vencidos");
+                finalFlash = CalculoTotales(tableBlock[index], tableBlock[index].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c", "d"), "g", "e", debe, haber, "Vencidos", false);
             }
             return finalFlash; // Devuelve la tabla contenedora de todos los datos procesados, listos para la fuuuusión!
         }
         public DataTable CalculoTotales(DataTable tableDocumento, DataTable tableDist, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
-            string columnNameDebe, string columnNameHaber, string columnNameResult) { // columnNameFilter2 = número de documento [1]
+            string columnNameDebe, string columnNameHaber, string columnNameResult, bool conFechaVencimiento) { // columnNameFilter2 = número de documento [1]
             double debe = 0, haber = 0;
             decimal resultado = 0;
             DataTable tableContent = new DataTable(); // Instancia de tabla la cual se exportará al reporte
@@ -389,8 +390,17 @@ namespace AppWebReportes.Reportes
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Vencidos";
             tableContent.Columns.Add(column);
-           
+
             #endregion
+            int frecuenciaIncremetado = 0;
+            for (int i = 0; i < periodo; i++)
+            {
+                frecuenciaIncremetado += frecuencia;
+                Type columnType = Type.GetType("System.Decimal");
+                String columnName = fechaInicial.AddDays(frecuenciaIncremetado - 1).ToShortDateString().Trim();
+                tableContent.Columns.Add(new DataColumn(columnName, columnType));
+            }
+            //tableContent.Merge(tableReport);
             foreach (DataRow item in tableDist.Rows)
             {
                 try
@@ -408,9 +418,13 @@ namespace AppWebReportes.Reportes
                 catch (Exception)
                 {   haber = 0; }
                 resultado                   = Convert.ToDecimal(debe) - Convert.ToDecimal(haber);
-                DateTime fechaDocumento     = DateTime.Parse(item[5].ToString());
-                DateTime fechaVencimiento   = DateTime.Parse(item[6].ToString());
                 row                         = tableContent.NewRow();
+                DateTime fechaDocumento     = DateTime.Parse(item[5].ToString());
+                DateTime fechaVencimiento   = new DateTime();
+                if (conFechaVencimiento)
+                    fechaVencimiento        = Convert.ToDateTime("30/12/1899");
+                else
+                    fechaVencimiento        = DateTime.Parse(item[6].ToString());                
                 row["Cuenta"]               = item[2].ToString();
                 row["Documento"]            = item[1].ToString();
                 row["Número"]               = item[0].ToString();
@@ -418,18 +432,18 @@ namespace AppWebReportes.Reportes
                 row["Descripción"]          = item[4].ToString();
                 row["Fecha documento"]      = fechaDocumento.ToShortDateString();
                 row["Fecha vencimiento"]    = fechaVencimiento.ToShortDateString();
-                row[columnNameResult]       = resultado;
+                if (columnNameResult.ToString() == listDates[0].ToString())
+                    row["Vencidos"]         = resultado;
+                else
+                    row[columnNameResult]   = resultado;
                 tableContent.Rows.Add(row);
             }
             return tableContent;
         }
         public DataTable CalculoTotales2(DataTable tableDocumento, DataTable tableDist, List<DateTime> dates, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
             string columnNameDebe, string columnNameHaber, string columnNameResult) { // columnNameFilter2 = número de documento [1]
-            double debe = 0, haber = 0;
-            decimal resultado = 0;
             DataTable tableContent = new DataTable(); // Instancia de tabla la cual se exportará al reporte
             DataColumn column = new DataColumn();
-            DataRow row;
             #region Declaración de columnas
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Cuenta";
@@ -471,46 +485,23 @@ namespace AppWebReportes.Reportes
             tableContent.Columns.Add(column);
 
             #endregion
-
             DataTable[] tableArrayByDate = new DataTable[periodo - 1];
             int valorLugarDate = 0;
             for (int i = 0; i < periodo - 1; i++)
             {
                 tableArrayByDate[i] = mergeTables.GetTableByDate(tableDocumento, dates[valorLugarDate], dates[valorLugarDate + 1], 3); // valorLugarDate = (0,1), (2,3), (4,5)
-                valorLugarDate = valorLugarDate + 2; // 2, 4
-
+                valorLugarDate      = valorLugarDate + 2; // 2, 4
             }
-            foreach (DataRow item in tableDist.Rows)
+            DataTable[] tableDistByFilterDate   = new DataTable[tableArrayByDate.Length];
+            DataTable[] tableArrayResultByDate  = new DataTable[tableArrayByDate.Length];
+            for (int i = 0; i < tableArrayByDate.Length; i++)
             {
-                try
-                { // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'debe'
-                    debe    = tableDocumento.AsEnumerable().Where(x => x.Field<string>(columnNameFilter1).Trim() == item[0].ToString()).
-                                Where(x => x.Field<string>(columnNameFilter2).Trim() == item[1].ToString()).Select(x => x.Field<double>(columnNameDebe)).Sum();
-                }
-                catch (Exception)
-                {   debe    = 0; }
-                try
-                { // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'haber'
-                    haber   = tableDocumento.AsEnumerable().Where(x => x.Field<string>(columnNameFilter1).Trim() == item[0].ToString()).
-                                Where(x => x.Field<string>(columnNameFilter2).Trim() == item[1].ToString()).Select(x => x.Field<double>(columnNameHaber)).Sum();
-                }
-                catch (Exception)
-                {   haber = 0; }
-                resultado                   = Convert.ToDecimal(debe) - Convert.ToDecimal(haber);
-                DateTime fechaDocumento     = DateTime.Parse(item[5].ToString());
-                DateTime fechaVencimiento   = DateTime.Parse(item[6].ToString());
-                row                         = tableContent.NewRow();
-                row["Cuenta"]               = item[2].ToString();
-                row["Documento"]            = item[1].ToString();
-                row["Número"]               = item[0].ToString();
-                row["Moneda"]               = item[3].ToString();
-                row["Descripción"]          = item[4].ToString();
-                row["Fecha documento"]      = fechaDocumento.ToShortDateString();
-                row["Fecha vencimiento"]    = fechaVencimiento.ToShortDateString();
-                row[columnNameResult]       = resultado;
-                tableContent.Rows.Add(row);
+                tableDistByFilterDate[i] = tableArrayByDate[i].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c");
+                tableArrayResultByDate[i] = CalculoTotales(tableArrayByDate[i], tableDistByFilterDate[i], columnNameFilter1, columnNameFilter2,
+                    columnNameDebe, columnNameHaber, listDates[i].ToString(), true);
+                tableArrayResultByDate[0].Merge(tableArrayResultByDate[i]);
             }
-            return tableContent;
+            return tableArrayResultByDate[0];
         }
     }
 }

@@ -107,10 +107,10 @@ namespace AppWebReportes.Reportes
             try
             {
                 String rootPath = Server.MapPath("~"); // Obtiene la ruta absoluta del servidor
-                if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip"))
+                if (zips.CheckZipExists(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString().ToLower() + ".zip"))
                 {
-                    Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
-                    zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString());
+                    Directory.CreateDirectory(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString().ToLower());
+                    zips.ExtractDataZip(@rootPath + paths.pathDatosZip + Session["IdUser"].ToString().ToLower() + ".zip", @rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString().ToLower());
                     DateTime lastUpdate = DateTime.Now;
                     Cliente cliente = new Cliente()
                     {
