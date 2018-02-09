@@ -47,6 +47,14 @@ namespace AppWebReportes.Reportes
         DateTime fechaTemporalInicio = new DateTime();
         List<DateTime> rangoFechas = new List<DateTime>();
 
+        static string cuentaTable       = "";
+        static string documentoTable    = "";
+        static string numeroTable       = "";
+        static string monedaTable       = "";
+        static string descripcionTable  = "";
+        static string fechaDocumentoTable   = "";
+        static string fechaVencimientoTable = "";
+
         #endregion
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
@@ -58,7 +66,7 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             { frecuencia = 7; }
             try
-            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()); }
+            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()) + 1; }
             catch (Exception)
             { periodo = 12; }
             try
@@ -157,7 +165,7 @@ namespace AppWebReportes.Reportes
             }
             rangoFechas.RemoveAt(rangoFechas.Count - 1);
             #endregion
-            temp();
+            ProcesarDatosIngresos();
         }
         public void GenerateReportSaldoInicial() {
             
@@ -242,23 +250,16 @@ namespace AppWebReportes.Reportes
             }
             return JsonDataset;
         }
-        public void temp()
+        public void ProcesarDatosIngresos()
         {
-            //foreach (var item in rangoFechas)
-            //    Response.Write(" i " + item + " f ");
-
-
-
-            DataTable tempDtListDistCuentas = mergeTables.GetListDist(tableInitDatosIngresos, "a");
             DataTable listCuentasTable = mergeTables.GetListDist(tableInitDatosIngresos, "a");
-
             List<string> listCuentas    = new List<string>();
             List<string> listDocumentos = new List<string>();
 
             foreach (DataRow item in listCuentasTable.Rows)
                 listCuentas.Add(item[0].ToString());
             
-            DataTable[] tableFirstBlockIngresos = new DataTable[listCuentas.Count + 1];
+            DataTable[] tableFirstBlockIngresos         = new DataTable[listCuentas.Count + 1];
 
             for (int i = 0; i < listCuentas.Count; i++)
                 tableFirstBlockIngresos[i]  = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", listCuentas[i], "a");
@@ -317,14 +318,15 @@ namespace AppWebReportes.Reportes
             }
             arrayCFVS[0].Merge(arrayCFVD[0]);
             tableReport.Merge(arrayCFVS[0]);
-
-            //grdPruebas.DataSource = from x in tableReport.AsEnumerable() where x.Field<string>("Cuenta") == "12121" select x;
+            
             DataTable[] tablesByCuenta = new DataTable[listCuentas.Count];
             for (int i = 0; i < listCuentas.Count; i++)
-            {
                 tablesByCuenta[i] = mergeTables.GetTableByFilters(tableReport, listCuentas[i].ToString(), "Cuenta");
-            }
-            grdPruebas.DataSource = tablesByCuenta[0];
+
+            DataTable nuevecito = ProcesarTotalesByCuenta(tablesByCuenta[0], listCuentas[0]);
+
+            //grdPruebas.DataSource = tablesByCuenta[0];
+            grdPruebas.DataSource = nuevecito;
             grdPruebas.DataBind();
         }
         public DataTable ProcesarDatosSinFechaVencimiento(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
@@ -507,6 +509,103 @@ namespace AppWebReportes.Reportes
                 tableArrayResultByDate[0].Merge(tableArrayResultByDate[i]);
             }
             return tableArrayResultByDate[0];
+        }
+        public DataTable ProcesarTotalesByCuenta(DataTable dataTableCuenta, string cuenta) {
+            DataTable tableContent = new DataTable();
+            double vencidos         = 0;
+            double[] totales        = new double[listDates.Count];
+            try
+            { cuentaTable = dataTableCuenta.AsEnumerable().Select(x => x.Field<string>("Cuenta")).FirstOrDefault(); }
+            catch (Exception)
+            { cuentaTable = ""; }
+            vencidos = Convert.ToDouble(dataTableCuenta.AsEnumerable().Select(x => x.Field<decimal>("Vencidos")).Sum());
+            //try
+            //{ // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'debe'
+            //    vencidos    = dataTableCuenta.AsEnumerable().Select(x => x.Field<double>("Vencidos")).Sum();
+            //}
+            //catch (Exception)
+            //{   vencidos = 0; }
+            for (int i = 0; i < listDates.Count; i++)
+            {
+                try
+                {
+                    totales[i]  = Convert.ToDouble(dataTableCuenta.AsEnumerable().Select(x => x.Field<double>(listDates[i])).Sum());
+                }
+                catch (Exception)
+                {
+                    totales[i] = 0;
+                }
+            }
+            
+            DataColumn column = new DataColumn();
+            #region Declaración de columnas
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Cuenta";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Documento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Número";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Moneda";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Descripción";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha documento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Fecha vencimiento";
+            tableContent.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Vencidos";
+            tableContent.Columns.Add(column);
+
+            #endregion
+            int frecuenciaIncremetado = 0;
+            for (int i = 0; i < periodo; i++)
+            {
+                frecuenciaIncremetado += frecuencia;
+                Type columnType = Type.GetType("System.Decimal");
+                String columnName = fechaInicial.AddDays(frecuenciaIncremetado - 1).ToShortDateString().Trim();
+                listDates.Add(columnName);
+                tableContent.Columns.Add(new DataColumn(columnName, columnType));
+            }
+            DataRow row;
+            row                         = tableContent.NewRow();
+            row["Cuenta"]               = cuentaTable;
+            row["Descripción"]          = "Temporal";
+            row["Vencidos"]             = vencidos;
+            for (int i = 0; i < listDates.Count; i++)
+            {
+                    row[listDates[i]] = totales[i];
+                //try
+                //{
+                //}
+                //catch (Exception)
+                //{
+                //    row[listDates[i]] = 0;
+                //}
+            }
+            tableContent.Rows.Add(row);
+            return tableContent;
         }
     }
 }

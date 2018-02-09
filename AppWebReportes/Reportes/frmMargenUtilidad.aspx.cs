@@ -499,10 +499,10 @@ namespace AppWebReportes.Reportes
             else //dolares
             { npu = "h"; ncosto = "i"; }
             #region CalculosMatematicos
-            descripcion = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
+            descripcion     = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
                             Where(x => x.Field<string>(filtro).Trim() == idFiltro).Where(x => x.Field<string>(filtro2).Trim() == idFiltro2)
                             .Select(x => x.Field<string>("b")).FirstOrDefault();
-            medida = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
+            medida          = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
                             Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("d")).FirstOrDefault();
             try
             {
