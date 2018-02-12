@@ -102,3 +102,9 @@
         }
     });
 });
+$("#MainContent_txtEmail").on('paste', function () {
+    $("#MainContent_txtEmail").text('');
+});
+$("#MainContent_txtConfirmarEmail").on('paste', function () {
+    $("#MainContent_txtConfirmarEmail").text('');
+});

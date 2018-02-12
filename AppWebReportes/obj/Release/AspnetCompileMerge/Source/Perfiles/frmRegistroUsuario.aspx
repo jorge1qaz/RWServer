@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Bootstrap.Master" AutoEventWireup="true" CodeBehind="frmRegistroUsuario.aspx.cs" Inherits="AppWebReportes.Perfiles.frmRegistroUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-            <div class="row">
+            <div class="row"">
                 <div class="offset-md-1 offset-sm-0 col-md-10 col-sm-12">
                     <div id="Formulario">
-                        <div class="card card-inverse card-info text-center">
+                        <div class="card card-inverse card-info text-center text-white">
                             <div class="card-block">
                                 <h5>Registro de usuario</h5>
                                 <em>Los campos marcados con un asterisco (*) son obligatorios.</em>

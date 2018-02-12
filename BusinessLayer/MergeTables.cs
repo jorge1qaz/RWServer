@@ -897,5 +897,14 @@ namespace BusinessLayer
                 return tableEmpty;
             }
         }
+        //Usar este metodo bien chidori, el otro no sirve en tablas dinamicas
+        public DataTable GetFullTableByOneFilter(DataTable table, string filterName, string filter) {
+            DataTable tableFiltered = new DataTable();
+            var filterTable = table.Select(filterName + " = '" + filter + "'");
+            DataTable filteredResult = new DataTable();
+            if (filterTable.Length != 0)
+                filteredResult = filterTable.CopyToDataTable();
+            return filteredResult;
+        }
     }
 }

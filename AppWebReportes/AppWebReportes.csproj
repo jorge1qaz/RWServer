@@ -342,6 +342,7 @@
     <Content Include="Content\materialize\css\materialize.min.css" />
     <Content Include="Content\materialize\font\material-design-icons\LICENSE.txt" />
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
+    <Content Include="Content\owner.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Account\Web.config" />
     <Content Include="Fonts\material-icons.css" />
@@ -363,7 +364,8 @@
     <Content Include="Reportes\EstadoResultadoPMS.aspx" />
     <Content Include="Reportes\EstadoResultadoPMSF.aspx" />
     <Content Include="Reportes\EFNTEstadoSitucionFinanciera.aspx" />
-    <Content Include="Reportes\FlujoCajaDetallado.aspx" />
+    <Content Include="Reportes\FlujoCajaDetalladoDolares.aspx" />
+    <Content Include="Reportes\FlujoCajaDetalladoSoles.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -877,12 +879,19 @@
     <Compile Include="Reportes\EFNTEstadoSitucionFinanciera.aspx.designer.cs">
       <DependentUpon>EFNTEstadoSitucionFinanciera.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\FlujoCajaDetallado.aspx.cs">
-      <DependentUpon>FlujoCajaDetallado.aspx</DependentUpon>
+    <Compile Include="Reportes\FlujoCajaDetalladoDolares.aspx.cs">
+      <DependentUpon>FlujoCajaDetalladoDolares.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\FlujoCajaDetallado.aspx.designer.cs">
-      <DependentUpon>FlujoCajaDetallado.aspx</DependentUpon>
+    <Compile Include="Reportes\FlujoCajaDetalladoDolares.aspx.designer.cs">
+      <DependentUpon>FlujoCajaDetalladoDolares.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaDetalladoSoles.aspx.cs">
+      <DependentUpon>FlujoCajaDetalladoSoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaDetalladoSoles.aspx.designer.cs">
+      <DependentUpon>FlujoCajaDetalladoSoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

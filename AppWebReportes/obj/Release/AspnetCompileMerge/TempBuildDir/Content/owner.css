@@ -1,0 +1,29 @@
+﻿.btn-info, .card-info {
+    background-color: #70bbe8 !important;
+    border-color: #70bbe8 !important;
+}
+
+.btn-primary, .card-primary {
+    background-color: #113182 !important;
+    border-color: #113182 !important;
+}
+
+.btn-success, .card-success {
+    background-color: #43c9af !important;
+    border-color: #43c9af !important;
+}
+
+.card-outline-info, btn-outline-info {
+    border-color: #70bbe8 !important;
+}
+
+.card-outline-primary, btn-outline-primary {
+    border-color: #113182 !important;
+}
+
+.card-outline-success, btn-outline-success {
+    border-color: #43c9af !important;
+}
+.text-white {
+    color: white;
+}

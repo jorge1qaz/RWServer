@@ -199,24 +199,15 @@ namespace AppWebReportes.Reportes
             {
                 case "Formato simple":
                     if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                        Response.Redirect("~/Reportes/FlujoCajaDetalladoSoles.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     else
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                        Response.Redirect("~/Reportes/FlujoCajaDetalladoDolares.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
                 case "Formato detallado":
                     if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                        Response.Redirect("~/Reportes/FlujoCajaDetalladoSoles.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     else
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
-                    break;
-                case "Balance general":
-                    Response.Redirect("~/Reportes/EFNTBalanceGeneral.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
-                    break;
-                case "Estado de ganancias y pérdidas":
-                    if (Session["TipoMonedaFCD"].ToString() == "Nuevos soles")
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
-                    else
-                        Response.Redirect("~/Reportes/FlujoCajaDetallado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
+                        Response.Redirect("~/Reportes/FlujoCajaDetalladoDolares.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
             }
         }

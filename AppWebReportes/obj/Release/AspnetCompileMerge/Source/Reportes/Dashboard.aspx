@@ -27,7 +27,7 @@
             <div class="card-block">
                 <h4 class="card-title">Bienvenido al sistema de reportes web Contasis</h4>
                 <div class="row" runat="server" id="blockUpdateData">
-                    <div class="card card-inverse card-success text-center">
+                    <div class="card card-inverse card-success text-center text-white">
                         <div class="card-block">
                             <p>
                                 Hemos detectado una nueva actualización a sus datos correspondiente a la fecha
