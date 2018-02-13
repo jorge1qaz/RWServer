@@ -366,6 +366,7 @@
     <Content Include="Reportes\EFNTEstadoSitucionFinanciera.aspx" />
     <Content Include="Reportes\FlujoCajaDetalladoDolares.aspx" />
     <Content Include="Reportes\FlujoCajaDetalladoSoles.aspx" />
+    <Content Include="Reportes\FlujoCajaSimpleSoles.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -892,6 +893,13 @@
     </Compile>
     <Compile Include="Reportes\FlujoCajaDetalladoSoles.aspx.designer.cs">
       <DependentUpon>FlujoCajaDetalladoSoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaSimpleSoles.aspx.cs">
+      <DependentUpon>FlujoCajaSimpleSoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\FlujoCajaSimpleSoles.aspx.designer.cs">
+      <DependentUpon>FlujoCajaSimpleSoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

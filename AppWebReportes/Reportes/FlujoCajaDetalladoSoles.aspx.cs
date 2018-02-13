@@ -47,6 +47,9 @@ namespace AppWebReportes.Reportes
         DateTime fechaTemporalInicio = new DateTime();
         List<DateTime> rangoFechas = new List<DateTime>();
 
+        //Principal
+        DataTable tableIngresos = new DataTable();
+        DataTable tableEgresos = new DataTable();
         #endregion
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
@@ -75,25 +78,23 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             { moneda = true; }
             #endregion
-            if (!Page.IsPostBack)
-            {
-                #region Fill tables
-                dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
-                tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
-                tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
-                tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
+            #region Fill tables
+            dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
+            tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
+            tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
+            tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
 
-                dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
-                tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
-                tableInitDescripcionIngresos = dataSetListDatos.Tables["dataTableListIngresosDescripcion"];
-                tableInitDescripcionEgresos = dataSetListDatos.Tables["dataTableListEgresosDescripcion"];
-                tableInitDescripcionCostumer = dataSetListDatos.Tables["dataTableListCustumers"];
+            dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
+            tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
+            tableInitDescripcionIngresos = dataSetListDescripcion.Tables["dataTableListIngresosDescripcion"];
+            tableInitDescripcionEgresos = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
+            tableInitDescripcionCostumer = dataSetListDescripcion.Tables["dataTableListCustumers"];
 
-                tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
-                tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
-                #endregion
-            }
-            
+            tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
+            tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+
+                
+            #endregion
             #region Rango de fechas para ingresos y egresos
             rangoFechas.Add(conFechaVencimiento);
             for (int i = 1; i < periodo; i++) // Devuelve el rango de fechas destinadas para ingresos y egresos, en la lista rangoFechas
@@ -105,7 +106,6 @@ namespace AppWebReportes.Reportes
                 rangoFechas.Add(fechaTemporalInicio);
             }
             rangoFechas.RemoveAt(rangoFechas.Count - 1);
-
             //listDates
             int frecuenciaIncremetado = 0;
             for (int i = 0; i < periodo; i++)
@@ -115,7 +115,39 @@ namespace AppWebReportes.Reportes
                 listDates.Add(columnName);
             }
             #endregion
-            ProcesarDatosIngresos();
+
+            tableIngresos = ProcesarDatos(tableInitDatosIngresos, false, true);
+            tableEgresos = ProcesarDatos(tableInitDatosEgresos, false, false);
+
+            DataTable tableCompleteIngresos = AddTotalInTable(tableIngresos, "Total ingresos");  // true = ingresos
+            DataTable tableCompleteEgresos = AddTotalInTable(tableEgresos, "Total egresos");     // false = egresos
+            tableCompleteIngresos.Merge(tableCompleteEgresos);
+            GenerateReport(100);
+            //grdPruebas.DataSource =  ProcesarDatos(tableInitDatosIngresos, true);
+            grdPruebas.DataSource = tableCompleteIngresos;
+            grdPruebas.DataBind();
+        }
+        public void GenerateReport(decimal totalSaldoInicial) {
+
+            DataTable[] totalesPorTabla = new DataTable[2];
+            totalesPorTabla[0] = AddTotalInTableUnique(tableIngresos, "Total ingresos");
+            totalesPorTabla[1] = AddTotalInTableUnique(tableEgresos, "Total egresos");
+            DataTable dd = new DataTable();
+            totalesPorTabla[0].Merge(totalesPorTabla[1]);
+            decimal[] totales = new decimal[periodo + 1];
+
+            foreach (DataRow item in totalesPorTabla[0].Rows)
+            {
+                totales[0] += Convert.ToDecimal(item[8].ToString()); // vencidos
+            }
+            totales[0] += totalSaldoInicial; // First Column
+            foreach (DataRow item in totalesPorTabla[0].Rows)
+            {
+                for (int i = 9; i < 9 + periodo; i++)
+                {
+                    totales[i - 8] += Convert.ToDecimal(item[i].ToString());
+                }
+            }
         }
         public void GenerateReportSaldoInicial() {
             
@@ -200,9 +232,9 @@ namespace AppWebReportes.Reportes
             }
             return JsonDataset;
         }
-        public void ProcesarDatosIngresos()
+        public DataTable ProcesarDatos(DataTable bigTableData, bool tableDetailed, bool istableIngresos)
         {
-            DataTable listCuentasTable = mergeTables.GetListDist(tableInitDatosIngresos, "a");
+            DataTable listCuentasTable = mergeTables.GetListDist(bigTableData, "a");
             List<string> listCuentas    = new List<string>();
             List<string> listDocumentos = new List<string>();
 
@@ -212,21 +244,15 @@ namespace AppWebReportes.Reportes
             DataTable[] tableFirstBlockIngresos         = new DataTable[listCuentas.Count + 1];
 
             for (int i = 0; i < listCuentas.Count; i++)
-                tableFirstBlockIngresos[i]  = mergeTables.GetTableByFilters(tableInitDatosIngresos, "b", listCuentas[i], "a");
+                tableFirstBlockIngresos[i]  = mergeTables.GetTableByFilters(bigTableData, "b", listCuentas[i], "a");
 
             DataTable[] tableSecondBlockIngresosSoles   = new DataTable[listCuentas.Count + 1];
-            DataTable[] tableSecondBlockIngresosDolares = new DataTable[listCuentas.Count + 1];
 
             for (int i = 0; i < listCuentas.Count; i++)
                 tableSecondBlockIngresosSoles[i] = mergeTables.GetTableByFilters(tableFirstBlockIngresos[i], "b", "S", "f");
-
-            for (int i = 0; i < listCuentas.Count; i++)
-                tableSecondBlockIngresosDolares[i] = mergeTables.GetTableByFilters(tableFirstBlockIngresos[i], "b", "D", "f");
-
+            
             DataTable[] tableThirdBlockIngresosCFVSoles     = new DataTable[listCuentas.Count];
             DataTable[] tableThirdBlockIngresosSFVSoles     = new DataTable[listCuentas.Count];
-            DataTable[] tableThirdBlockIngresosCFVDolares   = new DataTable[listCuentas.Count];
-            DataTable[] tableThirdBlockIngresosSFVDolares   = new DataTable[listCuentas.Count];
             
             //Fusión de las principales tablas filtradas con los nombres de las columnas
             DataTable principalColumnsName = DeclarePrincipalColumnsName();
@@ -234,60 +260,66 @@ namespace AppWebReportes.Reportes
             {
                 tableThirdBlockIngresosCFVSoles[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], conFechaVencimiento, DateTime.Now, 3);
                 tableThirdBlockIngresosSFVSoles[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosSoles[i], sinFechaVencimientoStart, sinFechaVencimientoEnd, 3); // Tú tú
-                tableThirdBlockIngresosCFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], conFechaVencimiento, DateTime.Now, 3);
-                tableThirdBlockIngresosSFVDolares[i] = mergeTables.GetTableByFilters(tableSecondBlockIngresosDolares[i], sinFechaVencimientoStart, sinFechaVencimientoEnd, 3);
             }
             
             DataTable[] arraySFVS = new DataTable[tableThirdBlockIngresosSFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
-            DataTable[] arraySFVD = new DataTable[tableThirdBlockIngresosSFVDolares.Length];
 
             for (Int16 i = 0; i < tableThirdBlockIngresosSFVSoles.Length; i++)
             {
-                arraySFVS[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosSFVSoles, i, true, false);
+                arraySFVS[i] = ProcesarDatos(tableThirdBlockIngresosSFVSoles, i, true, false);
                 arraySFVS[0].Merge(arraySFVS[i]);
             }
-            for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
-            {
-                arraySFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosSFVDolares, i, false, false);
-                arraySFVD[0].Merge(arraySFVD[i]);
-            }
-            arraySFVS[0].Merge(arraySFVD[0]);
             tableReport.Merge(arraySFVS[0]);
 
             // Bloques con fecha de vencimiento
             DataTable[] arrayCFVS = new DataTable[tableThirdBlockIngresosCFVSoles.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVSoles
-            DataTable[] arrayCFVD = new DataTable[tableThirdBlockIngresosCFVDolares.Length];
-
+            
             for (Int16 i = 0; i < tableThirdBlockIngresosSFVSoles.Length; i++)
             {
-                arrayCFVS[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVSoles, i, true, true);
+                arrayCFVS[i] = ProcesarDatos(tableThirdBlockIngresosCFVSoles, i, true, true);
                 arrayCFVS[0].Merge(arrayCFVS[i]);
             }
-            for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
-            {
-                arrayCFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVDolares, i, false, true);
-                arrayCFVD[0].Merge(arrayCFVD[i]);
-            }
-            arrayCFVS[0].Merge(arrayCFVD[0]);
             tableReport.Merge(arrayCFVS[0]);
-            
+            foreach (DataRow item in tableReport.Rows)
+            {
+                for (int i = 7; i < 7 + (periodo + 1); i++)
+                {
+                    if (item[i].ToString().Trim() == "" )
+                    {
+                        item[i] = 0;
+                    }
+                }
+            }
             DataTable[] tablesByCuenta = new DataTable[listCuentas.Count];
             for (int i = 0; i < listCuentas.Count; i++)
                 tablesByCuenta[i] = mergeTables.GetFullTableByOneFilter(tableReport, "Cuenta", listCuentas[i].ToString());
-
-            //DataTable nuevecito = ProcesarTotalesByCuenta(tablesByCuenta[tablesByCuenta.Length - 1], listCuentas[tablesByCuenta.Length - 1].Trim());
+            
             DataTable[] tablaUnicaByCuenta = new DataTable[tablesByCuenta.Length];
             for (int i = 0; i < tablesByCuenta.Length; i++)
             {
-                tablaUnicaByCuenta[i] = ProcesarTotalesByCuenta(tablesByCuenta[i], listCuentas[i]);
+                if (istableIngresos)
+                    tablaUnicaByCuenta[i] = ProcesarTotalesByCuenta(tablesByCuenta[i], listCuentas[i], tableInitDescripcionIngresos);
+                else
+                    tablaUnicaByCuenta[i] = ProcesarTotalesByCuenta(tablesByCuenta[i], listCuentas[i], tableInitDescripcionEgresos);
                 tablaUnicaByCuenta[0].Merge(tablaUnicaByCuenta[i]);
             }
 
-            //grdPruebas.DataSource = tablesByCuenta[1];
-            grdPruebas.DataSource = tablaUnicaByCuenta[0];
-            grdPruebas.DataBind();
+            // Tablas procesadas y listas para mostrarse
+            DataTable tableFinalFlash = new DataTable();
+            
+            if (tableDetailed)
+            {
+                for (int i = 0; i < listCuentas.Count; i++)
+                    tablesByCuenta[0].Merge(tablesByCuenta[i]);
+                tableFinalFlash = tablesByCuenta[0];
+            }
+            else
+                tableFinalFlash = tablaUnicaByCuenta[0];
+
+            //grdPruebas.DataSource = tablaUnicaByCuenta[0];
+            return tableFinalFlash;
         }
-        public DataTable ProcesarDatosSinFechaVencimiento(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
+        public DataTable ProcesarDatos(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
         {
             string debe     = "", haber = "";
             if (moneda) // if true then soles else dólares
@@ -304,22 +336,22 @@ namespace AppWebReportes.Reportes
             {
                 filteredTable = tableBlock[index].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c", "d");
                 //filteredTable.Merge(DeclarePrincipalColumnsName());
-                finalFlash = CalculoTotales2(tableBlock[index], filteredTable, rangoFechas, "g", "e", debe, haber, "Vencidos");
+                finalFlash = CalculateTotalsByFullTableSecondary(tableBlock[index], filteredTable, rangoFechas, "g", "e", debe, haber, "Vencidos");
             }
             else
             {
                 filteredTable = tableBlock[index].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c", "d");
                 //filteredTable.Merge(DeclarePrincipalColumnsName());
-                finalFlash = CalculoTotales(tableBlock[index], filteredTable, "g", "e", debe, haber, "Vencidos", false);
+                finalFlash = CalculateTotalsByFullTable(tableBlock[index], filteredTable, "g", "e", debe, haber, "Vencidos", false);
             }
             return finalFlash; // Devuelve la tabla contenedora de todos los datos procesados, listos para la fuuuusión!
         }
-        public DataTable CalculoTotales(DataTable tableDocumento, DataTable tableDist, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
+        public DataTable CalculateTotalsByFullTable(DataTable tableDocumento, DataTable tableDist, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
             string columnNameDebe, string columnNameHaber, string columnNameResult, bool conFechaVencimiento) { // columnNameFilter2 = número de documento [1]
-            double debe = 0, haber = 0;
-            decimal resultado = 0;
-            DataTable tableContent = DeclarePrincipalColumnsName(); // Instancia de tabla la cual se exportará al reporte
-            DataColumn column = new DataColumn();
+            double debe = 0, haber  = 0;
+            decimal resultado       = 0;
+            DataTable tableContent  = DeclarePrincipalColumnsName(); // Instancia de tabla la cual se exportará al reporte
+            DataColumn column       = new DataColumn();
             DataRow row;
             //tableContent.Merge(tableReport);
             foreach (DataRow item in tableDist.Rows)
@@ -339,6 +371,8 @@ namespace AppWebReportes.Reportes
                 catch (Exception)
                 {   haber = 0; }
                 resultado                   = Convert.ToDecimal(debe) - Convert.ToDecimal(haber);
+                if (resultado == 0)
+                    resultado = Convert.ToDecimal(0.0);
                 row                         = tableContent.NewRow();
                 DateTime fechaDocumento     = DateTime.Parse(item[5].ToString());
                 DateTime fechaVencimiento   = new DateTime();
@@ -361,7 +395,7 @@ namespace AppWebReportes.Reportes
             }
             return tableContent;
         }
-        public DataTable CalculoTotales2(DataTable tableDocumento, DataTable tableDist, List<DateTime> dates, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
+        public DataTable CalculateTotalsByFullTableSecondary(DataTable tableDocumento, DataTable tableDist, List<DateTime> dates, string columnNameFilter1, string columnNameFilter2, //columnNameFilter1 = documento [0]; 
             string columnNameDebe, string columnNameHaber, string columnNameResult) { // columnNameFilter2 = número de documento [1]
             DataTable tableContent = new DataTable(); // Instancia de tabla la cual se exportará al reporte
             DataTable[] tableArrayByDate = new DataTable[periodo - 1];
@@ -375,16 +409,17 @@ namespace AppWebReportes.Reportes
             DataTable[] tableArrayResultByDate  = new DataTable[tableArrayByDate.Length];
             for (int i = 0; i < tableArrayByDate.Length; i++)
             {
-                tableDistByFilterDate[i] = tableArrayByDate[i].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c");
-                tableArrayResultByDate[i] = CalculoTotales(tableArrayByDate[i], tableDistByFilterDate[i], columnNameFilter1, columnNameFilter2,
+                tableDistByFilterDate[i]    = tableArrayByDate[i].DefaultView.ToTable(true, "g", "e", "a", "f", "b", "c");
+                tableArrayResultByDate[i]   = CalculateTotalsByFullTable(tableArrayByDate[i], tableDistByFilterDate[i], columnNameFilter1, columnNameFilter2,
                     columnNameDebe, columnNameHaber, listDates[i].ToString(), true);
                 tableArrayResultByDate[0].Merge(tableArrayResultByDate[i]);
             }
             return tableArrayResultByDate[0];
         }
-        public DataTable ProcesarTotalesByCuenta(DataTable dataTableCuenta, string cuenta) {
+        public DataTable ProcesarTotalesByCuenta(DataTable dataTableCuenta, string cuenta, DataTable dataTableDescripcion) {
             DataTable tableContent = DeclarePrincipalColumnsName();
             decimal vencidos        = 0;
+            string descripcion      = ""; 
             decimal[] totales        = new decimal[listDates.Count];
             try
             { // Con este filtro se puede recolectar los datos según su código de documento y su número de documento, y totalizar los resultados del 'debe'
@@ -403,17 +438,77 @@ namespace AppWebReportes.Reportes
                     totales[i] = 0;
                 }
             }
-
+            descripcion = mergeTables.GetStringByIdInDataTable(dataTableDescripcion, "a", cuenta, "b");
+            
             DataRow row;
             row                         = tableContent.NewRow();
             row["Cuenta"]               = cuenta;
-            row["Descripción"]          = "Temporal";
+            row["Descripción"]          = descripcion;
             row["Vencidos"]             = vencidos;
             for (int i = 0; i < listDates.Count; i++)
             {
                 try
                 {
                     row[listDates[i]] = totales[i];
+                }
+                catch (Exception)
+                {
+                    row[listDates[i]] = 0;
+                }
+            }
+            tableContent.Rows.Add(row);
+            return tableContent;
+        }
+        public DataTable AddTotalInTable(DataTable dataTable, string nameColumnTotal)
+        {
+            decimal[] totales = new decimal[listDates.Count + 1]; //totales son 11 con un periodo de 10
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                for (int i = 7; i < totales.Length; i++)
+                {
+                    totales[i - 7] += Convert.ToDecimal(item[i].ToString());
+                }
+            }
+            DataRow row;
+            row = dataTable.NewRow();
+            row["Descripción"]  = nameColumnTotal;
+            row["Vencidos"]     = totales[0];
+            for (int i = 0; i < listDates.Count; i++)
+            {
+                try
+                {
+                    row[listDates[i]] = totales[i + 1];
+                }
+                catch (Exception)
+                {
+                    row[listDates[i]] = 0;
+                }
+            }
+            dataTable.Rows.Add(row);
+            return dataTable;
+        }
+        public DataTable AddTotalInTableUnique(DataTable dataTable, string nameColumnTotal)
+        {
+            DataTable tableContent = DeclarePrincipalColumnsName();
+            decimal[] totales = new decimal[listDates.Count + 1]; //totales son 11 con un periodo de 10
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                for (int i = 7; i < totales.Length; i++)
+                {
+                    totales[i - 7] += Convert.ToDecimal(item[i].ToString());
+                }
+            }
+            DataRow row;
+            row = tableContent.NewRow();
+            row["Descripción"] = nameColumnTotal;
+            row["Vencidos"] = totales[0];
+            for (int i = 0; i < listDates.Count; i++)
+            {
+                try
+                {
+                    row[listDates[i]] = totales[i + 1];
                 }
                 catch (Exception)
                 {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FlujoCajaDetallado.aspx.cs" Inherits="AppWebReportes.Reportes.FlujoCajaDetallado" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FlujoCajaDetalladoSoles.aspx.cs" Inherits="AppWebReportes.Reportes.FlujoCajaDetallado" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:GridView ID="grdPruebas" runat="server" CssClass="table table-bordered table-responsive table-hover table-sm table-striped text-center"></asp:GridView>

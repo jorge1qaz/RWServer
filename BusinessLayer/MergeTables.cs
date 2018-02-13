@@ -723,8 +723,8 @@ namespace BusinessLayer
             string descripcion = "";
             try
             {
-                descripcion     = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1).Trim() == IdRow).
-                                Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
+                descripcion     = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1) == IdRow).
+                                    Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
             }
             catch (Exception)
             {
@@ -905,6 +905,12 @@ namespace BusinessLayer
             if (filterTable.Length != 0)
                 filteredResult = filterTable.CopyToDataTable();
             return filteredResult;
+        }
+        public DataView GetFullTableByOneFilterView(DataTable table, string filterName, string filter)
+        {
+            DataView view = new DataView(table);
+            view.RowFilter = filterName + " = '" + filter + "'";
+            return view;
         }
     }
 }

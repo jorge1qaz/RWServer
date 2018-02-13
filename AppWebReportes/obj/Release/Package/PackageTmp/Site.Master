@@ -37,6 +37,7 @@
             //});
         </script>
     </form>
+    <link href="../Content/owner.css" rel="stylesheet" />
 </body>
     <script src="../Scripts/Owner/general.js"></script>
 </html>
