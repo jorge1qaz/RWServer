@@ -20,9 +20,9 @@ namespace AppWebReportes.Reportes
         bool moneda                 = true; // Por defecto en soles
 
         DateTime fechaInicial        = new DateTime();
-        DateTime sinFechaVencimientoStart   = Convert.ToDateTime("12/12/1800");
-        DateTime sinFechaVencimientoEnd     = Convert.ToDateTime("12/12/1900");
-        DateTime conFechaVencimiento        = Convert.ToDateTime("12/12/1901");
+        DateTime sinFechaVencimientoStart   = DateTime.ParseExact("12/12/1800", "dd/MM/yyyy", null);
+        DateTime sinFechaVencimientoEnd     = DateTime.ParseExact("12/12/1900", "dd/MM/yyyy", null);
+        DateTime conFechaVencimiento        = DateTime.ParseExact("12/12/1901", "dd/MM/yyyy", null);
 
         //Tablas
         DataSet dataSetListDatos                    = new DataSet();
@@ -61,11 +61,13 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             { frecuencia = 7; }
             try
-            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()) + 1; }
+            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()); }
             catch (Exception)
             { periodo = 12; }
             try
-            { fechaInicial = DateTime.Parse(Session["FCDFechaInicio"].ToString()); }
+            {
+                fechaInicial = DateTime.ParseExact(Session["FCDFechaInicio"].ToString(), "dd/MM/yyyy", null);
+            }
             catch (Exception)
             { fechaInicial = DateTime.Now; }
             try
@@ -80,20 +82,18 @@ namespace AppWebReportes.Reportes
             #endregion
             #region Fill tables
             dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
-            tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
-            tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
-            tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
+            tableInitDatosSaldoInicial  = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
+            tableInitDatosIngresos      = dataSetListDatos.Tables["dataTableListIngresosDatos"];
+            tableInitDatosEgresos       = dataSetListDatos.Tables["dataTableListEgresosDatos"];
 
-            dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
-            tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
-            tableInitDescripcionIngresos = dataSetListDescripcion.Tables["dataTableListIngresosDescripcion"];
-            tableInitDescripcionEgresos = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
-            tableInitDescripcionCostumer = dataSetListDescripcion.Tables["dataTableListCustumers"];
+            dataSetListDescripcion              = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
+            tableInitDescripcionSaldoInicial    = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
+            tableInitDescripcionIngresos        = dataSetListDescripcion.Tables["dataTableListIngresosDescripcion"];
+            tableInitDescripcionEgresos         = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
+            tableInitDescripcionCostumer        = dataSetListDescripcion.Tables["dataTableListCustumers"];
 
             tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
             tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
-
-                
             #endregion
             #region Rango de fechas para ingresos y egresos
             rangoFechas.Add(conFechaVencimiento);
@@ -121,36 +121,40 @@ namespace AppWebReportes.Reportes
 
             DataTable tableCompleteIngresos = AddTotalInTable(tableIngresos, "Total ingresos");  // true = ingresos
             DataTable tableCompleteEgresos = AddTotalInTable(tableEgresos, "Total egresos");     // false = egresos
-            tableCompleteIngresos.Merge(tableCompleteEgresos);
             GenerateReport(100);
+
+            // Armar tablas
+            //tableCompleteIngresos.Merge(tableCompleteEgresos);
+            // terminar de armar las tablas ricolinas
+
             //grdPruebas.DataSource =  ProcesarDatos(tableInitDatosIngresos, true);
             grdPruebas.DataSource = tableCompleteIngresos;
             grdPruebas.DataBind();
         }
         public void GenerateReport(decimal totalSaldoInicial) {
 
-            DataTable[] totalesPorTabla = new DataTable[2];
-            totalesPorTabla[0] = AddTotalInTableUnique(tableIngresos, "Total ingresos");
-            totalesPorTabla[1] = AddTotalInTableUnique(tableEgresos, "Total egresos");
-            DataTable dd = new DataTable();
-            totalesPorTabla[0].Merge(totalesPorTabla[1]);
-            decimal[] totales = new decimal[periodo + 1];
+            DataTable[] totalesPorTabla = new DataTable[5];
+            totalesPorTabla[0] = DeclarePrincipalColumnsName();     // Saldo inicial     
+            DataRow row = totalesPorTabla[0].NewRow();
+            row[listDates[0]] = totalSaldoInicial;
+            totalesPorTabla[0].Rows.Add(row);                       // Fin saldo inicial
 
-            foreach (DataRow item in totalesPorTabla[0].Rows)
-            {
-                totales[0] += Convert.ToDecimal(item[8].ToString()); // vencidos
-            }
-            totales[0] += totalSaldoInicial; // First Column
-            foreach (DataRow item in totalesPorTabla[0].Rows)
-            {
-                for (int i = 9; i < 9 + periodo; i++)
-                {
-                    totales[i - 8] += Convert.ToDecimal(item[i].ToString());
-                }
-            }
+            totalesPorTabla[1] = AddTotalInTableUnique(tableIngresos, "Total ingresos");
+            totalesPorTabla[2] = AddTotalInTableUnique(tableEgresos, "Total egresos");
+            DataTable dd = new DataTable();
+
+            decimal[] totales = new decimal[periodo];
+
+            totales[0] = totalSaldoInicial; // First Column
+            //foreach (DataRow item in totalesPorTabla[1].Rows)
+            //{
+            //    for (int i = 9; i < 8 + periodo; i++)
+            //    {
+            //        totales[i - 8] += Convert.ToDecimal(item[i].ToString());
+            //    }
+            //}
         }
-        public void GenerateReportSaldoInicial() {
-            
+        public void GenerateReportDistributed() { //Modificar todo este metodo (saldo inicial)
             DataRow row = tableReport.NewRow();
             row["Cuenta"] = "Saldo";
             row["Descripción"] = "Saldo inicial";
@@ -297,7 +301,7 @@ namespace AppWebReportes.Reportes
             DataTable[] tablaUnicaByCuenta = new DataTable[tablesByCuenta.Length];
             for (int i = 0; i < tablesByCuenta.Length; i++)
             {
-                if (istableIngresos)
+                if (istableIngresos) // Sí es true entonces se trata de la tabla ingresos con sus respectivas descripciones, sino, es de egresos
                     tablaUnicaByCuenta[i] = ProcesarTotalesByCuenta(tablesByCuenta[i], listCuentas[i], tableInitDescripcionIngresos);
                 else
                     tablaUnicaByCuenta[i] = ProcesarTotalesByCuenta(tablesByCuenta[i], listCuentas[i], tableInitDescripcionEgresos);
@@ -307,7 +311,7 @@ namespace AppWebReportes.Reportes
             // Tablas procesadas y listas para mostrarse
             DataTable tableFinalFlash = new DataTable();
             
-            if (tableDetailed)
+            if (tableDetailed) // Sí es falso, entonces retorna toda la tabla con sus facturas visibles, en caso contrario sólo muestra totales por cuenta
             {
                 for (int i = 0; i < listCuentas.Count; i++)
                     tablesByCuenta[0].Merge(tablesByCuenta[i]);
@@ -315,8 +319,7 @@ namespace AppWebReportes.Reportes
             }
             else
                 tableFinalFlash = tablaUnicaByCuenta[0];
-
-            //grdPruebas.DataSource = tablaUnicaByCuenta[0];
+            
             return tableFinalFlash;
         }
         public DataTable ProcesarDatos(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
@@ -376,8 +379,9 @@ namespace AppWebReportes.Reportes
                 row                         = tableContent.NewRow();
                 DateTime fechaDocumento     = DateTime.Parse(item[5].ToString());
                 DateTime fechaVencimiento   = new DateTime();
+                DateTime dateDefault        = DateTime.ParseExact("30/12/1899", "dd/MM/yyyy", null);
                 if (conFechaVencimiento)
-                    fechaVencimiento        = Convert.ToDateTime("30/12/1899");
+                    fechaVencimiento        = dateDefault;
                 else
                     fechaVencimiento        = DateTime.Parse(item[6].ToString());                
                 row["Cuenta"]               = item[2].ToString();
@@ -461,9 +465,11 @@ namespace AppWebReportes.Reportes
         }
         public DataTable AddTotalInTable(DataTable dataTable, string nameColumnTotal)
         {
+            DataTable newTable = new DataTable();
+            newTable = dataTable.Copy();
             decimal[] totales = new decimal[listDates.Count + 1]; //totales son 11 con un periodo de 10
 
-            foreach (DataRow item in dataTable.Rows)
+            foreach (DataRow item in newTable.Rows)
             {
                 for (int i = 7; i < totales.Length; i++)
                 {
@@ -471,7 +477,7 @@ namespace AppWebReportes.Reportes
                 }
             }
             DataRow row;
-            row = dataTable.NewRow();
+            row = newTable.NewRow();
             row["Descripción"]  = nameColumnTotal;
             row["Vencidos"]     = totales[0];
             for (int i = 0; i < listDates.Count; i++)
@@ -485,19 +491,19 @@ namespace AppWebReportes.Reportes
                     row[listDates[i]] = 0;
                 }
             }
-            dataTable.Rows.Add(row);
-            return dataTable;
+            newTable.Rows.Add(row);
+            return newTable;
         }
         public DataTable AddTotalInTableUnique(DataTable dataTable, string nameColumnTotal)
         {
             DataTable tableContent = DeclarePrincipalColumnsName();
-            decimal[] totales = new decimal[listDates.Count + 1]; //totales son 11 con un periodo de 10
+            decimal[] totales = new decimal[listDates.Count]; //totales son 11 con un periodo de 10
 
             foreach (DataRow item in dataTable.Rows)
             {
-                for (int i = 7; i < totales.Length; i++)
+                for (int i = 8; i < totales.Length + 1; i++)
                 {
-                    totales[i - 7] += Convert.ToDecimal(item[i].ToString());
+                    totales[i - 8] += Convert.ToDecimal(item[i].ToString());
                 }
             }
             DataRow row;

@@ -71,16 +71,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>02/13/2018 16:15:50</publishTime>
+      <publishTime>02/14/2018 11:30:37</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>02/13/2018 16:15:50</publishTime>
+      <publishTime>02/14/2018 11:30:37</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>02/13/2018 16:16:21</publishTime>
+      <publishTime>02/14/2018 11:31:01</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>02/13/2018 16:16:20</publishTime>
+      <publishTime>02/14/2018 11:31:01</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
@@ -1196,7 +1196,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/12/2018 14:22:46</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>02/13/2018 16:16:04</publishTime>
+      <publishTime>02/14/2018 11:30:44</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1233,6 +1233,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Reportes/FlujoCajaDetalladoSoles.aspx">
       <publishTime>02/12/2018 18:49:14</publishTime>
+    </File>
+    <File Include="Reportes/FlujoCajaSimpleSoles.aspx">
+      <publishTime>02/13/2018 16:35:07</publishTime>
     </File>
     <File Include="Reportes/frmMargenUtilidad.aspx">
       <publishTime>01/19/2018 14:28:09</publishTime>

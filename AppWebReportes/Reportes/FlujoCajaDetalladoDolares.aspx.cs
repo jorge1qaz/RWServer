@@ -111,7 +111,7 @@ namespace AppWebReportes.Reportes
                 listDates.Add(columnName);
             }
             #endregion
-            ProcesarDatosIngresos();
+            GenerateReport();
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
@@ -128,7 +128,7 @@ namespace AppWebReportes.Reportes
             }
             return JsonDataset;
         }
-        public void ProcesarDatosIngresos()
+        public void GenerateReport()
         {
             DataTable listCuentasTable = mergeTables.GetListDist(tableInitDatosIngresos, "a");
             List<string> listCuentas = new List<string>();
@@ -162,7 +162,7 @@ namespace AppWebReportes.Reportes
 
             for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
             {
-                arraySFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosSFVDolares, i, false, false);
+                arraySFVD[i] = ProcesarDatos(tableThirdBlockIngresosSFVDolares, i, false, false);
                 arraySFVD[0].Merge(arraySFVD[i]);
             }
             tableReport.Merge(arraySFVD[0]);
@@ -171,7 +171,7 @@ namespace AppWebReportes.Reportes
             DataTable[] arrayCFVD = new DataTable[tableThirdBlockIngresosCFVDolares.Length]; // Este array de tablas, almacena los datos de todas las cuentas en base a SFVDolares
             for (Int16 i = 0; i < tableThirdBlockIngresosSFVDolares.Length; i++)
             {
-                arrayCFVD[i] = ProcesarDatosSinFechaVencimiento(tableThirdBlockIngresosCFVDolares, i, false, true);
+                arrayCFVD[i] = ProcesarDatos(tableThirdBlockIngresosCFVDolares, i, false, true);
                 arrayCFVD[0].Merge(arrayCFVD[i]);
             }
             tableReport.Merge(arrayCFVD[0]);
@@ -199,7 +199,7 @@ namespace AppWebReportes.Reportes
             grdPruebas.DataSource = tablaUnicaByCuenta[0];
             grdPruebas.DataBind();
         }
-        public DataTable ProcesarDatosSinFechaVencimiento(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
+        public DataTable ProcesarDatos(DataTable[] tableBlock, Int16 index, bool moneda, bool fechaVencimiento)
         {
             string debe = "", haber = "";
             if (moneda) // if true then soles else dólares

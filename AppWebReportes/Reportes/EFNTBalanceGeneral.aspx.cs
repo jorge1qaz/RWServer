@@ -138,7 +138,7 @@ namespace AppWebReportes.Reportes
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
         public string GetPathFile(string nameFile)
         {
-            String rootPath = Server.MapPath("~");
+            String rootPath = Server.MapPath("~"); //Ruta física
             string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdFncr/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "3" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         }
@@ -146,7 +146,7 @@ namespace AppWebReportes.Reportes
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
         public string GetPathFile2(string nameFile)
         {
-            String rootPath = Server.MapPath("~");
+            String rootPath = Server.MapPath("~"); //Ruta física
             string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdPmS/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         }

@@ -351,6 +351,7 @@
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
     <Content Include="Images\icon_rw.ico" />
+    <Content Include="Perfiles\CambioPassword.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="pruebas.aspx" />
     <Content Include="Reportes\CuentasPendientes.aspx" />
@@ -791,6 +792,13 @@
     <Compile Include="Bootstrap.master.designer.cs">
       <DependentUpon>Bootstrap.master</DependentUpon>
     </Compile>
+    <Compile Include="Perfiles\CambioPassword.aspx.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\CambioPassword.aspx.designer.cs">
+      <DependentUpon>CambioPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Perfiles\frmRegistroUsuario.aspx.cs">
       <DependentUpon>frmRegistroUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -950,6 +958,7 @@
     <Folder Include="Cls\" />
     <Folder Include="Images\FotoEmpresa\" />
     <Folder Include="Images\FotoPerfil\" />
+    <Folder Include="Updates\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
