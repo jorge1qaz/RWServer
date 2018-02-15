@@ -625,6 +625,7 @@
     <Content Include="Scripts\Owner\RW-007.js" />
     <Content Include="Scripts\Owner\RW-008.js" />
     <Content Include="Scripts\Owner\RW-009.js" />
+    <Content Include="Scripts\Owner\RW-010.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tether.min.js" />

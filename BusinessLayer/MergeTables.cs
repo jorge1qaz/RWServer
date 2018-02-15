@@ -173,64 +173,6 @@ namespace BusinessLayer
                 throw (ex);
             }
         }
-        public DataTable SelectRowDisctinct(DataTable dtData, string NameColumn1, string NameColumn2)
-        {
-            try
-            {
-                DataTable distintos = dtData.DefaultView.ToTable(true, NameColumn1, NameColumn2);
-                DataTable dtNew = new DataTable();
-                DataColumn column;
-                #region Declaración de columnas
-                column = new DataColumn();
-                column.DataType = Type.GetType("System.String");
-                column.ColumnName = "documento";
-                dtNew.Columns.Add(column);
-
-                column = new DataColumn();
-                column.DataType = Type.GetType("System.String");
-                column.ColumnName = "numero";
-                dtNew.Columns.Add(column);
-                #endregion
-
-                DataRow row;
-                //foreach (DataRow drRow in distintos.Rows)
-                //{
-                //    dtNew.ImportRow(dtData.Select(NameColumn1 + " = '" + drRow[0].ToString() + "'")[0]);
-
-                //    row = dtNew.NewRow();
-                //    row["documento"] = drRow[0];
-                //    row["numero"] = drRow[1];
-                //    dtNew.Rows.Add(dtNew);
-                //}
-                return dtNew;
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
-        //public DataTable GetListDist2(DataTable table, string NameColumn1, string NameColumn2)
-        //{
-        //    try
-        //    {
-        //        DataTable distintos = dtData.DefaultView.ToTable(true, sColumnName);
-        //        DataTable dtNew = new DataTable();
-        //        foreach (DataColumn dcName in dtData.Columns)
-        //        {
-        //            dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
-        //        }
-
-        //        foreach (DataRow drRow in distintos.Rows)
-        //        {
-        //            dtNew.ImportRow(dtData.Select(sColumnName + " = '" + drRow[0] + "'")[0]);
-        //        }
-        //        return dtNew;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw (ex);
-        //    }
-        //}
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
         public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue) {
@@ -295,19 +237,14 @@ namespace BusinessLayer
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método eeeesteeeee*/
-        public DataTable GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string nameColumn1, string nameColumn2, string nameColumnFilter, string nameFilter, string nameFirstColumn, bool moneda)
-        {
+        public DataTable GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string nameColumn1, string nameColumn2, string nameFirstColumn, bool moneda)
+        {                                                                                   //a             //c                     //d             //
             DataTable tableSumByCount = new DataTable(); // Instancia de tabla para las cuentas en específico
             DataColumn column = new DataColumn();
             DataRow row;
             double total1;
             double total2;
             decimal amount;
-            if (!moneda) // True = soles, false = dólares
-            {
-                nameColumn1 = nameColumn1 + "d";
-                nameColumn2 = nameColumn2 + "d";
-            }
             #region Declaración de columnas
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Cuenta";
@@ -344,7 +281,7 @@ namespace BusinessLayer
             tableSumByCount.Columns.Add(column);
 
             column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
+            column.DataType = Type.GetType("System.Decimal");
             column.ColumnName = "Vencidos";
             tableSumByCount.Columns.Add(column);
 
@@ -353,43 +290,32 @@ namespace BusinessLayer
             column.ColumnName = nameFirstColumn;
             tableSumByCount.Columns.Add(column);
             #endregion
+            if (!moneda)
+            {
+                nameColumn1 = nameColumn1 + "d"; nameColumn2 = nameColumn2 + "d";
+            }
             foreach (DataRow item in tableList.Rows) // Lista de cuentas con los cuales se obtienen los totales 
             {
                 try
                 {
-                    if (moneda) //soles
-                    {
-                        total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                            Where(x => x.Field<string>(nameColumnFilter) != nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
-                    }
-                    else
-                    {
-                        total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                            Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn1)).Sum();
-                    }
+                    total1 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).Select(x => x.Field<double>(nameColumn1)).Sum();
                 }
                 catch (Exception)
                 { total1 = 0; }
                 try
                 {
-                    if (moneda)
-                    {
-                        total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                            Where(x => x.Field<string>(nameColumnFilter) != nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
-                    }
-                    else
-                    {
-                        total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).
-                            Where(x => x.Field<string>(nameColumnFilter) == nameFilter).Select(x => x.Field<double>(nameColumn2)).Sum();
-                    }
+                    total2 = tableData.AsEnumerable().Where(x => x.Field<string>(idColumn) == item[0].ToString()).Select(x => x.Field<double>(nameColumn2)).Sum();
                 }
                 catch (Exception)
                 { total2 = 0; }
                 amount = Convert.ToDecimal(total1) - Convert.ToDecimal(total2);
-                row = tableSumByCount.NewRow();
-                row["Cuenta"] = item[0].ToString();
-                row[nameFirstColumn] = amount;
-                tableSumByCount.Rows.Add(row);
+                if (amount != 0)
+                {
+                    row = tableSumByCount.NewRow();
+                    row["Cuenta"] = item[0].ToString();
+                    row[nameFirstColumn] = Math.Round(amount, 2);
+                    tableSumByCount.Rows.Add(row);
+                }
             }
             return tableSumByCount;
         }
@@ -716,7 +642,7 @@ namespace BusinessLayer
         }
         //Jorge Luis|29/01/2018|RW-93
         /*Método para*/
-        public string GetStringByIdInDataTable(DataTable table, string nameColumn1, string IdRow, string nameColumn2)
+        public string GetStringByIdInDataTable(DataTable table, string nameColumn1, string IdRow, string nameColumn2 )
         {
             //DataRow[] foundRow;
             //foundRow = table.Select(nameColumn + " Like '"+ IdRow + "%' ");
@@ -724,13 +650,31 @@ namespace BusinessLayer
             try
             {
                 descripcion     = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1) == IdRow).
-                                    Select(x => x.Field<string>(nameColumn2)).FirstOrDefault();
+                                    Select(x => x.Field< string >(nameColumn2)).FirstOrDefault();
             }
             catch (Exception)
             {
                 descripcion = "";
             }
             return descripcion;
+        }
+        //Jorge Luis|29/01/2018|RW-93
+        /*Método para*/
+        public decimal GetDecimalByIdInDataTable(DataTable table, string nameColumn1, string IdRow, string nameColumn2)
+        {
+            //DataRow[] foundRow;
+            //foundRow = table.Select(nameColumn + " Like '"+ IdRow + "%' ");
+            decimal valor = 0;
+            try
+            {
+                valor = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1) == IdRow).
+                                    Select(x => x.Field<decimal>(nameColumn2)).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                valor = 0;
+            }
+            return valor;
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
@@ -746,10 +690,10 @@ namespace BusinessLayer
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para clonar una tabla según un sólo filtro*/
-        public DataTable GetTableByFilters(DataTable table, String filterId1, String columnNameFilterId1)
+        public DataTable GetTableByFilters(DataTable table, String filterId, String columnNameFilterId)
         {
             var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where row.Field<String>(columnNameFilterId1) == filterId1
+                               where row.Field<String>(columnNameFilterId) == filterId
                                select row;
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));

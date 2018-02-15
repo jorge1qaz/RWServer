@@ -200,5 +200,11 @@
             format: 'dd/mm/yyyy',
             language: 'es-ES',
         });
+        $('#MainContent_txtFechaInicio').keypress(function (event) {
+            if (event.keyCode === 10 || event.keyCode === 13)
+                event.preventDefault();
+        });
     });
+
+
 });

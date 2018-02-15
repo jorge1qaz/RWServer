@@ -13,12 +13,12 @@ namespace AppWebReportes.Reportes {
     public partial class FlujoCajaDetallado {
         
         /// <summary>
-        /// grdPruebas control.
+        /// grdTableReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPruebas;
+        protected global::System.Web.UI.WebControls.GridView grdTableReport;
     }
 }

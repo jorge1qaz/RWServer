@@ -108,3 +108,5 @@ $("#MainContent_txtEmail").on('paste', function () {
 $("#MainContent_txtConfirmarEmail").on('paste', function () {
     $("#MainContent_txtConfirmarEmail").text('');
 });
+
+$("#imagenes").hide();

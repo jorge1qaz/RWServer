@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" id="imagenes">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for="fileImagenEmpresa">Imagen de empresa</label>
