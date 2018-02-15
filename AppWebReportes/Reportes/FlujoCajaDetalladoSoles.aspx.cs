@@ -158,7 +158,7 @@ namespace AppWebReportes.Reportes
             tablesTotals[0].Merge(tablesTotals[2]);
             tablesTotals[0].Merge(tablesTotals[3]);
             // terminar de armar las tablas ricolinas
-
+            // borrar esta línea
             grdTableReport.DataSource = tablesTotals[0];
             grdTableReport.DataBind();
             grdTableReport.UseAccessibleHeader = true;
