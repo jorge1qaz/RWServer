@@ -14,7 +14,7 @@
         <%: Scripts.Render("~/bundles/validaciones") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/Images/icon_rw.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Images/icono.ico" rel="shortcut icon" type="image/x-icon" />
     <style>
         #btnEstadoResultadoPMS {
             margin-top: auto;
@@ -28,13 +28,21 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Reportes Contasis</p>
+                <div class="row">   
+                    <div class="col-md-3 col-sm-12">  
+                        <p>&copy; <%: DateTime.Now.Year %> - SmartReport</p>
+                    </div>
+                    <div class="offset-md-6 offset-sm-0 col-md-3 col-sm-12">  
+                        <img src="../Images/logo-contasis.png" />
+                    </div>
+                </div>
             </footer>
         </div>
         <script>
-            //$(window).resize(function () {
-            //    location.reload(true);
-            //});
+            $(function () {
+                $("#blockbtnFullScreen").show();
+                $("#imageDashboard").show();
+            });
         </script>
     </form>
     <link href="../Content/owner.css" rel="stylesheet" />

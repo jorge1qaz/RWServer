@@ -10,7 +10,7 @@
     <script src="Scripts/jquery-3.0.0.min.js"></script>
     <script src="Scripts/materialize/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link href="~/Images/icon_rw.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Images/icono.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
     <form id="Formulario" runat="server" onsubmit="trigger();">

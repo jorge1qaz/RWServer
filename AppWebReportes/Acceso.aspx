@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                         </div>
-                        <h5 class="center">Acceda a su cuenta de Contasis</h5>
+                        <h5 class="center">Acceda a su cuenta de SmartReport</h5>
                         <div class="row">
                             <div class="form">
                                 <div class="row" id="blockCorreo" runat="server">

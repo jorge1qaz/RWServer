@@ -3,10 +3,10 @@
     border-color: #70bbe8 !important;
 }
 
-.btn-primary, .card-primary {
+/*.btn-primary, .card-primary {
     background-color: #113182 !important;
     border-color: #113182 !important;
-}
+}*/
 
 .btn-success, .card-success {
     background-color: #43c9af !important;
@@ -17,13 +17,22 @@
     border-color: #70bbe8 !important;
 }
 
-.card-outline-primary, btn-outline-primary {
+/*.card-outline-primary, btn-outline-primary {
     border-color: #113182 !important;
-}
+}*/
 
 .card-outline-success, btn-outline-success {
     border-color: #43c9af !important;
 }
 .text-white {
     color: white;
+}
+.btn {
+    cursor: pointer;
+    line-height: 36px;
+    padding: 0 2rem;
+}
+i {
+    line-height: inherit;
+    margin: auto 10px auto -22px;
 }

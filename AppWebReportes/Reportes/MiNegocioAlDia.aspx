@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx">Inicio</a></li>
+                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx"><i class="material-icons left" id="home" data-toggle="tooltip" data-placement="right" title="Regresar al inicio">home</i></a></li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
@@ -53,7 +53,7 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
-                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-success form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
+                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-9 col-md-12 col-sm-12">
                     <div class="card card-outline-secondary text-center">
                         <div class="card-block">
-                            <h4 class="card-title">Reporte de Mi negocio al día <span id="monthtitle">para el mes de </span><span id="monthHeader"></span></h4>
+                            <h4 class="card-title">Reporte de Mi negocio al día <%--<span id="monthtitle">para el mes de </span><span id="monthHeader"></span>--%></h4>
                             <div class="row">
                                 <div class="col-lg-12 col-md-11 col-xs-12">
                                     <table class="highchart table table-striped table-bordered table-responsive" data-graph-container-before="1" data-graph-type="column" id="tablaReporte" data-graph-datalabels-enabled="1" data-graph-datalabels-formatter="foo.myAwesomeCallback">
@@ -78,23 +78,13 @@
                                         <tbody>
                                             <tr>
                                                 <td></td>
-                                                <td><asp:Label ID="lblResultado" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblVentas" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblCajaBancos" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblDeben" runat="server"></asp:Label></td>
-                                                <td><asp:label id="lbldebo" runat="server"></asp:label></td>
+                                                <td><asp:Label ID="lblResultado"    runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblVentas"       runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblCajaBancos"   runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblDeben"        runat="server"></asp:Label></td>
+                                                <td><asp:label id="lbldebo"         runat="server"></asp:label></td>
                                             </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th></th>
-                                                <th>Resultado</th>
-                                                <th>Ventas</th>
-                                                <th>Caja y bancos</th>
-                                                <th>Deben</th>
-                                                <th>Debo</th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -111,7 +101,5 @@
     <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
     <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
     <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
-
-
     <script src="../Scripts/Owner/RW-007.js"></script>
 </asp:Content>

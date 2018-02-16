@@ -237,20 +237,20 @@ namespace AppWebReportes.Reportes
         public void GetTotalByCuentasCobrar() {
             string JsonTableA115 = GetPathFile("A115");
             string JsonTableA120N = GetPathFileN("A120");
-            string JsonTableA125 = GetPathFile("A125");
+            string JsonTableA120 = GetPathFile("A120");
             decimal sumA115 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableA115, lstMes.SelectedValue.ToString(), "a", "b", "c", true, false));
             decimal sumA120N = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableA120N, lstMes.SelectedValue.ToString(), "a", "b", "c", true, false));
-            decimal sumA125 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableA125, lstMes.SelectedValue.ToString(), "a", "b", "c", true, false));
+            decimal sumA120 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableA120, lstMes.SelectedValue.ToString(), "a", "b", "c", true, false));
             decimal totalCuentasPorCobrar = 0;
             
-            totalCuentasPorCobrar = sumA115 + sumA120N + sumA125;
+            totalCuentasPorCobrar = sumA115 + sumA120N + sumA120;
             lblDeben.Text = totalCuentasPorCobrar.ToString();
         }
         public void GetTotalByCuentasPagar() {
             string JsonTableP120N = GetPathFileN("P120");
             string JsonTableP120 = GetPathFile("P120");
             string JsonTableP110 = GetPathFile("P110");
-            string JsonTableP121 = GetPathFile("P121");
+            //string JsonTableP121 = GetPathFile("P121"); // Este cambia
             string JsonTableP105N = GetPathFileN("P105");
             string JsonTableP105 = GetPathFile("P105");
             decimal totalCuentasPorPagar = 0;
@@ -260,8 +260,8 @@ namespace AppWebReportes.Reportes
             decimal nSumP105 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableP105, lstMes.SelectedValue.ToString(), "a", "b", "c", true, true));
             decimal nSumP120 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableP120, lstMes.SelectedValue.ToString(), "a", "b", "c", true, true));
             decimal nSumP110 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableP110, lstMes.SelectedValue.ToString(), "a", "b", "c", true, true));
-            decimal nSumP121 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableP121, lstMes.SelectedValue.ToString(), "a", "b", "c", true, true));
-            totalCuentasPorPagar = (nSumP120N + nSumP120 + nSumP110 + nSumP121 + nSumP105 + nSumP105N) * -1;
+            //decimal nSumP121 = Convert.ToDecimal(mergeTables.GeTotalByAccumulatedTables(JsonTableP121, lstMes.SelectedValue.ToString(), "a", "b", "c", true, true));
+            totalCuentasPorPagar = (nSumP120N + nSumP120 + nSumP110 + /*nSumP121*/ + nSumP105 + nSumP105N) * -1;
             lbldebo.Text = totalCuentasPorPagar.ToString();
         }
         //Jorge Luis|26/12/2017|RW-91
@@ -276,7 +276,7 @@ namespace AppWebReportes.Reportes
         public string GetPathFileN(string nameFile)
         {
             String rootPath = Server.MapPath("~");
-            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/NRubro" + nameFile + ".json").Trim().Replace("\\'", "'");
+            string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/N" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         }
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
@@ -286,6 +286,7 @@ namespace AppWebReportes.Reportes
             GetTotalForResultado();
             GetTotalByCuentasCobrar();
             GetTotalByCuentasPagar();
+            
         }
     } 
 }

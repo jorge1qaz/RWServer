@@ -25,4 +25,6 @@ $("#btnFullScreen").on("click", function () {
 });
 $(function () {
     $('[type=search]').addClass("col-7");
+    $('[data-toggle="tooltip"]').tooltip();
+    $('#home').tooltip();
 });

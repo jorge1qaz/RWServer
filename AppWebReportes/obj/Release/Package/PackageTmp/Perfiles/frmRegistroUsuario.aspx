@@ -2,11 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
             <div class="row"">
-                <div class="offset-md-1 offset-sm-0 col-md-10 col-sm-12">
+                <div class="offset-md-2 offset-sm-0 col-md-8 col-sm-12">
                     <div id="Formulario">
                         <div class="card card-inverse card-info text-center text-white">
+                            <div class="card-header bg-primary">
+                                <h5 class="text-center">Registro de usuario</h5>
+                            </div>
                             <div class="card-block">
-                                <h5>Registro de usuario</h5>
                                 <em>Los campos marcados con un asterisco (*) son obligatorios.</em>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
@@ -78,8 +80,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <asp:Button ID="btnRegistrar" CssClass="btn btn-primary btn-block" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0">
+                                        <div class="form-group">
+                                            <asp:Button ID="btnRegistrar" CssClass="btn btn-primary btn-block" runat="server" Text="Registrar" OnClick="btnRegistrar_Click" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

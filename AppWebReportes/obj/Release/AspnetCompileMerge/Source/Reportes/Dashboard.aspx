@@ -51,10 +51,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" runat="server" id="imageDashboardBlock">
+                    <img src="../Images/image-dashboard.png" class="img-fluid" id="imageDashboard"/>
+                </div>
                 <br />
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockCuentasPendientes">
-                        <div class="card card-outline-secondary text-center">
+                        <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
                                     <label class="font-weight-bold">Cuentas pendientes</label>
@@ -76,7 +79,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-secondary" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -158,7 +161,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockMinegocioAlDia">
-                        <div class="card card-outline-info text-center">
+                        <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
                                     <label class="font-weight-bold">Mi negocio al día</label>
@@ -180,7 +183,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-info" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -212,7 +215,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockEstadoResultadoPMS">
-                        <div class="card card-outline-warning  text-center">
+                        <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
                                     <label class="font-weight-bold">Estado de resultado mensual</label>
@@ -234,7 +237,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-warning" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -267,7 +270,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockEstadosFinancierosNT">
-                        <div class="card card-outline-secondary  text-center">
+                        <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
                                     <label class="font-weight-bold">Estados financieros NIIF y tributario</label>
@@ -289,7 +292,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-secondary" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -322,7 +325,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockFlujoCajaDetallado">
-                        <div class="card card-outline-primary  text-center">
+                        <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
                                     <label class="font-weight-bold">Flujo de caja detallado</label>
@@ -344,7 +347,7 @@
                                                             <ItemTemplate>
                                                                 <tr>
                                                                     <td>
-                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-primary" runat="server" Text="Seleccione" />
+                                                                        <asp:Button ID="btnSeleccionar" CssClass="btn btn-success" runat="server" Text="Seleccione" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Label ID="Label4" runat="server" Text='<%# Eval("c") %>'></asp:Label>
@@ -540,6 +543,7 @@
                                             <label for="lstNumeroPeriodosFCD">Número de periodos</label>
                                             <asp:DropDownList ID="lstNumeroPeriodosFCD" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="10">10</asp:ListItem>
+                                                <asp:ListItem Value="12">12</asp:ListItem>
                                                 <asp:ListItem Value="15">15</asp:ListItem>
                                                 <asp:ListItem Value="20">20</asp:ListItem>
                                                 <asp:ListItem Value="30">30</asp:ListItem>

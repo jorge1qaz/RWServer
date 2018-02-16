@@ -29,7 +29,7 @@ namespace AppWebReportes.Reportes
                 Response.Redirect("~/Acceso"); //En caso de que no, lo redireciono a la pagina "Acceso"
             Cliente cliente = new Cliente() // Instancio el objeto CLIENTE
             { IdCliente = Session["IdUser"].ToString() }; // Guardo en la variable IdCliente el ID del cliente
-            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
+            lblNombreUsuario.Text = "Bienvenido, " + cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
             try // Primer intento, busca la diferencia entre 
             {
                 dateUpdate = cliente.ReadParametersUserDateUpdate("RW_Profiles_Read_DateUpdate");

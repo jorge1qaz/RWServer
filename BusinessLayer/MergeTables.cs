@@ -120,7 +120,6 @@ namespace BusinessLayer
                     datatableMes0.Merge(datatableMes1);
                     break;
                 case "12":
-                    datatableMes13.Merge(datatableMes14);
                     datatableMes12.Merge(datatableMes13);
                     datatableMes11.Merge(datatableMes12);
                     datatableMes10.Merge(datatableMes11);
@@ -139,7 +138,6 @@ namespace BusinessLayer
             #endregion 
             return datatableMes0;
         }
-
         public DataTable GetListDist(DataTable table, string NameColumn) {
             try
             {

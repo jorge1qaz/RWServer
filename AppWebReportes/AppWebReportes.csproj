@@ -351,6 +351,8 @@
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
     <Content Include="Images\icon_rw.ico" />
+    <Content Include="Images\image-dashboard.png" />
+    <Content Include="Images\logo-contasis.png" />
     <Content Include="Perfiles\CambioPassword.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="pruebas.aspx" />

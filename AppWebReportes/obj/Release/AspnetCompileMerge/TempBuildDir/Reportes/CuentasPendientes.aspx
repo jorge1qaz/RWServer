@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link disabled" href="#"><span class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx">Inicio</a></li>
+                <li class="nav-item"><a runat="server" class="nav-link" href="~/Reportes/Dashboard.aspx"><i class="material-icons left" id="home" data-toggle="tooltip" data-placement="right" title="Regresar al inicio">home</i></a></li>
             </ul>
             <div class="form-inline my-2 my-lg-0">
                 <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
@@ -17,9 +17,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <br />
-                <div class="row">
+                <div class="">
                     <div class="card card-inverse card-info text-center">
                         <div class="card-block">
                             <div class="form-group">
@@ -27,7 +27,9 @@
                                 <input class="form-control" id="txtCuenta" type="text" placeholder="Escribe el número de cuenta" name="txtCuentaName" /><small class="form-text text-muted" id="Help">También puedes revisar las cuentas que tengan registros en tu base de datos.</small>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-primary form-control" type="button" id="triggerModal">Buscar cuenta</button>
+                                <button class="btn btn-primary form-control" type="button" id="triggerModal">
+                                    <i class="material-icons left">search</i>Buscar cuenta
+                                </button>
                             </div>
                             <div class="form-group">
                                 <label for="exampleSelect1">Mes de proceso</label>
@@ -49,17 +51,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success form-control" id="btnPruebas" type="button">
-                                    Generar reporte
+                                <button class="btn btn-primary form-control" id="btnPruebas" type="button">
+                                    <i class="material-icons left">play_arrow</i>Generar reporte
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-sm-12">
                 <br />
-                <div class="row">
+                <div class="">
                     <div class="card card-outline-secondary mb-3 text-center">
                         <div class="card-block">
                             <h4 class="card-title">Reporte de Cuentas pendientes</h4>
@@ -73,15 +75,6 @@
                                         <th>Razón social</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th class="center">RUC</th>
-                                        <th class="center">Debe</th>
-                                        <th class="center">Haber</th>
-                                        <th class="center">Total</th>
-                                        <th class="center">Razón social</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -105,13 +98,6 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Cuenta</th>
-                                <th>Detalle</th>
-                                <th></th>
-                            </tr>
-                        </tfoot>
                     </table>
                     <br />
                 </div>
