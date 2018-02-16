@@ -54,16 +54,13 @@
             "language": idioma,
             dom: 'Bfrtip',
             info: false,
+            fixedColumns: {
+                rightColumns: 1
+            },
             buttons: [
                 'copy', {
                     extend: 'excel',
                     text: 'Excel',
-                    title: 'Flujo de caja detallado - ' + tipoReporte + ' - Expresado en ' + moneda + " - " + fechaCompleto,
-                    filename: 'Flujo de caja detallado - ' + tipoReporte + ' - Expresado en ' + moneda + " - " + fechaCompletoFile,
-                }, {
-                    extend: 'pdf',
-                    text: 'PDF',
-                    orientation: 'landscape',
                     title: 'Flujo de caja detallado - ' + tipoReporte + ' - Expresado en ' + moneda + " - " + fechaCompleto,
                     filename: 'Flujo de caja detallado - ' + tipoReporte + ' - Expresado en ' + moneda + " - " + fechaCompletoFile,
                 }, {

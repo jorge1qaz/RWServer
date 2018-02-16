@@ -132,7 +132,18 @@ namespace AppWebReportes.Reportes
                 listDates.Add(columnName);
             }
             #endregion
-            
+
+            String rootPath = Server.MapPath("~");
+            if (Session["IdUser"] == null || Request.QueryString["idCompany"] == null || Request.QueryString["year"] == null)
+                Response.Redirect("~/Acceso");
+            Cliente cliente = new Cliente()
+            { IdCliente = Session["IdUser"].ToString() };
+            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
+            lblTipoReporte.Text = Session["TipoReporteFCD"].ToString();
+            if (moneda)
+                lblTipoMoneda.Text = "Nuevos soles";
+            else
+                lblTipoMoneda.Text = "Dólares";
             tableIngresos   = ProcesarDatos(tableInitDatosIngresos, tipoReport, true);
             tableEgresos    = ProcesarDatos(tableInitDatosEgresos, tipoReport, false);
 
@@ -158,12 +169,24 @@ namespace AppWebReportes.Reportes
             tablesTotals[0].Merge(tablesTotals[2]);
             tablesTotals[0].Merge(tablesTotals[3]);
             // terminar de armar las tablas ricolinas
-            // borrar esta línea
+            DataColumnCollection columns;
+            columns = tablesTotals[0].Columns;
+            columns.Remove("Fecha vencimiento");
+            if (!tipoReport) // Si es true es reporte detallado (default false)
+            {
+                columns.Remove("Documento");
+                columns.Remove("Número");
+                columns.Remove("Moneda");
+                columns.Remove("Fecha documento");
+            }
+
             grdTableReport.DataSource = tablesTotals[0];
             grdTableReport.DataBind();
             grdTableReport.UseAccessibleHeader = true;
             grdTableReport.HeaderRow.TableSection = TableRowSection.TableHeader;
-
+            //grdTableReport.Columns[0].ItemStyle.HorizontalAlign = HorizontalAlign.Right;
+            //for (int i = 0; i < periodo; i++)
+            //    grdTableReport.Columns[i + 7].ItemStyle.HorizontalAlign = HorizontalAlign.Right;
         }
         public DataTable[] GetAllTotals(decimal totalSaldoInicial) {
 

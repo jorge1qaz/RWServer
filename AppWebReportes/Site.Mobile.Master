@@ -14,7 +14,7 @@
     </asp:PlaceHolder>
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/Images/icon_rw.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Images/icono.ico" rel="shortcut icon" type="image/x-icon" />
     <style>
         #btnEstadoResultadoPMS {
             margin-top: 15px;
