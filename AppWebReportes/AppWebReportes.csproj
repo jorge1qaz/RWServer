@@ -353,6 +353,7 @@
     <Content Include="Images\icon_rw.ico" />
     <Content Include="Images\image-dashboard.png" />
     <Content Include="Images\logo-contasis.png" />
+    <Content Include="Perfiles\CambiarPassword.aspx" />
     <Content Include="Perfiles\CambioPassword.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="pruebas.aspx" />
@@ -369,7 +370,7 @@
     <Content Include="Reportes\EFNTEstadoSitucionFinanciera.aspx" />
     <Content Include="Reportes\FlujoCajaDetalladoDolares.aspx" />
     <Content Include="Reportes\FlujoCajaDetalladoSoles.aspx" />
-    <Content Include="Reportes\FlujoCajaSimpleSoles.aspx" />
+    <Content Include="Reportes\Pruebas.aspx" />
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
@@ -795,6 +796,13 @@
     <Compile Include="Bootstrap.master.designer.cs">
       <DependentUpon>Bootstrap.master</DependentUpon>
     </Compile>
+    <Compile Include="Perfiles\CambiarPassword.aspx.cs">
+      <DependentUpon>CambiarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\CambiarPassword.aspx.designer.cs">
+      <DependentUpon>CambiarPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Perfiles\CambioPassword.aspx.cs">
       <DependentUpon>CambioPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -905,12 +913,12 @@
     <Compile Include="Reportes\FlujoCajaDetalladoSoles.aspx.designer.cs">
       <DependentUpon>FlujoCajaDetalladoSoles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\FlujoCajaSimpleSoles.aspx.cs">
-      <DependentUpon>FlujoCajaSimpleSoles.aspx</DependentUpon>
+    <Compile Include="Reportes\Pruebas.aspx.cs">
+      <DependentUpon>Pruebas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\FlujoCajaSimpleSoles.aspx.designer.cs">
-      <DependentUpon>FlujoCajaSimpleSoles.aspx</DependentUpon>
+    <Compile Include="Reportes\Pruebas.aspx.designer.cs">
+      <DependentUpon>Pruebas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reportes\frmMargenUtilidad.aspx.cs">
       <DependentUpon>frmMargenUtilidad.aspx</DependentUpon>

@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" type="button" id="triggerModal">
-                                    <i class="material-icons left">search</i>Buscar cuenta
+                                    <i class="material-icons left icon-button">search</i>Buscar cuenta
                                 </button>
                             </div>
                             <div class="form-group">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" id="btnPruebas" type="button">
-                                    <i class="material-icons left">play_arrow</i>Generar reporte
+                                    <i class="material-icons left icon-button">play_arrow</i>Generar reporte
                                 </button>
                             </div>
                         </div>

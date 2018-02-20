@@ -259,5 +259,38 @@ namespace BusinessLayer
             con.Disconnect();
             return DateTime.Parse(cmd.Parameters["@DateUpdate"].Value.ToString());
         }
+        //Jorge Luis|08/11/2017|RW-19
+        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, correo) del Cliente y un parámetro de salida.*/
+        public bool CheckEmailAndRUC(string storeProcedure)
+        {
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            SqlParameter paramRUC = new SqlParameter();
+            paramRUC.SqlDbType = SqlDbType.NVarChar;
+            paramRUC.ParameterName = "@RUC";
+            paramRUC.Value = RUC;
+            cmd.Parameters.Add(paramRUC);
+
+            SqlParameter paramComprobacion = new SqlParameter();
+            paramComprobacion.Direction = ParameterDirection.Output;
+            paramComprobacion.SqlDbType = SqlDbType.Bit;
+            paramComprobacion.ParameterName = "@Comprobacion";
+            cmd.Parameters.Add(paramComprobacion);
+
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+        }
     }
 }

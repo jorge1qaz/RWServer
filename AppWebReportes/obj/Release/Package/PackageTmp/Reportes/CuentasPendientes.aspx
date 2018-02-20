@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" type="button" id="triggerModal">
-                                    <i class="material-icons left">search</i>Buscar cuenta
+                                    <i class="material-icons left icon-button">search</i>Buscar cuenta
                                 </button>
                             </div>
                             <div class="form-group">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary form-control" id="btnPruebas" type="button">
-                                    <i class="material-icons left">play_arrow</i>Generar reporte
+                                    <i class="material-icons left icon-button">play_arrow</i>Generar reporte
                                 </button>
                             </div>
                         </div>
@@ -159,9 +159,9 @@
     <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
     <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>
-        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
-        var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
-        var idAnio = "<% Response.Write(Request.QueryString["year"].ToString());%>";
+        var idCliente   = "<% Response.Write(Session["IdUser"].ToString());%>";
+        var idEmpresa   = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
+        var idAnio      = "<% Response.Write(Request.QueryString["year"].ToString());%>";
         console.log(idEmpresa);
     </script>
     <script src="../Scripts/Owner/RW-004-b.js"></script>

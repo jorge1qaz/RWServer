@@ -78,11 +78,11 @@
                                         <tbody>
                                             <tr>
                                                 <td></td>
-                                                <td><asp:Label ID="lblResultado" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblVentas" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblCajaBancos" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblDeben" runat="server"></asp:Label></td>
-                                                <td><asp:label id="lbldebo" runat="server"></asp:label></td>
+                                                <td><asp:Label ID="lblResultado"    runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblVentas"       runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblCajaBancos"   runat="server"></asp:Label></td>
+                                                <td><asp:Label ID="lblDeben"        runat="server"></asp:Label></td>
+                                                <td><asp:label id="lbldebo"         runat="server"></asp:label></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -101,7 +101,5 @@
     <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
     <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
     <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
-
-
     <script src="../Scripts/Owner/RW-007.js"></script>
 </asp:Content>

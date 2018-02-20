@@ -8,12 +8,12 @@
     border-color: #113182 !important;
 }*/
 
-.btn-success, .card-success {
+.btn-success, .card-success, .text-success {
     background-color: #43c9af !important;
     border-color: #43c9af !important;
 }
 
-.card-outline-info, btn-outline-info {
+.card-outline-info, .btn-outline-info, .text-info {
     border-color: #70bbe8 !important;
 }
 
@@ -21,7 +21,7 @@
     border-color: #113182 !important;
 }*/
 
-.card-outline-success, btn-outline-success {
+.card-outline-success, .btn-outline-success {
     border-color: #43c9af !important;
 }
 .text-white {
@@ -32,7 +32,7 @@
     line-height: 36px;
     padding: 0 2rem;
 }
-i {
+.icon-button {
     line-height: inherit;
     margin: auto 10px auto -22px;
 }
