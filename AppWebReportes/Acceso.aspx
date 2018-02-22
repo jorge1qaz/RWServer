@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Materialize.master" AutoEventWireup="true" CodeBehind="Acceso.aspx.cs" Inherits="AppWebReportes.prueba3" Async="true" %>
+﻿<%@ Page Title="Acceso" Language="C#" MasterPageFile="~/Materialize.master" AutoEventWireup="true" CodeBehind="Acceso.aspx.cs" Inherits="AppWebReportes.prueba3" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -38,7 +38,7 @@
                                             <asp:Label ID="lblErrorPassword" Text="" runat="server" />
                                         </div>
                                         <div class="blue-text center">
-                                            <asp:LinkButton ID="btnLinkCambiarContrasenia" runat="server">¿Olvidaste tu contraseña?</asp:LinkButton>
+                                            <asp:LinkButton ID="btnLinkCambiarContrasenia" CssClass="" runat="server" OnClick="btnLinkCambiarContrasenia_Click">¿Olvidaste tu contraseña?</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +94,9 @@
             });
         }
         function sendEmail() {
+            if (true) {
+
+            }
             $.ajax({
                 type: "POST",
                 url: "Acceso.aspx/ComprobarUsuario"

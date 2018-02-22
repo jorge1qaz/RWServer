@@ -12,6 +12,7 @@
         <%: Scripts.Render("~/bundles/datatables") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/validaciones") %>
+        <%: Scripts.Render("~/bundles/export") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/Images/icono.ico" rel="shortcut icon" type="image/x-icon" />
@@ -28,7 +29,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <div class="row">   
+                <div class="row align-items-center text-center">   
                     <div class="col-md-3 col-sm-12">  
                         <p>&copy; <%: DateTime.Now.Year %> - SmartReport</p>
                     </div>

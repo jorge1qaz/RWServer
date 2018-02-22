@@ -14,69 +14,82 @@
             </div>
         </div>
     </nav>
-
+    <br />
+    <br />
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-12">
-                <br />
-                <div class="">
-                    <div class="card card-inverse card-info text-center">
-                        <div class="card-block">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Número de cuenta</label>
-                                <input class="form-control" id="txtCuenta" type="text" placeholder="Escribe el número de cuenta" name="txtCuentaName" /><small class="form-text text-muted" id="Help">También puedes revisar las cuentas que tengan registros en tu base de datos.</small>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary form-control" type="button" id="triggerModal">
-                                    <i class="material-icons left icon-button">search</i>Buscar cuenta
-                                </button>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleSelect1">Mes de proceso</label>
-                                <select class="form-control" id="optMes">
-                                    <option value="" disabled="" selected="">Seleccione</option>
-                                    <option value="0">Apertura</option>
-                                    <option value="1">Enero</option>
-                                    <option value="2">Febrero</option>
-                                    <option value="3">Marzo</option>
-                                    <option value="4">Abril</option>
-                                    <option value="5">Mayo</option>
-                                    <option value="6">Junio</option>
-                                    <option value="7">Julio</option>
-                                    <option value="8">Agosto</option>
-                                    <option value="9">Septiembre</option>
-                                    <option value="10">Octubre</option>
-                                    <option value="11">Noviembre</option>
-                                    <option value="12">Diciembre</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary form-control" id="btnPruebas" type="button">
-                                    <i class="material-icons left icon-button">play_arrow</i>Generar reporte
-                                </button>
-                            </div>
+            <div class="col-md-3 col-sm-12" id="blockOptions">
+                <div class="card card-inverse card-info text-center">
+                    <div class="card-block">
+                        <div class="form-group">
+                            <label for="lstTipoMoneda">Tipo de moneda</label>
+                            <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server" OnSelectedIndexChanged="lstTipoMoneda_SelectedIndexChanged" AutoPostBack="True">
+                                <asp:ListItem Value="true">Nuevos soles</asp:ListItem>
+                                <asp:ListItem Value="false">Dólares</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Número de cuenta</label>
+                            <input class="form-control" id="txtCuenta" type="text" placeholder="Escribe el número de cuenta" name="txtCuentaName" /><small class="form-text text-muted" id="Help">También puedes revisar las cuentas que tengan registros en tu base de datos.</small>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary form-control" type="button" id="triggerModal">
+                                <i class="material-icons left icon-button">search</i>Buscar cuenta
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="lstMes">Mes de proceso</label>
+                            <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="false" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
+                                <asp:ListItem Value="0">Apertura</asp:ListItem>
+                                <asp:ListItem Value="1">Enero</asp:ListItem>
+                                <asp:ListItem Value="2">Febrero</asp:ListItem>
+                                <asp:ListItem Value="3">Marzo</asp:ListItem>
+                                <asp:ListItem Value="4">Abril</asp:ListItem>
+                                <asp:ListItem Value="5">Mayo</asp:ListItem>
+                                <asp:ListItem Value="6">Junio</asp:ListItem>
+                                <asp:ListItem Value="7">Julio</asp:ListItem>
+                                <asp:ListItem Value="8">Agosto</asp:ListItem>
+                                <asp:ListItem Value="9">Setiembre</asp:ListItem>
+                                <asp:ListItem Value="10">Octubre</asp:ListItem>
+                                <asp:ListItem Value="11">Noviembre</asp:ListItem>
+                                <asp:ListItem Value="12">Diciembre</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary form-control" id="btnPruebas" type="button">
+                                <i class="material-icons left icon-button">play_arrow</i>Generar reporte
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-sm-12">
-                <br />
-                <div class="">
-                    <div class="card card-outline-secondary mb-3 text-center">
-                        <div class="card-block">
-                            <h4 class="card-title">Reporte de Cuentas pendientes</h4>
-                            <table class="table table-striped table-bordered table-responsive" id="tablaReporte">
-                                <thead>
-                                    <tr>
-                                        <th>RUC</th>
-                                        <th>Debe</th>
-                                        <th>Haber</th>
-                                        <th>Total</th>
-                                        <th>Razón social</th>
-                                    </tr>
-                                </thead>
-                            </table>
+            <div class="col-md-9 col-sm-12" id="blockReportContent">
+                <div class="card card-outline-secondary text-center">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="offset-md-2 col-md-8">
+                                <h4 class="card-title">Reporte de Cuentas pendientes</h4>
+                            </div>
+                            <div class="col-md-2" id="blockbtnFullScreen">
+                                <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
+                            </div>
                         </div>
+                        <span>Expresado en </span>
+                        <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label>
+                        <span> - Para el mes de </span>
+                        <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
+                        <span> del </span><asp:Label ID="lblAnio" runat="server"></asp:Label>
+                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tablaReporte" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RUC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="thDebe">Debe</th>
+                                    <th id="thHaber">Haber</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Razón social&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -151,18 +164,17 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>
-        var idCliente   = "<% Response.Write(Session["IdUser"].ToString());%>";
-        var idEmpresa   = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
-        var idAnio      = "<% Response.Write(Request.QueryString["year"].ToString());%>";
-        console.log(idEmpresa);
+        var idAnio = "<% Response.Write(Request.QueryString["year"]);%>";
+        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
+        var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
     </script>
+    <script>
+        var tipoMonedaRCP = "<% Response.Write(Session["tipoMonedaRCP"]);%>";
+    </script>
+    <script>
+        var simboloMonedaRCP = "<% Response.Write(Session["simboloMonedaRCP"]);%>";
+    </script>
+
     <script src="../Scripts/Owner/RW-004-b.js"></script>
 </asp:Content>

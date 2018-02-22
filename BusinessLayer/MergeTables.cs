@@ -206,8 +206,8 @@ namespace BusinessLayer
                 { total2 = 0; }
                 amount = Convert.ToDecimal(total2) - Convert.ToDecimal(total1);
                 row = tableSumByCount.NewRow();
-                row["Cuenta"] = item.ToString();
-                row["Total"] = amount;  
+                row["Cuenta"]   = item.ToString();
+                row["Total"]    = amount;  
                 tableSumByCount.Rows.Add(row);
             }
             decimal value = 0;
@@ -334,8 +334,8 @@ namespace BusinessLayer
             DataTable tabla = new DataTable();
             try
             {
-                tabla = GetAccumulatedTables(jsonTable, mes);
-                totalTable = GetTotalByTable(tabla, columnName);
+                tabla       = GetAccumulatedTables(jsonTable, mes); // Fusiona las tablas según el mes que se le pase
+                totalTable  = GetTotalByTable(tabla, columnName);
             }
             catch (Exception)
             {

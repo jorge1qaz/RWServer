@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CambioPassword.aspx.cs" Inherits="AppWebReportes.Perfiles.CambioPassword" %>
+﻿<%@ Page Title="Solicitud de cambio de contraseña" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CambioPassword.aspx.cs" Inherits="AppWebReportes.Perfiles.CambioPassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
@@ -25,7 +25,7 @@
                             </div>
                             <div class="offset-md-1 offset-sm-0 col-md-4 col-sm-12">
                                 <div class="row align-items-center">
-                                    <div class="col"><i class="material-icons text-info" style="font-size: 160px;">vpn_key</i></div>
+                                    <div class="col"><i class="material-icons text-info" style="font-size: 160px; color: #70bbe8 !important;">vpn_key</i></div>
                                     <div class="col">
                                         <asp:Button ID="btnChangePassword" runat="server" CssClass="btn btn-primary" Text="Confirmar" OnClick="btnChangePassword_Click" />
                                     </div>
@@ -38,4 +38,9 @@
         </div>
     </div>
     <script src="../Scripts/Owner/RW-005.js"></script>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

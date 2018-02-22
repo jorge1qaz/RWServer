@@ -52,6 +52,45 @@ namespace BusinessLayer
             }
         }
         //Jorge Luis|19/02/2018|RW-114
+        /*Método para encriptar*/
+        public byte[] Encrypt2(string plainText, string passPhrase)
+        {
+            // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
+            // so that the same Salt and IV values can be used when decrypting.  
+            var saltStringBytes = Generate256BitsOfRandomEntropy();
+            var ivStringBytes = Generate256BitsOfRandomEntropy();
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = password.GetBytes(Keysize / 8);
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 256;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                                cryptoStream.FlushFinalBlock();
+                                // Create the final bytes as a concatenation of the random salt bytes, the random iv bytes and the cipher bytes.
+                                var cipherTextBytes = saltStringBytes;
+                                cipherTextBytes = cipherTextBytes.Concat(ivStringBytes).ToArray();
+                                cipherTextBytes = cipherTextBytes.Concat(memoryStream.ToArray()).ToArray();
+                                memoryStream.Close();
+                                cryptoStream.Close();
+                                return cipherTextBytes;
+                                //string valor = Convert.ToBase64String(cipherTextBytes);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //Jorge Luis|19/02/2018|RW-114
         /*Método para desencriptar*/
         public string Decrypt(string cipherText, string passPhrase)
         {
@@ -82,7 +121,7 @@ namespace BusinessLayer
                                 using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
                                 {
                                     var plainTextBytes = new byte[cipherTextBytes.Length];
-                                    var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                                    var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length); // Aquí 
                                     memoryStream.Close();
                                     cryptoStream.Close();
                                     return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
@@ -93,9 +132,9 @@ namespace BusinessLayer
                 }
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "No se puede desencriptar";
+                return "Ocurrio un error de tipo: " + e;
             }
         }
         private static byte[] Generate256BitsOfRandomEntropy()
@@ -109,5 +148,6 @@ namespace BusinessLayer
             return randomBytes;
         }
         public string domain = "http://licenciacontasis.net/ReportWeb/";
+        //public string domain = "localhost:3243/";
     }
 }

@@ -16,6 +16,7 @@ namespace BusinessLayer
         public string IdRol { get; set; }
         public DateTime LastUpdate { get; set; }
         public DateTime DateUpdate { get; set; }
+        public bool ActivacionCuenta { get; set; }
 
         //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, con todos los atributos de Cliente y un parámetro de salida.*/
@@ -74,6 +75,12 @@ namespace BusinessLayer
             paramIdRol.ParameterName = "@IdRol";
             paramIdRol.Value = IdRol;
             cmd.Parameters.Add(paramIdRol);
+
+            SqlParameter paramActivacionCuenta = new SqlParameter();
+            paramActivacionCuenta.SqlDbType = SqlDbType.Bit;
+            paramActivacionCuenta.ParameterName = "@ActivacionCuenta";
+            paramActivacionCuenta.Value = ActivacionCuenta;
+            cmd.Parameters.Add(paramActivacionCuenta);
 
             SqlParameter paramComprobacion = new SqlParameter();
             paramComprobacion.Direction = ParameterDirection.Output;
@@ -142,9 +149,10 @@ namespace BusinessLayer
             return cmd.Parameters["@Nombre"].Value.ToString();
         }
         //Jorge Luis|08/11/2017|RW-19
-        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, correo) del Cliente y un parámetro de salida.*/
-        public bool TwoParametersUser(string storeProcedure)
+        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, correo) del Cliente y dos parámetros de salida. Es empleado para autenticar al usuario*/
+        public bool[] TwoParametersUserArray(string storeProcedure)
         {
+            bool[] states = new bool[2];
             Conexion con = new Conexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = storeProcedure;
@@ -162,6 +170,59 @@ namespace BusinessLayer
             paramContrasenia.ParameterName = "@Contrasenia";
             paramContrasenia.Value = Contrasenia;
             cmd.Parameters.Add(paramContrasenia);
+
+            SqlParameter paramComprobacion = new SqlParameter();
+            paramComprobacion.Direction = ParameterDirection.Output;
+            paramComprobacion.SqlDbType = SqlDbType.Bit;
+            paramComprobacion.ParameterName = "@Comprobacion";
+            cmd.Parameters.Add(paramComprobacion);
+
+            SqlParameter paramActivateAccount = new SqlParameter();
+            paramActivateAccount.Direction = ParameterDirection.Output;
+            paramActivateAccount.SqlDbType = SqlDbType.Bit;
+            paramActivateAccount.ParameterName = "@ActivateAccount";
+            cmd.Parameters.Add(paramActivateAccount);
+
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            states[0] = bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+            states[1] = bool.Parse(cmd.Parameters["@ActivateAccount"].Value.ToString());
+            return states;
+        }
+        //Jorge Luis|08/11/2017|RW-19
+        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, (Contrasenia || ActivacionCuenta) del Cliente y un parámetro de salida. Es empleado para cambiar la contraseña del usuario*/
+        public bool TwoParametersUser(string storeProcedure, Int16 typeProcedure)
+        {
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            switch (typeProcedure)
+            {
+                case 1: // Cuando se emplea la contraseña
+                    SqlParameter paramContrasenia = new SqlParameter();
+                    paramContrasenia.SqlDbType = SqlDbType.NVarChar;
+                    paramContrasenia.ParameterName = "@Contrasenia";
+                    paramContrasenia.Value = Contrasenia;
+                    cmd.Parameters.Add(paramContrasenia);
+                    break;
+                case 2: // Cuando se emplea la activacion de cuenta
+                    SqlParameter paramActivacionCuenta = new SqlParameter();
+                    paramActivacionCuenta.SqlDbType = SqlDbType.Bit;
+                    paramActivacionCuenta.ParameterName = "@ActivacionCuenta";
+                    paramActivacionCuenta.Value = ActivacionCuenta;
+                    cmd.Parameters.Add(paramActivacionCuenta);
+                    break;
+            }
 
             SqlParameter paramComprobacion = new SqlParameter();
             paramComprobacion.Direction = ParameterDirection.Output;

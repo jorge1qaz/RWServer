@@ -3,9 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharttable.org/master/jquery.highchartTable-min.js"></script>
-
     <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -94,6 +91,8 @@
             </div>
         </div>
     </div>
+    <script src="../Scripts/Charts/highcharts.min.js"></script>
+    <script src="../Scripts/Charts/jquery.highchartTable-min.js"></script>
     <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
     <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
     <script src="../Scripts/DataTables/export/jszip.min.js"></script>

@@ -11,6 +11,7 @@
         <%: Scripts.Render("~/bundles/datatables") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/validaciones") %>
+        <%: Scripts.Render("~/bundles/export") %>
     </asp:PlaceHolder>
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
     <webopt:BundleReference runat="server" Path="~/Content/css" />
@@ -21,7 +22,6 @@
         }
     </style>
 </head>
-    
 <body>
     <form id="Formulario" runat="server">
        <div class="body-content">
@@ -29,16 +29,17 @@
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
-            <friendlyUrls:ViewSwitcher runat="server" />
            <footer>
-                <div class="row">   
-                    <div class="col-md-3 col-sm-12">  
-                        <p>&copy; <%: DateTime.Now.Year %> - SmartReport</p>
+               <div class="row align-items-center text-center">
+                    <div class="row justify-content-center">   
+                        <div class="col-md-3 col-sm-12">  
+                            <p>&copy; <%: DateTime.Now.Year %> - SmartReport</p>
+                        </div>
+                        <div class="offset-md-6 offset-sm-0 col-md-3 col-sm-12">  
+                            <img src="../Images/logo-contasis.png" />
+                        </div>
                     </div>
-                    <div class="offset-md-6 offset-sm-0 col-md-3 col-sm-12">  
-                        <img src="../Images/logo-contasis.png" />
-                    </div>
-                </div>
+               </div>
             </footer>
         </div>
         <script>

@@ -11,7 +11,7 @@
                     <div class="card-block">
                         <h4 class="card-title">Ingrese su nueva contraseña</h4>
                         <div class="row">
-                            <div class="offset-md-1 offset-sm-0 col-md-6 col-sm-12">
+                            <div class="offset-md-1 offset-sm-0 col-md-5 col-sm-12">
                                 <div class="form">
                                     <div class="form-group">
                                         <label for="txtPassword">Contraseña *</label>
@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="offset-md-1 offset-sm-0 col-md-4 col-sm-12">
+                            <div class="offset-md-1 offset-sm-0 col-md-5 col-sm-12">
                                 <div class="row align-items-center">
                                     <div class="col"><i class="material-icons text-info" style="font-size: 160px;">vpn_key</i></div>
                                     <div class="col">
@@ -38,4 +38,9 @@
         </div>
     </div>
     <script src="../Scripts/Owner/RW-005.js"></script>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

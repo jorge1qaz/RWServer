@@ -8,9 +8,10 @@ namespace AppWebReportes
 {
     public partial class prueba3 : System.Web.UI.Page
     {
-        Paths paths = new Paths();
-        Zips zips = new Zips();
-        Directorios dirs = new Directorios();
+        Paths paths             = new Paths();
+        Zips zips               = new Zips();
+        Directorios dirs        = new Directorios();
+        static bool[] states    = new bool[2];
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -54,13 +55,21 @@ namespace AppWebReportes
                 IdCliente = txtCorreo.Text.ToString(),
                 Contrasenia = txtContrasenia.Text.ToString()
             };
-            if (cliente.TwoParametersUser("RW_Security_authenticate_User"))
+            states = cliente.TwoParametersUserArray("RW_Security_authenticate_User");
+            if (states[0])
             {
-                lblErrorPassword.Text = "";
-                Response.Redirect("~/Reportes/Dashboard.aspx");
+                if (states[1])
+                {
+                    lblErrorPassword.Text = "";
+                    Response.Redirect("~/Reportes/Dashboard.aspx", false);
+                }
+                else
+                    lblErrorPassword.Text = "Tu cuenta no esta activada, por favor revisa tu correo.";
             }
             else
                 lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
         }
+        protected void btnLinkCambiarContrasenia_Click(object sender, EventArgs e) =>
+            Response.Redirect("~/Perfiles/CambioPassword.aspx?IdUser=" + txtCorreo.Text.ToString().Trim().ToLower(), false);
     }
 }

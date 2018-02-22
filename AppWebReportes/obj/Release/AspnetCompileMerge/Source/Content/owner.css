@@ -1,4 +1,4 @@
-﻿.btn-info, .card-info {
+﻿.btn-info, .card-info, .bg-info {
     background-color: #70bbe8 !important;
     border-color: #70bbe8 !important;
 }
@@ -8,12 +8,12 @@
     border-color: #113182 !important;
 }*/
 
-.btn-success, .card-success, .text-success {
+.btn-success, .card-success, .bg-success {
     background-color: #43c9af !important;
     border-color: #43c9af !important;
 }
 
-.card-outline-info, .btn-outline-info, .text-info {
+.card-outline-info, .btn-outline-info {
     border-color: #70bbe8 !important;
 }
 
@@ -35,4 +35,33 @@
 .icon-button {
     line-height: inherit;
     margin: auto 10px auto -22px;
+}
+.text-info {
+    color: #70bbe8 !important;
+}
+.text-success {
+    color: #43c9af !important;
+}
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+.parallax-container .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+.parallax-container .parallax img {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate3d(0, 0, 0);
+    transform: translateX(-50%);
 }

@@ -1,42 +1,46 @@
 ﻿using System;
+using System.Web;
 using BusinessLayer;
 
 namespace AppWebReportes.Perfiles
 {
     public partial class CambiarPassword : System.Web.UI.Page
     {
-        static string idEncryted = "";
-        static string rucEncryted = "";
-        static string idDecrypted = "";
+        static string idEncrypted   = "";
+        static string rucEncrypted  = "";
+        static string idDecrypted   = "";
         Seguridad seguridad = new Seguridad();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(seguridad.Decrypt("aSQq4xHB8KzJUvG4SeaAn9Mw65/T3AQfqBtP7nZa8ztoofESLAGEkXk18pv28wbo4fxxtHchq8wPN3EJjOVZ4fRSuAi4cMZMxrgoIIrxGF5LokrL/LPCezeSzvViotc", "10735804964"));
-        }
-
-        protected void btnChangePassword_Click(object sender, EventArgs e)
-        {
-            //TwoParametersUser
+            //idEncrypted     = HttpUtility.UrlEncode(Request.QueryString["G89MbwRigyI7hulrDTK"]).Replace("%2f", "/");
             try
             {
-                idEncryted = Request.QueryString["G89MbwRigyI7hulrDTK"].Replace(" ", ""); // email
-                rucEncryted = Request.QueryString["rdUczXSO0TR4ivfTogsgKLyXT"].Replace(" ", ""); //ruc
-                idDecrypted = seguridad.Decrypt(idEncryted, rucEncryted);
-                // Instancia de la clase Cliente
-                Cliente cliente = new Cliente()
-                {
-                    IdCliente = idDecrypted.ToString(),
-                    Contrasenia = txtConfirmarPassword.Text.ToString().ToLower()
-                };
-                if (cliente.TwoParametersUser("RW_Profiles_Update_Password"))
-                    Response.Write("Funcionó");
-                else
-                    Response.Write("No Funcionó");
+                idEncrypted     = Request.QueryString["G89MbwRigyI7hulrDTK"].Replace(" ", "+");
+                rucEncrypted    = Convert.ToString(Request.QueryString["rdUczXSO0TR4ivfTogsgKLyXT"].Replace(" ", "").ToString());
             }
             catch (Exception)
             {
-                Response.Write("<script>alert('No hemos podido acceder a tus datos, intentalo nuevamente o contacta con nosotros a soporte.smartreport@gmail.com');</script>");
-                Response.Redirect("~/Perfiles/CambioPassword.aspx");
+                Response.Redirect("~/Acceso");
+            }
+        }
+        protected void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                idDecrypted = seguridad.Decrypt(idEncrypted, rucEncrypted);
+                Cliente cliente = new Cliente()
+                {
+                    IdCliente = idDecrypted.ToString(),
+                    Contrasenia = txtConfirmarPassword.Text.ToString()
+                };
+                if (cliente.TwoParametersUser("RW_Profiles_Update_Password", 1))
+                    Response.Redirect("~/Perfiles/MensajeExito?tipoReporte=2", false);
+                else
+                    Response.Redirect("~/Perfiles/MensajeError?tipoReporte=2", false);
+            }
+            catch (Exception)
+            {
+                Response.Redirect("~/Perfiles/MensajeError?tipoReporte=2", false);
             }
         }
     }

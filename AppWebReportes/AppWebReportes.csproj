@@ -350,12 +350,15 @@
     <Content Include="icon_rw.ico" />
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
+    <Content Include="Images\icono.ico" />
     <Content Include="Images\icon_rw.ico" />
     <Content Include="Images\image-dashboard.png" />
     <Content Include="Images\logo-contasis.png" />
     <Content Include="Perfiles\CambiarPassword.aspx" />
     <Content Include="Perfiles\CambioPassword.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
+    <Content Include="Perfiles\MensajeError.aspx" />
+    <Content Include="Perfiles\MensajeExito.aspx" />
     <Content Include="pruebas.aspx" />
     <Content Include="Reportes\CuentasPendientes.aspx" />
     <Content Include="Images\logo.png" />
@@ -518,6 +521,8 @@
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Charts\highcharts.min.js" />
+    <Content Include="Scripts\Charts\jquery.highchartTable-min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -586,7 +591,9 @@
     <Content Include="Scripts\DataTables\export\buttons.html5.min.js" />
     <Content Include="Scripts\DataTables\export\buttons.print.min.js" />
     <Content Include="Scripts\DataTables\export\dataTables.buttons.min.js" />
+    <Content Include="Scripts\DataTables\export\idioma.js" />
     <Content Include="Scripts\DataTables\export\jszip.min.js" />
+    <Content Include="Scripts\DataTables\export\numeral.min.js" />
     <Content Include="Scripts\DataTables\export\pdfmake.min.js" />
     <Content Include="Scripts\DataTables\export\vfs_fonts.js" />
     <Content Include="Scripts\DataTables\jquery.dataTables.js" />
@@ -816,6 +823,20 @@
     </Compile>
     <Compile Include="Perfiles\frmRegistroUsuario.aspx.designer.cs">
       <DependentUpon>frmRegistroUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles\MensajeError.aspx.cs">
+      <DependentUpon>MensajeError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\MensajeError.aspx.designer.cs">
+      <DependentUpon>MensajeError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles\MensajeExito.aspx.cs">
+      <DependentUpon>MensajeExito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\MensajeExito.aspx.designer.cs">
+      <DependentUpon>MensajeExito.aspx</DependentUpon>
     </Compile>
     <Compile Include="pruebas.aspx.cs">
       <DependentUpon>pruebas.aspx</DependentUpon>

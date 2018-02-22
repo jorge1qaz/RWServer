@@ -48,6 +48,19 @@ namespace AppWebReportes
                             "~/Scripts/DatePicker/datepicker.min.js",
                             "~/Scripts/DatePicker/datepicker.es-ES.js"
                             ));
+            //Export data
+            bundles.Add(new ScriptBundle("~/bundles/export").Include(
+                            "~/Scripts/DataTables/export/dataTables.buttons.min.js",
+                            "~/Scripts/DataTables/export/buttons.flash.min.js",
+                            "~/Scripts/DataTables/export/jszip.min.js",
+                            "~/Scripts/DataTables/export/pdfmake.min.js",
+                            "~/Scripts/DataTables/export/vfs_fonts.js",
+                            "~/Scripts/DataTables/export/buttons.html5.min.js",
+                            "~/Scripts/DataTables/export/buttons.print.min.js",
+                            "~/Scripts/DataTables/export/idioma.js",
+                            "~/Scripts/DataTables/export/numeral.min.js"
+                            ));
+
 
             // Use la versión de desarrollo de Modernizr para desarrollar y aprender. Luego, cuando esté listo
             // para la producción, use la herramienta de creación en http://modernizr.com para elegir solo las pruebas que necesite

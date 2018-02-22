@@ -23,7 +23,10 @@ $("#btnFullScreen").on("click", function () {
         statusBtnFullScreen = 0;
     }
 });
-$(function () {
+$(document).ready(function () {
     $('[type=search]').addClass("col-7");
     $('[data-toggle="tooltip"]').tooltip();
+    $("th").addClass("text-center");
+});
+$(function () {
 });

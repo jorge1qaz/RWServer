@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    $("th").addClass("text-center");
     var fecha = new Date();
     var anio = fecha.getFullYear();
     var mes = fecha.getMonth() + 1;

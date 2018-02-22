@@ -7,7 +7,11 @@ namespace AppWebReportes.Perfiles
 {
     public partial class frmRegistroUsuario : System.Web.UI.Page
     {
-        AccesoDatos dat = new AccesoDatos();
+        AccesoDatos dat                     = new AccesoDatos();
+        CorreoElectronico correoElectronico = new CorreoElectronico();
+        Seguridad seguridad                 = new Seguridad();
+        static string idEncryped = "", bodyHTML = "", email = "";
+        private string keyDecrypt = "QYAkRujflBQzKLxAiD";
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -50,29 +54,40 @@ namespace AppWebReportes.Perfiles
                 imgCompany = rootPath + "/Images/FotoEmpresa/" + "nopic.jpg";
             Cliente cliente = new Cliente()
             {
-                IdCliente = txtConfirmarEmail.Text.ToString(),
-                Contrasenia = txtConfirmarPassword.Text.ToString(),
-                Nombre = txtNombre.Text.ToString(),
-                Apellidos = txtApellidos.Text.ToString(),
-                RUC = txtRUC.Text.ToString(),
-                ImagenEmpresa = imgCompany,
-                ImagenPerfil = imgProfile,
-                IdRol = lstRol.SelectedValue.ToString(),
+                IdCliente       = txtConfirmarEmail.Text.ToString().ToLower().Trim(),
+                Contrasenia     = txtConfirmarPassword.Text.ToString(),
+                Nombre          = txtNombre.Text.ToString().Trim(),
+                Apellidos       = txtApellidos.Text.ToString().Trim(),
+                RUC             = txtRUC.Text.ToString().Trim(),
+                ImagenEmpresa   = imgCompany,
+                ImagenPerfil    = imgProfile,
+                IdRol           = lstRol.SelectedValue.ToString(),
+                ActivacionCuenta= false
             };
-            if (cliente.AllParametersUser("RW_Security_Create_User"))
+            try
             {
-                Session["RegisterSuccess"] = "success";
-                Response.Redirect("~/Acceso.aspx");
-            }
-            else
-            {
-                Cliente confirmarCorreo = new Cliente() {
-                    IdCliente = txtConfirmarEmail.Text.ToString()
-                };
-                if (confirmarCorreo.IdParameterUser("RW_Security_Check_User"))
-                    Response.Write("Este correo electrónico ya existe, por favor intente con otro.");
+                if (cliente.AllParametersUser("RW_Security_Create_User")) // Error
+                {
+                    email       = txtConfirmarEmail.Text.ToString().Trim().ToLower();
+                    idEncryped  = seguridad.Encrypt(txtConfirmarEmail.Text.ToString().Trim().ToLower(), keyDecrypt);
+                    bodyHTML    = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
+                    correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
+                    Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=3", false);
+                }
                 else
-                    Response.Write("Algo falló, intentalo mas tarde.");
+                {
+                    Cliente confirmarCorreo = new Cliente() {
+                        IdCliente = txtConfirmarEmail.Text.ToString()
+                    };
+                    if (confirmarCorreo.IdParameterUser("RW_Security_Check_User"))
+                        Response.Write("<script>alert('Ya existe una cuenta con este correo electrónico, por favor intente con otro.')</script>");
+                    else
+                        Response.Write("Algo falló, intentalo mas tarde.");
+                }
+            }
+            catch (Exception error)
+            {
+                Response.Redirect("~/Perfiles/MensajeError.aspx?tipoReporte=3");
             }
         }
     }
