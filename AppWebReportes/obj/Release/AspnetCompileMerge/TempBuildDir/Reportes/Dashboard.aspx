@@ -21,8 +21,8 @@
     <br />
     <div class="container">
         <div class="card text-center">
-            <div class="card-header">
-                <h2 class="text-center">Inicio</h2>
+            <div class="card-header bg-primary">
+                <h2 class="text-center text-white">Inicio</h2>
             </div>
             <div class="card-block">
                 <h4 class="card-title">Bienvenido al sistema de reportes web Contasis</h4>

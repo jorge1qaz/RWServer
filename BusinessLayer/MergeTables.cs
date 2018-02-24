@@ -477,6 +477,7 @@ namespace BusinessLayer
             listValues[11] = listValues[10] + mTotal + nTotal /*+ oTotal*/;
             return listValues;
         }
+        //balance general
         public decimal GeTotalByTablePlan(string jsonDataSet, bool tipoMoneda, int mesProceso, bool limitarMeses)
         {
             //decimal totalTable;

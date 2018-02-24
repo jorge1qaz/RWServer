@@ -94,6 +94,9 @@
             });
         }
         function sendEmail() {
+            if (true) {
+
+            }
             $.ajax({
                 type: "POST",
                 url: "Acceso.aspx/ComprobarUsuario"

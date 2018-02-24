@@ -44,6 +44,7 @@ namespace AppWebReportes.CP_Reportes
                 Session["tipoMonedaRCP"] = "Dólares";
                 Session["simboloMonedaRCP"] = "$ ";
             }
+            lblTipoMoneda.Text = lstTipoMoneda.SelectedItem.ToString();
         }
         //Jorge Luis|17/01/2018|RW-97
         /*Método para */

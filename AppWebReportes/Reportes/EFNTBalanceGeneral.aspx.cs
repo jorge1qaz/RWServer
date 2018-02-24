@@ -12,6 +12,14 @@ namespace AppWebReportes.Reportes
                 JsonDatasetA124 = "", JsonDatasetA125 = "", JsonDatasetA130 = "", JsonDatasetA135 = "", JsonDatasetA140 = "", JsonDatasetA142 = "", JsonDatasetA145 = "", JsonDatasetA151 = "", JsonDatasetA152 = "",
                 JsonDatasetA153 = "", JsonDatasetA155 = "", JsonDatasetA157 = "", JsonDatasetA158 = "", JsonDatasetA159 = "", JsonDatasetA160 = "", JsonDatasetA164 = "", JsonDatasetA176 = "", JsonDatasetA177 = "",
                 JsonDatasetA178 = "", JsonDatasetA179 = "", JsonDatasetA180 = "", JsonDatasetA185 = "", simboloMoneda = "";
+
+        protected void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            if (Session["TipoMonedaEFNT"].ToString() == "Nuevos soles")
+                GetReport(true, int.Parse(lstMes.SelectedValue));
+            else
+                GetReport(false, int.Parse(lstMes.SelectedValue));
+        }
         decimal totalA105 = 0, totalA106 = 0, totalA110 = 0, totalA111 = 0, totalA115 = 0, totalA120 = 0, totalA121 = 0, totalA122 = 0, totalA123 = 0, totalA124 = 0, totalA125 = 0, totalA130 = 0, totalA135 = 0,
                 totalA140 = 0, totalA142 = 0, totalA145 = 0, totalA151 = 0, totalA152 = 0, totalA153 = 0, totalA155 = 0, totalA157 = 0, totalA158 = 0, totalA159 = 0, totalA160 = 0, totalA164 = 0, totalA176 = 0,
                 totalA177 = 0, totalA178 = 0, totalA179 = 0, totalA180 = 0, totalA185 = 0, totalA999 = 0;

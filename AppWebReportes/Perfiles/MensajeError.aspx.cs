@@ -26,6 +26,8 @@ namespace AppWebReportes.Perfiles
                     lblHeader.Text              = headerSolicitudCambioPassword;
                     lblMensajePrincipal.Text    = bodySolicitudCambioPassword;
                     linkCambiarPassword.Visible = true;
+                    if (Session["IdUser"] != null)
+                        Session.Remove("IdUser");
                     break;
                 case 2: // Cuando se trata de cambiar de password
                     lblHeader.Text              = headerCambiarDePassword;

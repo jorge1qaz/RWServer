@@ -10,7 +10,7 @@ namespace AppWebReportes.Perfiles
         static string idEncryped = "", bodyHTML = "", email = "", ruc = "", nameCostumer = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!Page.IsPostBack)
             {
                 if (Session["IdUser"] == null) //Comprueba si existe la variable de sesión idUser
                 {
@@ -19,15 +19,9 @@ namespace AppWebReportes.Perfiles
                         txtEmail.Text = Request.QueryString["IdUser"];
                         Session["IdUser"] = txtEmail.Text.ToString();
                     }
-                    else
-                        txtEmail.Text = ""; // No encontro el correo por ningún medio
                 }
                 else
                     txtEmail.Text = Session["IdUser"].ToString();
-            }
-            catch (Exception)
-            {
-                txtEmail.Text = "";
             }
         }
         protected void btnChangePassword_Click(object sender, EventArgs e)

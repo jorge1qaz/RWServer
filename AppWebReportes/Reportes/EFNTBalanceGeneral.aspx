@@ -45,6 +45,11 @@
                                 <asp:ListItem Value="11">Diciembre</asp:ListItem>
                             </asp:DropDownList>
                         </div>
+                        <div class="form-group">
+                            <asp:LinkButton type="button" CssClass="btn btn-primary form-control" ID="btnGenerarReporte" runat="server" OnClick="btnGenerarReporte_Click">
+                                <i class="material-icons left icon-button">play_arrow</i>Generar reporte
+                            </asp:LinkButton>
+                        </div>
                     </div>
                 </div>
             </div>

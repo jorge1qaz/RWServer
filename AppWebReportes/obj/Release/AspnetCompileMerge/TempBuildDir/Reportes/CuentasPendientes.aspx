@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Número de cuenta</label>
-                            <input class="form-control" id="txtCuenta" type="text" placeholder="Escribe el número de cuenta" name="txtCuentaName" /><small class="form-text text-muted" id="Help">También puedes revisar las cuentas que tengan registros en tu base de datos.</small>
+                            <input class="form-control" id="txtCuenta" type="text" placeholder="Escriba la cuenta" name="txtCuentaName" /><small class="form-text text-muted" id="Help">También puedes revisar las cuentas que tengan registros en tu base de datos.</small>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary form-control" type="button" id="triggerModal">
@@ -165,9 +165,9 @@
         </div>
     </div>
     <script>
-        var idAnio = "<% Response.Write(Request.QueryString["year"]);%>";
-        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
-        var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
+        var idAnio      = "<% Response.Write(Request.QueryString["year"]);%>";
+        var idCliente   = "<% Response.Write(Session["IdUser"].ToString());%>";
+        var idEmpresa   = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
     </script>
     <script>
         var tipoMonedaRCP = "<% Response.Write(Session["tipoMonedaRCP"]);%>";
