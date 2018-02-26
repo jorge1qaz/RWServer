@@ -614,6 +614,132 @@ namespace BusinessLayer
             }
             return listValues[mesProceso];
         }
+        public decimal GeTotalByTablePlan(bool excluirNegativos, string jsonDataSet, bool tipoMoneda, int mesProceso)
+        {
+            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
+            DataTable datatable = dataSet.Tables["data"];
+            string moneda       = "s";
+            if (!tipoMoneda)
+                moneda = "d";
+            DataTable dataTableListCuentas = new DataTable();
+            if (datatable.Rows.Count > 0)
+            {
+                dataTableListCuentas = datatable.DefaultView.ToTable(false, "a");
+                decimal[] totalByCuenta = new decimal[dataTableListCuentas.Rows.Count];
+                for (int i = 0; i < dataTableListCuentas.Rows.Count; i++)
+                {
+                    switch (mesProceso + 1)
+                    {
+                        case 1:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 2:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 3:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 4:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 5:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 6:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 7:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 8:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 9:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString()) + Convert.ToDecimal(datatable.Rows[i][10].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+
+                        case 10:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString()) + Convert.ToDecimal(datatable.Rows[i][10].ToString()) + Convert.ToDecimal(datatable.Rows[i][11].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+                        case 11:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString()) + Convert.ToDecimal(datatable.Rows[i][10].ToString()) + Convert.ToDecimal(datatable.Rows[i][11].ToString()) + Convert.ToDecimal(datatable.Rows[i][12].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break;
+                        case 12:
+                            try
+                            {
+                                totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString()) + Convert.ToDecimal(datatable.Rows[i][10].ToString()) + Convert.ToDecimal(datatable.Rows[i][11].ToString()) + Convert.ToDecimal(datatable.Rows[i][12].ToString()) + Convert.ToDecimal(datatable.Rows[i][13].ToString()) + Convert.ToDecimal(datatable.Rows[i][14].ToString());
+                            }
+                            catch { totalByCuenta[i] = 0; }
+                            break
+                            ;
+                    }
+                    if (excluirNegativos) // Sí es true se excluyen los negativos (solo para el rubro A105)
+                    {
+                        if (totalByCuenta[i] < 0)
+                            totalByCuenta[i] = 0;
+                    }
+                }
+                for (int i = 1; i < totalByCuenta.Length; i++)
+                {
+                    totalByCuenta[0] += totalByCuenta[i];
+
+                }
+                return totalByCuenta[0];
+            }
+            return 0;
+        }
         public decimal KeepPositive(decimal anterior, decimal actual) {
             decimal temp = 0;
             temp = anterior + actual;

@@ -365,7 +365,7 @@
                                     <td>
                                         <asp:Label ID="lblA164" runat="server"></asp:Label>
                                     </td>
-                                    <td></td>
+                                    <td>P540</td>
                                     <td>Utilidad del ejercicio</td>
                                     <td>
                                         <asp:Label ID="lblPResultado" runat="server"> </asp:Label>
