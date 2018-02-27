@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using System;
+using System.Globalization;
 
 namespace AppWebReportes.Reportes
 {
@@ -48,10 +49,19 @@ namespace AppWebReportes.Reportes
         /*Método para */
         public void GetReport(bool moneda, int mesProceso)
         {
+            NumberFormatInfo nfi;
             if (moneda)
-            { simboloMoneda = "S/ "; lblTipoMoneda.Text = "Nuevos soles"; }
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                lblTipoMoneda.Text = "Nuevos soles";
+            }
             else
-            { simboloMoneda = "$ "; lblTipoMoneda.Text = "Dólares"; }
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                lblTipoMoneda.Text = "Dólares";
+            }
+            nfi.CurrencyDecimalDigits = 2;
+
             //Estado de resultado
             RJsonDatasetF005 = GetPathFile2("F005"); RJsonDatasetF105 = GetPathFile2("F105"); RJsonDatasetF206 = GetPathFile2("F206"); RJsonDatasetF211 = GetPathFile2("F211"); RJsonDatasetF212 = GetPathFile2("F212"); RJsonDatasetF213 = GetPathFile2("F213");
             RJsonDatasetF214 = GetPathFile2("F214"); RJsonDatasetF215 = GetPathFile2("F215"); RJsonDatasetF320 = GetPathFile2("F320"); RJsonDatasetF350 = GetPathFile2("F350"); RJsonDatasetF380 = GetPathFile2("F380"); RJsonDatasetF403 = GetPathFile2("F403");
@@ -93,17 +103,17 @@ namespace AppWebReportes.Reportes
             totalA185 = mergeTables.GeTotalByTablePlan(false, JsonDatasetA185, moneda, mesProceso); totalA999 = totalA105 + totalA106 + totalA110 + totalA111 + totalA115 + totalA120 + totalA121 + totalA122 + totalA123 + totalA124 + totalA125 + totalA130 + totalA135 + totalA140 +
             totalA142 + totalA145 + totalA151 + totalA152 + totalA153 + totalA155 + totalA157 + totalA158 + totalA159 + totalA160 + totalA164 + totalA176 + totalA177 + totalA178 + totalA179 + totalA180 + totalA185;
 
-            lblA105.Text = simboloMoneda + totalA105.ToString(); lblA106.Text = simboloMoneda + totalA106.ToString(); lblA110.Text = simboloMoneda + totalA110.ToString(); lblA111.Text = simboloMoneda + totalA111.ToString(); lblA115.Text = simboloMoneda + totalA115.ToString();
-            lblA120.Text = simboloMoneda + totalA120.ToString(); lblA121.Text = simboloMoneda + totalA121.ToString(); lblA122.Text = simboloMoneda + totalA122.ToString(); lblA123.Text = simboloMoneda + totalA123.ToString(); lblA124.Text = simboloMoneda + totalA124.ToString();
-            lblA125.Text = simboloMoneda + totalA125.ToString(); lblA130.Text = simboloMoneda + totalA130.ToString(); lblA135.Text = simboloMoneda + totalA135.ToString(); lblA140.Text = simboloMoneda + totalA140.ToString(); lblA142.Text = simboloMoneda + totalA142.ToString();
-            lblA145.Text = simboloMoneda + totalA145.ToString(); lblA151.Text = simboloMoneda + totalA151.ToString(); lblA152.Text = simboloMoneda + totalA152.ToString(); lblA153.Text = simboloMoneda + totalA153.ToString(); lblA155.Text = simboloMoneda + totalA155.ToString();
-            lblA157.Text = simboloMoneda + totalA157.ToString(); lblA158.Text = simboloMoneda + totalA158.ToString(); lblA159.Text = simboloMoneda + totalA159.ToString(); lblA160.Text = simboloMoneda + totalA160.ToString(); lblA164.Text = simboloMoneda + totalA164.ToString();
-            lblA176.Text = simboloMoneda + totalA176.ToString(); lblA177.Text = simboloMoneda + totalA177.ToString(); lblA178.Text = simboloMoneda + totalA178.ToString(); lblA179.Text = simboloMoneda + totalA179.ToString(); lblA180.Text = simboloMoneda + totalA180.ToString();
-            lblA185.Text = simboloMoneda + totalA185.ToString(); lblA999.Text = simboloMoneda + totalA999.ToString(); //Valor del total
+            lblA105.Text = totalA105.ToString("C", nfi); lblA106.Text = totalA106.ToString("C", nfi); lblA110.Text = totalA110.ToString("C", nfi); lblA111.Text = totalA111.ToString("C", nfi); lblA115.Text = totalA115.ToString("C", nfi);
+            lblA120.Text = totalA120.ToString("C", nfi); lblA121.Text = totalA121.ToString("C", nfi); lblA122.Text = totalA122.ToString("C", nfi); lblA123.Text = totalA123.ToString("C", nfi); lblA124.Text = totalA124.ToString("C", nfi);
+            lblA125.Text = totalA125.ToString("C", nfi); lblA130.Text = totalA130.ToString("C", nfi); lblA135.Text = totalA135.ToString("C", nfi); lblA140.Text = totalA140.ToString("C", nfi); lblA142.Text = totalA142.ToString("C", nfi);
+            lblA145.Text = totalA145.ToString("C", nfi); lblA151.Text = totalA151.ToString("C", nfi); lblA152.Text = totalA152.ToString("C", nfi); lblA153.Text = totalA153.ToString("C", nfi); lblA155.Text = totalA155.ToString("C", nfi);
+            lblA157.Text = totalA157.ToString("C", nfi); lblA158.Text = totalA158.ToString("C", nfi); lblA159.Text = totalA159.ToString("C", nfi); lblA160.Text = totalA160.ToString("C", nfi); lblA164.Text = totalA164.ToString("C", nfi);
+            lblA176.Text = totalA176.ToString("C", nfi); lblA177.Text = totalA177.ToString("C", nfi); lblA178.Text = totalA178.ToString("C", nfi); lblA179.Text = totalA179.ToString("C", nfi); lblA180.Text = totalA180.ToString("C", nfi);
+            lblA185.Text = totalA185.ToString("C", nfi); lblA999.Text = totalA999.ToString("C", nfi); //Valor del total
 
             JsonDatasetP105 = GetPathFile("P105"); JsonDatasetP110 = GetPathFile("P110"); JsonDatasetP115 = GetPathFile("P115"); JsonDatasetP120 = GetPathFile("P120"); JsonDatasetP121 = GetPathFile("P121"); JsonDatasetP122 = GetPathFile("P122"); JsonDatasetP128 = GetPathFile("P128");
             JsonDatasetP129 = GetPathFile("P129"); JsonDatasetP133 = GetPathFile("P133"); JsonDatasetP135 = GetPathFile("P135"); JsonDatasetP141 = GetPathFile("P141"); JsonDatasetP505 = GetPathFile("P505"); JsonDatasetP507 = GetPathFile("P507"); JsonDatasetP510 = GetPathFile("P510");
-            JsonDatasetP511 = GetPathFile("P511"); JsonDatasetP515 = GetPathFile("P515"); JsonDatasetP520 = GetPathFile("P520"); JsonDatasetP530 = GetPathFile("P530"); JsonDatasetP531 = GetPathFile("P531"); JsonDatasetP540 = GetPathFile("P540");  JsonDatasetP541 = GetPathFile("P541");
+            JsonDatasetP511 = GetPathFile("P511"); JsonDatasetP515 = GetPathFile("P515"); JsonDatasetP520 = GetPathFile("P520"); JsonDatasetP530 = GetPathFile("P530"); JsonDatasetP531 = GetPathFile("P531"); JsonDatasetP540 = GetPathFile("P540"); JsonDatasetP541 = GetPathFile("P541");
 
             totalP105 = mergeTables.GeTotalByTablePlan(true, JsonDatasetP105, moneda, mesProceso); totalP110 = mergeTables.GeTotalByTablePlan(false, JsonDatasetP110, moneda, mesProceso); totalP115 = mergeTables.GeTotalByTablePlan(false, JsonDatasetP115, moneda, mesProceso);
             totalP120 = mergeTables.GeTotalByTablePlan(false, JsonDatasetP120, moneda, mesProceso); totalP121 = mergeTables.GeTotalByTablePlan(false, JsonDatasetP121, moneda, mesProceso); totalP122 = mergeTables.GeTotalByTablePlan(false, JsonDatasetP122, moneda, mesProceso);
@@ -117,15 +127,15 @@ namespace AppWebReportes.Reportes
             totalP599 = totalP505 + totalP507 + totalP510 + totalP511 + totalP515 + totalP520 + totalP530 + totalP531 + RtotalF999 + totalP540 + totalP541;
             totalP999 = totalP199 + totalP599;
 
-            lblP105.Text = simboloMoneda + totalP105.ToString(); lblP110.Text = simboloMoneda + totalP110.ToString(); lblP115.Text = simboloMoneda + totalP115.ToString(); lblP120.Text = simboloMoneda + totalP120.ToString(); lblP121.Text = simboloMoneda + totalP121.ToString();
-            lblP122.Text = simboloMoneda + totalP122.ToString(); lblP128.Text = simboloMoneda + totalP128.ToString(); lblP129.Text = simboloMoneda + totalP129.ToString(); lblP133.Text = simboloMoneda + totalP133.ToString(); lblP135.Text = simboloMoneda + totalP135.ToString();
-            lblP141.Text = simboloMoneda + totalP141.ToString(); lblP505.Text = simboloMoneda + totalP505.ToString(); lblP507.Text = simboloMoneda + totalP507.ToString(); lblP510.Text = simboloMoneda + totalP510.ToString(); lblP511.Text = simboloMoneda + totalP511.ToString();
-            lblP515.Text = simboloMoneda + totalP515.ToString(); lblP520.Text = simboloMoneda + totalP520.ToString(); lblP530.Text = simboloMoneda + totalP530.ToString(); lblP531.Text = simboloMoneda + totalP531.ToString(); lblP541.Text = simboloMoneda + totalP541.ToString();
+            lblP105.Text = totalP105.ToString("C", nfi); lblP110.Text = totalP110.ToString("C", nfi); lblP115.Text = totalP115.ToString("C", nfi); lblP120.Text = totalP120.ToString("C", nfi); lblP121.Text = totalP121.ToString("C", nfi);
+            lblP122.Text = totalP122.ToString("C", nfi); lblP128.Text = totalP128.ToString("C", nfi); lblP129.Text = totalP129.ToString("C", nfi); lblP133.Text = totalP133.ToString("C", nfi); lblP135.Text = totalP135.ToString("C", nfi);
+            lblP141.Text = totalP141.ToString("C", nfi); lblP505.Text = totalP505.ToString("C", nfi); lblP507.Text = totalP507.ToString("C", nfi); lblP510.Text = totalP510.ToString("C", nfi); lblP511.Text = totalP511.ToString("C", nfi);
+            lblP515.Text = totalP515.ToString("C", nfi); lblP520.Text = totalP520.ToString("C", nfi); lblP530.Text = totalP530.ToString("C", nfi); lblP531.Text = totalP531.ToString("C", nfi); lblP541.Text = totalP541.ToString("C", nfi);
 
-            lblP199.Text        = simboloMoneda + totalP199.ToString();
-            lblPResultado.Text  = simboloMoneda + RtotalF999.ToString() ; // Se añadirá el resultado al P540
-            lblP599.Text        = simboloMoneda + totalP599.ToString();
-            lblP999.Text        = simboloMoneda + totalP999.ToString();
+            lblP199.Text = totalP199.ToString("C", nfi);
+            lblPResultado.Text = RtotalF999.ToString("C", nfi); // Se añadirá el resultado al P540
+            lblP599.Text = totalP599.ToString("C", nfi);
+            lblP999.Text = totalP999.ToString("C", nfi);
         }
         //Jorge Luis|17/01/2018|RW-97
         /*Método para */

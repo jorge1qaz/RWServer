@@ -1,5 +1,6 @@
 ﻿using BusinessLayer;
 using System;
+using System.Globalization;
 
 namespace AppWebReportes.Reportes
 {
@@ -11,6 +12,14 @@ namespace AppWebReportes.Reportes
         string JsonDatasetN005 = "", JsonDatasetN010 = "", JsonDatasetN015 = "", JsonDatasetN103 = "", JsonDatasetN105 = "", JsonDatasetN110 = "", JsonDatasetN205 = "", JsonDatasetN210 = "", JsonDatasetN215 = "", JsonDatasetN220 = "",
                 JsonDatasetN225 = "", JsonDatasetN230 = "", JsonDatasetN235 = "", JsonDatasetN305 = "", JsonDatasetN310 = "", JsonDatasetN315 = "", JsonDatasetN405 = "", JsonDatasetN410 = "", JsonDatasetN415 = "", JsonDatasetN420 = "",
                 JsonDatasetN425 = "", JsonDatasetN430 = "", JsonDatasetN505 = "", JsonDatasetN510 = "", JsonDatasetN515 = "", JsonDatasetN520 = "", JsonDatasetN525 = "", JsonDatasetN805 = "", JsonDatasetN810;
+
+        protected void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            if (Session["TipoMonedaEFNT"].ToString() == "Nuevos soles")
+                GetReport(true, int.Parse(lstMes.SelectedValue));
+            else
+                GetReport(false, int.Parse(lstMes.SelectedValue));
+        }
         decimal totalN005 = 0, totalN010 = 0, totalN015 = 0, totalN099 = 0, totalN103 = 0, totalN105 = 0, totalN110 = 0, totalN199 = 0, totalN205 = 0, totalN299 = 0, totalN210 = 0, totalN215 = 0, totalN220 = 0, totalN225 = 0, totalN230 = 0, totalN235 = 0, totalN305 = 0, totalN310 = 0,
                 totalN315 = 0, totalN405 = 0, totalN410 = 0, totalN415 = 0, totalN420 = 0, totalN425 = 0, totalN430 = 0, totalN505 = 0, totalN510 = 0, totalN515 = 0, totalN520 = 0, totalN525 = 0, totalN805 = 0, totalN810 = 0, totalN399 = 0, totalN499 = 0, totalN599 = 0, totalN999 = 0;
         string simboloMoneda = "", JsonDatasetF005 = "", JsonDatasetF105 = "", JsonDatasetF206 = "", JsonDatasetF211 = "", JsonDatasetF212 = "", JsonDatasetF213 = "", JsonDatasetF214 = "",
@@ -30,6 +39,19 @@ namespace AppWebReportes.Reportes
         /*Método para */
         public void GetReport(bool moneda, int mesProceso)
         {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                lblTipoMoneda.Text = "Dólares";
+            }
+            nfi.CurrencyDecimalDigits = 2;
+
             lblMesProceso.Text = meses[mesProceso];
             //Naturaleza
             JsonDatasetN005 = GetPathFile("N005"); JsonDatasetN010 = GetPathFile("N010"); JsonDatasetN015 = GetPathFile("N015"); JsonDatasetN103 = GetPathFile("N103"); JsonDatasetN105 = GetPathFile("N105"); JsonDatasetN110 = GetPathFile("N110");
@@ -60,18 +82,14 @@ namespace AppWebReportes.Reportes
 
             totalN805 = mergeTables.GeTotalByTablePlan(JsonDatasetN805, moneda, mesProceso, false); totalN810 = mergeTables.GeTotalByTablePlan(JsonDatasetN810, moneda, mesProceso, false); totalN999 = totalN805 + totalN810 + totalN599;
 
-            if (moneda)
-            { simboloMoneda = "S/ "; lblTipoMoneda.Text = "Nuevos soles"; }
-            else
-            { simboloMoneda = "$ "; lblTipoMoneda.Text = "Dólares"; }
-            lblN005.Text = simboloMoneda + totalN005.ToString(); lblN010.Text = simboloMoneda + totalN010.ToString(); lblN015.Text = simboloMoneda + totalN015.ToString(); lblN099.Text = simboloMoneda + totalN099.ToString(); lblN103.Text = simboloMoneda + totalN103.ToString();
-            lblN105.Text = simboloMoneda + totalN105.ToString(); lblN110.Text = simboloMoneda + totalN110.ToString(); lblN199.Text = simboloMoneda + totalN199.ToString(); lblN205.Text = simboloMoneda + totalN205.ToString(); lblN210.Text = simboloMoneda + totalN210.ToString();
-            lblN215.Text = simboloMoneda + totalN215.ToString(); lblN220.Text = simboloMoneda + totalN220.ToString(); lblN225.Text = simboloMoneda + totalN225.ToString(); lblN230.Text = simboloMoneda + totalN230.ToString(); lblN235.Text = simboloMoneda + totalN235.ToString();
-            lblN299.Text = simboloMoneda + totalN299.ToString(); lblN305.Text = simboloMoneda + totalN305.ToString(); lblN310.Text = simboloMoneda + totalN310.ToString(); lblN315.Text = simboloMoneda + totalN315.ToString(); lblN399.Text = simboloMoneda + totalN399.ToString();
-            lblN405.Text = simboloMoneda + totalN405.ToString(); lblN410.Text = simboloMoneda + totalN410.ToString(); lblN415.Text = simboloMoneda + totalN415.ToString(); lblN420.Text = simboloMoneda + totalN420.ToString(); lblN425.Text = simboloMoneda + totalN425.ToString();
-            lblN430.Text = simboloMoneda + totalN430.ToString(); lblN499.Text = simboloMoneda + totalN499.ToString(); lblN505.Text = simboloMoneda + totalN505.ToString(); lblN510.Text = simboloMoneda + totalN510.ToString(); lblN515.Text = simboloMoneda + totalN515.ToString();
-            lblN520.Text = simboloMoneda + totalN520.ToString(); lblN525.Text = simboloMoneda + totalN525.ToString(); lblN599.Text = simboloMoneda + totalN599.ToString(); lblN805.Text = simboloMoneda + totalN805.ToString(); lblN810.Text = simboloMoneda + totalN810.ToString();
-            lblN999.Text = simboloMoneda + totalN999.ToString();
+            lblN005.Text = totalN005.ToString("C", nfi); lblN010.Text = totalN010.ToString("C", nfi); lblN015.Text = totalN015.ToString("C", nfi); lblN099.Text = totalN099.ToString("C", nfi); lblN103.Text = totalN103.ToString("C", nfi);
+            lblN105.Text = totalN105.ToString("C", nfi); lblN110.Text = totalN110.ToString("C", nfi); lblN199.Text = totalN199.ToString("C", nfi); lblN205.Text = totalN205.ToString("C", nfi); lblN210.Text = totalN210.ToString("C", nfi);
+            lblN215.Text = totalN215.ToString("C", nfi); lblN220.Text = totalN220.ToString("C", nfi); lblN225.Text = totalN225.ToString("C", nfi); lblN230.Text = totalN230.ToString("C", nfi); lblN235.Text = totalN235.ToString("C", nfi);
+            lblN299.Text = totalN299.ToString("C", nfi); lblN305.Text = totalN305.ToString("C", nfi); lblN310.Text = totalN310.ToString("C", nfi); lblN315.Text = totalN315.ToString("C", nfi); lblN399.Text = totalN399.ToString("C", nfi);
+            lblN405.Text = totalN405.ToString("C", nfi); lblN410.Text = totalN410.ToString("C", nfi); lblN415.Text = totalN415.ToString("C", nfi); lblN420.Text = totalN420.ToString("C", nfi); lblN425.Text = totalN425.ToString("C", nfi);
+            lblN430.Text = totalN430.ToString("C", nfi); lblN499.Text = totalN499.ToString("C", nfi); lblN505.Text = totalN505.ToString("C", nfi); lblN510.Text = totalN510.ToString("C", nfi); lblN515.Text = totalN515.ToString("C", nfi);
+            lblN520.Text = totalN520.ToString("C", nfi); lblN525.Text = totalN525.ToString("C", nfi); lblN599.Text = totalN599.ToString("C", nfi); lblN805.Text = totalN805.ToString("C", nfi); lblN810.Text = totalN810.ToString("C", nfi);
+            lblN999.Text = totalN999.ToString("C", nfi);
 
             //Función
             JsonDatasetF005 = GetPathFile("F005"); JsonDatasetF105 = GetPathFile("F105"); JsonDatasetF206 = GetPathFile("F206"); JsonDatasetF211 = GetPathFile("F211"); JsonDatasetF212 = GetPathFile("F212"); JsonDatasetF213 = GetPathFile("F213");
@@ -91,11 +109,11 @@ namespace AppWebReportes.Reportes
             totalF710 = mergeTables.GeTotalByTablePlan(JsonDatasetF710, moneda, mesProceso, false); totalF799 = totalF710 + totalF699;
             totalF805 = mergeTables.GeTotalByTablePlan(JsonDatasetF805, moneda, mesProceso, false); totalF999 = totalF805 + totalF799;
 
-            lblF199.Text = simboloMoneda + totalF199.ToString(); lblF005.Text = simboloMoneda + totalF005.ToString(); lblF105.Text = simboloMoneda + totalF105.ToString(); lblF299.Text = simboloMoneda + totalF299.ToString(); lblF206.Text = simboloMoneda + totalF206.ToString();
-            lblF211.Text = simboloMoneda + totalF211.ToString(); lblF212.Text = simboloMoneda + totalF212.ToString(); lblF213.Text = simboloMoneda + totalF213.ToString(); lblF214.Text = simboloMoneda + totalF214.ToString(); lblF215.Text = simboloMoneda + totalF215.ToString();
-            lblF699.Text = simboloMoneda + totalF699.ToString(); lblF320.Text = simboloMoneda + totalF320.ToString(); lblF350.Text = simboloMoneda + totalF350.ToString(); lblF380.Text = simboloMoneda + totalF380.ToString(); lblF403.Text = simboloMoneda + totalF403.ToString();
-            lblF405.Text = simboloMoneda + totalF405.ToString(); lblF415.Text = simboloMoneda + totalF415.ToString(); lblF799.Text = simboloMoneda + totalF799.ToString(); lblF710.Text = simboloMoneda + totalF710.ToString(); lblF999.Text = simboloMoneda + totalF999.ToString();
-            lblF805.Text = simboloMoneda + totalF805.ToString();
+            lblF199.Text = totalF199.ToString("C", nfi); lblF005.Text = totalF005.ToString("C", nfi); lblF105.Text = totalF105.ToString("C", nfi); lblF299.Text = totalF299.ToString("C", nfi); lblF206.Text = totalF206.ToString("C", nfi);
+            lblF211.Text = totalF211.ToString("C", nfi); lblF212.Text = totalF212.ToString("C", nfi); lblF213.Text = totalF213.ToString("C", nfi); lblF214.Text = totalF214.ToString("C", nfi); lblF215.Text = totalF215.ToString("C", nfi);
+            lblF699.Text = totalF699.ToString("C", nfi); lblF320.Text = totalF320.ToString("C", nfi); lblF350.Text = totalF350.ToString("C", nfi); lblF380.Text = totalF380.ToString("C", nfi); lblF403.Text = totalF403.ToString("C", nfi);
+            lblF405.Text = totalF405.ToString("C", nfi); lblF415.Text = totalF415.ToString("C", nfi); lblF799.Text = totalF799.ToString("C", nfi); lblF710.Text = totalF710.ToString("C", nfi); lblF999.Text = totalF999.ToString("C", nfi);
+            lblF805.Text = totalF805.ToString("C", nfi);
         }
         protected void lstMes_SelectedIndexChanged(object sender, EventArgs e)
         {

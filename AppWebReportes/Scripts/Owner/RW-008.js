@@ -48,18 +48,16 @@
         var tblReportes = $('#tableNaturaleza').DataTable({
             "destroy": true,
             "processing": true,
-            responsive: true,
+            "ordering": false,
+            responsive: false,
             paging: false,
-            scrollCollapse: false,
+            scrollCollapse: true,
             "language": idioma,
             dom: 'Bfrtip',
             info: false,
             "columnDefs": [
-                {
-                    "targets": [1],
-                    "visible": true,
-                    "searchable": true
-                }],
+                { "className": "text-right", targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13] }
+            ],
             buttons: [
                 'copy', {
                     extend: 'excel',
@@ -90,4 +88,10 @@
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();
+
 });
+
+function AddNumeral(number) {
+    var numeral = numeral(number).format('0,0.00');
+    return numeral;
+}

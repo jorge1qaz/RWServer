@@ -45,6 +45,9 @@
                                 <asp:ListItem Value="11">Diciembre</asp:ListItem>
                             </asp:DropDownList>
                         </div>
+                        <div class="form-group">
+                            <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,11 +69,11 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Estado de resultados (por naturaleza)</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittleActivo">Estado de resultados (por naturaleza)</th>
+                                    <th id="tittleMonto1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Código</th>
-                                    <th>Estado de resultados (por función)</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittlePasivoPatrimonio">Estado de resultados (por función)</th>
+                                    <th id="tittleMonto2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
