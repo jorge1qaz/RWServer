@@ -58,7 +58,12 @@ namespace AppWebReportes
                             "~/Scripts/DataTables/export/buttons.html5.min.js",
                             "~/Scripts/DataTables/export/buttons.print.min.js",
                             "~/Scripts/DataTables/export/idioma.js",
-                            "~/Scripts/DataTables/export/numeral.min.js"
+                            "~/Scripts/DataTables/export/numeral.min.js",
+                            "~/Scripts/Charts/highcharts.min.js",
+                            "~/Scripts/Charts/jquery.highchartTable-min.js",
+                            "~/Scripts/Charts/series-label.js",
+                            "~/Scripts/Charts/exporting.js"
+
                             ));
 
 

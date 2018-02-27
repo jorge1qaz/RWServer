@@ -521,8 +521,10 @@
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Charts\exporting.js" />
     <Content Include="Scripts\Charts\highcharts.min.js" />
     <Content Include="Scripts\Charts\jquery.highchartTable-min.js" />
+    <Content Include="Scripts\Charts\series-label.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />

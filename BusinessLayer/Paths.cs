@@ -27,7 +27,7 @@ namespace BusinessLayer
             return text;
         }
         //Jorge Luis|24/10/2017|RW-19
-        /*Método para comprobar la existencia de un archivo, con un parámetro*/
+        /*Método para comprobar la existencia de un archivo, con un parámetro.*/
         public bool ComprobarExistenciaPathFile(string path)
         {
             bool resultado = false;

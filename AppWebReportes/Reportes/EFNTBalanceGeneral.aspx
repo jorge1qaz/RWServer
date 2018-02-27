@@ -71,11 +71,11 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Activo</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittleActivo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Activo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittleMonto1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Código</th>
-                                    <th>Pasivo y patrimonio</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittlePasivoPatrimonio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pasivo y patrimonio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittleMonto2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>

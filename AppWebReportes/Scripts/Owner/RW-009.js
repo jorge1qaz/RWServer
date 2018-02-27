@@ -53,6 +53,9 @@
             "language": idioma,
             dom: 'Bfrtip',
             info: false,
+            "columnDefs": [
+                { "className": "text-right", targets: [2, 5] }
+            ],
             buttons: [
                 'copy', {
                     extend: 'excel',
@@ -84,4 +87,21 @@
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();
+
+    var stateBotonExpand = 0;
+        $("#blockbtnFullScreen").on("click", function () {
+            if (stateBotonExpand == 0) {
+                $("#tittleActivo").css("min-width", "290px");
+                $("#tittleMonto1").css("min-width", "120px");
+                $("#tittlePasivoPatrimonio").css("min-width", "290px");
+                $("#tittleMonto2").css("min-width", "120px");
+                stateBotonExpand = 1;
+            } else {
+                $("#tittleActivo").css("min-width", "100px");
+                $("#tittleMonto1").css("min-width", "80px");
+                $("#tittlePasivoPatrimonio").css("min-width", "100px");
+                $("#tittleMonto2").css("min-width", "80px");
+                stateBotonExpand = 0;
+            }
+        }); 
 });

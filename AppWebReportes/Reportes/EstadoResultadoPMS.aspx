@@ -16,7 +16,7 @@
     </nav>
     <br />
     <br />
-    <div class="container"> <%--Se esta ocultando la clase "container" para hacer mas grande el reporte--%>
+    <div class=""> <%--Se esta ocultando la clase "container" para hacer mas grande el reporte--%>
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-center">
@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Enero</th>
                                     <th>Febrero</th>
                                     <th>Marzo</th>
@@ -126,33 +126,33 @@
                                     <td>
                                         <asp:Label ID="N015lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N099</th>
-                                    <th>Margen comercial</th>
-                                    <th>
-                                        <asp:Label ID="N099lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N099lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N099</td>
+                                    <td>Margen comercial</td>
+                                    <td>
+                                        <asp:Label ID="N099lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N099lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N103</td>
@@ -238,33 +238,33 @@
                                     <td>
                                         <asp:Label ID="N110lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N199</th>
-                                    <th>Producción del ejercicio</th>
-                                    <th>
-                                        <asp:Label ID="N199lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N199lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N199</td>
+                                    <td>Producción del ejercicio</td>
+                                    <td>
+                                        <asp:Label ID="N199lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N199lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N205</td>
@@ -462,33 +462,33 @@
                                     <td>
                                         <asp:Label ID="N235lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N299</th>
-                                    <th>Valor agregado </th>
-                                    <th>
-                                        <asp:Label ID="N299lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N299lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N299</td>
+                                    <td>Valor agregado </td>
+                                    <td>
+                                        <asp:Label ID="N299lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N299lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N305</td>
@@ -574,33 +574,33 @@
                                     <td>
                                         <asp:Label ID="N315lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N399</th>
-                                    <th>Excedente bruto de explotación </th>
-                                    <th>
-                                        <asp:Label ID="N399lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N399lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N399</td>
+                                    <td>Excedente bruto de explotación </td>
+                                    <td>
+                                        <asp:Label ID="N399lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N399lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N405</td>
@@ -770,33 +770,33 @@
                                     <td>
                                         <asp:Label ID="N430lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N499</th>
-                                    <th>Resultado de explotación</th>
-                                    <th>
-                                        <asp:Label ID="N499lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N499lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N499</td>
+                                    <td>Resultado de explotación</td>
+                                    <td>
+                                        <asp:Label ID="N499lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N499lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N505</td>
@@ -938,33 +938,33 @@
                                     <td>
                                         <asp:Label ID="N525lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N599</th>
-                                    <th>Resultado antes de participaciones e impuestos </th>
-                                    <th>
-                                        <asp:Label ID="N599lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N599lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N599</td>
+                                    <td>Resultado antes de participaciones e impuestos </td>
+                                    <td>
+                                        <asp:Label ID="N599lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N599lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>N805</td>
@@ -1022,33 +1022,33 @@
                                     <td>
                                         <asp:Label ID="N810lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>N999</th>
-                                    <th>Resultado del ejercicio</th>
-                                    <th>
-                                        <asp:Label ID="N999lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="N999lbl11" runat="server"></asp:Label></th>
+                                <tr style="font-weight: bold;">
+                                    <td>N999</td>
+                                    <td>Resultado del ejercicio</td>
+                                    <td>
+                                        <asp:Label ID="N999lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="N999lbl11" runat="server"></asp:Label></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1057,13 +1057,6 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>var moneda = "<% Response.Write(Session["EDRPMSTipoMoneda"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-008.js"></script>
