@@ -1,4 +1,5 @@
 ﻿<%@ Page EnableEventValidation="true" Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmMargenUtilidad.aspx.cs" Inherits="AppWebReportes.Reportes.frmMargenUtilidad" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
@@ -14,123 +15,126 @@
             </div>
         </div>
     </nav>
+    <br />
+    <br />
 
-    <div class="form" id="Formulario">
-        <div class="container">
-            <br />
-            <div class="row">
-                <div class="col-lg-3 col-md-12 col-sm-12">
-                    <div class="card card-inverse card-info text-center">
-                        <div class="card-block">
-                            <div class="form-group">
-                                <label for="lstTipoMoneda">Tipo de moneda</label>
-                                <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server">
-                                    <asp:ListItem Value="true">Nuevos soles</asp:ListItem>
-                                    <asp:ListItem Value="false">Dólares</asp:ListItem>
+    <div class="container" id="contenedor">
+        <div class="row">
+            <div class="col-md-3 col-sm-12" id="blockOptions">
+                <div class="card card-inverse card-info text-center">
+                    <div class="card-block">
+                        <div class="form-group">
+                            <label for="lstTipoMoneda">Tipo de moneda</label>
+                            <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server">
+                                <asp:ListItem Value="true">Nuevos soles</asp:ListItem>
+                                <asp:ListItem Value="false">Dólares</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group">
+                            <label for="lstMes">Mes de proceso</label>
+                            <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
+                                <asp:ListItem Value="1">Enero</asp:ListItem>
+                                <asp:ListItem Value="2">Febrero</asp:ListItem>
+                                <asp:ListItem Value="3">Marzo</asp:ListItem>
+                                <asp:ListItem Value="4">Abril</asp:ListItem>
+                                <asp:ListItem Value="5">Mayo</asp:ListItem>
+                                <asp:ListItem Value="6">Junio</asp:ListItem>
+                                <asp:ListItem Value="7">Julio</asp:ListItem>
+                                <asp:ListItem Value="8">Agosto</asp:ListItem>
+                                <asp:ListItem Value="9">Septiembre</asp:ListItem>
+                                <asp:ListItem Value="10">Octubre</asp:ListItem>
+                                <asp:ListItem Value="11">Noviembre</asp:ListItem>
+                                <asp:ListItem Value="12">Diciembre</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group">
+                            <a href="#" id="btnFiltrosAvanzados" data-toggle="modal" data-target=".bd-example-modal-sm">Filtros avanzados</a>
+                        </div>
+                        <div id="blockFiltrosAvanzados">
+                            <div class="form-group" runat="server" id="blockStore">
+                                <label for="lstAlmacenes">Almacén</label>
+                                <asp:DropDownList ID="lstAlmacenes" CssClass="form-control" runat="server">
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
-                                <label for="lstMes">Mes de proceso</label>
-                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
-                                    <asp:ListItem Value="1">Enero</asp:ListItem>
-                                    <asp:ListItem Value="2">Febrero</asp:ListItem>
-                                    <asp:ListItem Value="3">Marzo</asp:ListItem>
-                                    <asp:ListItem Value="4">Abril</asp:ListItem>
-                                    <asp:ListItem Value="5">Mayo</asp:ListItem>
-                                    <asp:ListItem Value="6">Junio</asp:ListItem>
-                                    <asp:ListItem Value="7">Julio</asp:ListItem>
-                                    <asp:ListItem Value="8">Agosto</asp:ListItem>
-                                    <asp:ListItem Value="9">Septiembre</asp:ListItem>
-                                    <asp:ListItem Value="10">Octubre</asp:ListItem>
-                                    <asp:ListItem Value="11">Noviembre</asp:ListItem>
-                                    <asp:ListItem Value="12">Diciembre</asp:ListItem>
+                                <asp:Label ID="lblTitleCliente" runat="server" Text="Cliente"></asp:Label>
+                                <div class="input-group" runat="server" id="blockCostumers">
+                                    <div class="input-group-addon" role="button" id="triggerCostumer">Buscar</div>
+                                    <asp:TextBox ID="txtClienteRUC" CssClass="form-control" placeholder="Ingrese el RUC" runat="server"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group" runat="server" id="blockCosto1">
+                                <label for="lstCOSTO1">COSTO 1</label>
+                                <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server">
                                 </asp:DropDownList>
                             </div>
-                            <div class="form-group">
-                                <a href="#" id="btnFiltrosAvanzados" data-toggle="modal" data-target=".bd-example-modal-sm">Filtros avanzados</a>
+                            <div class="form-group" runat="server" id="blockCosto2">
+                                <label for="lstCOSTO2">COSTO 2</label>
+                                <asp:DropDownList ID="lstCOSTO2" CssClass="form-control" runat="server">
+                                </asp:DropDownList>
                             </div>
-                            <div id="blockFiltrosAvanzados">
-                                <div class="form-group" runat="server" id="blockStore">
-                                    <label for="lstAlmacenes">Almacén</label>
-                                    <asp:DropDownList ID="lstAlmacenes" CssClass="form-control" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label ID="lblTitleCliente" runat="server" Text="Cliente"></asp:Label>
-                                    <div class="input-group" runat="server" id="blockCostumers">
-                                        <div class="input-group-addon" role="button" id="triggerCostumer">Buscar</div>
-                                        <asp:TextBox ID="txtClienteRUC" CssClass="form-control" placeholder="Ingrese el RUC" runat="server"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="form-group" runat="server" id="blockCosto1">
-                                    <label for="lstCOSTO1">COSTO 1</label>
-                                    <asp:DropDownList ID="lstCOSTO1" CssClass="form-control" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group" runat="server" id="blockCosto2">
-                                    <label for="lstCOSTO2">COSTO 2</label>
-                                    <asp:DropDownList ID="lstCOSTO2" CssClass="form-control" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group" runat="server" id="blockVendedor">
-                                    <label for="lstVendedor">Vendedor</label>
-                                    <asp:DropDownList ID="lstVendedor" CssClass="form-control" runat="server">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group" runat="server" id="blockStock">
-                                    <label for="lstTipoStock">Tipo</label>
-                                    <asp:DropDownList ID="lstTipoStock" CssClass="form-control" runat="server">
-                                        <asp:ListItem Value="true">Inciden en stock</asp:ListItem>
-                                        <asp:ListItem Value="false">No inciden en stock</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group" runat="server" id="blockAlcance">
-                                    <label for="lstAlcance">Alcance</label>
-                                    <asp:DropDownList ID="lstAlcance" CssClass="form-control" runat="server">
-                                        <asp:ListItem Value="true">Incide a registros</asp:ListItem>
-                                        <asp:ListItem Value="false">No incide a registros</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+                            <div class="form-group" runat="server" id="blockVendedor">
+                                <label for="lstVendedor">Vendedor</label>
+                                <asp:DropDownList ID="lstVendedor" CssClass="form-control" runat="server">
+                                </asp:DropDownList>
                             </div>
-                            <div class="form-group">
-                                <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
+                            <div class="form-group" runat="server" id="blockStock">
+                                <label for="lstTipoStock">Tipo</label>
+                                <asp:DropDownList ID="lstTipoStock" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="true">Inciden en stock</asp:ListItem>
+                                    <asp:ListItem Value="false">No inciden en stock</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
+                            <div class="form-group" runat="server" id="blockAlcance">
+                                <label for="lstAlcance">Alcance</label>
+                                <asp:DropDownList ID="lstAlcance" CssClass="form-control" runat="server">
+                                    <asp:ListItem Value="true">Incide a registros</asp:ListItem>
+                                    <asp:ListItem Value="false">No incide a registros</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-12 col-sm-12">
-                    <div class="card card-outline-secondary text-center">
-                        <div class="card-block">
-                            <h4 class="card-title">Reporte de Margen de utilidad <span id="monthtitle">para el mes de </span><span id="monthHeader"></span></h4>
-                            <div runat="server" class="row" id="spanFilters" style="margin-bottom: 5px;">
-                                <div class="offset-lg-3 col-lg-3 offset-md-2 col-md-5 offset-sm-1 col-sm-6">
-                                    <asp:Label ID="lblFilter" runat="server" Text="Se ha agregado el filtro de, "></asp:Label>
-                                </div>
-                                <div class="offset-lg-1 col-lg-2 offset-md-1 col-md-2 offset-sm-1 col-sm-4">
-                                    <asp:Button ID="btnDeleteFilter" CssClass="btn btn-outline-danger" runat="server" Text="Eliminar filtro" OnClick="btnDeleteFilter_Click" />
-                                </div>
+            </div>
+            <div class="col-md-9 col-sm-12" id="blockReportContent">
+                <div class="card card-outline-secondary text-center">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="offset-md-2 col-md-8">
+                                <h4 class="card-title">Reporte de Margen de utilidad</h4>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-11 col-md-11 col-xs-12">
-                                    <table class="table table-striped table-bordered display table-responsive" id="tablaReporte">
-                                        <thead>
-                                            <tr>
-                                                <th>Código</th>
-                                                <th>Descripción</th>
-                                                <th>Medida</th>
-                                                <th>Unidades</th>
-                                                <th>Precio venta</th>
-                                                <th>Precio costo</th>
-                                                <th>Margen de utilidad unitario</th>
-                                                <th>Monto de ventas</th>
-                                                <th>Monto de costo</th>
-                                                <th>Margen de utilidad</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
+                            <div class="col-md-2" id="blockbtnFullScreen">
+                                <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
                             </div>
                         </div>
+                        <span id="monthtitle">Para el mes de </span><span id="monthHeader"></span>
+                        <div runat="server" class="row" id="spanFilters" style="margin-bottom: 5px;">
+                            <div class="offset-lg-3 col-lg-3 offset-md-2 col-md-5 offset-sm-1 col-sm-6">
+                                <asp:Label ID="lblFilter" runat="server" Text="Se ha agregado el filtro de, "></asp:Label>
+                            </div>
+                            <div class="offset-lg-1 col-lg-2 offset-md-1 col-md-2 offset-sm-1 col-sm-4">
+                                <asp:Button ID="btnDeleteFilter" CssClass="btn btn-outline-danger" runat="server" Text="Eliminar filtro" OnClick="btnDeleteFilter_Click" />
+                            </div>
+                        </div>
+                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tablaReporte" width="100%">
+                            <thead>
+                                <tr>
+                                    <th id="codigo">Código</th>
+                                    <th id="descripcion">Descripción</th>
+                                    <th id="medida">Medida</th>
+                                    <th id="unidades">Unidades</th>
+                                    <th id="precioVenta">Precio venta</th>
+                                    <th id="precioCosto">Precio costo</th>
+                                    <th id="margenUtilidadUnitario">Margen de utilidad unitario</th>
+                                    <th id="montoVentas">Monto de ventas</th>
+                                    <th id="montoCosto">Monto de costo</th>
+                                    <th id="margenUtilidad">Margen de utilidad</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -243,13 +247,6 @@
         $("#MainContent_chbAlcance").addClass("custom-control-input");
         $("#MainContent_chbCosto2").addClass("custom-control-input");
     </script>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>
         var idEmpresa = "01";
     </script>

@@ -3,6 +3,7 @@ using BusinessLayer;
 using System.Data;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Globalization;
 
 namespace AppWebReportes.Reportes
 {
@@ -29,8 +30,19 @@ namespace AppWebReportes.Reportes
                 lbldebo.Text = "0.0";
             }
         }
-        public void GetTotalForVentas()
+        public void GetTotalForVentas(bool moneda)
         {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                //lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                //lblTipoMoneda.Text = "Dólares";
+            }
             String rootPath = Server.MapPath("~");
             string JsonN005 = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptMNgcLd/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + "N005.json").Trim().Replace("\\'", "'");
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(JsonN005);
@@ -54,89 +66,100 @@ namespace AppWebReportes.Reportes
                     { totalVentas = datatableMes1.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "2":
                     try
                     { totalVentas = datatableMes2.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "3":
                     try
                     { totalVentas = datatableMes3.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "4":
                     try
                     { totalVentas = datatableMes4.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "5":
                     try
                     { totalVentas = datatableMes5.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "6":
                     try
                     { totalVentas = datatableMes6.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "7":
                     try
                     { totalVentas = datatableMes7.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "8":
                     try
                     { totalVentas = datatableMes8.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "9":
                     try
                     { totalVentas = datatableMes9.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "10":
                     try
                     { totalVentas = datatableMes10.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "11":
                     try
                     { totalVentas = datatableMes11.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
                 case "12":
                     try
                     { totalVentas = datatableMes12.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString();
+                    lblVentas.Text = totalVentas.ToString("C", nfi);
                     break;
             }
             #endregion
         }
-        public void GetTotalForCajaBancos() {
+        public void GetTotalForCajaBancos(bool moneda) {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                //lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                //lblTipoMoneda.Text = "Dólares";
+            }
             string JsonA105 = GetPathFile("A105");
             DataTable tabla = new DataTable();
             tabla = mergeTables.GetAccumulatedTables(JsonA105, lstMes.SelectedValue.ToString());
@@ -151,8 +174,19 @@ namespace AppWebReportes.Reportes
             catch (Exception)
                 { lblCajaBancos.Text = "0.0"; }
         }
-        public void GetTotalForResultado()
+        public void GetTotalForResultado(bool moneda)
         {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                //lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                //lblTipoMoneda.Text = "Dólares";
+            }
             string JsonTableN005 = GetPathFile("N005");
             string JsonTableN010 = GetPathFile("N010");
             string JsonTableN103 = GetPathFile("N103");
@@ -234,7 +268,18 @@ namespace AppWebReportes.Reportes
             
             lblResultado.Text = resultadoAntesDeParticipacionesImpuestos.ToString();
         }
-        public void GetTotalByCuentasCobrar() {
+        public void GetTotalByCuentasCobrar(bool moneda) {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                //lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                //lblTipoMoneda.Text = "Dólares";
+            }
             string JsonTableA115 = GetPathFile("A115");
             string JsonTableA120N = GetPathFileN("A120");
             string JsonTableA120 = GetPathFile("A120");
@@ -246,7 +291,18 @@ namespace AppWebReportes.Reportes
             totalCuentasPorCobrar = sumA115 + sumA120N + sumA120;
             lblDeben.Text = totalCuentasPorCobrar.ToString();
         }
-        public void GetTotalByCuentasPagar() {
+        public void GetTotalByCuentasPagar(bool moneda) {
+            NumberFormatInfo nfi;
+            if (moneda)
+            {
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+                //lblTipoMoneda.Text = "Nuevos soles";
+            }
+            else
+            {
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+                //lblTipoMoneda.Text = "Dólares";
+            }
             string JsonTableP120N = GetPathFileN("P120");
             string JsonTableP120 = GetPathFile("P120");
             string JsonTableP110 = GetPathFile("P110");
@@ -281,11 +337,21 @@ namespace AppWebReportes.Reportes
         }
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            GetTotalForVentas();
-            GetTotalForCajaBancos();
-            GetTotalForResultado();
-            GetTotalByCuentasCobrar();
-            GetTotalByCuentasPagar();
+            if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
+            {
+                GetTotalForVentas(true);
+                GetTotalForCajaBancos(true);
+                GetTotalForResultado(true);
+                GetTotalByCuentasCobrar(true);
+                GetTotalByCuentasPagar(true);
+            }
+            else {
+                GetTotalForVentas(false);
+                GetTotalForCajaBancos(false);
+                GetTotalForResultado(false);
+                GetTotalByCuentasCobrar(false);
+                GetTotalByCuentasPagar(false);
+            }
             
         }
     } 

@@ -43,38 +43,6 @@ $(document).ready(function () {
     $("#btnFiltrosAvanzados").on("click", function () {
         $("#blockFiltrosAvanzados").show().fade(300);
     });
-    
-    var idioma = {
-        "sProcessing": "Procesando...",
-        "sLengthMenu": "Mostrar _MENU_ registros",
-        "sZeroRecords": "No se encontraron resultados",
-        "sEmptyTable": "Ningún dato disponible en esta tabla",
-        "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix": "",
-        "sSearch": "Buscar:",
-        "sUrl": "",
-        "sInfoThousands": ",",
-        "sLoadingRecords": "Cargando...",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        },
-        buttons: {
-            copyTitle: 'Los datos fueron copiados',
-            copyInfo: {
-                _: 'Copiados %d filas al portapapeles',
-                1: 'Copiado 1 fila al portapapeles',
-            }
-        }
-    }
     var listarReporte = function (mes) {
         var moneda = localStorage.getItem("monedaAlmacenada");
         var simboloMoneda = "";
@@ -86,9 +54,14 @@ $(document).ready(function () {
         var tblReportes = $('#tablaReporte').DataTable({
             "destroy": true,
             "processing": true,
-            responsive: true,
-            info: false,
+            responsive: false, // cambiar si todo se va a la v..
+            "ordering": false,
+            scrollCollapse: true,
+            info: true,
             data: dataSet.data,
+            "columnDefs": [
+                { "className": "text-right", targets: [4, 5, 6, 7, 8, 9] },
+            ],
             "columns": [
                 { "data": "C" },
                 { "data": "D" },
@@ -97,39 +70,44 @@ $(document).ready(function () {
                 {
                     "data": "PV",
                     "render": function (precioVenta) {
-                        return simboloMoneda + precioVenta
+                        return simboloMoneda + numeral(precioVenta).format('0,0.00');
                     }
                 },
                 {
                     "data": "PC",
                     "render": function (precioCosto) {
-                        return simboloMoneda + precioCosto
+                        return simboloMoneda + numeral(precioCosto).format('0,0.00');
                     }
                 },
-                { "data": "MUU" },
+                {
+                    "data": "MUU",
+                    "render": function (MUU) {
+                        return simboloMoneda + numeral(MUU).format('0,0.00');
+                    }
+                },
                 {
                     "data": "MV",
                     "render": function (montoVentas) {
-                        return simboloMoneda + montoVentas
+                        return simboloMoneda + numeral(montoVentas).format('0,0.00');
                     }
                 },
                 {
                     "data": "MC",
                     "render": function (montoCosto) {
-                        return simboloMoneda + montoCosto
+                        return simboloMoneda + numeral(montoCosto).format('0,0.00');
                     }
                 },
                 {
                     "data": "MU",
                     "render": function (margenUtil) {
-                        return simboloMoneda + margenUtil
+                        return simboloMoneda + numeral(margenUtil).format('0,0.00');
                     }
                 }
             ],
             "language": idioma,
             dom: 'Bfrtip',
             buttons: [
-                'copy', 'csv', {
+                'copy', {
                     extend: 'excel',
                     text: 'Excel',
                     title: 'Reporte: Margen de utilidad por producto - Para el mes de ' + meses[mes - 1],
@@ -199,4 +177,26 @@ $(document).ready(function () {
         listarReporte(parseInt(localStorage.getItem("mesAlmacenado")) + 1);
         $("#MainContent_lstMes").val(parseInt(localStorage.getItem("mesAlmacenado")) + 1).attr("selected");
     }
+
+    var stateBotonExpand = 0;
+    $("#blockbtnFullScreen").on("click", function () {
+        if (stateBotonExpand == 0) {
+            $("#codigo").css("min-width", "80px");
+            $("#descripcion").css("min-width", "180px");
+            $("#medida").css("min-width", "70px");
+            $("#unidades").css("min-width", "70px");
+            $("#precioVenta").css("min-width", "110px");
+            $("#precioCosto").css("min-width", "110px");
+            $("#margenUtilidadUnitario").css("min-width", "110px");
+            $("#montoVentas").css("min-width", "110px");
+            $("#montoCosto").css("min-width", "110px");
+            $("#margenUtilidad").css("min-width", "110px");
+            $("#contenedor").removeClass("container");
+            stateBotonExpand = 1;
+        } else {
+            $("th").css("min-width", "100px");
+            $("#contenedor").addClass("container");
+            stateBotonExpand = 0;
+        }
+    });
 });

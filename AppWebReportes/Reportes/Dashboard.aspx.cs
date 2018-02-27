@@ -94,7 +94,7 @@ namespace AppWebReportes.Reportes
             Session["EDRPMSTipoMoneda"] = "Nuevos soles";
             #endregion
             #region Estados financieros NIFF y Tributario
-            Session["TipoReporteEFNT"] = "Estado de situación financiera";
+            Session["TipoReporteEFNT"] = "Estado de situación financiera NIIF";
             Session["TipoMonedaEFNT"] = "Nuevos soles";
             #endregion
             Session["TipoReporteFCD"] = "Formato simple";
@@ -165,18 +165,19 @@ namespace AppWebReportes.Reportes
         protected void SelectCompanyByYearEFNT(object source, DataListCommandEventArgs e)
         {
             string id = dlstMiNegocioAlDia.DataKeys[e.Item.ItemIndex].ToString();
-            switch (Session["TipoReporteEFNT"].ToString())
+            string valorReporte = Session["TipoReporteEFNT"].ToString();
+            switch (valorReporte)
             {
-                case "Estado de situación financiera":
+                case "Estado de situación financiera NIIF":
                     Response.Redirect("~/Reportes/EFNTEstadoSitucionFinanciera.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
-                case "Estado de resultado":
+                case "Estado de resultado NIIF: Naturaleza y función":
                     Response.Redirect("~/Reportes/EFNTEstadoResultado.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
-                case "Balance general":
+                case "Balance general tributario":
                     Response.Redirect("~/Reportes/EFNTBalanceGeneral.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
-                case "Estado de ganancias y pérdidas":
+                case "Estado de ganancias y pérdidas tributario: Función":
                     Response.Redirect("~/Reportes/EFNTEstadoGananciasPerdidas.aspx?idCompany=" + Session["idCompany"].ToString() + "&year=" + id);
                     break;
                 default:
@@ -184,10 +185,10 @@ namespace AppWebReportes.Reportes
                     break;
             }
         }
-        protected void rdbEFNT1_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de situación financiera";
-        protected void rdbEFNT2_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de resultado";
-        protected void rdbEFNT3_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Balance general";
-        protected void rdbEFNT4_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de ganancias y pérdidas";
+        protected void rdbEFNT1_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de situación financiera NIIF";
+        protected void rdbEFNT2_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de resultado NIIF: Naturaleza y función";
+        protected void rdbEFNT3_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Balance general tributario";
+        protected void rdbEFNT4_CheckedChanged(object sender, EventArgs e) => Session["TipoReporteEFNT"] = "Estado de ganancias y pérdidas tributario: Función";
 
         protected void SelectCompanyByYearFCD(object source, DataListCommandEventArgs e)
         {

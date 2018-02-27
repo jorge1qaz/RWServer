@@ -45,6 +45,9 @@
                                 <asp:ListItem Value="11">Diciembre</asp:ListItem>
                             </asp:DropDownList>
                         </div>
+                        <div class="form-group">
+                            <asp:Button ID="btnGenerarReporte" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,7 +56,7 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="offset-md-2 col-md-8">
-                                <h4 class="card-title">Estados financieros NIIF y tributario</h4>
+                                <h4 class="card-title">Estados financieros: Tributario</h4>
                             </div>
                             <div class="col-md-2" id="blockbtnFullScreen">
                                 <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
@@ -63,178 +66,174 @@
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
                         <div class="row justify-content-md-center">
-                            <table class="table table-bordered table-responsive table-hover table-sm table-striped text-center" id="tableReport" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Descripción</th>
-                                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>F005</td>
-                                        <td>Ventas netas o ingresos por servicios</td>
-                                        <td>
-                                            <asp:Label ID="lblF005" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F010</td>
-                                        <td>( - ) descuentos rebajas y bonificaciones concedidas</td>
-                                        <td>
-                                            <asp:Label ID="lblF010" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F099</th>
-                                        <th>Ventas netas </th>
-                                        <th>
-                                            <asp:Label ID="lblF099" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>F115</td>
-                                        <td>( - ) costo de ventas </td>
-                                        <td>
-                                            <asp:Label ID="lblF115" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F199</th>
-                                        <th>Resultado bruto </th>
-                                        <th>
-                                            <asp:Label ID="lblF199" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>F205</td>
-                                        <td>( - ) gastos de ventas</td>
-                                        <td>
-                                            <asp:Label ID="lblF205" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F210</td>
-                                        <td>( - ) gastos de administración</td>
-                                        <td>
-                                            <asp:Label ID="lblF210" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F299</th>
-                                        <th>Resultado de operación</th>
-                                        <th>
-                                            <asp:Label ID="lblF299" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>F502</td>
-                                        <td>Gastos financieros </td>
-                                        <td>
-                                            <asp:Label ID="lblF502" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F505</td>
-                                        <td>Ingresos financieros gravados </td>
-                                        <td>
-                                            <asp:Label ID="lblF505" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F510</td>
-                                        <td>Otros ingresos gravados  </td>
-                                        <td>
-                                            <asp:Label ID="lblF510" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F515</td>
-                                        <td>Otros ingresos no gravados  </td>
-                                        <td>
-                                            <asp:Label ID="lblF515" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F520</td>
-                                        <td>Enajenación de valores y bienes del activo fijo </td>
-                                        <td>
-                                            <asp:Label ID="lblF520" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F525</td>
-                                        <td>Costo enajenación de valores y bienes - activo fijo</td>
-                                        <td>
-                                            <asp:Label ID="lblF525" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F530</td>
-                                        <td>Gastos diversos </td>
-                                        <td>
-                                            <asp:Label ID="lblF530" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>F560</td>
-                                        <td>Resultado por exposición a la inflación del ejercicio </td>
-                                        <td>
-                                            <asp:Label ID="lblF560" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F599</th>
-                                        <th>Resultados antes de participaciones</th>
-                                        <th>
-                                            <asp:Label ID="lblF599" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>F605</td>
-                                        <td>( - ) distribución legal de la renta </td>
-                                        <td>
-                                            <asp:Label ID="lblF605" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F699</th>
-                                        <th>Resultado antes del impuesto</th>
-                                        <th>
-                                            <asp:Label ID="lblF699" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>F705</td>
-                                        <td>( - ) impuesto a la renta</td>
-                                        <td>
-                                            <asp:Label ID="lblF705" runat="server"></asp:Label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>F999</th>
-                                        <th>Resultado del ejercicio </th>
-                                        <th>
-                                            <asp:Label ID="lblF999" runat="server"></asp:Label>
-                                        </th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="col-md-8">
+                                <table class="table table-bordered table-responsive table-hover table-sm table-striped text-center" id="tableReport" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th >Código</th>
+                                            <th>Descripción</th>
+                                            <th>Monto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>F005</td>
+                                            <td>Ventas netas o ingresos por servicios</td>
+                                            <td>
+                                                <asp:Label ID="lblF005" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F010</td>
+                                            <td>( - ) descuentos rebajas y bonificaciones concedidas</td>
+                                            <td>
+                                                <asp:Label ID="lblF010" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F099</td>
+                                            <td>Ventas netas </td>
+                                            <td>
+                                                <asp:Label ID="lblF099" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F115</td>
+                                            <td>( - ) costo de ventas </td>
+                                            <td>
+                                                <asp:Label ID="lblF115" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F199</td>
+                                            <td>Resultado bruto </td>
+                                            <td>
+                                                <asp:Label ID="lblF199" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F205</td>
+                                            <td>( - ) gastos de ventas</td>
+                                            <td>
+                                                <asp:Label ID="lblF205" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F210</td>
+                                            <td>( - ) gastos de administración</td>
+                                            <td>
+                                                <asp:Label ID="lblF210" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F299</td>
+                                            <td>Resultado de operación</td>
+                                            <td>
+                                                <asp:Label ID="lblF299" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F502</td>
+                                            <td>Gastos financieros </td>
+                                            <td>
+                                                <asp:Label ID="lblF502" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F505</td>
+                                            <td>Ingresos financieros gravados </td>
+                                            <td>
+                                                <asp:Label ID="lblF505" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F510</td>
+                                            <td>Otros ingresos gravados  </td>
+                                            <td>
+                                                <asp:Label ID="lblF510" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F515</td>
+                                            <td>Otros ingresos no gravados  </td>
+                                            <td>
+                                                <asp:Label ID="lblF515" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F520</td>
+                                            <td>Enajenación de valores y bienes del activo fijo </td>
+                                            <td>
+                                                <asp:Label ID="lblF520" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F525</td>
+                                            <td>Costo enajenación de valores y bienes - activo fijo</td>
+                                            <td>
+                                                <asp:Label ID="lblF525" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F530</td>
+                                            <td>Gastos diversos </td>
+                                            <td>
+                                                <asp:Label ID="lblF530" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F560</td>
+                                            <td>Resultado por exposición a la inflación del ejercicio </td>
+                                            <td>
+                                                <asp:Label ID="lblF560" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F599</td>
+                                            <td>Resultados antes de participaciones</td>
+                                            <td>
+                                                <asp:Label ID="lblF599" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F605</td>
+                                            <td>( - ) distribución legal de la renta </td>
+                                            <td>
+                                                <asp:Label ID="lblF605" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F699</td>
+                                            <td>Resultado antes del impuesto</td>
+                                            <td>
+                                                <asp:Label ID="lblF699" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>F705</td>
+                                            <td>( - ) impuesto a la renta</td>
+                                            <td>
+                                                <asp:Label ID="lblF705" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                        <tr class="font-weight-bold">
+                                            <td>F999</td>
+                                            <td>Resultado del ejercicio </td>
+                                            <td>
+                                                <asp:Label ID="lblF999" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
+    <script> var columnA = 2; var columnB = 2; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
-    <script src="../Scripts/Owner/RW-009.js"></script>
+    <script src="../Scripts/Owner/RW-009-c.js"></script> // add js my friend
 </asp:Content>

@@ -16,10 +16,10 @@
             </div>
         </div>
     </nav>
+    <br /><br />
 
     <div class="form" id="Formulario">
         <div class="container">
-            <br />
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="card card-inverse card-info text-center">

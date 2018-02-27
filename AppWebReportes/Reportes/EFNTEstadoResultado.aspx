@@ -56,7 +56,7 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="offset-md-2 col-md-8">
-                                <h4 class="card-title">Estados financieros NIIF y tributario</h4>
+                                <h4 class="card-title">Estados financieros: NIIF</h4>
                             </div>
                             <div class="col-md-2" id="blockbtnFullScreen">
                                 <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
@@ -488,14 +488,14 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
+
+    <div>
+					Toggle column: <a class="toggle-vis" data-column="0">Name</a> - <a class="toggle-vis" data-column="1">Position</a> - <a class="toggle-vis" data-column=
+					"2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column=
+					"5">Salary</a>
+				</div>
+    <script> var columnA = 2; var columnB = 5; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
-    <script src="../Scripts/Owner/RW-009.js"></script>
+    <script src="../Scripts/Owner/RW-009-b.js"></script>
 </asp:Content>

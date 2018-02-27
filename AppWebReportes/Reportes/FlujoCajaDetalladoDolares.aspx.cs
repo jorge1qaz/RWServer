@@ -184,7 +184,7 @@ namespace AppWebReportes.Reportes
             grdTableReport.DataBind();
             grdTableReport.UseAccessibleHeader = true;
             grdTableReport.HeaderRow.TableSection = TableRowSection.TableHeader;
-            //grdTableReport.Columns[0].ItemStyle.HorizontalAlign = HorizontalAlign.Right;
+            grdTableReport.Columns[0].ItemStyle.HorizontalAlign = HorizontalAlign.Right;
             //for (int i = 0; i < periodo; i++)
             //    grdTableReport.Columns[i + 7].ItemStyle.HorizontalAlign = HorizontalAlign.Right;
         }

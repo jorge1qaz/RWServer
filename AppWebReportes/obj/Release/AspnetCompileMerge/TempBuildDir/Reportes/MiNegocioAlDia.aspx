@@ -16,10 +16,10 @@
             </div>
         </div>
     </nav>
+    <br /><br />
 
     <div class="form" id="Formulario">
         <div class="container">
-            <br />
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12">
                     <div class="card card-inverse card-info text-center">
@@ -91,14 +91,5 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/Charts/highcharts.min.js"></script>
-    <script src="../Scripts/Charts/jquery.highchartTable-min.js"></script>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script src="../Scripts/Owner/RW-007.js"></script>
 </asp:Content>

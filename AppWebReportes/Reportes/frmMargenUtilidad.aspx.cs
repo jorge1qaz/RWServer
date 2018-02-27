@@ -427,10 +427,24 @@ namespace AppWebReportes.Reportes
             { npu = "h"; ncosto = "i"; }
 
             #region CalculosMatematicos
-            descripcion = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
-                            Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("b")).FirstOrDefault();
-            medida = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
-                            Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("d")).FirstOrDefault();
+            try
+            {
+                descripcion = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
+                                Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("b")).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                descripcion = "";
+            }
+            try
+            {
+                medida = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).
+                                Where(x => x.Field<string>(filtro).Trim() == idFiltro).Select(x => x.Field<string>("d")).FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                medida = "";
+            }
             try
             {
                 totalUnidades = tableData.AsEnumerable().Where(x => x.Field<string>("a").Trim() == idProduct).

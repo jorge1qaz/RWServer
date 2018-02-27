@@ -448,22 +448,22 @@
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEFNT1" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT1_CheckedChanged" Checked="true" />
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Estado de situación financiera</span>
+                                <span class="custom-control-description">Estado de situación financiera NIIF</span>
                             </label>
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEFNT2" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT2_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Estado de resultado</span>
+                                <span class="custom-control-description">Estado de resultado NIIF: Naturaleza y función</span>
                             </label>
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEFNT3" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT3_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Balance general</span>
+                                <span class="custom-control-description">Balance general tributario</span>
                             </label>
                             <label class="custom-control custom-radio">
                                 <asp:RadioButton ID="rdbEFNT4" runat="server" GroupName="radioTipoReporteEFNT" OnCheckedChanged="rdbEFNT4_CheckedChanged" />
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">Estado de ganancias y pérdidas</span>
+                                <span class="custom-control-description">Estado de ganancias y pérdidas tributario: Función</span>
                             </label>
                         </div>
                     </div>

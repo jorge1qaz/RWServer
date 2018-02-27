@@ -11,37 +11,6 @@
     }
     var fechaCompletoFile = dia + "." + mes + "." + anio;
     var fechaCompleto = dia + "/" + mes + "/" + anio;
-    var idioma = {
-        "sProcessing": "Procesando...",
-        "sLengthMenu": "Mostrar _MENU_ registros",
-        "sZeroRecords": "No se encontraron resultados",
-        "sEmptyTable": "Ningún dato disponible en esta tabla",
-        "sInfo": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando _START_ al _END_ de _TOTAL_ registros",
-        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix": "",
-        "sSearch": "Filtrar por:",
-        "sUrl": "",
-        "sInfoThousands": ",",
-        "sLoadingRecords": "Cargando...",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast": "Último",
-            "sNext": "Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "oAria": {
-            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        },
-        buttons: {
-            copyTitle: 'Los datos fueron copiados',
-            copyInfo: {
-                _: 'Copiados %d filas al portapapeles',
-                1: 'Copiado 1 fila al portapapeles',
-            }
-        }
-    }
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"];
     var listarReporte = function () {
         var tblReportes = $('#tableReport').DataTable({
@@ -54,7 +23,7 @@
             dom: 'Bfrtip',
             info: false,
             "columnDefs": [
-                { "className": "text-right", targets: [2, 5] }
+                { "className": "text-right", targets: [columnA, columnB] } //2, 5
             ],
             buttons: [
                 'copy', {
@@ -87,6 +56,16 @@
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();
+
+    $('a.toggle-vis').on('click', function (e) {
+        e.preventDefault();
+
+        // Get the column API object
+        var column = tblReportes.column($(this).attr('data-column'));
+
+        // Toggle the visibility
+        column.visible(!column.visible());
+    });
 
     var stateBotonExpand = 0;
         $("#blockbtnFullScreen").on("click", function () {

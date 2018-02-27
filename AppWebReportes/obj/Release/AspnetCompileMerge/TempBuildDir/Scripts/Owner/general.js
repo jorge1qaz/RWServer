@@ -27,6 +27,7 @@ $(document).ready(function () {
     $('[type=search]').addClass("col-7");
     $('[data-toggle="tooltip"]').tooltip();
     $("th").addClass("text-center");
+    $("#blockOptions").find("label").addClass("text-white");
 });
 $(function () {
 });

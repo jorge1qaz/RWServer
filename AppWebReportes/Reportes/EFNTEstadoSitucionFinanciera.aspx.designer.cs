@@ -49,6 +49,15 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.DropDownList lstMes;
         
         /// <summary>
+        /// btnGenerarReporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerarReporte;
+        
+        /// <summary>
         /// lblTipoReporte control.
         /// </summary>
         /// <remarks>

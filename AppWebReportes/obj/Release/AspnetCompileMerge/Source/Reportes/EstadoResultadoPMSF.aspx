@@ -15,17 +15,17 @@
     </nav>
     <br />
     <br />
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-block">
                         <h4 class="card-title">Estado de resultado por función</h4>
-                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive">
+                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>Descripción</th>
+                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                     <th>Enero</th>
                                     <th>Febrero</th>
                                     <th>Marzo</th>
@@ -97,33 +97,33 @@
                                     <td>
                                         <asp:Label ID="F105lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>F199</th>
-                                    <th>Ganancia (pérdida) bruta</th>
-                                    <th>
-                                        <asp:Label ID="F199lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F199lbl11" runat="server"></asp:Label></th>
+                                <tr class="font-weight-bold">
+                                    <td>F199</td>
+                                    <td>Ganancia (pérdida) bruta</td>
+                                    <td>
+                                        <asp:Label ID="F199lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F199lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <th>F200</th>
@@ -664,13 +664,6 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>var moneda = "<% Response.Write(Session["EDRPMSTipoMoneda"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-008.js"></script>

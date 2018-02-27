@@ -46,9 +46,7 @@
                             </asp:DropDownList>
                         </div>
                         <div class="form-group">
-                            <asp:LinkButton type="button" CssClass="btn btn-primary form-control" ID="btnGenerarReporte" runat="server" OnClick="btnGenerarReporte_Click">
-                                <i class="material-icons left icon-button">play_arrow</i>Generar reporte
-                            </asp:LinkButton>
+                            <asp:Button ID="btnGenerarReporteS" runat="server" CssClass="btn btn-primary form-control" Text="Generar reporte" OnClick="btnGenerarReporte_Click" />
                         </div>
                     </div>
                 </div>
@@ -58,7 +56,7 @@
                     <div class="card-block">
                         <div class="row">
                             <div class="offset-md-2 col-md-8">
-                                <h4 class="card-title">Estados financieros NIIF y tributario</h4>
+                                <h4 class="card-title">Estados financieros: Tributario</h4>
                             </div>
                             <div class="col-md-2" id="blockbtnFullScreen">
                                 <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
@@ -71,11 +69,11 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th id="tittleActivo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Activo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th id="tittleMonto1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittleActivo">Activo</th>
+                                    <th id="tittleMonto1">Monto</th>
                                     <th>Código</th>
-                                    <th id="tittlePasivoPatrimonio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pasivo y patrimonio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th id="tittleMonto2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="tittlePasivoPatrimonio">Pasivo y patrimonio</th>
+                                    <th id="tittleMonto2">Monto</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -454,14 +452,8 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
+    <script> var columnA = 2; var columnB = 5; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
-    <script src="../Scripts/Owner/RW-009.js"></script>
+    <script src="../Scripts/Owner/RW-009-b.js"></script>
 </asp:Content>

@@ -71,25 +71,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>02/23/2018 13:18:12</publishTime>
+      <publishTime>02/27/2018 16:36:53</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>02/23/2018 13:18:12</publishTime>
+      <publishTime>02/27/2018 16:36:53</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>02/23/2018 13:40:25</publishTime>
+      <publishTime>02/27/2018 16:37:06</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>02/23/2018 13:40:25</publishTime>
+      <publishTime>02/27/2018 16:37:06</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll">
-      <publishTime>02/22/2018 15:03:45</publishTime>
+      <publishTime>02/27/2018 14:04:26</publishTime>
     </File>
     <File Include="bin/BusinessLayer.pdb">
-      <publishTime>02/22/2018 15:03:45</publishTime>
+      <publishTime>02/27/2018 14:04:26</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -1217,7 +1217,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/21/2018 09:41:32</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>02/23/2018 13:40:18</publishTime>
+      <publishTime>02/27/2018 16:36:58</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1226,25 +1226,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/23/2018 12:49:22</publishTime>
     </File>
     <File Include="Reportes/Dashboard.aspx">
-      <publishTime>02/22/2018 16:44:36</publishTime>
+      <publishTime>02/27/2018 13:55:44</publishTime>
     </File>
     <File Include="Reportes/EFNTBalanceGeneral.aspx">
-      <publishTime>02/16/2018 11:14:47</publishTime>
+      <publishTime>02/27/2018 14:01:49</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoGananciasPerdidas.aspx">
-      <publishTime>02/16/2018 11:14:46</publishTime>
+      <publishTime>02/27/2018 14:03:37</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoResultado.aspx">
-      <publishTime>02/16/2018 11:14:46</publishTime>
+      <publishTime>02/27/2018 14:04:21</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoSitucionFinanciera.aspx">
-      <publishTime>02/16/2018 11:14:46</publishTime>
+      <publishTime>02/27/2018 16:02:10</publishTime>
     </File>
     <File Include="Reportes/EstadoResultadoPMS.aspx">
-      <publishTime>02/16/2018 11:14:46</publishTime>
+      <publishTime>02/27/2018 08:41:18</publishTime>
     </File>
     <File Include="Reportes/EstadoResultadoPMSF.aspx">
-      <publishTime>02/16/2018 11:14:46</publishTime>
+      <publishTime>02/27/2018 08:41:18</publishTime>
     </File>
     <File Include="Reportes/FlujoCajaDetallado.aspx">
       <publishTime>02/07/2018 14:22:36</publishTime>
@@ -1259,10 +1259,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/13/2018 16:35:07</publishTime>
     </File>
     <File Include="Reportes/frmMargenUtilidad.aspx">
-      <publishTime>02/16/2018 11:14:47</publishTime>
+      <publishTime>02/27/2018 15:20:10</publishTime>
     </File>
     <File Include="Reportes/MiNegocioAlDia.aspx">
-      <publishTime>02/21/2018 17:06:07</publishTime>
+      <publishTime>02/27/2018 15:30:15</publishTime>
     </File>
     <File Include="Reportes/NoZip.aspx">
       <publishTime>11/29/2017 15:10:42</publishTime>
@@ -1288,11 +1288,17 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Scripts/bootstrap.min.js">
       <publishTime>11/13/2017 15:09:41</publishTime>
     </File>
+    <File Include="Scripts/Charts/exporting.js">
+      <publishTime>02/27/2018 15:26:29</publishTime>
+    </File>
     <File Include="Scripts/Charts/highcharts.min.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Scripts/Charts/jquery.highchartTable-min.js">
       <publishTime>02/21/2018 16:56:16</publishTime>
+    </File>
+    <File Include="Scripts/Charts/series-label.js">
+      <publishTime>02/27/2018 08:41:18</publishTime>
     </File>
     <File Include="Scripts/DataTables/autoFill.bootstrap.js">
       <publishTime>11/07/2017 16:27:35</publishTime>
@@ -1604,7 +1610,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/15/2018 12:35:06</publishTime>
     </File>
     <File Include="Scripts/Owner/general.js">
-      <publishTime>02/22/2018 10:52:55</publishTime>
+      <publishTime>02/23/2018 14:33:12</publishTime>
     </File>
     <File Include="Scripts/Owner/login.js">
       <publishTime>11/13/2017 12:42:08</publishTime>
@@ -1625,16 +1631,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/15/2018 10:03:10</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-006.js">
-      <publishTime>02/22/2018 13:57:14</publishTime>
+      <publishTime>02/27/2018 15:20:57</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-007.js">
-      <publishTime>12/20/2017 15:25:21</publishTime>
+      <publishTime>02/27/2018 15:52:48</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-008.js">
-      <publishTime>01/25/2018 15:05:06</publishTime>
+      <publishTime>02/27/2018 08:48:05</publishTime>
+    </File>
+    <File Include="Scripts/Owner/RW-009-b.js">
+      <publishTime>02/27/2018 12:32:35</publishTime>
+    </File>
+    <File Include="Scripts/Owner/RW-009-c.js">
+      <publishTime>02/27/2018 14:55:32</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-009.js">
-      <publishTime>02/22/2018 10:54:43</publishTime>
+      <publishTime>02/27/2018 12:05:28</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-010.js">
       <publishTime>02/16/2018 08:21:15</publishTime>
