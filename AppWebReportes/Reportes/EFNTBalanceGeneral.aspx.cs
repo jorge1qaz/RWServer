@@ -13,7 +13,7 @@ namespace AppWebReportes.Reportes
                 JsonDatasetA124 = "", JsonDatasetA125 = "", JsonDatasetA130 = "", JsonDatasetA135 = "", JsonDatasetA140 = "", JsonDatasetA142 = "", JsonDatasetA145 = "", JsonDatasetA151 = "", JsonDatasetA152 = "",
                 JsonDatasetA153 = "", JsonDatasetA155 = "", JsonDatasetA157 = "", JsonDatasetA158 = "", JsonDatasetA159 = "", JsonDatasetA160 = "", JsonDatasetA164 = "", JsonDatasetA176 = "", JsonDatasetA177 = "",
                 JsonDatasetA178 = "", JsonDatasetA179 = "", JsonDatasetA180 = "", JsonDatasetA185 = "", simboloMoneda = "";
-
+        String rootPath = "";
         protected void btnGenerarReporte_Click(object sender, EventArgs e)
         {
             if (Session["TipoMonedaEFNT"].ToString() == "Nuevos soles")
@@ -34,16 +34,20 @@ namespace AppWebReportes.Reportes
                 RJsonDatasetF215 = "", RJsonDatasetF320 = "", RJsonDatasetF350 = "", RJsonDatasetF380 = "", RJsonDatasetF403 = "", RJsonDatasetF405 = "", RJsonDatasetF415 = "", RJsonDatasetF710 = "", RJsonDatasetF805 = "";
         decimal RtotalF005 = 0, RtotalF105 = 0, RtotalF199 = 0, RtotalF206 = 0, RtotalF211 = 0, RtotalF212 = 0, RtotalF213 = 0, RtotalF214 = 0, RtotalF215 = 0, RtotalF299 = 0, RtotalF320 = 0, RtotalF350 = 0,
                 RtotalF380 = 0, RtotalF403 = 0, RtotalF405 = 0, RtotalF415 = 0, RtotalF699 = 0, RtotalF710 = 0, RtotalF799 = 0, RtotalF805 = 0, RtotalF999 = 0;
-
+        string listActivo   = "", listPasivo    = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            String rootPath = Server.MapPath("~");
+            rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null || Request.QueryString["idCompany"] == null || Request.QueryString["year"] == null)
                 Response.Redirect("~/Acceso");
             Cliente cliente = new Cliente()
             { IdCliente = Session["IdUser"].ToString() };
-            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user");
-            lblTipoReporte.Text = Session["TipoReporteEFNT"].ToString();
+            lblNombreUsuario.Text   = cliente.IdParameterUserName("RW_header_name_user");
+            lblTipoReporte.Text     = Session["TipoReporteEFNT"].ToString();
+
+            //Carga de listas de cuentas
+            listActivo = paths.GetStringByFileJson("Activo", rootPath, Session["IdUser"].ToString().ToLower().Trim(), "rptStdFncr", Request.QueryString["idCompany"].ToString(), Request.QueryString["year"].ToString());
+            listPasivo = paths.GetStringByFileJson("Pasivo", rootPath, Session["IdUser"].ToString().ToLower().Trim(), "rptStdFncr", Request.QueryString["idCompany"].ToString(), Request.QueryString["year"].ToString());
         }
         //Jorge Luis|17/01/2018|RW-97
         /*Método para */
@@ -132,10 +136,10 @@ namespace AppWebReportes.Reportes
             lblP141.Text = totalP141.ToString("C", nfi); lblP505.Text = totalP505.ToString("C", nfi); lblP507.Text = totalP507.ToString("C", nfi); lblP510.Text = totalP510.ToString("C", nfi); lblP511.Text = totalP511.ToString("C", nfi);
             lblP515.Text = totalP515.ToString("C", nfi); lblP520.Text = totalP520.ToString("C", nfi); lblP530.Text = totalP530.ToString("C", nfi); lblP531.Text = totalP531.ToString("C", nfi); lblP541.Text = totalP541.ToString("C", nfi);
 
-            lblP199.Text = totalP199.ToString("C", nfi);
-            lblPResultado.Text = RtotalF999.ToString("C", nfi); // Se añadirá el resultado al P540
-            lblP599.Text = totalP599.ToString("C", nfi);
-            lblP999.Text = totalP999.ToString("C", nfi);
+            lblP199.Text        = totalP199.ToString("C", nfi);
+            lblPResultado.Text  = RtotalF999.ToString("C", nfi); // Se añadirá el resultado al P540
+            lblP599.Text        = totalP599.ToString("C", nfi);
+            lblP999.Text        = totalP999.ToString("C", nfi);
         }
         //Jorge Luis|17/01/2018|RW-97
         /*Método para */
@@ -176,6 +180,6 @@ namespace AppWebReportes.Reportes
             String rootPath = Server.MapPath("~"); //Ruta física
             string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdPmS/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
-        }
+        } //GetStringByFileJson
     }
 }

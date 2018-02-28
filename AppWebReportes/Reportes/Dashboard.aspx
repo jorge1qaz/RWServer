@@ -6,6 +6,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li>
+                    <img src="../Images/logo-contasis.png" style="margin: 10px;" /><br />
                     <label>
                         Usted tiene datos hasta la fecha:
                         <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>

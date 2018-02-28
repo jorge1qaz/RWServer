@@ -36,5 +36,12 @@ namespace BusinessLayer
                 resultado = true;
             return resultado;
         }
+        //Jorge Luis|17/01/2018|RW-97
+        /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
+        public string GetStringByFileJson(string nameFile, String rootPath, string user, string nameReport, string idCompany, string year)
+        {
+            string JsonDataset = readFile(@rootPath + pathDatosZipExtract + user + "/" + nameReport + "/" + idCompany + "/" + year + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
+            return JsonDataset;
+        }
     }
 }

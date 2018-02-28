@@ -614,7 +614,7 @@ namespace BusinessLayer
             }
             return listValues[mesProceso];
         }
-        public decimal GeTotalByTablePlan(bool excluirNegativos, string jsonDataSet, bool tipoMoneda, int mesProceso)
+        public decimal GeTotalByTablePlan(bool reportActivo, string jsonDataSet, bool tipoMoneda, int mesProceso, string listCompareJson)
         {
             DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
             DataTable datatable = dataSet.Tables["data"];
@@ -722,14 +722,29 @@ namespace BusinessLayer
                                 totalByCuenta[i] = Convert.ToDecimal(datatable.Rows[i][1].ToString()) + Convert.ToDecimal(datatable.Rows[i][2].ToString()) + Convert.ToDecimal(datatable.Rows[i][3].ToString()) + Convert.ToDecimal(datatable.Rows[i][4].ToString()) + Convert.ToDecimal(datatable.Rows[i][5].ToString()) + Convert.ToDecimal(datatable.Rows[i][6].ToString()) + Convert.ToDecimal(datatable.Rows[i][7].ToString()) + Convert.ToDecimal(datatable.Rows[i][8].ToString()) + Convert.ToDecimal(datatable.Rows[i][9].ToString()) + Convert.ToDecimal(datatable.Rows[i][10].ToString()) + Convert.ToDecimal(datatable.Rows[i][11].ToString()) + Convert.ToDecimal(datatable.Rows[i][12].ToString()) + Convert.ToDecimal(datatable.Rows[i][13].ToString()) + Convert.ToDecimal(datatable.Rows[i][14].ToString());
                             }
                             catch { totalByCuenta[i] = 0; }
-                            break
-                            ;
+                            break;
                     }
-                    if (excluirNegativos) // Sí es true se excluyen los negativos (solo para el rubro A105)
+                    if (reportActivo) // Sí es TRUE, entonces es Activo
                     {
-                        if (totalByCuenta[i] < 0)
-                            totalByCuenta[i] = 0;
+                        if (ComprobarEstadoFinancieroCuenta(datatable.Rows[i][0].ToString(), listCompareJson)) // Sí es TRUE se excluye en caso de ser negativo
+                        {
+                            if (totalByCuenta[i] < 0)
+                                totalByCuenta[i] = 0;
+                        }
                     }
+                    else
+                    {
+                        if (ComprobarEstadoFinancieroCuenta(datatable.Rows[i][0].ToString(), listCompareJson)) // Sí es TRUE se excluye en caso de ser negativo
+                        {
+                            if (totalByCuenta[i] > 0)
+                                totalByCuenta[i] = 0;
+                        }
+                    }
+                    //if (excluirNegativos) // Sí es true se excluyen los negativos (solo para el rubro A105), entonces es Activo
+                    //{
+                    //    if (totalByCuenta[i] < 0)
+                    //        totalByCuenta[i] = 0;
+                    //}
                 }
                 for (int i = 1; i < totalByCuenta.Length; i++)
                 {
@@ -739,6 +754,30 @@ namespace BusinessLayer
                 return totalByCuenta[0];
             }
             return 0;
+        }
+        /*Sí la cuenta existe en la lista devuelve TRUE, en caso contrario devuelve FALSE*/
+        public bool ComprobarEstadoFinancieroCuenta(string cuenta, string listCompareJson) {
+            DataSet dataSet         = JsonConvert.DeserializeObject<DataSet>(listCompareJson);
+            DataTable listCompare   = dataSet.Tables["data"];
+
+            string tempString = "";
+            bool resultado = false;
+            foreach (DataRow item in listCompare.Rows)
+            {
+                try
+                {
+                    tempString  = listCompare.AsEnumerable().Where(x => x.Field<string>("a").Trim() == item[0].ToString())
+                                    .Select(x => x.Field<string>("a")).FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    tempString = "";
+                }
+            }
+            if (tempString != "")
+                resultado = true;
+
+            return resultado;   
         }
         public decimal KeepPositive(decimal anterior, decimal actual) {
             decimal temp = 0;
@@ -792,12 +831,12 @@ namespace BusinessLayer
             decimal valor = 0;
             try
             {
-                valor = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1) == IdRow).
+                valor   = table.AsEnumerable().Where(x => x.Field<string>(nameColumn1) == IdRow).
                                     Select(x => x.Field<decimal>(nameColumn2)).FirstOrDefault();
             }
             catch (Exception)
             {
-                valor = 0;
+                valor   = 0;
             }
             return valor;
         }
@@ -862,7 +901,6 @@ namespace BusinessLayer
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
             return filteredTable;
         }
-        //exclusivo ps papa
         public DataTable[] GetTablesGroupsByColumn(DataTable table, String columnNameID)
         {
             try
