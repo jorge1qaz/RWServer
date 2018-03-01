@@ -532,15 +532,19 @@
                                             <label for="txtFechaInicio">Fecha de inicio</label>
                                             <asp:TextBox ID="txtFechaInicio" CssClass="form-control" runat="server"></asp:TextBox>
                                         </div>
-                                        <div class="form-group">
+                                        <%--<div class="form-group">
                                             <label for="lstFrecuenciaPerdiodoFCD">Frecuencia del periodo</label>
                                             <asp:DropDownList ID="lstFrecuenciaPerdiodoFCD" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="7">7</asp:ListItem>
                                                 <asp:ListItem Value="15">15</asp:ListItem>
                                                 <asp:ListItem Value="30">30</asp:ListItem>
                                             </asp:DropDownList>
-                                        </div>
+                                        </div>--%>
                                         <div class="form-group">
+                                            <label for="txtFechaInicio">Frecuencia del periodo</label>
+                                            <asp:TextBox ID="txtFrecuenciaPerdiodoFCD" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
+                                        </div>
+                                        <%--<div class="form-group">
                                             <label for="lstNumeroPeriodosFCD">Número de periodos</label>
                                             <asp:DropDownList ID="lstNumeroPeriodosFCD" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="10">10</asp:ListItem>
@@ -549,6 +553,10 @@
                                                 <asp:ListItem Value="20">20</asp:ListItem>
                                                 <asp:ListItem Value="30">30</asp:ListItem>
                                             </asp:DropDownList>
+                                        </div>--%>
+                                        <div class="form-group">
+                                            <label for="txtFechaInicio">Número de periodos</label>
+                                            <asp:TextBox ID="txtNumeroPeriodosFCD" CssClass="form-control" TextMode="Number" runat="server"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>

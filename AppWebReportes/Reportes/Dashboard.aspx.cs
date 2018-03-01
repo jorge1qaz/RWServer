@@ -58,6 +58,8 @@ namespace AppWebReportes.Reportes
             }
             if (!Page.IsPostBack)
             {
+                txtFrecuenciaPerdiodoFCD.Text = "7";
+                txtNumeroPeriodosFCD.Text = "12";
                 try
                 { LoadPage(); }
                 catch (Exception)
@@ -194,8 +196,10 @@ namespace AppWebReportes.Reportes
         {
             string id = dlstFCD.DataKeys[e.Item.ItemIndex].ToString();
             Session["FCDFechaInicio"] = txtFechaInicio.Text.ToString();
-            Session["FCDFrecuencia"] = lstFrecuenciaPerdiodoFCD.SelectedValue.ToString();
-            Session["FCDPeriodo"] = lstNumeroPeriodosFCD.SelectedValue.ToString();
+            //Session["FCDFrecuencia"] = lstFrecuenciaPerdiodoFCD.SelectedValue.ToString();
+            //Session["FCDPeriodo"] = lstNumeroPeriodosFCD.SelectedValue.ToString();
+            Session["FCDFrecuencia"]    = txtFrecuenciaPerdiodoFCD.Text.ToString();
+            Session["FCDPeriodo"]       = txtNumeroPeriodosFCD.Text.ToString();
             switch (Session["TipoReporteFCD"].ToString())
             {
                 case "Formato simple":

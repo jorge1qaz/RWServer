@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web.UI.WebControls;
 
 namespace AppWebReportes.Reportes
@@ -109,8 +111,15 @@ namespace AppWebReportes.Reportes
             tableInitDescripcionEgresos         = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
             tableInitDescripcionCostumer        = dataSetListDescripcion.Tables["dataTableListCustumers"];
 
-            tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
-            tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+            //tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
+            //tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+
+            //tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
+            if (tableInitDescripcionSaldoInicial.Rows.Count > 0)
+                tableJustNamesSaldoInicial = tableInitDescripcionSaldoInicial.DefaultView.ToTable(true, "a");
+            //tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
+            if (dataSetListDescripcion.Tables["dataTableListCustumers"].Rows.Count > 0)
+                tableJustNamesListCustumers = dataSetListDescripcion.Tables["dataTableListCustumers"].DefaultView.ToTable(true, "a");
             #endregion
             #region Rango de fechas para ingresos y egresos
             rangoFechas.Add(conFechaVencimiento);
@@ -172,6 +181,8 @@ namespace AppWebReportes.Reportes
             DataColumnCollection columns;
             columns = tablesTotals[0].Columns;
             columns.Remove("Fecha vencimiento");
+            NumberFormatInfo nfi = new CultureInfo("es-PE", false).NumberFormat;
+            nfi.CurrencyDecimalDigits = 2;
             if (!tipoReport) // Si es true es reporte detallado (default false)
             {
                 columns.Remove("Documento");
@@ -239,20 +250,23 @@ namespace AppWebReportes.Reportes
             string filterMoneda = "S";
             if (!moneda)
                 filterMoneda = "D";
-            DataTable tableContent          = DeclarePrincipalColumnsName(); //tableInitDatosSaldoInicial
-            foreach (DataRow item in tableInitDatosSaldoInicial.Rows)
-                if (item["g"].ToString().Trim() == "")
-                    item["g"] = "S";    
-            DataTable tableFilteredByDate   = mergeTables.GetTableByDate(tableInitDatosSaldoInicial, conFechaVencimiento, fechaInicial, 1);
-            DataTable tableFilteredByMoneda = mergeTables.GetTableByFilters(tableFilteredByDate, filterMoneda, "g");
-            DataTable tableTotalByCuentas   = mergeTables.GetTotalByTable(tableFilteredByMoneda, tableFilteredByMoneda.DefaultView.ToTable(true, "a"), "a", "c", "d", listDates[0], moneda);
-            string nameByCuentaSaldoInicial = "";
-            foreach (DataRow dataRow in tableTotalByCuentas.Rows)
+            DataTable tableContent              = DeclarePrincipalColumnsName(); //tableInitDatosSaldoInicial
+            if (tableInitDatosSaldoInicial.Rows.Count > 0)
             {
-                nameByCuentaSaldoInicial = mergeTables.GetStringByIdInDataTable(tableInitDescripcionSaldoInicial, "a", dataRow[0].ToString(), "b");
-                dataRow[4] = nameByCuentaSaldoInicial;
+                foreach (DataRow item in tableInitDatosSaldoInicial.Rows)
+                    if (item["g"].ToString().Trim() == "")
+                        item["g"] = "S";
+                DataTable tableFilteredByDate = mergeTables.GetTableByDate(tableInitDatosSaldoInicial, conFechaVencimiento, fechaInicial, 1);
+                DataTable tableFilteredByMoneda = mergeTables.GetTableByFilters(tableFilteredByDate, filterMoneda, "g");
+                DataTable tableTotalByCuentas = mergeTables.GetTotalByTable(tableFilteredByMoneda, tableFilteredByMoneda.DefaultView.ToTable(true, "a"), "a", "c", "d", listDates[0], moneda);
+                string nameByCuentaSaldoInicial = "";
+                foreach (DataRow dataRow in tableTotalByCuentas.Rows)
+                {
+                    nameByCuentaSaldoInicial = mergeTables.GetStringByIdInDataTable(tableInitDescripcionSaldoInicial, "a", dataRow[0].ToString(), "b");
+                    dataRow[4] = nameByCuentaSaldoInicial;
+                }
+                tableContent.Merge(tableTotalByCuentas);
             }
-            tableContent.Merge(tableTotalByCuentas);
             return tableContent;
         }
         //Jorge Luis|19/01/2018|RW-93
@@ -272,7 +286,10 @@ namespace AppWebReportes.Reportes
         }
         public DataTable ProcesarDatos(DataTable bigTableData, bool tableDetailed, bool istableIngresos)
         {
-            DataTable listCuentasTable = mergeTables.GetListDist(bigTableData, "a");
+            DataTable listCuentasTable = new DataTable();
+            //DataTable listCuentasTable = mergeTables.GetListDist(bigTableData, "a");
+            if (bigTableData.Rows.Count > 0)
+                listCuentasTable = bigTableData.DefaultView.ToTable(true, "a");
             List<string> listCuentas    = new List<string>();
             List<string> listDocumentos = new List<string>();
 

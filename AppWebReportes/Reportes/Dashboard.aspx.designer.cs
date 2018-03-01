@@ -265,21 +265,21 @@ namespace AppWebReportes.Reportes {
         protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
         
         /// <summary>
-        /// lstFrecuenciaPerdiodoFCD control.
+        /// txtFrecuenciaPerdiodoFCD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList lstFrecuenciaPerdiodoFCD;
+        protected global::System.Web.UI.WebControls.TextBox txtFrecuenciaPerdiodoFCD;
         
         /// <summary>
-        /// lstNumeroPeriodosFCD control.
+        /// txtNumeroPeriodosFCD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList lstNumeroPeriodosFCD;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroPeriodosFCD;
     }
 }

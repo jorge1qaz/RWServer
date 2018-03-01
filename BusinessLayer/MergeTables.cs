@@ -736,15 +736,10 @@ namespace BusinessLayer
                     {
                         if (ComprobarEstadoFinancieroCuenta(datatable.Rows[i][0].ToString(), listCompareJson)) // Sí es TRUE se excluye en caso de ser negativo
                         {
-                            if (totalByCuenta[i] > 0)
+                            if (totalByCuenta[i] < 0)
                                 totalByCuenta[i] = 0;
                         }
                     }
-                    //if (excluirNegativos) // Sí es true se excluyen los negativos (solo para el rubro A105), entonces es Activo
-                    //{
-                    //    if (totalByCuenta[i] < 0)
-                    //        totalByCuenta[i] = 0;
-                    //}
                 }
                 for (int i = 1; i < totalByCuenta.Length; i++)
                 {
@@ -766,17 +761,16 @@ namespace BusinessLayer
             {
                 try
                 {
-                    tempString  = listCompare.AsEnumerable().Where(x => x.Field<string>("a").Trim() == item[0].ToString())
+                    tempString  = listCompare.AsEnumerable().Where(x => x.Field<string>("a").Trim() == cuenta)
                                     .Select(x => x.Field<string>("a")).FirstOrDefault();
                 }
                 catch (Exception)
                 {
                     tempString = "";
                 }
+                if (tempString != "" || tempString != null)
+                    return true;
             }
-            if (tempString != "")
-                resultado = true;
-
             return resultado;   
         }
         public decimal KeepPositive(decimal anterior, decimal actual) {
