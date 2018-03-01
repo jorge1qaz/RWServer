@@ -206,5 +206,52 @@
         });
     });
 
+    // Validaciones
 
+    var formulario = $("#Formulario");
+    $(formulario).validate({
+        rules: {
+            ctl00$MainContent$txtFrecuenciaPerdiodoFCD: {
+                required: true,
+                integer: true,
+                minlength: 1,
+                maxlength: 2
+            },
+            ctl00$MainContent$txtNumeroPeriodosFCD: {
+                required: true,
+                integer: true,
+                minlength: 1,
+                maxlength: 2
+            }
+        },
+        messages: {
+            ctl00$MainContent$txtFrecuenciaPerdiodoFCD: {
+                required: "Este campo es obligatorio",
+                integer: "Sólo se admiten números enteros",
+                minlength: "El número mínimo de carácteres es 1",
+                maxlength: "El número máximo de carácteres es 2"
+            },
+            ctl00$MainContent$txtNumeroPeriodosFCD: {
+                required: "Este campo es obligatorio",
+                integer: "Sólo se admiten números enteros",
+                minlength: "El número mínimo de carácteres es 1",
+                maxlength: "El número máximo de carácteres es 2"
+            }
+        },
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            error.addClass("text-muted text-danger");
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents("input").addClass("text-danger").removeClass("text-sucess");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents("input").addClass("text-sucess").removeClass("text-danger");
+        }
+    });
 });

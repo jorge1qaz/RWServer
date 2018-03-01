@@ -34,7 +34,7 @@
     </div>
     <script>
         $("td:contains('30/12/1899')").text('Sin fecha');
-        $("th:contains('Descripción')").html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+        $("th:contains('Descripción')").html('Descripción');
         $("td:contains('Saldo inicial')").parent().css('font-weight', 'bold');
         $("td:contains('Ingresos')").parent().css('font-weight', 'bold');
         $("td:contains('Total ingresos')").parent().css('font-weight', 'bold');
@@ -42,14 +42,12 @@
         $("td:contains('Total egresos')").parent().css('font-weight', 'bold');
         $("td:contains('Saldo final')").parent().css('font-weight', 'bold');
     </script>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaFCD"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteFCD"].ToString()); %>";</script>
+    <script>
+        if (tipoReporte == "Formato simple") {
+            $("th:contains('Descripción')").css("min-width", "250px");
+        }
+    </script>
     <script src="../Scripts/Owner/RW-010.js"></script>
 </asp:Content>

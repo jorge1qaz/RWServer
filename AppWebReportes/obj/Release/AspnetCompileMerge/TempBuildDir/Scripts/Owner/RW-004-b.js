@@ -104,7 +104,7 @@ $(document).ready(function () {
                 { "defaultContent": "<i class='material-icons'>check_circle</i>" }
             ],
             "language": idioma,
-            responsive: true
+            responsive: false
         });
         GetIdCuenta("#tablaCuentas", tblCuentas);
     }
@@ -211,8 +211,7 @@ $(document).ready(function () {
     }
     function DetectarTipoCuenta() {
         var $cuenta = $('#txtCuenta').val().substring(0, 1);
-        var val1 = "&nbsp;&nbsp;&nbsp;&nbsp;Deuda&nbsp;&nbsp;&nbsp;&nbsp;";
-        //var val2 = "&nbsp;&nbsp;&nbsp;Amortización&nbsp;&nbsp;&nbsp;";
+        var val1 = "Deuda";
         var val2 = "Amortización";
         switch ($cuenta) {
             case "1":
@@ -227,4 +226,23 @@ $(document).ready(function () {
                 break;
         }
     }
+
+    var stateBotonExpand = 0;
+    $("#blockbtnFullScreen").on("click", function () {
+        if (stateBotonExpand == 0) {
+            $("#ruc").css("min-width", "130px");
+            $("#thDebe").css("min-width", "130px");
+            $("#thHaber").css("min-width", "130px");
+            $("#saldo").css("min-width", "130px");
+            $("#razonSocial").css("min-width", "300px");
+            stateBotonExpand = 1;
+        } else {
+            $("#ruc").css("min-width", "100px");
+            $("#thDebe").css("min-width", "100px");
+            $("#thHaber").css("min-width", "100px");
+            $("#saldo").css("min-width", "100px");
+            $("#razonSocial").css("min-width", "120px");
+            stateBotonExpand = 0;
+        }
+    });
 });

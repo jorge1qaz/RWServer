@@ -66,84 +66,84 @@ namespace AppWebReportes.Reportes
                     { totalVentas = datatableMes1.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "2":
                     try
                     { totalVentas = datatableMes2.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "3":
                     try
                     { totalVentas = datatableMes3.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "4":
                     try
                     { totalVentas = datatableMes4.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "5":
                     try
                     { totalVentas = datatableMes5.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "6":
                     try
                     { totalVentas = datatableMes6.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "7":
                     try
                     { totalVentas = datatableMes7.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "8":
                     try
                     { totalVentas = datatableMes8.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "9":
                     try
                     { totalVentas = datatableMes9.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "10":
                     try
                     { totalVentas = datatableMes10.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "11":
                     try
                     { totalVentas = datatableMes11.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
                 case "12":
                     try
                     { totalVentas = datatableMes12.AsEnumerable().Select(x => x.Field<double>("a")).Sum(); }
                     catch (Exception)
                     { totalVentas = 0; }
-                    lblVentas.Text = totalVentas.ToString("C", nfi);
+                    lblVentas.Text = totalVentas.ToString();
                     break;
             }
             #endregion

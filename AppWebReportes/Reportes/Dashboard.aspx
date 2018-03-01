@@ -6,16 +6,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li>
-                    <img src="../Images/logo-contasis.png" style="margin: 10px;" /><br />
-                    <label>
-                        Usted tiene datos hasta la fecha:
-                        <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>
+                    <img src="../Images/logo-contasis.png" style="margin: 10px;" />
                 </li>
             </ul>
-            <div class="form-inline my-2 my-lg-0">
-                <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
-                <a href="~/Acceso.aspx" class="btn btn-outline-info my-2 my-sm-0" runat="server">Cerrar sesión</a>
-            </div>
+            <ul class="navbar-nav">
+                <li>
+                    <label>
+                        Usted tiene datos hasta la fecha:
+                            <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>
+                    <br />  
+                    <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
+                    <a href="~/Acceso.aspx" class="btn btn-outline-info my-2 my-sm-0" runat="server">Cerrar sesión</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <br />
@@ -53,7 +56,7 @@
                     </div>
                 </div>
                 <div class="row" runat="server" id="imageDashboardBlock">
-                    <img src="../Images/image-dashboard.png" class="img-fluid" id="imageDashboard"/>
+                    <img src="../Images/image-dashboard.png" class="img-fluid" id="imageDashboard" />
                 </div>
                 <br />
                 <div class="row">
@@ -613,13 +616,6 @@
         var idCliente = "<% Response.Write(Session["IdUser"].ToString()); %>";
     </script>
     <script src="../Scripts/Owner/dashboard.js"></script>
-    <script src="../Scripts/DataTables/export/dataTables.buttons.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.flash.min.js"></script>
-    <script src="../Scripts/DataTables/export/jszip.min.js"></script>
-    <script src="../Scripts/DataTables/export/pdfmake.min.js"></script>
-    <script src="../Scripts/DataTables/export/vfs_fonts.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.html5.min.js"></script>
-    <script src="../Scripts/DataTables/export/buttons.print.min.js"></script>
     <br />
     <br />
     <br />

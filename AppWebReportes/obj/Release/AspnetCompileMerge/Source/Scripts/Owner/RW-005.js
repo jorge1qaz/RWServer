@@ -1,9 +1,5 @@
 ﻿$(document).ready(function () {
     var formulario = $("#Formulario");
-    //jQuery.validator.setDefaults({
-    //    debug: true,
-    //    success: "valid"
-    //});
     $(formulario).validate({
         rules: {
             ctl00$MainContent$txtEmail: {

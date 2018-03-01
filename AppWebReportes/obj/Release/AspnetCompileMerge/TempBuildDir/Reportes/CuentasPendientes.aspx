@@ -76,17 +76,18 @@
                         </div>
                         <span>Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label>
-                        <span> - Para el mes de </span>
+                        <span>- Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
-                        <span> del </span><asp:Label ID="lblAnio" runat="server"></asp:Label>
+                        <span>del </span>
+                        <asp:Label ID="lblAnio" runat="server"></asp:Label>
                         <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tablaReporte" width="100%">
                             <thead>
                                 <tr>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RUC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="ruc">RUC</th>
                                     <th id="thDebe">Debe</th>
                                     <th id="thHaber">Haber</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Saldo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Razón social&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="saldo">Saldo</th>
+                                    <th id="razonSocial">Razón social</th>
                                 </tr>
                             </thead>
                         </table>
@@ -165,9 +166,9 @@
         </div>
     </div>
     <script>
-        var idAnio      = "<% Response.Write(Request.QueryString["year"]);%>";
-        var idCliente   = "<% Response.Write(Session["IdUser"].ToString());%>";
-        var idEmpresa   = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
+        var idAnio = "<% Response.Write(Request.QueryString["year"]);%>";
+        var idCliente = "<% Response.Write(Session["IdUser"].ToString());%>";
+        var idEmpresa = "<% Response.Write(Request.QueryString["idCompany"].ToString());%>";
     </script>
     <script>
         var tipoMonedaRCP = "<% Response.Write(Session["tipoMonedaRCP"]);%>";

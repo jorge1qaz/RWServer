@@ -751,26 +751,28 @@ namespace BusinessLayer
             return 0;
         }
         /*Sí la cuenta existe en la lista devuelve TRUE, en caso contrario devuelve FALSE*/
-        public bool ComprobarEstadoFinancieroCuenta(string cuenta, string listCompareJson) {
+        public bool ComprobarEstadoFinancieroCuenta(
+            string cuenta, 
+            string listCompareJson) {
             DataSet dataSet         = JsonConvert.DeserializeObject<DataSet>(listCompareJson);
             DataTable listCompare   = dataSet.Tables["data"];
 
             string tempString = "";
             bool resultado = false;
-            foreach (DataRow item in listCompare.Rows)
-            {
+            //foreach (DataRow item in listCompare.Rows)
+            //{
+            //}
                 try
                 {
-                    tempString  = listCompare.AsEnumerable().Where(x => x.Field<string>("a").Trim() == cuenta)
+                    tempString  = listCompare.AsEnumerable().Where(x => x.Field<string>("a").Trim() == cuenta.Trim())
                                     .Select(x => x.Field<string>("a")).FirstOrDefault();
                 }
                 catch (Exception)
                 {
                     tempString = "";
                 }
-                if (tempString != "" || tempString != null)
+                if (tempString != null)
                     return true;
-            }
             return resultado;   
         }
         public decimal KeepPositive(decimal anterior, decimal actual) {

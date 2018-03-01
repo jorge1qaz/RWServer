@@ -191,6 +191,9 @@ namespace AppWebReportes.Reportes
                 columns.Remove("Fecha documento");
             }
 
+            DataSet dataSetFinal = new DataSet();
+            dataSetFinal.Tables.Add(tablesTotals[0]);
+
             grdTableReport.DataSource = tablesTotals[0];
             grdTableReport.DataBind();
             grdTableReport.UseAccessibleHeader = true;
