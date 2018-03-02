@@ -182,5 +182,6 @@ namespace AppWebReportes.Reportes
             string JsonDataset = paths.readFile(@rootPath + paths.pathDatosZipExtract + Session["IdUser"].ToString() + "/rptStdPmS/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         } //GetStringByFileJson
+
     }
 }

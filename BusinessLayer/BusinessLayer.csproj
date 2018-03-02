@@ -53,6 +53,7 @@
     <Compile Include="Calculos.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="Consultas.cs" />
     <Compile Include="CorreoElectronico.cs" />
     <Compile Include="Datos.cs" />
     <Compile Include="Directorios.cs" />
