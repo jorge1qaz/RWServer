@@ -28,6 +28,14 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     $("th").addClass("text-center");
     $("#blockOptions").find("label").addClass("text-white");
+    switch (device) {
+        case "desktop":
+            $("#MainContent_imageDashboardBlock").removeClass("kill");
+            break;
+        case "movil":
+            $("#MainContent_imageDashboardBlock").addClass("kill");
+            break;
+    }
 });
 $(function () {
 });

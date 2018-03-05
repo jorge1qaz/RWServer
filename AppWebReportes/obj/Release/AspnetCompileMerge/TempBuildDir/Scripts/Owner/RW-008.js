@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $("th").addClass("text-center");
+    $("th").addClass("text-center").css("min-width", "79px");
     var fecha = new Date();
     var anio = fecha.getFullYear();
     var mes = fecha.getMonth() + 1;
@@ -29,6 +29,10 @@
                 {
                     "targets": [0],
                     "visible": false
+                },
+                {
+                    "targets": [1],
+                    "className": "text-left"
                 }
             ],
             buttons: [
@@ -61,7 +65,7 @@
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();
-
+    $("#labelTittle").css("min-width", "160px");
 });
 
 function AddNumeral(number) {

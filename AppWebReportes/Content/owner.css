@@ -45,7 +45,7 @@
 .parallax-container {
     position: relative;
     overflow: hidden;
-    height: 500px;
+    height: 250px;
 }
 .parallax-container .parallax {
     position: absolute;
@@ -67,4 +67,10 @@
 }
 .table-sm > tbody > tr > td {
     font-size: 12px !important;
+}
+.align-icons {
+    margin: -45px 0 -75px !important;
+}
+.kill {
+    display: none;
 }

@@ -341,18 +341,37 @@ namespace AppWebReportes.Reportes
             {
                 GetTotalForVentas(true);
                 GetTotalForCajaBancos(true);
-                GetTotalForResultado(true);
+                //GetTotalForResultado(true);
+                GetTotalEstadoDeResultado();
                 GetTotalByCuentasCobrar(true);
                 GetTotalByCuentasPagar(true);
             }
             else {
                 GetTotalForVentas(false);
                 GetTotalForCajaBancos(false);
-                GetTotalForResultado(false);
+                //GetTotalForResultado(false);
+                GetTotalEstadoDeResultado();
                 GetTotalByCuentasCobrar(false);
                 GetTotalByCuentasPagar(false);
             }
             
+        }
+        // Modificaciones
+        public void GetTotalEstadoDeResultado()
+        {
+            int mes = int.Parse(lstMes.SelectedValue) - 1;
+            bool moneda = bool.Parse(lstTipoMoneda.SelectedValue);
+            String rootPath = Server.MapPath("~");
+            Consultas estadoResultado = new Consultas()
+            {
+                rootPath = rootPath,
+                user = Session["IdUser"].ToString(),
+                nameReport = "/rptStdPmS/",
+                idCompany = Request.QueryString["idCompany"].ToString(),
+                year = Request.QueryString["year"].ToString(),
+            };
+            decimal valorFinal = estadoResultado.GetTotalByReportEFNTER(moneda, mes);
+            lblResultado.Text = valorFinal.ToString();
         }
     } 
 }

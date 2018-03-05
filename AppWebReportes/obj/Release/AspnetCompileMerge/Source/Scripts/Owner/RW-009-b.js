@@ -27,7 +27,8 @@
                 {
                     "targets": [0, 3],
                     "visible": false
-                }
+                },
+                { "className": "text-left", targets: [column2A, column2B] }
             ],
             buttons: [
                 'copy', {

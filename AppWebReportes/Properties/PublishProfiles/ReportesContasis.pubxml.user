@@ -71,25 +71,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>03/01/2018 11:13:47</publishTime>
+      <publishTime>03/05/2018 18:23:07</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>03/01/2018 11:13:47</publishTime>
+      <publishTime>03/05/2018 18:23:07</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/01/2018 11:14:01</publishTime>
+      <publishTime>03/05/2018 18:23:28</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/01/2018 11:14:01</publishTime>
+      <publishTime>03/05/2018 18:23:28</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll">
-      <publishTime>03/01/2018 11:13:42</publishTime>
+      <publishTime>03/05/2018 18:23:03</publishTime>
     </File>
     <File Include="bin/BusinessLayer.pdb">
-      <publishTime>03/01/2018 11:13:42</publishTime>
+      <publishTime>03/05/2018 18:23:03</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -1127,7 +1127,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 14:11:17</publishTime>
     </File>
     <File Include="Content/owner.css">
-      <publishTime>02/28/2018 09:00:40</publishTime>
+      <publishTime>03/05/2018 16:02:56</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>11/28/2017 09:49:52</publishTime>
@@ -1177,6 +1177,33 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="Images/brothercito-right.png">
       <publishTime>11/13/2017 15:59:12</publishTime>
     </File>
+    <File Include="Images/cuentas_pendientes_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/cuentas_pendientes_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/dashboard.jpg">
+      <publishTime>03/05/2018 15:27:09</publishTime>
+    </File>
+    <File Include="Images/estados_financieros_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/estados_financieros_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/estado_de_resultado_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/estado_de_resultado_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/flujo_de_caja_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/flujo_de_caja_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
     <File Include="Images/icono.ico">
       <publishTime>02/16/2018 08:21:15</publishTime>
     </File>
@@ -1191,6 +1218,18 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Images/logo.png">
       <publishTime>02/14/2018 17:21:04</publishTime>
+    </File>
+    <File Include="Images/margen_de_utilidad_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/margen_de_utilidad_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/mi_negocio_al_dia_activated.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
+    </File>
+    <File Include="Images/mi_negocio_al_dia_default.png">
+      <publishTime>03/05/2018 09:38:47</publishTime>
     </File>
     <File Include="Images/user.jpg">
       <publishTime>11/08/2017 10:51:12</publishTime>
@@ -1217,7 +1256,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/21/2018 09:41:32</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/01/2018 11:13:52</publishTime>
+      <publishTime>03/05/2018 18:23:12</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1226,7 +1265,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 17:01:23</publishTime>
     </File>
     <File Include="Reportes/Dashboard.aspx">
-      <publishTime>01/03/2018 08:29:57</publishTime>
+      <publishTime>03/05/2018 15:38:32</publishTime>
     </File>
     <File Include="Reportes/EFNTBalanceGeneral.aspx">
       <publishTime>02/27/2018 14:01:49</publishTime>
@@ -1235,13 +1274,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 14:03:37</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoResultado.aspx">
-      <publishTime>02/27/2018 14:04:21</publishTime>
+      <publishTime>01/03/2018 15:23:36</publishTime>
     </File>
     <File Include="Reportes/EFNTEstadoSitucionFinanciera.aspx">
       <publishTime>02/27/2018 16:02:10</publishTime>
     </File>
     <File Include="Reportes/EstadoResultadoPMS.aspx">
-      <publishTime>02/27/2018 08:41:18</publishTime>
+      <publishTime>01/03/2018 14:30:04</publishTime>
     </File>
     <File Include="Reportes/EstadoResultadoPMSF.aspx">
       <publishTime>02/27/2018 08:41:18</publishTime>
@@ -1262,7 +1301,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 15:20:10</publishTime>
     </File>
     <File Include="Reportes/MiNegocioAlDia.aspx">
-      <publishTime>02/27/2018 15:30:15</publishTime>
+      <publishTime>03/05/2018 18:09:39</publishTime>
     </File>
     <File Include="Reportes/NoZip.aspx">
       <publishTime>11/29/2017 15:10:42</publishTime>
@@ -1607,13 +1646,19 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/07/2017 14:31:30</publishTime>
     </File>
     <File Include="Scripts/Owner/dashboard.js">
-      <publishTime>01/03/2018 08:29:57</publishTime>
+      <publishTime>03/05/2018 14:19:34</publishTime>
     </File>
     <File Include="Scripts/Owner/general.js">
-      <publishTime>02/23/2018 14:33:12</publishTime>
+      <publishTime>03/05/2018 16:08:36</publishTime>
     </File>
     <File Include="Scripts/Owner/login.js">
       <publishTime>11/13/2017 12:42:08</publishTime>
+    </File>
+    <File Include="Scripts/Owner/parallax.js">
+      <publishTime>03/05/2018 15:22:14</publishTime>
+    </File>
+    <File Include="Scripts/Owner/parallax.min.js">
+      <publishTime>03/05/2018 15:23:30</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-003-datos-soles.json">
       <publishTime>11/10/2017 16:46:27</publishTime>
@@ -1637,10 +1682,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 15:52:48</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-008.js">
-      <publishTime>02/27/2018 17:41:21</publishTime>
+      <publishTime>01/03/2018 15:03:12</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-009-b.js">
-      <publishTime>02/27/2018 12:32:35</publishTime>
+      <publishTime>01/03/2018 15:24:52</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-009-c.js">
       <publishTime>02/27/2018 14:55:32</publishTime>
@@ -1727,10 +1772,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/19/2017 09:21:08</publishTime>
     </File>
     <File Include="Site.Master">
-      <publishTime>02/22/2018 14:24:25</publishTime>
+      <publishTime>03/05/2018 15:37:51</publishTime>
     </File>
     <File Include="Site.Mobile.Master">
-      <publishTime>02/22/2018 14:38:24</publishTime>
+      <publishTime>03/05/2018 16:00:51</publishTime>
+    </File>
+    <File Include="Updates/Download.aspx">
+      <publishTime>02/03/2018 08:47:32</publishTime>
     </File>
     <File Include="ViewSwitcher.ascx">
       <publishTime>11/07/2017 13:43:57</publishTime>

@@ -23,8 +23,10 @@
     </style>
 </head>
 <body>
+    <link href="../Content/owner.css" rel="stylesheet" />
     <form runat="server" id="Formulario">
         <div class="body-content">
+            <script>var device = "desktop"</script>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
@@ -46,7 +48,6 @@
             });
         </script>
     </form>
-    <link href="../Content/owner.css" rel="stylesheet" />
 </body>
     <script src="../Scripts/Owner/general.js"></script>
 </html>

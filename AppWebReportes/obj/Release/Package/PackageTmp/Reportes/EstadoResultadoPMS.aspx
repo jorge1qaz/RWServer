@@ -26,7 +26,7 @@
                             <thead>
                                 <tr>
                                     <th>Código</th>
-                                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Descripción&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                    <th id="labelTittle">Descripción</th>
                                     <th>Enero</th>
                                     <th>Febrero</th>
                                     <th>Marzo</th>

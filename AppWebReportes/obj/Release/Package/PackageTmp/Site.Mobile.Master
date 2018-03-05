@@ -25,6 +25,7 @@
 <body>
     <form id="Formulario" runat="server">
        <div class="body-content">
+           <script>var device = "movil"</script>
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
@@ -36,7 +37,7 @@
                             <p>&copy; <%: DateTime.Now.Year %> - SmartReport</p>
                         </div>
                         <div class="offset-md-6 offset-sm-0 col-md-3 col-sm-12">  
-                            <img src="../Images/logo-contasis.png" />
+                            <img src="../Images/logo.png" />
                         </div>
                     </div>
                </div>

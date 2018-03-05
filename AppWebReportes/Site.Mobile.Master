@@ -25,6 +25,7 @@
 <body>
     <form id="Formulario" runat="server">
        <div class="body-content">
+           <script>var device = "movil"</script>
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
             <section class="content-wrapper main-content clear-fix">
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />

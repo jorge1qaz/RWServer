@@ -14,14 +14,19 @@
                     <label>
                         Usted tiene datos hasta la fecha:
                             <asp:Label ID="lblDateUpdate" runat="server"></asp:Label></label>
-                    <br />  
+                    <br />
                     <asp:Label runat="server" ID="lblNombreUsuario" Style="margin-right: 15px;" Text=""></asp:Label>
                     <a href="~/Acceso.aspx" class="btn btn-outline-info my-2 my-sm-0" runat="server">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <br />
+    <div runat="server" id="imageDashboardBlock">
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="../Images/dashboard.jpg" id="imageDashboard" /></div>
+        </div>
+    </div>
     <br />
     <div class="container">
         <div class="card text-center">
@@ -55,16 +60,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" runat="server" id="imageDashboardBlock">
+                <%--<div class="row" runat="server" id="imageDashboardBlock">
                     <img src="../Images/image-dashboard.png" class="img-fluid" id="imageDashboard" />
-                </div>
-                <br />
+                </div>--%>
+                <%--<br />--%>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12" id="blockCuentasPendientes">
                         <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Cuentas pendientes</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/cuentas_pendientes_default.png" alt="icono" id="img_cuentas_pendientes" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Cuentas pendientes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRCP">
@@ -116,7 +131,17 @@
                         <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Margen de utilidad por producto</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/margen_de_utilidad_default.png" alt="icono" id="img_margen_de_utilidad" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Margen de utilidad por producto</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRMU">
@@ -168,7 +193,17 @@
                         <div class="card card-outline-success text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Mi negocio al día</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/mi_negocio_al_dia_default.png" alt="icono" id="img_mi_negocio_al_dia" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Mi negocio al día</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
                                     <div class="row">
                                         <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForRMND">
@@ -222,9 +257,26 @@
                         <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Estado de resultado mensual</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/estado_de_resultado_default.png" alt="icono" id="img_estado_de_resultado" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Estado de resultado mensual</label>
+                                                <br />
+                                                <a href="#" id="btnTriggerModalREDRPMS" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <br />
+                                                <a href="#" id="btnMovil_TriggerModalREDRPMS" class="btn btn-outline-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
+                                        <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForREDRPMS">
                                                 <table class="table table-striped table-bordered table-responsive">
                                                     <thead>
@@ -262,9 +314,6 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <a href="#" id="btnTriggerModalREDRPMS" class="btn btn-outline-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Configuración</a>
-                                        </div>
                                     </div>
                                     <footer>
                                         <button type="button" class="btn btn-info" id="btnEstadoResultadoPMS" role="button">Ver detalles</button>
@@ -277,9 +326,26 @@
                         <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Estados financieros NIIF y tributario</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/estados_financieros_default.png" alt="icono" id="img_estados_financieros" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Estados financieros NIIF y tributario</label>
+                                                <br />
+                                                <a href="#" id="btnTriggerModalEFNT" class="btn btn-outline-primary" data-toggle="modal" data-target="modalEFNT">Configuración</a>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <br />
+                                                <a href="#" id="btnMovil_TriggerModalEFNT" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalEFNT">Configuración</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
+                                        <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForEFNT">
                                                 <table class="table table-striped table-bordered table-responsive">
                                                     <thead>
@@ -317,9 +383,6 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <a href="#" id="btnTriggerModalEFNT" class="btn btn-outline-secondary" data-toggle="modal" data-target="modalEFNT">Configuración</a>
-                                        </div>
                                     </div>
                                     <footer>
                                         <button type="button" class="btn btn-info" id="btnEFNT" role="button">Ver detalles</button>
@@ -332,9 +395,26 @@
                         <div class="card card-outline-success  text-center">
                             <div class="card-block">
                                 <blockquote class="card-blockquote">
-                                    <label class="font-weight-bold">Flujo de caja detallado</label>
+                                    <div class="col-md-12">
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <img class="img-fluid" src="../Images/flujo_de_caja_default.png" alt="icono" id="img_flujo_de_caja" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="font-weight-bold">Flujo de caja detallado</label>
+                                                <br />
+                                                <a href="#" id="btnTriggerModalFCD" class="btn btn-outline-primary" data-toggle="modal" data-target="modalEFNT">Configuración</a>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <br />
+                                                <a href="#" id="btnMovil_TriggerModalFCD" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalEFNT">Configuración</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
-                                        <div class="col-md-8 offset-md-1 col-sm-12 offset-md-0">
+                                        <div class="col-md-8 offset-md-2 col-sm-12 offset-md-0">
                                             <div id="blockCompanyDetailsForFCD">
                                                 <table class="table table-striped table-bordered table-responsive">
                                                     <thead>
@@ -371,9 +451,6 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <a href="#" id="btnTriggerModalFCD" class="btn btn-outline-primary" data-toggle="modal" data-target="modalEFNT">Configuración</a>
                                         </div>
                                     </div>
                                     <footer>
@@ -616,6 +693,12 @@
         var idCliente = "<% Response.Write(Session["IdUser"].ToString()); %>";
     </script>
     <script src="../Scripts/Owner/dashboard.js"></script>
+    <script src="../Scripts/Owner/parallax.min.js"></script>
+    <script>
+        $(function () {
+            $('.parallax').parallax();
+        });
+    </script>
     <br />
     <br />
     <br />

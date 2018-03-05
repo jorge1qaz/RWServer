@@ -107,23 +107,23 @@
                                     <td>
                                         <asp:Label ID="lblN015" runat="server"></asp:Label>
                                     </td>
-                                    <th>F199</th>
-                                    <th>Ganancia (pérdida) bruta</th>
-                                    <th>
+                                    <td>F199</td>
+                                    <td class="font-weight-bold">Ganancia (pérdida) bruta</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblF199" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th>N099</th>
-                                    <th>Margen comercial</th>
-                                    <th>
+                                <tr class="font-weight-bold">
+                                    <td>N099</td>
+                                    <td>Margen comercial</td>
+                                    <td>
                                         <asp:Label ID="lblN099" runat="server"></asp:Label>
-                                    </th>
-                                    <th>F200</th>
-                                    <th>Gastos operacionales</th>
-                                    <th>
+                                    </td>
+                                    <td>F200</td>
+                                    <td>Gastos operacionales</td>
+                                    <td>
                                         <asp:Label ID="lblF200" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>N103</td>
@@ -162,11 +162,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>N199</th>
-                                    <th>Producción del ejercicio</th>
-                                    <th>
+                                    <td class="font-weight-bold">N199</td>
+                                    <td class="font-weight-bold">Producción del ejercicio</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN199" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td>F213</td>
                                     <td>Otros ingresos operativos</td>
                                     <td>
@@ -203,11 +203,11 @@
                                     <td>
                                         <asp:Label ID="lblN215" runat="server"></asp:Label>
                                     </td>
-                                    <th>F299</th>
-                                    <th>Ganancia (pérdida) por actividades de operaciones</th>
-                                    <th>
+                                    <td class="font-weight-bold">F299</td>
+                                    <td class="font-weight-bold">Ganancia (pérdida) por actividades de operaciones</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblF299" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>N220</td>
@@ -258,11 +258,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>N299</th>
-                                    <th>Valor agregado </th>
-                                    <th>
+                                    <td class="font-weight-bold">N299</td>
+                                    <td class="font-weight-bold">Valor agregado </td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN299" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td>F405</td>
                                     <td>Ganancias (pérdidas) que surgen de la diferencia</td>
                                     <td>
@@ -287,11 +287,11 @@
                                     <td>
                                         <asp:Label ID="lblN310" runat="server"></asp:Label>
                                     </td>
-                                    <th>F699</th>
-                                    <th>Resultado antes de impuesto a las ganancias</th>
-                                    <th>
+                                    <td class="font-weight-bold">F699</td>
+                                    <td class="font-weight-bold">Resultado antes de impuesto a las ganancias</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblF699" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>N315</td>
@@ -304,11 +304,11 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th>N399</th>
-                                    <th>Excedente bruto de explotación </th>
-                                    <th>
+                                    <td class="font-weight-bold"> class="font-weight-bold">N399</td>
+                                    <td class="font-weight-bold">Excedente bruto de explotación </td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN399" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td>F710</td>
                                     <td>Gasto por impuesto a las ganancias</td>
                                     <td>
@@ -321,11 +321,11 @@
                                     <td>
                                         <asp:Label ID="lblN405" runat="server"></asp:Label>
                                     </td>
-                                    <th>F799</th>
-                                    <th>Ganancia(pérdida) neta operaciones contable</th>
-                                    <th>
+                                    <td class="font-weight-bold">F799</td>
+                                    <td class="font-weight-bold">Ganancia(pérdida) neta operaciones contable</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblF799" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>N410</td>
@@ -365,11 +365,11 @@
                                     <td>
                                         <asp:Label ID="lblN425" runat="server"></asp:Label>
                                     </td>
-                                    <th>F999</th>
-                                    <th>Ganancia (pérdida) neta del ejercicio</th>
-                                    <th>
+                                    <td class="font-weight-bold">F999</td>
+                                    <td class="font-weight-bold">Ganancia (pérdida) neta del ejercicio</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblF999" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>N430</td>
@@ -382,11 +382,11 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th>N499</th>
-                                    <th>Resultado de explotación</th>
-                                    <th>
+                                    <td class="font-weight-bold">N499</td>
+                                    <td class="font-weight-bold">Resultado de explotación</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN499" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -442,11 +442,11 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th>N599</th>
-                                    <th>Resultado antes de participaciones e impuestos </th>
-                                    <th>
+                                    <td class="font-weight-bold">N599</td>
+                                    <td class="font-weight-bold">Resultado antes de participaciones e impuestos </td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN599" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -472,11 +472,11 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <th>N999</th>
-                                    <th>Resultado del ejercicio</th>
-                                    <th>
+                                    <td class="font-weight-bold">N999</td>
+                                    <td class="font-weight-bold">Resultado del ejercicio</td>
+                                    <td class="font-weight-bold">
                                         <asp:Label ID="lblN999" runat="server"></asp:Label>
-                                    </th>
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -488,13 +488,8 @@
             </div>
         </div>
     </div>
-
-    <div>
-					Toggle column: <a class="toggle-vis" data-column="0">Name</a> - <a class="toggle-vis" data-column="1">Position</a> - <a class="toggle-vis" data-column=
-					"2">Office</a> - <a class="toggle-vis" data-column="3">Age</a> - <a class="toggle-vis" data-column="4">Start date</a> - <a class="toggle-vis" data-column=
-					"5">Salary</a>
-				</div>
     <script> var columnA = 2; var columnB = 5; </script>
+    <script> var column2A = 1; var column2B = 4; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
     <script src="../Scripts/Owner/RW-009-b.js"></script>
