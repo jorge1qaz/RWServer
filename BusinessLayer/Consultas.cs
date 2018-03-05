@@ -24,7 +24,8 @@ namespace BusinessLayer
         //public void GetReport(bool moneda, int mesProceso, string rootPath)
         //{
         //    //Naturaleza
-        //    JsonDatasetN005 = paths.GetStringByFileJson("N005"); JsonDatasetN010 = GetPathFile("N010"); JsonDatasetN015 = GetPathFile("N015"); JsonDatasetN103 = GetPathFile("N103"); JsonDatasetN105 = GetPathFile("N105"); JsonDatasetN110 = GetPathFile("N110");
+        //string nameFile, String rootPath, string user, string nameReport, string idCompany, string year
+        JsonDatasetN005 = paths.GetStringByFileJson("N005"); JsonDatasetN010 = GetPathFile("N010"); JsonDatasetN015 = GetPathFile("N015"); JsonDatasetN103 = GetPathFile("N103"); JsonDatasetN105 = GetPathFile("N105"); JsonDatasetN110 = GetPathFile("N110");
         //    JsonDatasetN205 = GetPathFile("N205"); JsonDatasetN210 = GetPathFile("N210"); JsonDatasetN215 = GetPathFile("N215"); JsonDatasetN220 = GetPathFile("N220"); JsonDatasetN225 = GetPathFile("N225"); JsonDatasetN230 = GetPathFile("N230");
         //    JsonDatasetN235 = GetPathFile("N235"); JsonDatasetN305 = GetPathFile("N305"); JsonDatasetN310 = GetPathFile("N310"); JsonDatasetN315 = GetPathFile("N315"); JsonDatasetN405 = GetPathFile("N405"); JsonDatasetN410 = GetPathFile("N410");
         //    JsonDatasetN415 = GetPathFile("N415"); JsonDatasetN420 = GetPathFile("N420"); JsonDatasetN425 = GetPathFile("N425"); JsonDatasetN430 = GetPathFile("N430"); JsonDatasetN505 = GetPathFile("N505"); JsonDatasetN510 = GetPathFile("N510");
