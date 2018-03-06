@@ -16,24 +16,25 @@
             </div>
         </div>
     </nav>
-    <br /><br />
+    <br />
+    <br />
 
     <div class="form" id="Formulario">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="col-md-3 col-sm-12" id="blockOptions">
                     <div class="card card-inverse card-info text-center">
                         <div class="card-block">
                             <div class="form-group">
                                 <label for="lstTipoMoneda">Tipo de moneda</label>
-                                <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server">
+                                <asp:DropDownList ID="lstTipoMoneda" CssClass="form-control" runat="server" OnSelectedIndexChanged="lstTipoMoneda_SelectedIndexChanged">
                                     <asp:ListItem Value="true">Nuevos soles</asp:ListItem>
                                     <asp:ListItem Value="false">Dolares</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label for="lstMes">Mes de proceso</label>
-                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="False">
+                                <asp:DropDownList ID="lstMes" CssClass="form-control" runat="server" AutoPostBack="False" OnSelectedIndexChanged="lstMes_SelectedIndexChanged">
                                     <asp:ListItem Value="0">Apertura</asp:ListItem>
                                     <asp:ListItem Value="1">Enero</asp:ListItem>
                                     <asp:ListItem Value="2">Febrero</asp:ListItem>
@@ -55,34 +56,57 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="col-md-9 col-sm-12" id="blockReportContent">
                     <div class="card card-outline-secondary text-center">
                         <div class="card-block">
-                            <h4 class="card-title">Reporte de Mi negocio al día <%--<span id="monthtitle">para el mes de </span><span id="monthHeader"></span>--%></h4>
                             <div class="row">
-                                <div class="col-lg-12 col-md-11 col-xs-12">
-                                    <table class="highchart table table-striped table-bordered table-responsive" data-graph-container-before="1" data-graph-type="column" id="tablaReporte" data-graph-datalabels-enabled="1" data-graph-datalabels-formatter="foo.myAwesomeCallback">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Resultado</th>
-                                                <th>Ventas</th>
-                                                <th>Caja y bancos</th>
-                                                <th>Deben</th>
-                                                <th>Debo</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td><asp:Label ID="lblResultado"    runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblVentas"       runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblCajaBancos"   runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblDeben"        runat="server"></asp:Label></td>
-                                                <td><asp:label id="lbldebo"         runat="server"></asp:label></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="offset-md-10 col-md-2" id="blockbtnFullScreen">
+                                    <button class='material-icons btn btn-sm btn-outline-primary' type="button" id="btnFullScreen">fullscreen</button>
+                                </div>
+                            </div>
+                            <div id="container" style="width: 100%"></div>
+                            <div class="row align-items-center">
+                                <div class="col"><a href="javascript: void(0)" id="btnShowOptions">Mostrar opciones de gráfico</a></div>
+                            </div>
+                            <br />
+                            <div class="card card-outline-secondary" id="blockImageOptions">
+                                <div class="card-block">
+                                    <label>Opciones de gráfico</label>
+                                    <div id="sliders">
+                                        <div class="row align-items-center">
+                                            <div class="col-3">
+                                                <label>Ángulo alfa</label>
+                                            </div>
+                                            <div class="col-6 slidecontainer">
+                                                <input type="range" min="0" max="45" value="0" class="slider" id="alpha">
+                                            </div>
+                                            <div class="col-3">
+                                                <span id="messageAlpha"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-3">
+                                                <label>Ángulo beta</label>
+                                            </div>
+                                            <div class="col-6 slidecontainer">
+                                                <input type="range" min="-45" max="45" value="6" class="slider" id="beta">
+                                            </div>
+                                            <div class="col-3">
+                                                <span id="messageBeta"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row align-items-center">
+                                            <div class="col-3">
+                                                <label>Profundidad</label>
+                                            </div>
+                                            <div class="col-6 slidecontainer">
+                                                <input type="range" min="20" max="100" value="52" class="slider" id="depth">
+                                            </div>
+                                            <div class="col-3">
+                                                <span id="messageDepth"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -91,5 +115,13 @@
             </div>
         </div>
     </div>
+    <script> 
+        var simboloMoneda = "<% Response.Write(Session["simboloMoneda"]);%>"; var tipoMoneda = "<% Response.Write(Session["tipoMoneda"]);%>";
+        var valor1 = <% Response.Write(Session["Resultado"]);%> ; 
+        var valor2 = <% Response.Write(Session["Ventas"]);%> ; 
+        var valor3 = <% Response.Write(Session["CajaBancos"]);%> ; 
+        var valor4 = <% Response.Write(Session["Deben"]);%> ; 
+        var valor5 = <% Response.Write(Session["debo"]);%> ; 
+    </script>
     <script src="../Scripts/Owner/RW-007.js"></script>
 </asp:Content>

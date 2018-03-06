@@ -71,16 +71,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>03/05/2018 18:23:07</publishTime>
+      <publishTime>03/06/2018 17:21:35</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>03/05/2018 18:23:07</publishTime>
+      <publishTime>03/06/2018 17:21:35</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/05/2018 18:23:28</publishTime>
+      <publishTime>03/06/2018 17:21:59</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/05/2018 18:23:28</publishTime>
+      <publishTime>03/06/2018 17:21:59</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
@@ -254,7 +254,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/16/2018 08:21:15</publishTime>
     </File>
     <File Include="Bundle.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/06/2018 12:31:44</publishTime>
     </File>
     <File Include="Content/bootstrap-datetimepicker-build.less">
       <publishTime>11/07/2017 14:32:18</publishTime>
@@ -483,6 +483,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Content/bootstrap/wells.less">
       <publishTime>11/07/2017 14:31:29</publishTime>
+    </File>
+    <File Include="Content/chartsOwnerStyle.css">
+      <publishTime>03/06/2018 14:14:25</publishTime>
     </File>
     <File Include="Content/DataTables/css/autoFill.bootstrap.css">
       <publishTime>11/07/2017 16:27:36</publishTime>
@@ -1256,7 +1259,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/21/2018 09:41:32</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/05/2018 18:23:12</publishTime>
+      <publishTime>03/06/2018 17:21:43</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1301,7 +1304,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 15:20:10</publishTime>
     </File>
     <File Include="Reportes/MiNegocioAlDia.aspx">
-      <publishTime>03/05/2018 18:09:39</publishTime>
+      <publishTime>03/06/2018 17:19:39</publishTime>
     </File>
     <File Include="Reportes/NoZip.aspx">
       <publishTime>11/29/2017 15:10:42</publishTime>
@@ -1329,6 +1332,9 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Scripts/Charts/exporting.js">
       <publishTime>02/27/2018 15:26:29</publishTime>
+    </File>
+    <File Include="Scripts/Charts/highcharts-3d.min.js">
+      <publishTime>03/06/2018 12:04:04</publishTime>
     </File>
     <File Include="Scripts/Charts/highcharts.min.js">
       <publishTime>01/01/0001 00:00:00</publishTime>
@@ -1679,7 +1685,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 15:20:57</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-007.js">
-      <publishTime>02/27/2018 15:52:48</publishTime>
+      <publishTime>03/06/2018 17:19:26</publishTime>
     </File>
     <File Include="Scripts/Owner/RW-008.js">
       <publishTime>01/03/2018 15:03:12</publishTime>

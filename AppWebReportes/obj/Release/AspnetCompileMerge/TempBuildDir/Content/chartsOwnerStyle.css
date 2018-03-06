@@ -1,0 +1,64 @@
+﻿.highcharts-color-0 {
+    stroke: rgb(69, 114, 167);
+}
+
+.highcharts-color-1 {
+    stroke: rgb(170, 70, 67);
+}
+
+.highcharts-color-2 {
+    stroke: rgb(137, 165, 78);
+}
+
+.highcharts-color-3 {
+    stroke: rgb(128, 105, 155);
+}
+
+.highcharts-color-4 {
+    stroke: rgb(61, 150, 174);
+}
+
+.card-title {
+    margin-bottom: .75rem !important;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+    font-weight: bold !important;
+}
+.slidecontainer {
+    width: 100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #70bbe8;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .8s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #0275d8;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #0275d8;
+        cursor: pointer;
+    }

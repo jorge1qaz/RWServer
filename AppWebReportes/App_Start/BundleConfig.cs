@@ -62,8 +62,8 @@ namespace AppWebReportes
                             "~/Scripts/Charts/highcharts.min.js",
                             "~/Scripts/Charts/jquery.highchartTable-min.js",
                             "~/Scripts/Charts/series-label.js",
-                            "~/Scripts/Charts/exporting.js"
-
+                            "~/Scripts/Charts/exporting.js",
+                            "~/Scripts/Charts/highcharts-3d.min.js"
                             ));
 
 
