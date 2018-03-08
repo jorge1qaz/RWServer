@@ -616,12 +616,12 @@ namespace BusinessLayer
         }
         public decimal GeTotalByTablePlan(bool reportActivo, string jsonDataSet, bool tipoMoneda, int mesProceso, string listCompareJson)
         {
-            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSet);
-            DataTable datatable = dataSet.Tables["data"];
-            string moneda       = "s";
+            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSet); // Desearealización del dataset
+            DataTable datatable = dataSet.Tables["data"]; // instancia de la tabla
+            string moneda       = "s"; 
             if (!tipoMoneda)
                 moneda = "d";
-            DataTable dataTableListCuentas = new DataTable();
+            DataTable dataTableListCuentas = new DataTable(); // Instancia de la tabla que contendrá sólo las cuentas de la tabla
             if (datatable.Rows.Count > 0)
             {
                 dataTableListCuentas = datatable.DefaultView.ToTable(false, "a");
