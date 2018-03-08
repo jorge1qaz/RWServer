@@ -801,7 +801,8 @@ namespace BusinessLayer
             return filteredTable;
         }
         //Jorge Luis|29/01/2018|RW-93
-        /*Método para*/
+        /*Método el cual recibe 4 parámetros, el primero "table" obtiene la tabla completa, "nameColumn1" es la columna donde se analizará el filtro,
+         "IdRow" es el ID con el cual se filtrará la FILA BUSCADA, "nameColumn2" es el valor de la columna que se retornará. Sólo devuelve el valor de UNA fila */
         public string GetStringByIdInDataTable(DataTable table, string nameColumn1, string IdRow, string nameColumn2 )
         {
             //DataRow[] foundRow;
@@ -878,7 +879,21 @@ namespace BusinessLayer
             var filteredRows = from row in table.Rows.OfType<DataRow>()
                                where row.Field<String>(columnNameFilterId1) == filterId1
                                where row.Field<String>(columnNameFilterId2) == filterId2
-                               orderby row.Field<String>(ColumnNameOrdering) descending
+                               orderby row.Field<String>(ColumnNameOrdering) ascending
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según dos filtros*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2, String filterId3, String columnNameFilterId3)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where row.Field<String>(columnNameFilterId1) == filterId1
+                               where row.Field<String>(columnNameFilterId2) == filterId2
+                               where row.Field<String>(columnNameFilterId3) == filterId3
+                               orderby row.Field<String>(ColumnNameOrdering) ascending
                                select row;
             var filteredTable = table.Clone();
             filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));

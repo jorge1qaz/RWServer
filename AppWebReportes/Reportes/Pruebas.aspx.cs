@@ -8,6 +8,7 @@ namespace AppWebReportes.Reportes
     {
         CorreoElectronico correoElectronico = new CorreoElectronico();
         Seguridad seguridad = new Seguridad();
+        QueriesCompleteDatabase queriesCompleteDatabase = new QueriesCompleteDatabase();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (true)
@@ -24,6 +25,8 @@ namespace AppWebReportes.Reportes
             string tempValor = "C0POfodarqM8W7ozXRRXAjM0qorBPrcPB7HsmWLnmX4iWOQ8FWTVD3LO7zL5ovprE7swW5oQs5EH9W7lJ3vEZTznuJuLioroYDv5sQXuXc/GgwJa7hFgeMm/CQ5FXpYl";
             string dataDecrypted = seguridad.Decrypt(tempValor.Replace(" ", "").ToString(), ruc);
             Response.Write("<dataDecrypted>" + dataDecrypted + "</dataDecrypted>");
+
+
 
         }
     }
