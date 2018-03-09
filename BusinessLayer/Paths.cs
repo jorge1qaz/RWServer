@@ -40,6 +40,7 @@ namespace BusinessLayer
         /*Método para obtener una dataset json con una ruta absoluta obtenida mediante una petición al mismo servidor, leerlo y retornarlo como un dataset asp*/
         public string GetStringByFileJson(string nameFile, String rootPath, string user, string nameReport, string idCompany, string year)
         {
+            //@   "/rptStdPmS/" + Request.QueryString["idCompany"].ToString() + "/" + Request.QueryString["year"].ToString() + "/" + nameFile + ".json"
             string JsonDataset = readFile(@rootPath + pathDatosZipExtract + user + "/" + nameReport + "/" + idCompany + "/" + year + "/" + nameFile + ".json").Trim().Replace("\\'", "'");
             return JsonDataset;
         }

@@ -890,9 +890,7 @@ namespace BusinessLayer
         public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2, String filterId3, String columnNameFilterId3)
         {
             var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where row.Field<String>(columnNameFilterId1) == filterId1
-                               where row.Field<String>(columnNameFilterId2) == filterId2
-                               where row.Field<String>(columnNameFilterId3) == filterId3
+                               where row.Field<String>(columnNameFilterId1) == filterId1 || row.Field<String>(columnNameFilterId2) == filterId2 || row.Field<String>(columnNameFilterId3) == filterId3
                                orderby row.Field<String>(ColumnNameOrdering) ascending
                                select row;
             var filteredTable = table.Clone();
