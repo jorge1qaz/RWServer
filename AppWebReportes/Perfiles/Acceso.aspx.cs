@@ -4,9 +4,9 @@ using System.Web.UI;
 using System.Web.Services;
 using System.Web;
 
-namespace AppWebReportes
+namespace AppWebReportes.Perfiles
 {
-    public partial class prueba3 : System.Web.UI.Page
+    public partial class Acceso : System.Web.UI.Page
     {
         Paths paths = new Paths();
         Zips zips = new Zips();
@@ -19,9 +19,9 @@ namespace AppWebReportes
             rootPath = Server.MapPath("~");
             if (!Page.IsPostBack)
             {
-                if ((string)Session["IdUser"]   != null)
+                if ((string)Session["IdUser"] != null)
                     Session.Remove("IdUser");
-                if (Session["RegisterSuccess"]  != null)
+                if (Session["RegisterSuccess"] != null)
                     blockRegisterSuccess.Visible = true;
                 else
                     blockRegisterSuccess.Visible = false;
@@ -52,15 +52,16 @@ namespace AppWebReportes
             Session.Remove("RegisterSuccess");
         }
         [WebMethod(EnableSession = true)]
-        public static bool ComprobarUsuarioKey(string paramIdCliente) {
+        public static bool ComprobarUsuarioKey(string paramIdCliente)
+        {
             bool resultado = false; // {comprobar existencia de cuenta}
             Cliente cliente = new Cliente()
             { IdCliente = paramIdCliente };
             if (cliente.IdParameterUser("RW_Security_Check_User"))
             {
-                resultado                                   = true;
-                HttpContext.Current.Session["IdUser"]       = paramIdCliente;
-                HttpContext.Current.Session["initialPage"]  = 0; // 0 = Indica que no es la primera vez que se accede a la página
+                resultado = true;
+                HttpContext.Current.Session["IdUser"] = paramIdCliente;
+                HttpContext.Current.Session["initialPage"] = 0; // 0 = Indica que no es la primera vez que se accede a la página
             }
             else
                 resultado = false;
@@ -90,7 +91,8 @@ namespace AppWebReportes
                 lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
         }
         [WebMethod(EnableSession = true)]
-        public static string AccederKey(string paramIdCliente, string paramContrasenia) {
+        public static string AccederKey(string paramIdCliente, string paramContrasenia)
+        {
             string resultado = ""; //{ "éxito", "comprobación de cuenta activada", "comprobación de contraseña" }
             Cliente cliente = new Cliente()
             {
@@ -102,8 +104,8 @@ namespace AppWebReportes
             {
                 if (states[1])
                 {
-                    resultado                               = "éxito"; // éxito
-                    HttpContext.Current.Session["IdUser"]   = paramIdCliente;
+                    resultado = "éxito"; // éxito
+                    HttpContext.Current.Session["IdUser"] = paramIdCliente;
                 }
                 else
                     resultado = "comprobación de cuenta activada";  // comprobación de cuenta activada

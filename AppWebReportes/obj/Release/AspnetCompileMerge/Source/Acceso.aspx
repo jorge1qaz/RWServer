@@ -23,7 +23,7 @@
                             <div class="form">
                                 <div class="row" id="blockCorreo" runat="server">
                                     <div class="input-field col offset-m1 offset-s1 m10 s10">
-                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server" onkeydown="javascript: sendEmail();"></asp:TextBox>
+                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server" onkeypress="return ComprobarUsuarioKey(event);"></asp:TextBox>
                                         <label for="txtCorreo">Correo electrónico</label>
                                         <div class="red-text center">
                                             <asp:Label ID="lblDoesNotExistUser" Text="" runat="server" />
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row" id="blockContrasenia" runat="server">
                                     <div class="input-field col offset-m1 offset-s1 m10 s10" id="txtPassword">
-                                        <asp:TextBox ID="txtContrasenia" CssClass="validate" runat="server" type="password"></asp:TextBox>
+                                        <asp:TextBox ID="txtContrasenia" CssClass="validate" runat="server" type="password" onkeypress="return AccederKey(event);"></asp:TextBox>
                                         <label for="txtContrasenia">Contraseña</label>
                                         <div class="red-text center">
                                             <asp:Label ID="lblErrorPassword" Text="" runat="server" />
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="row center">
-                                    <a runat="server" href="~/Perfiles/frmRegistroUsuario.aspx">Crear cuenta</a>
+                                    <a runat="server" href="~/Perfiles/frmRegistroUsuario.aspx" id="linkCrearCuenta">Crear cuenta</a>
                                 </div>
                             </div>
                         </div>
@@ -93,14 +93,81 @@
                 $('#ModalProcesamientoDatos').modal('close');
             });
         }
-        function sendEmail() {
-            if (true) {
+    </script>
 
+    <%--joder--%>
+    <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
+    <script>
+        function ComprobarUsuarioKey(e) {
+            if (e.keyCode == 13) {
+                var user = $("#Contenido_txtCorreo").val();
+                $.ajax({
+                    type: "POST",
+                    url: "Acceso.aspx/ComprobarUsuarioKey",
+                    data: "{paramIdCliente: '" + user + "' }",
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.hasOwnProperty("d")) {
+                            if (msg.d == true) {
+                                $("#Contenido_blockCorreo").css("display", "none");
+                                $("#Contenido_btnComprobarUsuario").css("display", "none");
+                                $("#Contenido_txtCorreo").css("display", "none");
+                                $("#Contenido_blockContrasenia").css("display", "block");
+                                $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                                $("#Contenido_btnAcceder").css("display", "inline-block");
+                            } else {
+                                $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                            }
+                        } else {
+                            if (msg == true) {
+                                $("#Contenido_blockCorreo").css("display", "none");
+                                $("#Contenido_btnComprobarUsuario").css("display", "none");
+                                $("#Contenido_txtCorreo").css("display", "none");
+                                $("#Contenido_blockContrasenia").css("display", "block");
+                                $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                                $("#Contenido_btnAcceder").css("display", "inline-block");
+                            } else {
+                                $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                            }
+                        }
+                    }, error: function (msg) {
+                        alert("error " + msg.responseText);
+                    }
+                });
             }
-            $.ajax({
-                type: "POST",
-                url: "Acceso.aspx/ComprobarUsuario"
-            });
+        }
+        function AccederKey(e) {
+            if (e.keyCode == 13) {
+                var user = $("#Contenido_txtCorreo").val();
+                var contrasenia = $("#Contenido_txtContrasenia").val();
+                $.ajax({
+                    type: "POST",
+                    url: "Acceso.aspx/AccederKey",
+                    data: "{paramIdCliente: '" + user + "', paramContrasenia: '" + contrasenia + "' }",
+                    contentType: "application/json",
+                    dataType: "json",
+                    async: true,
+                    success: function (msg, data) {
+                        switch (msg.d) {
+                            case "éxito":
+                                if (data) {
+                                    window.location.replace('<% string cadena = HttpContext.Current.Request.Url.Authority + "/Reportes/Dashboard"; Response.Write(cadena); %>');
+                                    return false;
+                                }
+                                break;
+                            case "comprobación de cuenta activada":
+                                $("#Contenido_lblErrorPassword").text("Tu cuenta no esta activada, por favor revisa tu correo.");
+                                break;
+                            case "comprobación de contraseña":
+                                $("#Contenido_lblErrorPassword").text("La contraseña es incorrecta. Vuelve a intentarlo.");
+                                break;
+                        }
+                    }, error: function (msg) {
+                        alert("error " + msg.responseText);
+                    }
+                });
+            }
         }
     </script>
     <script src="Scripts/Owner/login.js" type="text/javascript"></script>

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AppWebReportes {
+namespace AppWebReportes.Perfiles {
     
     
-    public partial class prueba3 {
+    public partial class Acceso {
         
         /// <summary>
         /// blockCorreo control.

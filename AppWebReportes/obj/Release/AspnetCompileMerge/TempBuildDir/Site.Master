@@ -24,7 +24,7 @@
 </head>
 <body>
     <link href="../Content/owner.css" rel="stylesheet" />
-    <form runat="server" id="Formulario">
+    <form runat="server" id="Formulario" method="post">
         <div class="body-content">
             <script>var device = "desktop"</script>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

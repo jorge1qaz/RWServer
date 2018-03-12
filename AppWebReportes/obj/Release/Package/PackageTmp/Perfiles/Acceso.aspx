@@ -1,8 +1,12 @@
-﻿<%@ Page Title="Acceso" Language="C#" MasterPageFile="~/Materialize.master" AutoEventWireup="true" CodeBehind="Acceso.aspx.cs" Inherits="AppWebReportes.prueba3" Async="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Acceso.aspx.cs" Inherits="AppWebReportes.Perfiles.Acceso" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Contenido" runat="server">
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
     <div class="grey lighten-5">
         <div class="container">
             <div class="row">
@@ -95,7 +99,6 @@
         }
     </script>
 
-    <%--joder--%>
     <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
     <script>
         function ComprobarUsuarioKey(e) {
@@ -147,21 +150,32 @@
                     data: "{paramIdCliente: '" + user + "', paramContrasenia: '" + contrasenia + "' }",
                     contentType: "application/json",
                     dataType: "json",
-                    async: true,
-                    success: function (msg, data) {
-                        switch (msg.d) {
-                            case "éxito":
-                                if (data) {
-                                    window.location.replace('<% string cadena = HttpContext.Current.Request.Url.Authority + "/Reportes/Dashboard"; Response.Write(cadena); %>');
-                                    return false;
-                                }
-                                break;
-                            case "comprobación de cuenta activada":
-                                $("#Contenido_lblErrorPassword").text("Tu cuenta no esta activada, por favor revisa tu correo.");
-                                break;
-                            case "comprobación de contraseña":
-                                $("#Contenido_lblErrorPassword").text("La contraseña es incorrecta. Vuelve a intentarlo.");
-                                break;
+                    async: false,
+                    success: function (msg, request) {
+                        if (msg.hasOwnProperty("d")) {
+                            switch (msg.d) {
+                                case "éxito":
+                                    window.location.href = '<% string cadena = HttpContext.Current.Request.Url.Authority + "/Reportes/Dashboard"; Response.Write(cadena); %>';
+                                    break;
+                                case "comprobación de cuenta activada":
+                                    $("#Contenido_lblErrorPassword").text("Tu cuenta no esta activada, por favor revisa tu correo.");
+                                    break;
+                                case "comprobación de contraseña":
+                                    $("#Contenido_lblErrorPassword").text("La contraseña es incorrecta. Vuelve a intentarlo.");
+                                    break;
+                            }
+                        } else {
+                            switch (msg) {
+                                case "éxito":
+                                    window.location.href = '<% Response.Write(cadena); %>';
+                                    break;
+                                case "comprobación de cuenta activada":
+                                    $("#Contenido_lblErrorPassword").text("Tu cuenta no esta activada, por favor revisa tu correo.");
+                                    break;
+                                case "comprobación de contraseña":
+                                    $("#Contenido_lblErrorPassword").text("La contraseña es incorrecta. Vuelve a intentarlo.");
+                                    break
+                            }
                         }
                     }, error: function (msg) {
                         alert("error " + msg.responseText);
@@ -171,4 +185,5 @@
         }
     </script>
     <script src="Scripts/Owner/login.js" type="text/javascript"></script>
-</asp:Content>
+</body>
+</html>

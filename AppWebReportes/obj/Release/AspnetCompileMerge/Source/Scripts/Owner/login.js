@@ -22,4 +22,13 @@ $(document).ready(function () {
                     $(this).removeClass("green-text");
                 }      
     );
+
+    if (initialPage == 1) {
+        $("#Contenido_blockCorreo").css(                "display", "block");
+        $("#Contenido_blockContrasenia").css(           "display", "none");
+        //$("#Contenido_btnLinkCambiarContrasenia").css(  "visibility", "hidden");
+        //$("#Contenido_btnAcceder").css(                 "visibility", "hidden");
+        $("#Contenido_btnLinkCambiarContrasenia").css(  "display", "none");
+        $("#Contenido_btnAcceder").css(                 "display", "none");
+    }
 });

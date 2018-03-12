@@ -368,11 +368,13 @@
     <Content Include="Images\margen_de_utilidad_default.png" />
     <Content Include="Images\mi_negocio_al_dia_activated.png" />
     <Content Include="Images\mi_negocio_al_dia_default.png" />
+    <Content Include="Perfiles\Acceso.aspx" />
     <Content Include="Perfiles\CambiarPassword.aspx" />
     <Content Include="Perfiles\CambioPassword.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="Perfiles\MensajeError.aspx" />
     <Content Include="Perfiles\MensajeExito.aspx" />
+    <Content Include="Perfiles\test.aspx" />
     <Content Include="pruebas.aspx" />
     <Content Include="Reportes\CuentasPendientes.aspx" />
     <Content Include="Images\logo.png" />
@@ -391,6 +393,7 @@
     <Content Include="Reportes\frmMargenUtilidad.aspx" />
     <Content Include="Reportes\MiNegocioAlDia.aspx" />
     <Content Include="Reportes\NoZip.aspx" />
+    <Content Include="Reportes\wfSinMaster.aspx" />
     <Content Include="Scripts\additional-methods.js" />
     <Content Include="Scripts\additional-methods.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
@@ -825,6 +828,13 @@
     <Compile Include="Bootstrap.master.designer.cs">
       <DependentUpon>Bootstrap.master</DependentUpon>
     </Compile>
+    <Compile Include="Perfiles\Acceso.aspx.cs">
+      <DependentUpon>Acceso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\Acceso.aspx.designer.cs">
+      <DependentUpon>Acceso.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Perfiles\CambiarPassword.aspx.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -859,6 +869,13 @@
     </Compile>
     <Compile Include="Perfiles\MensajeExito.aspx.designer.cs">
       <DependentUpon>MensajeExito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="pruebas.aspx.cs">
       <DependentUpon>pruebas.aspx</DependentUpon>
@@ -983,6 +1000,13 @@
     </Compile>
     <Compile Include="Reportes\NoZip.aspx.designer.cs">
       <DependentUpon>NoZip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\wfSinMaster.aspx.cs">
+      <DependentUpon>wfSinMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\wfSinMaster.aspx.designer.cs">
+      <DependentUpon>wfSinMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
