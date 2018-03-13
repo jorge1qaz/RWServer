@@ -890,7 +890,19 @@ namespace BusinessLayer
         public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2, String filterId3, String columnNameFilterId3)
         {
             var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where row.Field<String>(columnNameFilterId1) == filterId1 || row.Field<String>(columnNameFilterId2) == filterId2 || row.Field<String>(columnNameFilterId3) == filterId3
+                               where row.Field<String>(columnNameFilterId1).Trim() == filterId1.Trim() || row.Field<String>(columnNameFilterId2).Trim() == filterId2.Trim() || row.Field<String>(columnNameFilterId3).Trim() == filterId3.Trim()
+                               orderby row.Field<String>(ColumnNameOrdering) ascending
+                               select row;
+            var filteredTable = table.Clone();
+            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+            return filteredTable;
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según dos filtros*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2, String filterId3, String columnNameFilterId3, String filterId4, String columnNameFilterId4)
+        {
+            var filteredRows = from row in table.Rows.OfType<DataRow>()
+                               where row.Field<String>(columnNameFilterId1).Trim() == filterId1.Trim() || row.Field<String>(columnNameFilterId2).Trim() == filterId2.Trim() || row.Field<String>(columnNameFilterId3).Trim() == filterId3.Trim() || row.Field<String>(columnNameFilterId4).Trim() == filterId4.Trim()
                                orderby row.Field<String>(ColumnNameOrdering) ascending
                                select row;
             var filteredTable = table.Clone();

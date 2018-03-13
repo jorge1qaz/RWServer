@@ -76,24 +76,6 @@ namespace AppWebReportes {
         protected global::System.Web.UI.WebControls.LinkButton btnLinkCambiarContrasenia;
         
         /// <summary>
-        /// btnComprobarUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnComprobarUsuario;
-        
-        /// <summary>
-        /// btnAcceder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAcceder;
-        
-        /// <summary>
         /// linkCrearCuenta control.
         /// </summary>
         /// <remarks>

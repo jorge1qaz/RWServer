@@ -44,8 +44,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="center">
-                                        <asp:LinkButton ID="btnComprobarUsuario" CssClass="btn indigo waves-effect waves-light darken-4" runat="server" OnClick="btnComprobarUsuario_Click">Siguiente</asp:LinkButton>
-                                        <asp:LinkButton ID="btnAcceder" CssClass="btn indigo waves-effect waves-light darken-4" runat="server" OnClick="btnAcceder_Click">Acceder</asp:LinkButton>
+                                        <button id="btnHtmlComprobarUsuario" type="button" class="btn indigo waves-effect waves-light darken-4">Siguiente</button>
+                                        <button id="btnHtmlAcceder" type="button" class="btn indigo waves-effect waves-light darken-4">Acceder</button>
                                     </div>
                                 </div>
                                 <div class="row center">
@@ -98,61 +98,66 @@
     <%--joder--%>
     <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
     <script>
+
+        function ComprobarUsuario() {
+            var user = $("#Contenido_txtCorreo").val();
+            $.ajax({
+                type: "POST",
+                url: "Acceso.aspx/ComprobarUsuarioKey",
+                data: "{paramIdCliente: '" + user + "' }",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (msg) {
+                    if (msg.hasOwnProperty("d")) {
+                        if (msg.d == true) {
+                            $("#Contenido_blockCorreo").css("display", "none");
+                            $("#btnHtmlComprobarUsuario").css("display", "none");
+                            $("#Contenido_txtCorreo").css("display", "none");
+                            $("#Contenido_blockContrasenia").css("display", "block");
+                            $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                            $("#btnHtmlAcceder").css("display", "inline-block");
+                            $("#Contenido_txtContrasenia").focus();
+                        } else {
+                            $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                        }
+                    } else {
+                        if (msg == true) {
+                            $("#Contenido_blockCorreo").css("display", "none");
+                            $("#btnHtmlComprobarUsuario").css("display", "none");
+                            $("#Contenido_txtCorreo").css("display", "none");
+                            $("#Contenido_blockContrasenia").css("display", "block");
+                            $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                            $("#btnHtmlAcceder").css("display", "inline-block");
+                            $("#Contenido_txtContrasenia").focus();
+                        } else {
+                            $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                        }
+                    }
+                }, error: function (msg) {
+                    alert("error " + msg.responseText);
+                }
+            });
+        }
         function ComprobarUsuarioKey(e) {
             if (e.keyCode == 13) {
-                var user = $("#Contenido_txtCorreo").val();
-                $.ajax({
-                    type: "POST",
-                    url: "Acceso.aspx/ComprobarUsuarioKey",
-                    data: "{paramIdCliente: '" + user + "' }",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (msg) {
-                        if (msg.hasOwnProperty("d")) {
-                            if (msg.d == true) {
-                                $("#Contenido_blockCorreo").css("display", "none");
-                                $("#Contenido_btnComprobarUsuario").css("display", "none");
-                                $("#Contenido_txtCorreo").css("display", "none");
-                                $("#Contenido_blockContrasenia").css("display", "block");
-                                $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
-                                $("#Contenido_btnAcceder").css("display", "inline-block");
-                            } else {
-                                $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
-                            }
-                        } else {
-                            if (msg == true) {
-                                $("#Contenido_blockCorreo").css("display", "none");
-                                $("#Contenido_btnComprobarUsuario").css("display", "none");
-                                $("#Contenido_txtCorreo").css("display", "none");
-                                $("#Contenido_blockContrasenia").css("display", "block");
-                                $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
-                                $("#Contenido_btnAcceder").css("display", "inline-block");
-                            } else {
-                                $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
-                            }
-                        }
-                    }, error: function (msg) {
-                        alert("error " + msg.responseText);
-                    }
-                });
+                ComprobarUsuario();
             }
         }
-        function AccederKey(e) {
-            if (e.keyCode == 13) {
-                var user = $("#Contenido_txtCorreo").val();
-                var contrasenia = $("#Contenido_txtContrasenia").val();
-                $.ajax({
-                    type: "POST",
-                    url: "Acceso.aspx/AccederKey",
-                    data: "{paramIdCliente: '" + user + "', paramContrasenia: '" + contrasenia + "' }",
-                    contentType: "application/json",
-                    dataType: "json",
-                    async: true,
-                    success: function (msg, data) {
-                        switch (msg.d) {
-                            case "éxito":
-                                if (data) {
-                                    window.location.replace('<% string cadena = HttpContext.Current.Request.Url.Authority + "/Reportes/Dashboard"; Response.Write(cadena); %>');
+        function Acceder() {
+            var user = $("#Contenido_txtCorreo").val();
+            var contrasenia = $("#Contenido_txtContrasenia").val();
+            $.ajax({
+                type: "POST",
+                url: "Acceso.aspx/AccederKey",
+                data: "{paramIdCliente: '" + user + "', paramContrasenia: '" + contrasenia + "' }",
+                contentType: "application/json",
+                dataType: "json",
+                async: true,
+                success: function (msg, data) {
+                    switch (msg.d) {
+                        case "éxito":
+                            if (data) {
+                                window.location.href = '<% string cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard"; Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>';
                                     return false;
                                 }
                                 break;
@@ -167,6 +172,10 @@
                         alert("error " + msg.responseText);
                     }
                 });
+        }
+        function AccederKey(e) {
+            if (e.keyCode == 13) {
+                Acceder();
             }
         }
     </script>

@@ -108,7 +108,15 @@
     $(".highcharts-legend-item").hide();
 
     $("#blockImageOptions").toggle();
+    var stateMessageTittleOptions = 0;
     $("#btnShowOptions").on("click", function () {
         $("#blockImageOptions").toggle("slow");
+        if (stateMessageTittleOptions == 0) {
+            $("#btnShowOptions").text("Ocultar opciones de gráfico");
+            stateMessageTittleOptions = 1;
+        } else {
+            $("#btnShowOptions").text("Mostrar opciones de gráfico");
+            stateMessageTittleOptions = 0;
+        }
     });
 });

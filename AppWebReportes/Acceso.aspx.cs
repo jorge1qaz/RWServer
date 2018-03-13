@@ -25,32 +25,28 @@ namespace AppWebReportes
                     blockRegisterSuccess.Visible = true;
                 else
                     blockRegisterSuccess.Visible = false;
-                //blockContrasenia.Visible        = false;
-                //btnAcceder.Visible              = false;
-                //btnLinkCambiarContrasenia.Visible = false;
             }
         }
-        protected void btnComprobarUsuario_Click(object sender, EventArgs e) => ComprobarUsuarioClick();
-        public void ComprobarUsuarioClick()
-        {
-            Cliente cliente = new Cliente()
-            { IdCliente = txtCorreo.Text.ToString() };
-            if (cliente.IdParameterUser("RW_Security_Check_User"))
-            {
-                blockContrasenia.Visible = true;
-                btnAcceder.Visible = true;
-                btnLinkCambiarContrasenia.Visible = true;
-                blockCorreo.Visible = false;
-                btnComprobarUsuario.Visible = false;
-                Session["IdUser"] = txtCorreo.Text.ToString();
-                HttpContext.Current.Session["initialPage"] = 0; // 0 = Indica que no es la primera vez que se accede a la página
-            }
-            else
-                lblDoesNotExistUser.Text = "No pudimos encontrar su cuenta de SmartReport";
-            if (Session["RegisterSuccess"] != null)
-                blockRegisterSuccess.Visible = false;
-            Session.Remove("RegisterSuccess");
-        }
+        //public void ComprobarUsuarioClick()
+        //{
+        //    Cliente cliente = new Cliente()
+        //    { IdCliente = txtCorreo.Text.ToString() };
+        //    if (cliente.IdParameterUser("RW_Security_Check_User"))
+        //    {
+        //        blockContrasenia.Visible = true;
+        //        btnAcceder.Visible = true;
+        //        btnLinkCambiarContrasenia.Visible = true;
+        //        blockCorreo.Visible = false;
+        //        btnComprobarUsuario.Visible = false;
+        //        Session["IdUser"] = txtCorreo.Text.ToString();
+        //        HttpContext.Current.Session["initialPage"] = 0; // 0 = Indica que no es la primera vez que se accede a la página
+        //    }
+        //    else
+        //        lblDoesNotExistUser.Text = "No pudimos encontrar su cuenta de SmartReport";
+        //    if (Session["RegisterSuccess"] != null)
+        //        blockRegisterSuccess.Visible = false;
+        //    Session.Remove("RegisterSuccess");
+        //}
         [WebMethod(EnableSession = true)]
         public static bool ComprobarUsuarioKey(string paramIdCliente) {
             bool resultado = false; // {comprobar existencia de cuenta}
@@ -67,28 +63,27 @@ namespace AppWebReportes
             HttpContext.Current.Session.Remove("RegisterSuccess");
             return resultado;
         }
-        protected void btnAcceder_Click(object sender, EventArgs e) => AccederClick();
-        public void AccederClick()
-        {
-            Cliente cliente = new Cliente()
-            {
-                IdCliente = txtCorreo.Text.ToString(),
-                Contrasenia = txtContrasenia.Text.ToString()
-            };
-            states = cliente.TwoParametersUserArray("RW_Security_authenticate_User");
-            if (states[0])
-            {
-                if (states[1])
-                {
-                    lblErrorPassword.Text = "";
-                    Response.Redirect("~/Reportes/Dashboard.aspx", false);
-                }
-                else
-                    lblErrorPassword.Text = "Tu cuenta no esta activada, por favor revisa tu correo.";
-            }
-            else
-                lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
-        }
+        //public void AccederClick()
+        //{
+        //    Cliente cliente = new Cliente()
+        //    {
+        //        IdCliente = txtCorreo.Text.ToString(),
+        //        Contrasenia = txtContrasenia.Text.ToString()
+        //    };
+        //    states = cliente.TwoParametersUserArray("RW_Security_authenticate_User");
+        //    if (states[0])
+        //    {
+        //        if (states[1])
+        //        {
+        //            lblErrorPassword.Text = "";
+        //            Response.Redirect("~/Reportes/Dashboard.aspx", false);
+        //        }
+        //        else
+        //            lblErrorPassword.Text = "Tu cuenta no esta activada, por favor revisa tu correo.";
+        //    }
+        //    else
+        //        lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
+        //}
         [WebMethod(EnableSession = true)]
         public static string AccederKey(string paramIdCliente, string paramContrasenia) {
             string resultado = ""; //{ "éxito", "comprobación de cuenta activada", "comprobación de contraseña" }

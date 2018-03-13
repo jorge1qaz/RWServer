@@ -241,9 +241,17 @@ namespace BusinessLayer
             public string _columnNameFilterId2;
             public string _filterId3;
             public string _columnNameFilterId3;
+            public string _filterId4;
+            public string _columnNameFilterId4;
             public DataTable GetFilterTable3Parameters() {
                 MergeTables mergeTables = new MergeTables();
                 DataTable dataTableStruct = mergeTables.GetTableByFilters(_table, _ColumnNameOrdering, _filterId1, _columnNameFilterId1, _filterId2, _columnNameFilterId2, _filterId3, _columnNameFilterId3);
+                return dataTableStruct;
+            }
+            public DataTable GetFilterTable4Parameters()
+            {
+                MergeTables mergeTables = new MergeTables();
+                DataTable dataTableStruct = mergeTables.GetTableByFilters(_table, _ColumnNameOrdering, _filterId1, _columnNameFilterId1, _filterId2, _columnNameFilterId2, _filterId3, _columnNameFilterId3, _filterId4, _columnNameFilterId4);
                 return dataTableStruct;
             }
         }
@@ -369,23 +377,30 @@ namespace BusinessLayer
                 {
                     _table                  = datatable, // Tabla completa de plan
                     _ColumnNameOrdering     = "a",
-                    _filterId1              = listRubrosActivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                    _filterId1              = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
                     _columnNameFilterId1    = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                    _filterId2              = listRubrosActivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                    _filterId2              = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
                     _columnNameFilterId2    = "f",  // ccod_bal as f, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                    _filterId3              = listRubrosActivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
-                    _columnNameFilterId3    = "a"   // Columna ccod_bal
+                    _filterId3              = listRubrosPasivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
+                    _columnNameFilterId3    = "a",   // Columna ccod_bal
+                    _filterId4              = listRubrosPasivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
+                    _columnNameFilterId4    = "by"   // Columna ccod_baln2
                 };
-                dataTablePasivosFilteredByRubro[i]  = cuentasPorRubro.GetFilterTable3Parameters();
+                dataTablePasivosFilteredByRubro[i]  = cuentasPorRubro.GetFilterTable4Parameters();
             } // hasta aquí ya se tiene un array de tablas, cada elemento del array tiene un tabla filtrada en base al rubro
             DataTable PasivosFilteredByRubroUnion   = FusionArrayOfTables(dataTablePasivosFilteredByRubro).DefaultView.ToTable(true, "a"); // Almacena en una única tabla todo el conjunto de elementos del array de tablas
             #endregion
+
             // armar activos
             // ActivosFilteredByRubroUnion
             decimal[] decimalActivosTotales = new decimal[listRubrosActivo.Rows.Count];
             for (int i = 0; i < dataTableActivosFilteredByRubro.Length; i++) // Hasta aquí tengo la cantidad de rubros en un array, y cada rubro es un DataTable con con sus respectivas cuentas 
                 decimalActivosTotales[i] = GetTotalByRubro(dataTableActivosFilteredByRubro[i], true, PasivosFilteredByRubroUnion);
 
+            decimal[] decimalPasivosTotales = new decimal[listRubrosPasivo.Rows.Count];
+            for (int i = 0; i < dataTablePasivosFilteredByRubro.Length; i++) // Hasta aquí tengo la cantidad de rubros en un array, y cada rubro es un DataTable con con sus respectivas cuentas 
+
+                decimalPasivosTotales[i] = GetTotalByRubro(dataTablePasivosFilteredByRubro[i], false, ActivosFilteredByRubroUnion);
 
             return dataTableTotales;
         }
@@ -394,6 +409,7 @@ namespace BusinessLayer
             decimal[]   totalPorMes     = new decimal[12];
             string[]    ndebe, nhaber;
             decimal[]   totalPorCuenta;
+            decimal     totalFinalFlash = 0;
 
             if (tipoMoneda)
             {
@@ -413,71 +429,88 @@ namespace BusinessLayer
                     totalPorCuenta = new decimal[dataTableForProcess.Rows.Count];
                     for (int i = 0; i < dataTableForProcess.Rows.Count; i++) // Rows[i][1] i se refiere al número de fila, 1 es la posición de la columna
                     {
-                        try
-                        {
-                            totalPorMes[0] = Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[0]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[0]].ToString());
-                        }
-                        catch
-                        { totalPorMes[0] = 0; }
-
-                        for (int j = 0; j < mesProceso; j++) // Sí ocurre problemas con el mes cero aquí esta el problema mi estimado
+                        if (reportActivo) // Sí es TRUE, entonces es ACTIVO
                         {
                             try
                             {
-                                totalPorMes[j + 1] = totalPorMes[j] + Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[j + 1]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[j + 1]].ToString());
+                                totalPorMes[0] = Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[0]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[0]].ToString());
                             }
                             catch
-                            { totalPorMes[j + 1] = 0; }
-                        }
+                            { totalPorMes[0] = 0; }
 
-                        if (mesProceso == 12)
+                            for (int j = 0; j < mesProceso; j++) // Sí ocurre problemas con el mes cero aquí esta el problema mi estimado
+                            {
+                                try
+                                {
+                                    totalPorMes[j + 1] = totalPorMes[j] + Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[j + 1]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[j + 1]].ToString());
+                                }
+                                catch
+                                { totalPorMes[j + 1] = 0; }
+                            }
+
+                            if (mesProceso == 12)
+                            {
+                                try
+                                {
+                                    totalPorMes[12] = totalPorMes[11] + Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[12]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[12]].ToString());
+                                    totalPorMes[13] = Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[13]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[13]].ToString());
+                                    totalPorMes[12] = totalPorMes[12] + totalPorMes[13];
+                                }
+                                catch
+                                { totalPorMes[12] = 0; }
+                            }
+                        }
+                        else // Sino, entonces es PASIVO como tú comprenderas
                         {
                             try
                             {
-                                totalPorMes[12] = totalPorMes[11] + Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[12]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[12]].ToString());
-                                totalPorMes[13] = Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[13]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[13]].ToString());
-                                totalPorMes[12] = totalPorMes[12] + totalPorMes[13];
+                                totalPorMes[0] = Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[0]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[0]].ToString());
                             }
                             catch
-                            { totalPorMes[12] = 0; }
-                        }
+                            { totalPorMes[0] = 0; }
 
+                            for (int j = 0; j < mesProceso; j++) // Sí ocurre problemas con el mes cero aquí esta el problema mi estimado
+                            {
+                                try
+                                {
+                                    totalPorMes[j + 1] = totalPorMes[j] + Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[j + 1]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[j + 1]].ToString());
+                                }
+                                catch
+                                { totalPorMes[j + 1] = 0; }
+                            }
+
+                            if (mesProceso == 12)
+                            {
+                                try
+                                {
+                                    totalPorMes[12] = totalPorMes[11] + Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[12]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[12]].ToString());
+                                    totalPorMes[13] = Convert.ToDecimal(dataTableForProcess.Rows[i][nhaber[13]].ToString()) - Convert.ToDecimal(dataTableForProcess.Rows[i][ndebe[13]].ToString());
+                                    totalPorMes[12] = totalPorMes[12] + totalPorMes[13];
+                                }
+                                catch
+                                { totalPorMes[12] = 0; }
+                            }
+                        }
+                        // Se le pasa la cuenta y la lista donde se debe de buscar
                         if (VerifyAccountInAnotherList(dataTableForProcess.Rows[i][0].ToString(), ListForSearch)) // Sí es TRUE se excluye en caso de ser negativo
-                        { // Se le pasa la cuenta y la lista donde se debe de buscar
-                            if (reportActivo) // Sí es TRUE, entonces es ACTIVO
-                            {
+                        {
                                 if (totalPorMes[mesProceso] < 0)
                                     totalPorMes[mesProceso] = 0;
-                            }
-                            else // Sino, entonces es PASIVO como tú comprenderas
-                            {
-                                if (totalPorMes[mesProceso] > 0)
-                                    totalPorMes[mesProceso] = 0;
-                            }
                         }
-                        totalPorCuenta[i] = totalPorMes[mesProceso];
-                        try
-                        {
-                            totalPorCuenta[0] += totalPorCuenta[i];
-                        }
-                        catch
-                        {
-                        }
+                        totalPorCuenta[i] = totalPorMes[mesProceso]; // totalPorMes[mesProceso] es el resultado actual de la cuenta según el mes de proceso, a su vez totalPorCuenta[i] almacena en la misma posición  el valor del total(totalPorMes[mesProceso])
+                        // Agregar método para sumar en un array
                     }
+                    totalFinalFlash = SumarElementosDeArray(totalPorCuenta);
                 }
                 else
-                {
-                    totalPorCuenta = new decimal[1];
-                    totalPorCuenta[0] = 0;
-                }
+                    totalFinalFlash = 0;
             }
             catch
             {
-                totalPorCuenta = new decimal[1];
-                totalPorCuenta[0] = 0;
+                totalFinalFlash = 0;
             }
             #endregion
-            return totalPorCuenta[0];
+            return totalFinalFlash;
         }
         public DataTable FusionArrayOfTables(DataTable[] dataTable) {
             DataTable dataTableUnion = new DataTable();
@@ -491,6 +524,19 @@ namespace BusinessLayer
                     
                 }
             return dataTableUnion;
+        }
+        public decimal SumarElementosDeArray(decimal[] array) {
+            decimal total = 0;
+            try
+            {
+                for (int i = 0; i < array.Length; i++)
+                    total += array[i];
+            }
+            catch (Exception)
+            {
+                total = 0;
+            }
+            return total;
         }
     }
 }

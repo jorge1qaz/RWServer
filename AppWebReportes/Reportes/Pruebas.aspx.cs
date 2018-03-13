@@ -40,7 +40,7 @@ namespace AppWebReportes.Reportes
                 jsonDataSetDBComplete       = dbCompletePlan,
                 jsonDataSetRubrosByFormatos = rubrosCompletePlan,
                 tipoMoneda                  = true,
-                mesProceso                  = 5,
+                mesProceso                  = 4,
             };
             queriesCompleteDatabase.TotalesByRubros();
         }
