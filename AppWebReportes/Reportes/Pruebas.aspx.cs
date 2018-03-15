@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Web.Security;
 using BusinessLayer;
 
@@ -26,8 +30,8 @@ namespace AppWebReportes.Reportes
             // variables temporales
             string user         = "jricra@contasis.net";
             string nameReport   = "rptStdFncr";
-            string idCompany    = "ff";
-            string year         = "2017";
+            string idCompany    =  /*"02"*/ /*"01"*/"ff"; ;
+            string year         = /*"2015"*/ /*"2015"*/"2017";
 
             String rootPath             = Server.MapPath("~"); //Ruta física
             string dbCompletePlan       = paths.GetStringByFileJson("DataBaseConta", rootPath, user, nameReport, idCompany, year);
@@ -40,9 +44,50 @@ namespace AppWebReportes.Reportes
                 jsonDataSetDBComplete       = dbCompletePlan,
                 jsonDataSetRubrosByFormatos = rubrosCompletePlan,
                 tipoMoneda                  = true,
-                mesProceso                  = 4,
+                mesProceso                  = 12,
             };
             queriesCompleteDatabase.TotalesByRubros();
+
+            string sIP = Request.UserHostAddress.ToString();
+            Response.Write(" sIP: " + sIP);
+
+            string sIP2 = Request.ServerVariables["REMOTE_ADDR"].ToString();
+            Response.Write(" sIP2: " + sIP2);
+
+            string HostName = Dns.GetHostEntry(Request.UserHostAddress).HostName;
+            Response.Write("HostName: " + HostName);
+        }
+
+        public static List<string> GetLocalIPAddress()
+        {
+            List<string> ips = new List<string>();
+            // Ciclo por todas las interfaces de red en este dispositivo:
+            foreach (var interfaces in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                // Direcciones de unicast asignadas a la interfaz de red actual:
+                foreach (var direccion in interfaces.GetIPProperties().UnicastAddresses)
+                {
+                    // Valida que se trate de una IPv4:
+                    if (direccion.Address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        ips.Add(direccion.Address.ToString());
+                        //Console.WriteLine("Dirección IP privada: {0}", direccion.Address.ToString());
+                    }
+                }
+            }
+
+            return ips;
+        }
+        public static string IpServidor() {
+            // muestra la IP privada del servidor
+            string localIP;
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
+            {
+                socket.Connect("8.8.8.8", 65530);
+                IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
+                localIP = endPoint.Address.ToString();
+            }
+            return localIP;
         }
     }
 }

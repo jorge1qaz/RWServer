@@ -22,7 +22,7 @@
                 <div class="card text-center">
                     <div class="card-block">
                         <h4 class="card-title">Estado de resultado por naturaleza</h4>
-                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover">
+                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>

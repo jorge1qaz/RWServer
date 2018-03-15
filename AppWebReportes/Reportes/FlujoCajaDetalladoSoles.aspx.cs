@@ -76,13 +76,17 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             { tipoReport = true; }
             try
-            { frecuencia  = int.Parse(Session["FCDFrecuencia"].ToString()); }
+            { frecuencia = int.Parse(Session["FCDFrecuencia"].ToString()); }
             catch (Exception)
             { frecuencia = 7; }
             try
-            { periodo     = int.Parse(Session["FCDPeriodo"].ToString()); }
+            { periodo = int.Parse(Session["FCDPeriodo"].ToString());
+                Session["FCDPeriodo"] = int.Parse(Session["FCDPeriodo"].ToString());
+            }
             catch (Exception)
-            { periodo = 12; }
+            { periodo = 12;
+                Session["FCDPeriodo"] = 12;
+            }
             try
             {
                 fechaInicial = DateTime.ParseExact(Session["FCDFechaInicio"].ToString(), "dd/MM/yyyy", null);
@@ -101,15 +105,15 @@ namespace AppWebReportes.Reportes
             #endregion
             #region Fill tables
             dataSetListDatos = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDatos")); // Deserealización del dataSet
-            tableInitDatosSaldoInicial  = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
-            tableInitDatosIngresos      = dataSetListDatos.Tables["dataTableListIngresosDatos"];
-            tableInitDatosEgresos       = dataSetListDatos.Tables["dataTableListEgresosDatos"];
+            tableInitDatosSaldoInicial = dataSetListDatos.Tables["dataTableListSaldoInicialDatos"];
+            tableInitDatosIngresos = dataSetListDatos.Tables["dataTableListIngresosDatos"];
+            tableInitDatosEgresos = dataSetListDatos.Tables["dataTableListEgresosDatos"];
 
-            dataSetListDescripcion              = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
-            tableInitDescripcionSaldoInicial    = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
-            tableInitDescripcionIngresos        = dataSetListDescripcion.Tables["dataTableListIngresosDescripcion"];
-            tableInitDescripcionEgresos         = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
-            tableInitDescripcionCostumer        = dataSetListDescripcion.Tables["dataTableListCustumers"];
+            dataSetListDescripcion = JsonConvert.DeserializeObject<DataSet>(GetPathFile("ListDescripcion"));
+            tableInitDescripcionSaldoInicial = dataSetListDescripcion.Tables["dataTableListSaldoInicialDescripcion"];
+            tableInitDescripcionIngresos = dataSetListDescripcion.Tables["dataTableListIngresosDescripcion"];
+            tableInitDescripcionEgresos = dataSetListDescripcion.Tables["dataTableListEgresosDescripcion"];
+            tableInitDescripcionCostumer = dataSetListDescripcion.Tables["dataTableListCustumers"];
 
             //tableJustNamesSaldoInicial = mergeTables.GetListDist(tableInitDescripcionSaldoInicial, "a");
             //tableJustNamesListCustumers = mergeTables.GetListDist(dataSetListDescripcion.Tables["dataTableListCustumers"], "a");
@@ -153,8 +157,8 @@ namespace AppWebReportes.Reportes
                 lblTipoMoneda.Text = "Nuevos soles";
             else
                 lblTipoMoneda.Text = "Dólares";
-            tableIngresos   = ProcesarDatos(tableInitDatosIngresos, tipoReport, true);
-            tableEgresos    = ProcesarDatos(tableInitDatosEgresos, tipoReport, false);
+            tableIngresos = ProcesarDatos(tableInitDatosIngresos, tipoReport, true);
+            tableEgresos = ProcesarDatos(tableInitDatosEgresos, tipoReport, false);
 
             //DataTable tableCompleteIngresos = AddTotalInTable(tableIngresos, "Total ingresos");  // true = ingresos
             //DataTable tableCompleteEgresos  = AddTotalInTable(tableEgresos, "Total egresos");     // false = egresos
@@ -163,16 +167,16 @@ namespace AppWebReportes.Reportes
             foreach (DataRow item in tableSaldoInicialComplete.Rows)
                 totalSaldoInicial += Math.Round(Convert.ToDecimal(item[listDates[0]].ToString()), 2);
 
-            DataTable[] tablesTotals    = GetAllTotals(Convert.ToDecimal(totalSaldoInicial));
+            DataTable[] tablesTotals = GetAllTotals(Convert.ToDecimal(totalSaldoInicial));
             // Armar tablas
             tablesTotals[0].Merge(tableSaldoInicialComplete);   // Saldo inicial
-            DataRow row1         = tablesTotals[0].NewRow();
-            row1["Descripción"]  = "Ingresos";
+            DataRow row1 = tablesTotals[0].NewRow();
+            row1["Descripción"] = "Ingresos";
             tablesTotals[0].Rows.Add(row1);
             tablesTotals[0].Merge(tableIngresos);               // Ingresos
             tablesTotals[0].Merge(tablesTotals[1]);             // Totales por ingresos
-            DataRow row2        = tablesTotals[0].NewRow();
-            row2["Descripción"]  = "Egresos";
+            DataRow row2 = tablesTotals[0].NewRow();
+            row2["Descripción"] = "Egresos";
             tablesTotals[0].Rows.Add(row2);
             tablesTotals[0].Merge(tableEgresos);                // 
             tablesTotals[0].Merge(tablesTotals[2]);
@@ -193,6 +197,8 @@ namespace AppWebReportes.Reportes
 
             DataSet dataSetFinal = new DataSet();
             dataSetFinal.Tables.Add(tablesTotals[0]);
+
+            Session["cantidadFilasFinalFlash"] = tablesTotals[0].Rows.Count;
 
             grdTableReport.DataSource = tablesTotals[0];
             grdTableReport.DataBind();

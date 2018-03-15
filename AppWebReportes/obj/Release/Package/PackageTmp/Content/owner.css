@@ -68,6 +68,9 @@
 .table-sm > tbody > tr > td {
     font-size: 12px !important;
 }
+.table-sm > thead > tr > th {
+    font-size: 12px !important;
+}
 .align-icons {
     margin: -45px 0 -75px !important;
 }

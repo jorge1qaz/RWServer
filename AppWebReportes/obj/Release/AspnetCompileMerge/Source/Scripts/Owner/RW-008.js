@@ -65,7 +65,8 @@
         $(".buttons-copy span:first").text("Copiar");
     }
     listarReporte();
-    $("#labelTittle").css("min-width", "160px");
+    $("th").css("min-width", "85px");
+    $("#labelTittle").css("min-width", "226px");
 });
 
 function AddNumeral(number) {

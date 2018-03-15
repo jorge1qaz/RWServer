@@ -78,9 +78,15 @@ namespace AppWebReportes.Reportes
             catch (Exception)
             { frecuencia = 7; }
             try
-            { periodo = int.Parse(Session["FCDPeriodo"].ToString()); }
+            {
+                periodo = int.Parse(Session["FCDPeriodo"].ToString());
+                Session["FCDPeriodo"] = int.Parse(Session["FCDPeriodo"].ToString());
+            }
             catch (Exception)
-            { periodo = 12; }
+            {
+                periodo = 12;
+                Session["FCDPeriodo"] = 12;
+            }
             try
             {
                 fechaInicial = DateTime.ParseExact(Session["FCDFechaInicio"].ToString(), "dd/MM/yyyy", null);
@@ -183,7 +189,7 @@ namespace AppWebReportes.Reportes
                 columns.Remove("Moneda");
                 columns.Remove("Fecha documento");
             }
-
+            Session["cantidadFilasFinalFlash"] = tablesTotals[0].Rows.Count;
             grdTableReport.DataSource = tablesTotals[0];
             grdTableReport.DataBind();
             grdTableReport.UseAccessibleHeader = true;

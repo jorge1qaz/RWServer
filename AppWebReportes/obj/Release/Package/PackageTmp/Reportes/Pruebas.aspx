@@ -1,11 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Pruebas.aspx.cs" Inherits="AppWebReportes.Reportes.FlujoCajaSimpleSoles" %>
+<%@ Register assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" namespace="System.Web.UI.DataVisualization.Charting" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script>
-        function re() {
-            alert("red");
-            location.href = "http://licenciacontasis.net/reportweb/Reportes/Pruebas";
-        }
-    </script>
-    <button onclick="re();">ssss</button>
+    <script>var esteValor = '<% string sIP = Request.ServerVariables["REMOTE_ADDR"].ToString();
+                                Response.Write(sIP); %>';</script>
+
 </asp:Content>

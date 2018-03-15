@@ -873,17 +873,57 @@ namespace BusinessLayer
             return filteredTable;
         }
         //Jorge Luis|19/01/2018|RW-93
-        /*Método para clonar una tabla según dos filtros*/
-        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2)
+        /*Método para clonar una tabla según dos filtros string*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, String filterId1, String columnNameFilterId1, String filterId2, String columnNameFilterId2, bool strict)
         {
-            var filteredRows = from row in table.Rows.OfType<DataRow>()
-                               where row.Field<String>(columnNameFilterId1) == filterId1
-                               where row.Field<String>(columnNameFilterId2) == filterId2
-                               orderby row.Field<String>(ColumnNameOrdering) ascending
-                               select row;
-            var filteredTable = table.Clone();
-            filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
-            return filteredTable;
+            if (strict) // Sí es estricto los filtros deben ser para todos (condicional ^ & Y)
+            {
+                var filteredRows =  from row in table.Rows.OfType<DataRow>()
+                                    where row.Field<String>(columnNameFilterId1) == filterId1
+                                    && row.Field<String>(columnNameFilterId2) == filterId2
+                                    orderby row.Field<String>(ColumnNameOrdering) ascending
+                                    select row;
+                var filteredTable = table.Clone();
+                filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+                return filteredTable;
+            } else // Sí no es estricto los filtros no tienen que ser para todos, sólo para los que coincidan (condicional || OR)
+            {
+                var filteredRows =  from row in table.Rows.OfType<DataRow>()
+                                    where row.Field<String>(columnNameFilterId1) == filterId1
+                                    || row.Field<String>(columnNameFilterId2) == filterId2
+                                    orderby row.Field<String>(ColumnNameOrdering) ascending
+                                    select row;
+                var filteredTable = table.Clone();
+                filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+                return filteredTable;
+            }
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para clonar una tabla según dos filtros*/
+        public DataTable GetTableByFilters(DataTable table, String ColumnNameOrdering, Double filterId1, String columnNameFilterId1, Double filterId2, String columnNameFilterId2, bool strict)
+        {
+            if (strict) // Sí es estricto los filtros deben ser para todos (condicional ^ & Y)
+            {
+                var filteredRows = from row in table.Rows.OfType<DataRow>()
+                                   where row.Field<Double>(columnNameFilterId1) == filterId1
+                                   && row.Field<Double>(columnNameFilterId2)   == filterId2
+                                   orderby row.Field<String>(ColumnNameOrdering) ascending
+                                   select row;
+                var filteredTable = table.Clone();
+                filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+                return filteredTable;
+            }
+            else // Sí no es estricto los filtros no tienen que ser para todos, sólo para los que coincidan (condicional || OR)
+            {
+                var filteredRows = from row in table.Rows.OfType<DataRow>()
+                                   where row.Field<int>(columnNameFilterId1) == filterId1
+                                   || row.Field<int>(columnNameFilterId2) == filterId2
+                                   orderby row.Field<String>(ColumnNameOrdering) ascending
+                                   select row;
+                var filteredTable = table.Clone();
+                filteredRows.ToList().ForEach(r => filteredTable.ImportRow(r));
+                return filteredTable;
+            }
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para clonar una tabla según dos filtros*/

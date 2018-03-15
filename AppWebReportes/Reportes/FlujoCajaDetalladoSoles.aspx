@@ -45,6 +45,9 @@
     </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaFCD"].ToString()); %>";</script>
     <script>var tipoReporte = "<% Response.Write(Session["TipoReporteFCD"].ToString()); %>";</script>
+    <script>var cantidadDeperiodos = parseInt("<% Response.Write(Session["FCDPeriodo"].ToString()); %>");</script>
+    <script>var cantidadFilas = parseInt("<% Response.Write(Session["cantidadFilasFinalFlash"].ToString()); %>");</script>
+
     <script>
         if (tipoReporte == "Formato simple") {
             $("th:contains('Descripción')").css("min-width", "250px");
