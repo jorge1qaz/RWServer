@@ -46,16 +46,9 @@ namespace AppWebReportes.Reportes
                 tipoMoneda                  = true,
                 mesProceso                  = 12,
             };
-            queriesCompleteDatabase.TotalesByRubros();
-
-            string sIP = Request.UserHostAddress.ToString();
-            Response.Write(" sIP: " + sIP);
-
-            string sIP2 = Request.ServerVariables["REMOTE_ADDR"].ToString();
-            Response.Write(" sIP2: " + sIP2);
-
-            string HostName = Dns.GetHostEntry(Request.UserHostAddress).HostName;
-            Response.Write("HostName: " + HostName);
+            //queriesCompleteDatabase.TotalesByRubros();
+            Response.Write(DateTime.Now);
+            
         }
 
         public static List<string> GetLocalIPAddress()
@@ -88,6 +81,24 @@ namespace AppWebReportes.Reportes
                 localIP = endPoint.Address.ToString();
             }
             return localIP;
+        }
+
+        protected void btnPruebas1_Click(object sender, EventArgs e)
+        {
+            string sIP = Request.UserHostAddress.ToString();
+            Response.Write(" sIP: " + sIP);
+        }
+
+        protected void btnPruebas2_Click(object sender, EventArgs e)
+        {
+            string sIP2 = Request.ServerVariables["REMOTE_ADDR"].ToString();
+            Response.Write(" sIP2: " + sIP2);
+        }
+
+        protected void btnPruebas3_Click(object sender, EventArgs e)
+        {
+            string HostName = Dns.GetHostEntry(Request.UserHostAddress).HostName;
+            Response.Write("HostName: " + HostName);
         }
     }
 }
