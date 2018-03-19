@@ -17,6 +17,9 @@ namespace BusinessLayer
         public DateTime LastUpdate { get; set; }
         public DateTime DateUpdate { get; set; }
         public bool ActivacionCuenta { get; set; }
+        public string PrivateIP { get; set; }
+        public string PublicIP { get; set; }
+        public DateTime LastAccess { get; set; }
 
         //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, con todos los atributos de Cliente y un parámetro de salida.*/
@@ -191,7 +194,8 @@ namespace BusinessLayer
             return states;
         }
         //Jorge Luis|08/11/2017|RW-19
-        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, (Contrasenia || ActivacionCuenta) del Cliente y un parámetro de salida. Es empleado para cambiar la contraseña del usuario*/
+        /*Método para ejecutar un procedimiento almacenado, con dos atributos (id, (Contrasenia || ActivacionCuenta) del Cliente y un parámetro de salida. Es empleado para cambiar la contraseña del usuario
+         Retorna sólo una variable de salida*/
         public bool TwoParametersUser(string storeProcedure, Int16 typeProcedure)
         {
             Conexion con = new Conexion();
@@ -352,6 +356,105 @@ namespace BusinessLayer
             cmd.ExecuteNonQuery();
             con.Disconnect();
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+        }
+        //Jorge Luis|19/03/2018|RW-19
+        /*Método para ejecutar un procedimiento almacenado, con tres atributos del Cliente y dos parámetros de salida. */
+        public bool[] ParametersUser(string storeProcedure, Int16 typeProcedure)
+        {
+            bool[] states;
+            string customOutputVariable = "";
+            Int16 customOutputVariableValue = 0;
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            switch (typeProcedure)
+            {
+                case 1: // Cuando se emplea validar los accesos
+                    SqlParameter paramPrivateIP = new SqlParameter();
+                    paramPrivateIP.SqlDbType = SqlDbType.NVarChar;
+                    paramPrivateIP.ParameterName = "@PrivateIP";
+                    paramPrivateIP.Value = PrivateIP;
+                    cmd.Parameters.Add(paramPrivateIP);
+
+                    SqlParameter paramPublicIP = new SqlParameter();
+                    paramPublicIP.SqlDbType = SqlDbType.NVarChar;
+                    paramPublicIP.ParameterName = "@PublicIP";
+                    paramPublicIP.Value = PublicIP;
+                    cmd.Parameters.Add(paramPublicIP);
+
+                    SqlParameter paramStatusIP = new SqlParameter();
+                    paramStatusIP.Direction = ParameterDirection.Output;
+                    paramStatusIP.SqlDbType = SqlDbType.TinyInt;
+                    paramStatusIP.ParameterName = "@StatusIP"; // Ya que éste método tiene DOS variables de salida, aquí se le esta asignando la variable de salida personalizada
+                    cmd.Parameters.Add(paramStatusIP);
+
+                    states = new bool[5];
+                    customOutputVariable = "@StatusIP";
+                    break;
+                default:
+                    states = new bool[5];
+                    break;
+            }
+
+            SqlParameter paramComprobacion = new SqlParameter();
+            paramComprobacion.Direction = ParameterDirection.Output;
+            paramComprobacion.SqlDbType = SqlDbType.Bit;
+            paramComprobacion.ParameterName = "@Comprobacion";
+            cmd.Parameters.Add(paramComprobacion);
+            
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            states[0] = bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString()); // Variable de comprobación del sp
+            customOutputVariableValue = Int16.Parse(cmd.Parameters[customOutputVariable].Value.ToString());
+            switch (typeProcedure)
+            {
+                case 1:
+                    switch (customOutputVariableValue) // Arma un array con lo valores de la variable de salida personalizada
+                    {
+                        case 1: // Significa que accede sin problemas
+                            states[1] = true;
+                            states[2] = false;
+                            states[3] = false;
+                            states[4] = false;
+                            break;
+                        case 2: // PrivateIP no es igual, pero PublicIP si son iguales, entonces tal vez esta accediendo desde la misma máquina pero el DHCP le cambio la IP, o sino esta accediendo desde otro dispositivo pero en la misma red
+                            states[1] = false;
+                            states[2] = true;
+                            states[3] = false;
+                            states[4] = false;
+                            break;
+                        case 3: // PrivateIP y PublicIP no son iguales, entonces le pedimos que bloquee su otra sesión
+                            states[1] = false;
+                            states[2] = false;
+                            states[3] = true;
+                            states[4] = false;
+                            break;
+                        case 4: // PrivateIP y PublicIP son nulos
+                            states[1] = false;
+                            states[2] = false;
+                            states[3] = false;
+                            states[4] = true;
+                            break;
+                        default:
+                            states[1] = false;
+                            states[2] = false;
+                            states[3] = false;
+                            states[4] = false;
+                            break;
+                    }
+                    break;
+            }
+            return states;
         }
     }
 }
