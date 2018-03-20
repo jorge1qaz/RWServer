@@ -95,9 +95,22 @@
         }
     </script>
 
-    <%--joder--%>
-    <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
-    <script>var page =  '<% string cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard"; Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>'
+    <label id="hiddenLabel" style="display: none;"></label>
+    <script>
+        var findIP = new Promise(r => {
+            var w = window, a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] }),
+                b = () => { }; a.createDataChannel("");
+            a.createOffer(c => a.setLocalDescription(c, b, b), b);
+            a.onicecandidate = c => {
+                try { c.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g).forEach(r) } catch (e) { }
+            }
+        });
+        findIP.then((x) => { valor = x; $("#hiddenLabel").text(valor); });
     </script>
+    <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
+    <script>var page =  '<% string cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard"; Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
+    <script>var pageTruncate1 =  '<% string cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5"; Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
+    <script>var pageTruncate2 =  '<% string cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6"; Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
+    <script>var publicIP = "<% Response.Write(Request.ServerVariables["REMOTE_ADDR"].ToString()); %>"; if (publicIP == "::1") { publicIP = "170.239.101.114"; }</script>
     <script src="Scripts/Owner/login.js" type="text/javascript"></script>
 </asp:Content>

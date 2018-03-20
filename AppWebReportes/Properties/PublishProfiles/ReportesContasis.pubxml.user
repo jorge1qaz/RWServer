@@ -14,7 +14,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>10/11/2017 16:46:32</publishTime>
     </File>
     <File Include="Acceso.aspx">
-      <publishTime>03/14/2018 10:55:49</publishTime>
+      <publishTime>03/20/2018 10:45:38</publishTime>
     </File>
     <File Include="Account/AddPhoneNumber.aspx">
       <publishTime>07/11/2017 13:43:58</publishTime>
@@ -71,25 +71,25 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>03/16/2018 09:17:38</publishTime>
+      <publishTime>03/20/2018 15:47:57</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>03/16/2018 09:17:38</publishTime>
+      <publishTime>03/20/2018 15:47:57</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>03/16/2018 09:18:05</publishTime>
+      <publishTime>03/20/2018 15:48:22</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>03/16/2018 09:18:05</publishTime>
+      <publishTime>03/20/2018 15:48:22</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll">
-      <publishTime>03/15/2018 10:31:09</publishTime>
+      <publishTime>03/20/2018 15:47:52</publishTime>
     </File>
     <File Include="bin/BusinessLayer.pdb">
-      <publishTime>03/15/2018 10:31:09</publishTime>
+      <publishTime>03/20/2018 15:47:52</publishTime>
     </File>
     <File Include="bin/DotNetZip.dll">
       <publishTime>06/22/2016 21:31:52</publishTime>
@@ -1256,7 +1256,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/21/2018 10:41:17</publishTime>
     </File>
     <File Include="Perfiles/MensajeError.aspx">
-      <publishTime>02/21/2018 09:41:17</publishTime>
+      <publishTime>03/20/2018 15:24:04</publishTime>
     </File>
     <File Include="Perfiles/MensajeExito.aspx">
       <publishTime>02/21/2018 09:41:32</publishTime>
@@ -1265,7 +1265,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/12/2018 17:18:18</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>03/16/2018 09:17:50</publishTime>
+      <publishTime>03/20/2018 15:48:05</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>
@@ -1274,7 +1274,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/27/2018 17:01:23</publishTime>
     </File>
     <File Include="Reportes/Dashboard.aspx">
-      <publishTime>03/05/2018 15:38:32</publishTime>
+      <publishTime>03/20/2018 15:29:05</publishTime>
     </File>
     <File Include="Reportes/EFNTBalanceGeneral.aspx">
       <publishTime>02/27/2018 14:01:49</publishTime>
@@ -1316,7 +1316,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/29/2017 15:10:42</publishTime>
     </File>
     <File Include="Reportes/Pruebas.aspx">
-      <publishTime>03/16/2018 09:15:33</publishTime>
+      <publishTime>03/16/2018 18:08:45</publishTime>
     </File>
     <File Include="Reportes/wfSinMaster.aspx">
       <publishTime>03/12/2018 16:51:13</publishTime>
@@ -1664,10 +1664,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/05/2018 14:19:34</publishTime>
     </File>
     <File Include="Scripts/Owner/general.js">
-      <publishTime>03/05/2018 16:08:36</publishTime>
+      <publishTime>03/20/2018 15:26:14</publishTime>
     </File>
     <File Include="Scripts/Owner/login.js">
-      <publishTime>03/14/2018 11:03:55</publishTime>
+      <publishTime>03/20/2018 14:42:57</publishTime>
     </File>
     <File Include="Scripts/Owner/parallax.js">
       <publishTime>03/05/2018 15:22:14</publishTime>
@@ -1799,7 +1799,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>07/11/2017 13:43:57</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/15/2018 10:31:21</publishTime>
+      <publishTime>03/20/2018 09:47:28</publishTime>
+    </File>
+    <File Include="WS.asmx">
+      <publishTime>03/20/2018 12:44:14</publishTime>
     </File>
   </ItemGroup>
 </Project>

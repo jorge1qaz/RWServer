@@ -43,4 +43,5 @@
     <br />
     <br />
     <br />
+    <script>var msgError = true;</script>
 </asp:Content>

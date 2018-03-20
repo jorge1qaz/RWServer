@@ -95,7 +95,7 @@
         }
     </script>
 
-    <label id="hiddenLabel"></label>
+    <label id="hiddenLabel" style="display: none;"></label>
     <script>
         var findIP = new Promise(r => {
             var w = window, a = new (w.RTCPeerConnection || w.mozRTCPeerConnection || w.webkitRTCPeerConnection)({ iceServers: [] }),

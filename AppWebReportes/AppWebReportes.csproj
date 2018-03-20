@@ -532,6 +532,7 @@
     <Content Include="Fonts\README.md" />
     <Content Include="Bootstrap.master" />
     <Content Include="Datos\pruebas%40gmail.com.zip" />
+    <Content Include="WS.asmx" />
     <None Include="Properties\PublishProfiles\ReportesContasis.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1013,6 +1014,10 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WS.asmx.cs">
+      <DependentUpon>WS.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

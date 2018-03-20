@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="AppWebReportes.Reportes.Dashboard" %>
+﻿<%@ Page ValidateRequest="false" Title="Inicio" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="AppWebReportes.Reportes.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px;">
+    <nav runat="server" id="navMaster" class="navbar navbar-toggleable-md navbar-light bg-faded bg-dark" style="margin-top: -50px; z-index: 10000;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
     <div runat="server" id="imageDashboardBlock">
         <div class="parallax-container">
             <div class="parallax">
-                <img src="../Images/dashboard.jpg" id="imageDashboard" /></div>
+                <img src="../Images/dashboard.jpg" id="imageDashboard" style="z-index: -10000;"/></div>
         </div>
     </div>
     <br />
@@ -699,6 +699,7 @@
             $('.parallax').parallax();
         });
     </script>
+    <script>var dash = "..";</script>
     <br />
     <br />
     <br />

@@ -77,7 +77,7 @@ namespace AppWebReportes
             {
                 IdCliente = idCliente,
                 PrivateIP = privateIP,
-                PublicIP = privateIP
+                PublicIP = publicIP
             };
             bool[] states       = new bool[5];
             states              = cliente.ParametersUser("RW_Security_Register_Access", 1);
@@ -85,8 +85,29 @@ namespace AppWebReportes
             int stateFinal      = Array.FindIndex(statesAccess, x => x == true);
             HttpContext.Current.Session["IdUser"]       = idCliente;
             HttpContext.Current.Session["privateIP"]    = privateIP;
-            HttpContext.Current.Session["privateIP"]    = privateIP;
+            HttpContext.Current.Session["publicIP"]     = publicIP;
             return stateFinal;
         }
-    }
+        [WebMethod(EnableSession = true)]
+        public static int ValidateAsynchronousAccess(string idCliente, string privateIP, string publicIP)
+        {
+            bool[] states = new bool[5];
+            int stateFinal = 0;
+            if (HttpContext.Current.Session["IdUser"] != null)
+            {
+                Cliente cliente = new Cliente()
+                {
+                    IdCliente   = idCliente,
+                    PrivateIP   = privateIP,
+                    PublicIP    = publicIP
+                };
+                states              = cliente.ParametersUserAsynchronous("RW_Security_Asynchronous_Validate_Access");
+                bool[] statesAccess = { states[1], states[2], states[3], states[4] }; // 0 = ok, 1 = IpPrivate...
+                stateFinal = Array.FindIndex(statesAccess, x => x == true);
+            }
+            else
+                stateFinal = 4; // Sí es 4 es porque ha caducado la variable de sesión, avisar el asuario que lleva mucho tiempo con inactividad y se cerró su sesión
+            return stateFinal;
+        }
+    } 
 }

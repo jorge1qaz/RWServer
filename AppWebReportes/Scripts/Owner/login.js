@@ -80,12 +80,12 @@ function Acceder() {
 }
 // Desde aquí
 var privateIP = ""
-//function timedCount() {
-//    privateIP = $("#hiddenLabel").text();
-//    t = setTimeout(function () { timedCount() }, 750);
-//}
-//timedCount();
-if (privateIP == "") { privateIP = "192.168.1.4"; }
+function timedCount() {
+    privateIP = $("#hiddenLabel").text();
+    t = setTimeout(function () { timedCount() }, 750);
+}
+timedCount();
+//if (privateIP == "") { privateIP = "192.168.1.4"; }
 
 function ValidateAccess() {
     var idCliente = $("#Contenido_txtCorreo").val();
@@ -132,6 +132,11 @@ function AccederKey(e) {
         ValidateAccess();
     }
 }
+if (typeof (Storage) !== 'undefined') {
+    localStorage.setItem('pageTruncate1', pageTruncate1);
+    localStorage.setItem('pageTruncate2', pageTruncate2);
+}
+
 $(document).ready(function () {
     var $blockContrasenia = $("#blockContrasenia");
     var $btnAcceder = $("#btnAcceder");

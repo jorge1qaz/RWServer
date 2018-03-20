@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mensaje de error" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MensajeError.aspx.cs" Inherits="AppWebReportes.Perfiles.MensajeError" %>
+﻿<%@ Page ValidateRequest="false" Title="Mensaje de error" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MensajeError.aspx.cs" Inherits="AppWebReportes.Perfiles.MensajeError" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <br />
@@ -20,6 +20,8 @@
                                         <br />
                                         <a runat="server" href="~/Perfiles/CambioPassword?tipoReporte=1" id="linkCambiarPassword" class="btn btn-primary">Volver</a>
                                         <a runat="server" href="~/Perfiles/frmRegistroUsuario?tipoReporte=1" id="linkRegistroUsuario" class="btn btn-primary">Volver</a>
+                                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión previa" CssClass="btn btn-primary" OnClick="CerrarSesion_Click" />
+                                        <a runat="server" href="~/Acceso" id="linkAcceso" class="btn btn-primary">Iniciar sesión</a>
                                     </div>
                                 </div>
                             </div>
@@ -32,4 +34,5 @@
     <br />
     <br />
     <br />
+    <script>var msgError = true;</script>
 </asp:Content>

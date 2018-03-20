@@ -20,7 +20,8 @@
                                         <br />
                                         <a runat="server" href="~/Perfiles/CambioPassword?tipoReporte=1" id="linkCambiarPassword" class="btn btn-primary">Volver</a>
                                         <a runat="server" href="~/Perfiles/frmRegistroUsuario?tipoReporte=1" id="linkRegistroUsuario" class="btn btn-primary">Volver</a>
-                                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión" />
+                                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar sesión previa" CssClass="btn btn-primary" OnClick="CerrarSesion_Click" />
+                                        <a runat="server" href="~/Acceso" id="linkAcceso" class="btn btn-primary">Iniciar sesión</a>
                                     </div>
                                 </div>
                             </div>
@@ -33,4 +34,5 @@
     <br />
     <br />
     <br />
+    <script>var msgError = true;</script>
 </asp:Content>

@@ -97,4 +97,5 @@
         </div>
         <script src="../Scripts/Owner/RW-005.js"></script>
     </div>
+    <script>var msgError = true;</script>
 </asp:Content>

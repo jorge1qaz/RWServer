@@ -68,6 +68,15 @@ namespace AppWebReportes.Reportes
                     LoadPage();
                 }
             }
+
+            // IPs
+            if (Session["publicIP"] != null && Session["privateIP"] != null)
+            {
+                Response.Write(
+                    "<script>if (typeof(Storage) !== 'undefined') { localStorage.setItem('IdUser', ' "      + Session["IdUser"].ToString() + " ' ); }</script>" +
+                    "<script>if (typeof(Storage) !== 'undefined') { localStorage.setItem('privateIP', ' "   + Session["privateIP"].ToString() + " ' ); }</script>" +
+                    "<script>if (typeof(Storage) !== 'undefined') { localStorage.setItem('ipPublic', ' "    + Session["publicIP"].ToString() + " ' ); }</script>");
+            }
         }
         public void LoadPage() {
             String rootPath = Server.MapPath("~");

@@ -11,32 +11,5 @@ namespace AppWebReportes.Reportes {
     
     
     public partial class FlujoCajaSimpleSoles {
-        
-        /// <summary>
-        /// btnPruebas1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPruebas1;
-        
-        /// <summary>
-        /// btnPruebas2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPruebas2;
-        
-        /// <summary>
-        /// btnPruebas3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPruebas3;
     }
 }

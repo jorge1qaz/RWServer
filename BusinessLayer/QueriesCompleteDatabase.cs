@@ -298,7 +298,6 @@ namespace BusinessLayer
             }
             return datatableFiltered[0]; // Retorna todas un listado con todas las cuentas que se tenga
         }
-
         public DataTable[] TotalesByRubros() {
             DataTable[] dataTableTotales = new DataTable[2];
             DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
@@ -645,13 +644,15 @@ namespace BusinessLayer
         }
         //Método para filtra la tabla PLAN
         public DataTable GetFilterTablePLAN() {
-            DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
+            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
             DataTable datatable = dataSet.Tables["plan"]; // instancia de la tabla PLAN
-            DataTable dataTableListActivos = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 1, "d", true);
+            DataTable dataTableListActivos = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 1, "d", true); // Tabla activos
             return dataTableListActivos;
         }
-    //    public bool VerificarRubro() {
-
-    //    }
+        public void VerificarRubro()
+        {
+            DataTable prueba = new DataTable();
+            prueba = GetFilterTablePLAN();
+        }
     }
 }
