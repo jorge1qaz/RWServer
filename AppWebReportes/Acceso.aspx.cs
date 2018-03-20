@@ -28,26 +28,6 @@ namespace AppWebReportes
                     blockRegisterSuccess.Visible = false;
             }
         }
-        //public void ComprobarUsuarioClick()
-        //{
-        //    Cliente cliente = new Cliente()
-        //    { IdCliente = txtCorreo.Text.ToString() };
-        //    if (cliente.IdParameterUser("RW_Security_Check_User"))
-        //    {
-        //        blockContrasenia.Visible = true;
-        //        btnAcceder.Visible = true;
-        //        btnLinkCambiarContrasenia.Visible = true;
-        //        blockCorreo.Visible = false;
-        //        btnComprobarUsuario.Visible = false;
-        //        Session["IdUser"] = txtCorreo.Text.ToString();
-        //        HttpContext.Current.Session["initialPage"] = 0; // 0 = Indica que no es la primera vez que se accede a la página
-        //    }
-        //    else
-        //        lblDoesNotExistUser.Text = "No pudimos encontrar su cuenta de SmartReport";
-        //    if (Session["RegisterSuccess"] != null)
-        //        blockRegisterSuccess.Visible = false;
-        //    Session.Remove("RegisterSuccess");
-        //}
         [WebMethod(EnableSession = true)]
         public static bool ComprobarUsuarioKey(string paramIdCliente) {
             bool resultado = false; // {comprobar existencia de cuenta}
@@ -64,27 +44,6 @@ namespace AppWebReportes
             HttpContext.Current.Session.Remove("RegisterSuccess");
             return resultado;
         }
-        //public void AccederClick()
-        //{
-        //    Cliente cliente = new Cliente()
-        //    {
-        //        IdCliente = txtCorreo.Text.ToString(),
-        //        Contrasenia = txtContrasenia.Text.ToString()
-        //    };
-        //    states = cliente.TwoParametersUserArray("RW_Security_authenticate_User");
-        //    if (states[0])
-        //    {
-        //        if (states[1])
-        //        {
-        //            lblErrorPassword.Text = "";
-        //            Response.Redirect("~/Reportes/Dashboard.aspx", false);
-        //        }
-        //        else
-        //            lblErrorPassword.Text = "Tu cuenta no esta activada, por favor revisa tu correo.";
-        //    }
-        //    else
-        //        lblErrorPassword.Text = "La contraseña es incorrecta. Vuelve a intentarlo.";
-        //}
         [WebMethod(EnableSession = true)]
         public static string AccederKey(string paramIdCliente, string paramContrasenia) {
             string resultado = ""; //{ "éxito", "comprobación de cuenta activada", "comprobación de contraseña" }
@@ -111,19 +70,22 @@ namespace AppWebReportes
         protected void btnLinkCambiarContrasenia_Click(object sender, EventArgs e) =>
             Response.Redirect("~/Perfiles/CambioPassword.aspx?IdUser=" + txtCorreo.Text.ToString().Trim().ToLower(), false);
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         public static int ValidateAccess(string idCliente, string privateIP, string publicIP)
         {
             Cliente cliente = new Cliente()
             {
                 IdCliente = idCliente,
                 PrivateIP = privateIP,
-                PublicIP = publicIP
+                PublicIP = privateIP
             };
-            bool[] states = new bool[5];
-            states = cliente.ParametersUser("RW_Security_Register_Access", 1);
+            bool[] states       = new bool[5];
+            states              = cliente.ParametersUser("RW_Security_Register_Access", 1);
             bool[] statesAccess = { states[1], states[2], states[3], states[4] }; // 0 = ok, 1 = IpPrivate...
-            int stateFinal = Array.FindIndex(statesAccess, x => x == true);
+            int stateFinal      = Array.FindIndex(statesAccess, x => x == true);
+            HttpContext.Current.Session["IdUser"]       = idCliente;
+            HttpContext.Current.Session["privateIP"]    = privateIP;
+            HttpContext.Current.Session["privateIP"]    = privateIP;
             return stateFinal;
         }
     }

@@ -80,11 +80,12 @@ function Acceder() {
 }
 // Desde aquí
 var privateIP = ""
-function timedCount() {
-    privateIP = $("#hiddenLabel").text();
-    t = setTimeout(function () { timedCount() }, 750);
-}
-timedCount();
+//function timedCount() {
+//    privateIP = $("#hiddenLabel").text();
+//    t = setTimeout(function () { timedCount() }, 750);
+//}
+//timedCount();
+if (privateIP == "") { privateIP = "192.168.1.4"; }
 
 function ValidateAccess() {
     var idCliente = $("#Contenido_txtCorreo").val();
@@ -97,30 +98,24 @@ function ValidateAccess() {
         async: true,
         success: function (msg, data) {
             switch (msg.d) {
-                case 0:
-                    alert("exito");
+                case 0: // Todo ok
                     Acceder();
                     break;
-                case 1:
-                    truncateAccess == 1;
-                    alert("1");
-
+                case 1: // Ip privada
                     if (data) {
                         window.location.href = decodeURIComponent(pageTruncate1);
                         return false;
                     }
                     break;
-                case 2:
-                    alert("2");
+                case 2: // Ip privada y publica
                     if (data) {
                         window.location.href = decodeURIComponent(pageTruncate2);
                         return false;
                     }
                     truncateAccess == 1
                     break;
-                case 3:
-                    alert("3");
-                    truncateAccess == 0;
+                case 3: // Cuando no existe nada
+                    Acceder();
                     break;
                 default:
                     alert("default");
