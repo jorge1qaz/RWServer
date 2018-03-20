@@ -1,4 +1,5 @@
-﻿function ComprobarUsuario() {
+﻿var truncateAccess = 0;
+function ComprobarUsuario() {
     var user = $("#Contenido_txtCorreo").val();
     $.ajax({
         type: "POST",
@@ -58,7 +59,7 @@ function Acceder() {
                     if (data) {
                         trigger();
                         $("#Contenido_lblErrorPassword").text("");
-                        window.location.href = page;
+                        window.location.href = decodeURIComponent(page);
                         return false;
                     }
                     break;
@@ -77,9 +78,63 @@ function Acceder() {
         }
     });
 }
+// Desde aquí
+var privateIP = ""
+function timedCount() {
+    privateIP = $("#hiddenLabel").text();
+    t = setTimeout(function () { timedCount() }, 750);
+}
+timedCount();
+
+function ValidateAccess() {
+    var idCliente = $("#Contenido_txtCorreo").val();
+    $.ajax({
+        type: "POST",
+        url: "Acceso.aspx/ValidateAccess",
+        data: "{idCliente: '" + idCliente + "',  privateIP: '" + privateIP + "', publicIP: '" + publicIP + "' }",
+        contentType: "application/json",
+        dataType: "json",
+        async: true,
+        success: function (msg, data) {
+            switch (msg.d) {
+                case 0:
+                    alert("exito");
+                    Acceder();
+                    break;
+                case 1:
+                    truncateAccess == 1;
+                    alert("1");
+
+                    if (data) {
+                        window.location.href = decodeURIComponent(pageTruncate1);
+                        return false;
+                    }
+                    break;
+                case 2:
+                    alert("2");
+                    if (data) {
+                        window.location.href = decodeURIComponent(pageTruncate2);
+                        return false;
+                    }
+                    truncateAccess == 1
+                    break;
+                case 3:
+                    alert("3");
+                    truncateAccess == 0;
+                    break;
+                default:
+                    alert("default");
+                    truncateAccess == 0;
+                    break;
+            }
+        }, error: function (msg) {
+            alert("error " + msg.responseText);
+        }
+    });
+}
 function AccederKey(e) {
     if (e.keyCode == 13) {
-        Acceder();
+        ValidateAccess();
     }
 }
 $(document).ready(function () {
@@ -117,6 +172,6 @@ $(document).ready(function () {
         ComprobarUsuario();
     });
     $("#btnHtmlAcceder").on("click", function () {
-        Acceder();
+        ValidateAccess();
     });
 });

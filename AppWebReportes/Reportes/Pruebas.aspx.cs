@@ -16,16 +16,16 @@ namespace AppWebReportes.Reportes
         Paths paths         = new Paths();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string email    = "jorgealcantara5a@gmail.com";
-            string ruc      = "1073580496";
-            byte[] dataEncrypted    = seguridad.Encrypt2(email, ruc);
-            string temporal         = seguridad.Encrypt(email, ruc);
-            //string dataEncode = Convert.ToBase64String(dataEncrypted);
+            //string email    = "jorgealcantara5a@gmail.com";
+            //string ruc      = "1073580496";
+            //byte[] dataEncrypted    = seguridad.Encrypt2(email, ruc);
+            //string temporal         = seguridad.Encrypt(email, ruc);
+            ////string dataEncode = Convert.ToBase64String(dataEncrypted);
             
-            Response.Write("<dataEncrypted>" +dataEncrypted + "</dataEncrypted><dataEncode>" + temporal + "</dataEncode>");
-            string tempValor = "C0POfodarqM8W7ozXRRXAjM0qorBPrcPB7HsmWLnmX4iWOQ8FWTVD3LO7zL5ovprE7swW5oQs5EH9W7lJ3vEZTznuJuLioroYDv5sQXuXc/GgwJa7hFgeMm/CQ5FXpYl";
-            string dataDecrypted = seguridad.Decrypt(tempValor.Replace(" ", "").ToString(), ruc);
-            Response.Write("<dataDecrypted>" + dataDecrypted + "</dataDecrypted>");
+            //Response.Write("<dataEncrypted>" +dataEncrypted + "</dataEncrypted><dataEncode>" + temporal + "</dataEncode>");
+            //string tempValor = "C0POfodarqM8W7ozXRRXAjM0qorBPrcPB7HsmWLnmX4iWOQ8FWTVD3LO7zL5ovprE7swW5oQs5EH9W7lJ3vEZTznuJuLioroYDv5sQXuXc/GgwJa7hFgeMm/CQ5FXpYl";
+            //string dataDecrypted = seguridad.Decrypt(tempValor.Replace(" ", "").ToString(), ruc);
+            //Response.Write("<dataDecrypted>" + dataDecrypted + "</dataDecrypted>");
 
             // variables temporales
             string user         = "jricra@contasis.net";
@@ -36,9 +36,7 @@ namespace AppWebReportes.Reportes
             String rootPath             = Server.MapPath("~"); //Ruta física
             string dbCompletePlan       = paths.GetStringByFileJson("DataBaseConta", rootPath, user, nameReport, idCompany, year);
             string rubrosCompletePlan   = paths.GetStringByFileJson("listNamesRubros", rootPath, user, nameReport, idCompany, year);
-
-
-
+            
             QueriesCompleteDatabase queriesCompleteDatabase = new QueriesCompleteDatabase() {
                 identificacionReporte       = 1,
                 jsonDataSetDBComplete       = dbCompletePlan,
@@ -47,8 +45,20 @@ namespace AppWebReportes.Reportes
                 mesProceso                  = 12,
             };
             //queriesCompleteDatabase.TotalesByRubros();
-            Response.Write(DateTime.Now);
-            
+
+            string privateIP = "192.168.1.41";
+            string publicIP = "190.238.207.59";
+            Cliente cliente = new Cliente() {
+                IdCliente = user,
+                PrivateIP = privateIP,
+                PublicIP = publicIP
+            };
+            bool[] states = new bool[5];
+            states = cliente.ParametersUser("RW_Security_Register_Access", 1);
+            bool[] statesAccess = { states[1], states[2], states[3], states[4] };
+            int val = Array.FindIndex(statesAccess, x => x == true);
+
+            Response.Write(states[0].ToString() + states[1].ToString() + states[2].ToString() + states[3].ToString() + states[4].ToString());
         }
 
         public static List<string> GetLocalIPAddress()

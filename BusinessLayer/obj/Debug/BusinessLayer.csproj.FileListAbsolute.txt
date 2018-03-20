@@ -32,4 +32,3 @@ D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csprojR
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache

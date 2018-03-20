@@ -3,6 +3,7 @@ using System;
 using System.Web.UI;
 using System.Web.Services;
 using System.Web;
+using System.ComponentModel;
 
 namespace AppWebReportes
 {
@@ -109,5 +110,21 @@ namespace AppWebReportes
         }
         protected void btnLinkCambiarContrasenia_Click(object sender, EventArgs e) =>
             Response.Redirect("~/Perfiles/CambioPassword.aspx?IdUser=" + txtCorreo.Text.ToString().Trim().ToLower(), false);
+
+        [WebMethod]
+        public static int ValidateAccess(string idCliente, string privateIP, string publicIP)
+        {
+            Cliente cliente = new Cliente()
+            {
+                IdCliente = idCliente,
+                PrivateIP = privateIP,
+                PublicIP = publicIP
+            };
+            bool[] states = new bool[5];
+            states = cliente.ParametersUser("RW_Security_Register_Access", 1);
+            bool[] statesAccess = { states[1], states[2], states[3], states[4] }; // 0 = ok, 1 = IpPrivate...
+            int stateFinal = Array.FindIndex(statesAccess, x => x == true);
+            return stateFinal;
+        }
     }
 }
