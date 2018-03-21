@@ -124,4 +124,5 @@
         var valor5 = <% Response.Write(Session["debo"]);%> ; 
     </script>
     <script src="../Scripts/Owner/RW-007.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

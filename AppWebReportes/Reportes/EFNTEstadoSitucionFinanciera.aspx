@@ -566,6 +566,7 @@
     </div>
     <script> var columnA = 1; var columnB = 3; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
-    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>"; var ruta = "../..";</script>
     <script src="../Scripts/Owner/RW-009.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

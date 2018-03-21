@@ -122,6 +122,8 @@
         var valor3 = <% Response.Write(Session["CajaBancos"]);%> ; 
         var valor4 = <% Response.Write(Session["Deben"]);%> ; 
         var valor5 = <% Response.Write(Session["debo"]);%> ; 
+        var ruta = "../..";
     </script>
     <script src="../Scripts/Owner/RW-007.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

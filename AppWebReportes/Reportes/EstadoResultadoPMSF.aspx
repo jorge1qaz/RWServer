@@ -665,6 +665,7 @@
         </div>
     </div>
     <script>var moneda = "<% Response.Write(Session["EDRPMSTipoMoneda"].ToString()); %>";</script>
-    <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["EDRPMSTipoReporte"].ToString()); %>"; var ruta = "../..";</script>
     <script src="../Scripts/Owner/RW-008.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

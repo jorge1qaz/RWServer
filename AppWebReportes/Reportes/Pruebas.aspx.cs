@@ -31,9 +31,9 @@ namespace AppWebReportes.Reportes
                 jsonDataSetDBComplete       = dbCompletePlan,
                 jsonDataSetRubrosByFormatos = rubrosCompletePlan,
                 tipoMoneda                  = true,
-                mesProceso                  = 12,
+                mesProceso                  = 4,
             };
-            queriesCompleteDatabase.VerificarRubro();
+            queriesCompleteDatabase.GetReportEstadosFinancieros();
 
         }
     }

@@ -706,4 +706,5 @@
     <br />
     <br />
     <br />
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

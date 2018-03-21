@@ -699,11 +699,12 @@
             $('.parallax').parallax();
         });
     </script>
-    <script>var dash = "..";</script>
+    <script>var dash = ".."; var ruta = "..";</script>
     <br />
     <br />
     <br />
     <br />
     <br />
     <br />
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

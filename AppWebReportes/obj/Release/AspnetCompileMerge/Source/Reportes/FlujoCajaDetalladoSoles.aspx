@@ -54,4 +54,5 @@
         }
     </script>
     <script src="../Scripts/Owner/RW-010.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

@@ -234,6 +234,7 @@
     </div>
     <script> var columnA = 2; var columnB = 2; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
-    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
-    <script src="../Scripts/Owner/RW-009-c.js"></script> // add js my friend
+    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>"; var ruta = "../..";</script>
+    <script src="../Scripts/Owner/RW-009-c.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

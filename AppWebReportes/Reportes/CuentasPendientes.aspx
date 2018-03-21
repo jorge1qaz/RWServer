@@ -175,7 +175,9 @@
     </script>
     <script>
         var simboloMonedaRCP = "<% Response.Write(Session["simboloMonedaRCP"]);%>";
+        var ruta = "../../";
     </script>
 
     <script src="../Scripts/Owner/RW-004-b.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

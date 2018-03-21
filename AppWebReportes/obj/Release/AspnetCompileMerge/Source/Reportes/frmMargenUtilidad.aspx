@@ -257,4 +257,5 @@
         var dataSet = <% Response.Write(Session["queryJson"].ToString()); %>;
     </script>
     <script src="../Scripts/Owner/RW-006.js"></script>
+    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>
