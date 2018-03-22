@@ -154,23 +154,6 @@ namespace BusinessLayer
                 throw (ex);
             }
         }
-        public DataTable GetListDist2(DataTable table, string NameColumn1, string NameColumnFilter2, string NameColumn2)
-        {
-            try
-            {
-                DataTable dtNew = new DataTable();
-                DataTable distincts = table.DefaultView.ToTable(true, NameColumn1);
-                foreach (DataColumn dcName in table.Columns)
-                    dtNew.Columns.Add(new DataColumn(dcName.Caption, dcName.DataType));
-                foreach (DataRow drRow in distincts.Rows)
-                    dtNew.ImportRow(table.Select(NameColumn1 + " = '" + drRow[0] + "'" )[0]);
-                return distincts;
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-        }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
         public decimal GetTotalByTable(DataTable tableData, DataTable tableList, string idColumn, string NameColumn1, string NameColumn2, bool discriminative, bool negativeValue) {

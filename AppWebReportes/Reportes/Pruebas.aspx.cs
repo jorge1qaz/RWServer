@@ -33,8 +33,9 @@ namespace AppWebReportes.Reportes
                 tipoMoneda                  = true,
                 mesProceso                  = 4,
             };
-            queriesCompleteDatabase.GetReportEstadosFinancieros();
-
+            //queriesCompleteDatabase.GetReportEstadosFinancieros();
+            //queriesCompleteDatabase.TotalesByRubros();
+            queriesCompleteDatabase.GenerateTableWithNamesByIds();
         }
     }
 }

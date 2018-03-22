@@ -7,11 +7,11 @@ namespace BusinessLayer
 {
     public class QueriesCompleteDatabase
     {
-        public int      identificacionReporte       { get; set; } // 1 = Estado de situación financiera, 2 = ...
-        public string   jsonDataSetDBComplete       { get; set; }
-        public string   jsonDataSetRubrosByFormatos { get; set; } // Se le pasa la tabla que tiene la lista de cuentas según su formato (activo/pasivo)
-        public bool     tipoMoneda                  { get; set; }
-        public int      mesProceso                  { get; set; }
+        public int identificacionReporte { get; set; } // 1 = Estado de situación financiera, 2 = ...
+        public string jsonDataSetDBComplete { get; set; }
+        public string jsonDataSetRubrosByFormatos { get; set; } // Se le pasa la tabla que tiene la lista de cuentas según su formato (activo/pasivo)
+        public bool tipoMoneda { get; set; }
+        public int mesProceso { get; set; }
 
         MergeTables mergeTables = new MergeTables();
         /*Sí la cuenta existe en la otra lista devuelve TRUE, en caso contrario devuelve FALSE*/
@@ -58,7 +58,7 @@ namespace BusinessLayer
         }
         public DataTable GetListCuentasByRubro(DataTable listRubros, bool reportActivo) {
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
-            DataTable datatable     = dataSet.Tables["plan"]; // instancia de la tabla PLAN
+            DataTable datatable = dataSet.Tables["plan"]; // instancia de la tabla PLAN
             DataTable[] datatableFiltered = new DataTable[listRubros.Rows.Count]; // Tabla con la lista de rubros
             for (int i = 0; i <= listRubros.Rows.Count; i++) // hasta la cantidad de rubros que exista en la lista
             {
@@ -69,27 +69,27 @@ namespace BusinessLayer
                         if (reportActivo) // Activo, entonces buscar las cuentas del pasivo
                         {
                             cuentasPorRubro = new CuentasPorRubro() { // Esta carga con el struct se emplea para definir los atributos a emplear para la consulta
-                                _table                  = datatable, // Tabla completa de plan
-                                _ColumnNameOrdering     = "a",
-                                _filterId1              = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
-                                _columnNameFilterId1    = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                                _filterId2              = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
-                                _columnNameFilterId2    = "f",  // ccod_bal as f, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                                _filterId3              = listRubros.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
-                                _columnNameFilterId3    = "a"   // Columna ccod_bal
+                                _table = datatable, // Tabla completa de plan
+                                _ColumnNameOrdering = "a",
+                                _filterId1 = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                                _columnNameFilterId1 = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
+                                _filterId2 = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                                _columnNameFilterId2 = "f",  // ccod_bal as f, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
+                                _filterId3 = listRubros.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
+                                _columnNameFilterId3 = "a"   // Columna ccod_bal
                             };
                         }
                         else            // Pasivo, entonces buscar las cuentas del activo
                         {
                             cuentasPorRubro = new CuentasPorRubro() {
-                                _table                  = datatable, // Tabla completa de plan
-                                _ColumnNameOrdering     = "a",
-                                _filterId1              = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
-                                _columnNameFilterId1    = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                                _filterId2              = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
-                                _columnNameFilterId2    = "by", // ccod_baln2 as by, es la columna "ccod_baln2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                                _filterId3              = listRubros.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
-                                _columnNameFilterId3    = "a"   // Columna ccod_bal
+                                _table = datatable, // Tabla completa de plan
+                                _ColumnNameOrdering = "a",
+                                _filterId1 = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                                _columnNameFilterId1 = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
+                                _filterId2 = listRubros.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                                _columnNameFilterId2 = "by", // ccod_baln2 as by, es la columna "ccod_baln2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
+                                _filterId3 = listRubros.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
+                                _columnNameFilterId3 = "a"   // Columna ccod_bal
                             };
                         }
                         datatableFiltered[i] = cuentasPorRubro.GetFilterTable3Parameters();
@@ -101,7 +101,7 @@ namespace BusinessLayer
         }
         public DataTable[] TotalesByRubros() {
             DataTable[] dataTableTotales = new DataTable[2];
-            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
+            DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
             DataTable datatable = dataSet.Tables["plan"]; // instancia de la tabla PLAN
             DataSet dataSetRubros = JsonConvert.DeserializeObject<DataSet>(jsonDataSetRubrosByFormatos); // Desearealización del dataset que contiene las listas de activo, pasivo y patrominio
             DataTable listRubrosPasivo = new DataTable();
@@ -166,7 +166,7 @@ namespace BusinessLayer
                     _filterId3 = listRubrosActivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
                     _columnNameFilterId3 = "a"   // Columna ccod_bal
                 };
-                dataTableActivosFilteredByRubro[i]  = cuentasPorRubro.GetFilterTable3Parameters();
+                dataTableActivosFilteredByRubro[i] = cuentasPorRubro.GetFilterTable3Parameters();
             } // hasta aquí ya se tiene un array de tablas, cada elemento del array tiene un tabla filtrada en base al rubro
             DataTable ActivosFilteredByRubroUnion = FusionArrayOfTables(dataTableActivosFilteredByRubro).DefaultView.ToTable(true, "a"); // Almacena en una única tabla todo el conjunto de elementos del array de tablas
             // Obtener un tabla con el filtro de rubro, para los activos
@@ -175,22 +175,22 @@ namespace BusinessLayer
             {
                 CuentasPorRubro cuentasPorRubro = new CuentasPorRubro()
                 {
-                    _table                  = datatable, // Tabla completa de plan
-                    _ColumnNameOrdering     = "a",
-                    _filterId1              = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
-                    _columnNameFilterId1    = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                    _filterId2              = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                    _table = datatable, // Tabla completa de plan
+                    _ColumnNameOrdering = "a",
+                    _filterId1 = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
+                    _columnNameFilterId1 = "bx", // ccod_bal2 as bx, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
+                    _filterId2 = listRubrosPasivo.Rows[i][0].ToString(), // Ejemplo Rows[i][0] i = 0, buscará en la lista de cuentas el rubro en la posició (0, 0) y encontrará un rubro parecido a este "A110"
                     //_columnNameFilterId2    = "f",  // ccod_bal as f, es la columna "ccod_bal2" en la tabla completa "datatable" que contiene los datos de la tabla dbf PLAN
-                    _columnNameFilterId2    = "by",
-                    _filterId3              = listRubrosPasivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
-                    _columnNameFilterId3    = "a",   // Columna ccod_bal
+                    _columnNameFilterId2 = "by",
+                    _filterId3 = listRubrosPasivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
+                    _columnNameFilterId3 = "a",   // Columna ccod_bal
                     //_filterId4              = listRubrosPasivo.Rows[i][0].ToString(), // Obtiene el rubro para filtrarse en la columna ccod_bal
                     //_columnNameFilterId4    = "by"   // Columna ccod_baln2
                 };
                 //dataTablePasivosFilteredByRubro[i]  = cuentasPorRubro.GetFilterTable4Parameters();
                 dataTablePasivosFilteredByRubro[i] = cuentasPorRubro.GetFilterTable3Parameters();
             } // hasta aquí ya se tiene un array de tablas, cada elemento del array tiene un tabla filtrada en base al rubro
-            DataTable PasivosFilteredByRubroUnion   = FusionArrayOfTables(dataTablePasivosFilteredByRubro).DefaultView.ToTable(true, "a"); // Almacena en una única tabla todo el conjunto de elementos del array de tablas
+            DataTable PasivosFilteredByRubroUnion = FusionArrayOfTables(dataTablePasivosFilteredByRubro).DefaultView.ToTable(true, "a"); // Almacena en una única tabla todo el conjunto de elementos del array de tablas
             #endregion
 
             // armar activos
@@ -207,20 +207,20 @@ namespace BusinessLayer
         }
         // Se le pasa la tabla filtrada para que calcular sus montos, la especificación si es de activo  o pasivo, y la lista de cuentas para verificar su existencia y validar sus datos
         public decimal GetTotalByRubro(DataTable dataTableForProcess, bool reportActivo, DataTable ListForSearch) {
-            decimal[]   totalPorMes     = new decimal[14];
-            string[]    ndebe, nhaber;
-            decimal[]   totalPorCuenta;
-            decimal     totalFinalFlash = 0;
+            decimal[] totalPorMes = new decimal[14];
+            string[] ndebe, nhaber;
+            decimal[] totalPorCuenta;
+            decimal totalFinalFlash = 0;
 
             if (tipoMoneda)
             {
-                ndebe   = new string[16] { "i", "k", "m", "o", "q", "s", "u", "w", "y", "aa", "ac", "ae", "ag", "ai", "ak", "am" };
-                nhaber  = new string[16] { "j", "l", "n", "p", "r", "t", "v", "x", "z", "ab", "ad", "af", "ah", "aj", "al", "an" };
+                ndebe = new string[16] { "i", "k", "m", "o", "q", "s", "u", "w", "y", "aa", "ac", "ae", "ag", "ai", "ak", "am" };
+                nhaber = new string[16] { "j", "l", "n", "p", "r", "t", "v", "x", "z", "ab", "ad", "af", "ah", "aj", "al", "an" };
             }
             else
             {
-                ndebe   = new string[16] { "aq", "as", "au", "aw", "ay", "ba", "bc", "be", "bg", "bi", "bk", "bm", "bo", "bq", "bs", "bu" };
-                nhaber  = new string[16] { "ar", "at", "av", "ax", "az", "bb", "bd", "bf", "bh", "bj", "bl", "bn", "bp", "br", "bt", "bv" };
+                ndebe = new string[16] { "aq", "as", "au", "aw", "ay", "ba", "bc", "be", "bg", "bi", "bk", "bm", "bo", "bq", "bs", "bu" };
+                nhaber = new string[16] { "ar", "at", "av", "ax", "az", "bb", "bd", "bf", "bh", "bj", "bl", "bn", "bp", "br", "bt", "bv" };
             }
             #region Resta del debe y haber totalizado HASTA el mes de proceso
             try
@@ -295,8 +295,8 @@ namespace BusinessLayer
                         // Se le pasa la cuenta y la lista donde se debe de buscar
                         if (VerifyAccountInAnotherList(dataTableForProcess.Rows[i][0].ToString(), ListForSearch)) // Sí es TRUE se excluye en caso de ser negativo
                         {
-                                if (totalPorMes[mesProceso] < 0)
-                                    totalPorMes[mesProceso] = 0;
+                            if (totalPorMes[mesProceso] < 0)
+                                totalPorMes[mesProceso] = 0;
                         }
                         totalPorCuenta[i] = totalPorMes[mesProceso]; // totalPorMes[mesProceso] es el resultado actual de la cuenta según el mes de proceso, a su vez totalPorCuenta[i] almacena en la misma posición  el valor del total(totalPorMes[mesProceso])
                         // Agregar método para sumar en un array
@@ -420,8 +420,8 @@ namespace BusinessLayer
         //
         public DataTable GetTotalByCuentasInUniqueRubro(DataTable dataTableForProcess, bool reportActivo)
         {
-            DataTable finalDataTable    = new DataTable();
-            decimal[] totalPorMes       = new decimal[14];
+            DataTable finalDataTable = new DataTable();
+            decimal[] totalPorMes = new decimal[14];
             string[] ndebe, nhaber;
 
             #region Declaración de columnas
@@ -449,21 +449,21 @@ namespace BusinessLayer
 
             if (tipoMoneda) // soles
             {
-                ndebe   = new string[16] { "i", "k", "m", "o", "q", "s", "u", "w", "y", "aa", "ac", "ae", "ag", "ai", "ak", "am" };
-                nhaber  = new string[16] { "j", "l", "n", "p", "r", "t", "v", "x", "z", "ab", "ad", "af", "ah", "aj", "al", "an" };
+                ndebe = new string[16] { "i", "k", "m", "o", "q", "s", "u", "w", "y", "aa", "ac", "ae", "ag", "ai", "ak", "am" };
+                nhaber = new string[16] { "j", "l", "n", "p", "r", "t", "v", "x", "z", "ab", "ad", "af", "ah", "aj", "al", "an" };
             }
             else            // Dólares
             {
-                ndebe   = new string[16] { "aq", "as", "au", "aw", "ay", "ba", "bc", "be", "bg", "bi", "bk", "bm", "bo", "bq", "bs", "bu" };
-                nhaber  = new string[16] { "ar", "at", "av", "ax", "az", "bb", "bd", "bf", "bh", "bj", "bl", "bn", "bp", "br", "bt", "bv" };
+                ndebe = new string[16] { "aq", "as", "au", "aw", "ay", "ba", "bc", "be", "bg", "bi", "bk", "bm", "bo", "bq", "bs", "bu" };
+                nhaber = new string[16] { "ar", "at", "av", "ax", "az", "bb", "bd", "bf", "bh", "bj", "bl", "bn", "bp", "br", "bt", "bv" };
             }
             #region Resta del debe y haber totalizado HASTA el mes de proceso
             if (dataTableForProcess.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTableForProcess.Rows.Count; i++) // Rows[i][1] i se refiere al número de fila, 1 es la posición de la columna
                 {
-                    row             = finalDataTable.NewRow();
-                    row["Cuenta"]   = dataTableForProcess.Rows[i]["a"].ToString();
+                    row = finalDataTable.NewRow();
+                    row["Cuenta"] = dataTableForProcess.Rows[i]["a"].ToString();
                     if (reportActivo) // Sí es TRUE, entonces es ACTIVO { Resta del debe menos el haber, este proceso se realiza mes tras mes hasta el mes de proceso }
                     { // Se hace todos los cálculos en base a sólo los activos
                         try
@@ -492,24 +492,6 @@ namespace BusinessLayer
                             }
                             catch
                             { totalPorMes[12] = 0; }
-                        }
-                        if (totalPorMes[mesProceso] > 0) // Significa que salió positivo entonces se añade a los activos sin problemas
-                        {
-                            row["Total"]    = totalPorMes[mesProceso];
-                            row["Rubro"]    = dataTableForProcess.Rows[i]["bx"].ToString();
-                        }
-                        else // Aca tenemos que el resultado para ésta cuenta es negativo, entonces hacemos las validaciones para en que rubro se queda
-                        {
-                            if (dataTableForProcess.Rows[i]["by"].ToString().Trim() == "") // Aquí hacemos las validaciones; buscamos en { by = ccod_baln2 } sí esta vacío entonces se pone lo que haya en { bx = ccod_bal2 }
-                            {
-                                row["Total"] = totalPorMes[mesProceso];
-                                row["Rubro"] = dataTableForProcess.Rows[i]["bx"].ToString(); // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se queda en bx porque by esta en blanco
-                            }
-                            else // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se va a by porque by esta tiene un rubro en caso de monto negativo
-                            {
-                                row["Total"] = totalPorMes[mesProceso]*-1;
-                                row["Rubro"] = dataTableForProcess.Rows[i]["by"].ToString();
-                            }
                         }
                     }
                     else // Sino, entonces es PASIVO como tú comprenderas
@@ -542,23 +524,23 @@ namespace BusinessLayer
                             catch
                             { totalPorMes[12] = 0; }
                         }
-                        if (totalPorMes[mesProceso] > 0) // Significa que salió positivo entonces se añade a los pasivos sin problemas
+                    }
+                    if (totalPorMes[mesProceso] > 0) // Significa que salió positivo entonces se añade a los activos sin problemas
+                    {
+                        row["Total"] = totalPorMes[mesProceso];
+                        row["Rubro"] = dataTableForProcess.Rows[i]["bx"].ToString();
+                    }
+                    else // Aca tenemos que el resultado para ésta cuenta es negativo, entonces hacemos las validaciones para en que rubro se queda
+                    {
+                        if (dataTableForProcess.Rows[i]["by"].ToString().Trim() == "") // Aquí hacemos las validaciones; buscamos en { by = ccod_baln2 } sí esta vacío entonces se pone lo que haya en { bx = ccod_bal2 }
                         {
                             row["Total"] = totalPorMes[mesProceso];
-                            row["Rubro"] = dataTableForProcess.Rows[i]["by"].ToString();
+                            row["Rubro"] = dataTableForProcess.Rows[i]["bx"].ToString(); // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se queda en bx porque by esta en blanco
                         }
-                        else // Aca tenemos que el resultado para ésta cuenta es negativo, entonces hacemos las validaciones para en que rubro se queda
+                        else // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se va a by porque by esta tiene un rubro en caso de monto negativo
                         {
-                            if (dataTableForProcess.Rows[i]["bx"].ToString().Trim() == "") // Aquí hacemos las validaciones; buscamos en { by = ccod_baln2 } sí esta vacío entonces se pone lo que haya en { bx = ccod_bal2 }
-                            {
-                                row["Total"] = totalPorMes[mesProceso];
-                                row["Rubro"] = dataTableForProcess.Rows[i]["by"].ToString(); // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se queda en by porque by esta en blanco
-                            }
-                            else // Aquí se tiene que acumular en base al rubro. En este caso el monto de la cuenta se va a by porque by esta tiene un rubro en caso de monto negativo
-                            {
-                                row["Total"] = totalPorMes[mesProceso] * -1;
-                                row["Rubro"] = dataTableForProcess.Rows[i]["bx"].ToString();
-                            }
+                            row["Total"] = totalPorMes[mesProceso] * -1;
+                            row["Rubro"] = dataTableForProcess.Rows[i]["by"].ToString();
                         }
                     }
                     finalDataTable.Rows.Add(row);
@@ -578,7 +560,7 @@ namespace BusinessLayer
                 }
                 catch
                 {
-                    
+
                 }
             return dataTableUnion;
         }
@@ -597,20 +579,110 @@ namespace BusinessLayer
         }
         //Método para filtra la tabla PLAN
         public DataTable GetFilterTablePLAN() {
-            DataSet dataSet     = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
+            DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
             DataTable datatable = dataSet.Tables["plan"]; // instancia de la tabla PLAN
             DataTable dataTableListActivos = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 1, "d", true); // Tabla activos
             return dataTableListActivos;
         }
-        public void GetReportEstadosFinancieros()
+        public DataTable GetReportEstadosFinancieros()
         {
             DataSet dataSet = JsonConvert.DeserializeObject<DataSet>(jsonDataSetDBComplete); // Desearealización del dataset de la bd completa
-            DataTable datatable                 = dataSet.Tables["plan"]; // instancia de la tabla PLAN
-            DataTable dataTableCompleteActivos  = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 1, "d", true); // Tabla activos
-            DataTable dataTableCompletePasivos  = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 2, "d", true); // Tabla activos
+            DataTable datatable = dataSet.Tables["plan"]; // instancia de la tabla PLAN
+            DataTable dataTableCompleteActivos  = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 1, "d", true); // Tabla activos, el último parámetro booleano es para indicar que se busque estrictamente todos los filtros
+            DataTable dataTableCompletePasivos  = mergeTables.GetTableByFilters(datatable, "a", 3, "c", 2, "d", true); // Tabla Pasivos
             DataTable tableProcessedActivos     = GetTotalByCuentasInUniqueRubro(dataTableCompleteActivos, true);
             DataTable tableProcessedPasivos     = GetTotalByCuentasInUniqueRubro(dataTableCompletePasivos, false);
-            DataTable joder = new DataTable();
+            tableProcessedActivos.Merge(tableProcessedPasivos);
+            DataTable tableFiltroRubros         = tableProcessedActivos.DefaultView.ToTable(true, "Rubro");
+            DataTable tableWithTotalByRubros    = SumBasedInListNames(tableFiltroRubros, tableProcessedActivos, "Rubro");
+            return  tableWithTotalByRubros;
+        }
+        // Aquí se almacena un tabla con totales por cada rubro
+        public DataTable SumBasedInListNames(DataTable tableNamesFiltered, DataTable tableComplete, string columnName)
+        {
+            DataTable finalDataTable = new DataTable();
+            DataTable tableTemporal;
+            decimal totalTemporal;
+            #region Declaración de columnas
+            DataColumn column;
+            DataRow row;
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.Decimal"),
+                ColumnName = "Total"
+            };
+            finalDataTable.Columns.Add(column);
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System.String"),
+                ColumnName = "Rubro"
+            };
+            finalDataTable.Columns.Add(column);
+            #endregion
+            for (int i = 0; i < tableNamesFiltered.Rows.Count; i++) // Hacer una sobrecarga, reemplazar esto y pasar como parámetro el id de rubro
+            {
+                tableTemporal = new DataTable();
+                tableTemporal = mergeTables.GetTableByFilters(tableComplete, tableNamesFiltered.Rows[i][columnName].ToString(), columnName); // dataTable.Rows[row][column]
+                totalTemporal = new decimal();
+                foreach (DataRow item in tableTemporal.Rows)
+                {
+                    totalTemporal += decimal.Parse(item["Total"].ToString());
+                }
+                row = finalDataTable.NewRow();
+                row["Total"] = totalTemporal;
+                row["Rubro"] = tableNamesFiltered.Rows[i][columnName].ToString();
+                finalDataTable.Rows.Add(row);
+                row.ClearErrors();
+                totalTemporal = 0;
+            }
+            return finalDataTable;
+        }
+        public void GenerateTableWithNamesByIds()
+        {
+            DataSet dataSetRubros = JsonConvert.DeserializeObject<DataSet>(jsonDataSetRubrosByFormatos); // Desearealización del dataset que contiene las listas de activo, pasivo y patrominio
+            DataTable[] listRubrosActivo = new DataTable[10];
+            DataTable[] listRubrosPasivo = new DataTable[10];
+            for (int i = 0; i < 10; i++)
+            {
+                listRubrosActivo[i] = dataSetRubros.Tables["listNamesPasivo" + i.ToString()]; // Tabla con los rubros y sus descripciones
+                listRubrosPasivo[i] = dataSetRubros.Tables["listNamesActivo" + i.ToString()];
+            }
+
+            DataTable newTable = AddColumnWithValues(listRubrosActivo[1], GetReportEstadosFinancieros(), "Decimal", "Total"); // arreglar esto  mi estimado
+            //DataTable tableFiltered = AddColumnWithValues(newTable, listRubrosActivo[i])
+            DataTable jdoer = new DataTable();
+
+        }
+        public DataTable AddColumn(DataTable finalDataTable, string type, string columnName) {
+            DataColumn column;
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System." + type),
+                ColumnName = columnName
+            };
+            finalDataTable.Columns.Add(column);
+            return finalDataTable;
+        }
+        public DataTable AddColumnWithValues(DataTable dataTable, DataTable tableCompare, string type, string columnName) {
+            DataColumn column;
+            column = new DataColumn
+            {
+                DataType = Type.GetType("System." + type),
+                ColumnName = columnName
+            };
+            dataTable.Columns.Add(column);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                try
+                {
+                    item[columnName] = mergeTables.GetDecimalByIdInDataTable(tableCompare, columnName, item["a"].ToString(), columnName);
+                }
+                catch
+                {
+                    item[columnName] = 0;
+                }
+            }
+            return dataTable;
         }
     }
 }
