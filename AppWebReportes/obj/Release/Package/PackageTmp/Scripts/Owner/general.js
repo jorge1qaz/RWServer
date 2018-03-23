@@ -23,14 +23,7 @@ $("#btnFullScreen").on("click", function () {
         statusBtnFullScreen = 0;
     }
 });
-var ruta = "../..";
 var msgPageError = false;
-try {
-    console.log(dash);
-    ruta = dash;
-} catch (e) {
-    ruta = "../..";
-}
 try {
     console.log(msgError);
     msgPageError = msgError;
@@ -40,7 +33,7 @@ try {
 function ValidateAsynchronousAccess() {
     $.ajax({
         type: "POST",
-        url: ruta + "/Acceso.aspx/ValidateAsynchronousAccess",
+        url: "http://licenciacontasis.net/ReportWeb/Acceso.aspx/ValidateAsynchronousAccess", // Cambiar esta ruta al cambiar el dominio
         data: "{idCliente: '" + localStorage.getItem("IdUser").trim() + "',  privateIP: '" + localStorage.getItem("privateIP").trim() + "', publicIP: '" + localStorage.getItem("ipPublic").trim() + "' }",
         contentType: "application/json",
         dataType: "json",
@@ -74,7 +67,8 @@ function ValidateAsynchronousAccess() {
                     break;
             }
         }, error: function (msg) {
-            window.location.href = localStorage.getItem("pageTruncate1").trim().replace("tipoReporte=5", "tipoReporte=7");
+            console.log(msg.responseText);
+            //window.location.href = localStorage.getItem("pageTruncate1").trim().replace("tipoReporte=5", "tipoReporte=7");
             return false;
         }
     });

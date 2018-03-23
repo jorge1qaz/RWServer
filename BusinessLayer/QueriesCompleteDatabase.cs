@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 
 namespace BusinessLayer
@@ -637,21 +638,127 @@ namespace BusinessLayer
             }
             return finalDataTable;
         }
-        public void GenerateTableWithNamesByIds()
+        public DataTable GenerateReportEstadosFinancieros()
         {
             DataSet dataSetRubros = JsonConvert.DeserializeObject<DataSet>(jsonDataSetRubrosByFormatos); // Desearealización del dataset que contiene las listas de activo, pasivo y patrominio
             DataTable[] listRubrosActivo = new DataTable[10];
             DataTable[] listRubrosPasivo = new DataTable[10];
             for (int i = 0; i < 10; i++)
             {
-                listRubrosActivo[i] = dataSetRubros.Tables["listNamesPasivo" + i.ToString()]; // Tabla con los rubros y sus descripciones
-                listRubrosPasivo[i] = dataSetRubros.Tables["listNamesActivo" + i.ToString()];
+                listRubrosActivo[i] = dataSetRubros.Tables["listNamesActivo" + i.ToString()]; // Tabla con los rubros y sus descripciones
+                listRubrosPasivo[i] = dataSetRubros.Tables["listNamesPasivo" + i.ToString()];
             }
+            DataTable[] listRubrosActivoFinalFlash = new DataTable[10];
+            DataTable[] listRubrosPasivoFinalFlash = new DataTable[10];
+            DataSet ActivosComplete = new DataSet();
+            for (int i = 0; i < 10; i++)
+            {
+                listRubrosActivoFinalFlash[i]   = AddColumnWithValues(listRubrosActivo[i], GetReportEstadosFinancieros(), "Decimal", "Total", "Rubro");
+                listRubrosPasivoFinalFlash[i]   = AddColumnWithValues(listRubrosPasivo[i], GetReportEstadosFinancieros(), "Decimal", "Total", "Rubro");
+                
+            }
+            for (int i = 1; i < 10; i++)
+            {
+                if (listRubrosActivoFinalFlash[i].Rows.Count > 2)
+                {
+                    foreach (DataRow item in listRubrosActivoFinalFlash[i].Rows)
+                    {
+                        listRubrosActivoFinalFlash[0].ImportRow(item);
+                    }
+                }
+                if (listRubrosPasivoFinalFlash[i].Rows.Count > 2)
+                {
+                    foreach (DataRow item in listRubrosPasivoFinalFlash[i].Rows)
+                    {
+                        listRubrosPasivoFinalFlash[0].ImportRow(item);
+                    }
+                }
+            }
+            DataTable tableActivosFinalFlash    = listRubrosActivoFinalFlash[0]; // Neta estas tablas si son la culminación de los procesamientos, ahora falta darle el orden para que se unan todos y formen una sola big table
+            DataTable tablePasivosFinalFlash    = listRubrosPasivoFinalFlash[0];
+            DataTable tableFinalFlash           = new DataTable();
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Rubro A");
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Activo");
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Total activo");
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Rubro B");
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Pasivo y patrimonio");
+            tableFinalFlash                     = AddColumn(tableFinalFlash, "String", "Total pasivo y patrimonio");
 
-            DataTable newTable = AddColumnWithValues(listRubrosActivo[1], GetReportEstadosFinancieros(), "Decimal", "Total"); // arreglar esto  mi estimado
-            //DataTable tableFiltered = AddColumnWithValues(newTable, listRubrosActivo[i])
-            DataTable jdoer = new DataTable();
+            DataRow row;
+            foreach (DataRow item in tableActivosFinalFlash.Rows)
+            {
+                row = tableFinalFlash.NewRow();
+                row["Rubro A"]      = item[0].ToString();
+                row["Activo"]       = item[1].ToString();
+                row["Total activo"] = item[2].ToString();
+                tableFinalFlash.Rows.Add(row);
+            }
+            tablePasivosFinalFlash.Columns[0].ColumnName = "Rubro B";
+            tablePasivosFinalFlash.Columns[1].ColumnName = "Pasivo y patrimonio";
+            tablePasivosFinalFlash.Columns[2].ColumnName = "Total pasivo y patrimonio";
+            if (tableActivosFinalFlash.Rows.Count > tablePasivosFinalFlash.Rows.Count)
+            {
+                int diferencia = tableActivosFinalFlash.Rows.Count - tablePasivosFinalFlash.Rows.Count;
+                for (int i = 0; i < diferencia; i++)
+                {
+                    tablePasivosFinalFlash.Rows.Add();
+                }
+            }
+            for (int i = 0; i < tablePasivosFinalFlash.Rows.Count; i++)
+            {
+                tableFinalFlash.Rows[i]["Rubro B"]                      = tablePasivosFinalFlash.Rows[i]["Rubro B"].ToString();
+                tableFinalFlash.Rows[i]["Pasivo y patrimonio"]          = tablePasivosFinalFlash.Rows[i]["Pasivo y patrimonio"].ToString();
+                tableFinalFlash.Rows[i]["Total pasivo y patrimonio"]    = tablePasivosFinalFlash.Rows[i]["Total pasivo y patrimonio"].ToString();
+            }
+            // Agregar totales
+            decimal totalActivo = 0;
+            foreach (DataRow item in tableFinalFlash.Rows)
+            {
+                if (item["Rubro A"].ToString() != "")
+                {
+                    if (item["Rubro A"].ToString().Substring(2, 2) == "99")
+                    {
+                        try
+                        {
+                            totalActivo += decimal.Parse(item["Total activo"].ToString());
+                        }
+                        catch (Exception)
+                        {
+                            totalActivo += 0;
+                        }
+                    }
+                }
+            }
+            decimal totalPasivo = 0;
+            foreach (DataRow item in tableFinalFlash.Rows)
+            {
+                if (item["Rubro B"].ToString() != "")
+                {
+                    if (item["Rubro B"].ToString().Substring(2, 2) == "99")
+                    {
+                        try
+                        {
+                            totalPasivo += decimal.Parse(item["Total pasivo y patrimonio"].ToString());
+                        }
+                        catch (Exception)
+                        {
+                            totalPasivo += 0;
+                        }
+                    }
+                }
+            }
+            DataRow rowTotales = tableFinalFlash.NewRow();
+            rowTotales["Rubro A"]       = "A999";
+            rowTotales["Activo"]        = "Total Activo";
+            rowTotales["Total activo"]  = totalActivo.ToString();
+            rowTotales["Rubro B"]       = "P999";
+            rowTotales["Pasivo y patrimonio"]       = "Total pasivo y patrimonio neto";
+            rowTotales["Total pasivo y patrimonio"] = totalPasivo.ToString();
+            tableFinalFlash.Rows.Add(rowTotales);
 
+            //Agregar separadores de miles y símbolo
+            tableFinalFlash = AddFormatToTable(tableFinalFlash, "Total activo", "Total pasivo y patrimonio");
+            return tableFinalFlash;
         }
         public DataTable AddColumn(DataTable finalDataTable, string type, string columnName) {
             DataColumn column;
@@ -663,26 +770,81 @@ namespace BusinessLayer
             finalDataTable.Columns.Add(column);
             return finalDataTable;
         }
-        public DataTable AddColumnWithValues(DataTable dataTable, DataTable tableCompare, string type, string columnName) {
+        public DataTable AddColumnWithValues(DataTable dataTable, DataTable tableCompare, string type, string columnName1, string columnName2) { // columnName = total
             DataColumn column;
-            column = new DataColumn
+            decimal total = 0;
+            try
             {
-                DataType = Type.GetType("System." + type),
-                ColumnName = columnName
-            };
-            dataTable.Columns.Add(column);
-            foreach (DataRow item in dataTable.Rows)
-            {
-                try
+                if (dataTable.Rows.Count > 0 && !DBNull.Value.Equals(0))
                 {
-                    item[columnName] = mergeTables.GetDecimalByIdInDataTable(tableCompare, columnName, item["a"].ToString(), columnName);
-                }
-                catch
-                {
-                    item[columnName] = 0;
+                    column = new DataColumn
+                    {
+                        DataType = Type.GetType("System." + type),
+                        ColumnName = columnName1
+                    };
+                    dataTable.Columns.Add(column);
+                    dataTable.Columns[0].ColumnName = columnName2;
+                    dataTable.Columns[1].ColumnName = "Descripción";
+                    foreach (DataRow item in dataTable.Rows)
+                    {
+                        try
+                        {   // tabla, rubro, idRubro, total
+                            item[columnName1] = mergeTables.GetDecimalByIdInDataTable(tableCompare, columnName2, item[columnName2].ToString(), columnName1);
+                        }
+                        catch
+                        {
+                            item[columnName1] = 0;
+                        }
+                    }
+                    foreach (DataRow item in dataTable.Rows)
+                    {
+                        if (item[columnName2].ToString().Trim().Substring(2, 2) != "99")
+                        {
+                            total += decimal.Parse(item[columnName1].ToString());
+                        }
+                    }
+                    if (dataTable.Rows[dataTable.Rows.Count - 1][columnName2].ToString().Trim().Substring(2, 2) == "99") // El "a" representa la columna de los ricos rubros mi estimado
+                    {
+                        dataTable.Rows[dataTable.Rows.Count - 1][columnName1] = total;
+                    }
+                    else // agregar row
+                    {
+                        DataRow row = dataTable.NewRow();
+                        row["Rubro"] = dataTable.Rows[dataTable.Rows.Count - 1][columnName2].ToString().Trim().Substring(0, 2) + "99";
+                        row[columnName1] = total;
+                        dataTable.Rows.Add(row);
+                    }
                 }
             }
+            catch (Exception)
+            {
+               
+            }
             return dataTable;
+        }
+        //Agregar separadores de miles y símbolo
+        public DataTable AddFormatToTable(DataTable table, String ColumnName1, String ColumnName2) {
+            NumberFormatInfo nfi;
+            if (tipoMoneda)
+                nfi = new CultureInfo("es-PE", false).NumberFormat;
+            else
+                nfi = new CultureInfo("en-US", false).NumberFormat;
+            nfi.CurrencyDecimalDigits = 2;
+            nfi.NumberGroupSeparator = " ";
+            foreach (DataRow item in table.Rows)
+            {
+                item[ColumnName1] = item[ColumnName1].ToString();
+            }
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                if (table.Rows[i][ColumnName1].ToString() == "")
+                    table.Rows[i][ColumnName1] = "0";
+                if (table.Rows[i][ColumnName2].ToString() == "")
+                    table.Rows[i][ColumnName2] = "0";
+                table.Rows[i][ColumnName1] = decimal.Parse(table.Rows[i][ColumnName1].ToString()).ToString("C", nfi);
+                table.Rows[i][ColumnName2] = decimal.Parse(table.Rows[i][ColumnName2].ToString()).ToString("C", nfi);
+            }
+            return table;
         }
     }
 }

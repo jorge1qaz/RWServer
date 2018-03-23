@@ -491,7 +491,7 @@
     <script> var columnA = 2; var columnB = 5; </script>
     <script> var column2A = 1; var column2B = 4; </script>
     <script>var moneda = "<% Response.Write(Session["TipoMonedaEFNT"].ToString()); %>";</script>
-    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>";</script>
+    <script>var tipoReporte = "<% Response.Write(Session["TipoReporteEFNT"].ToString()); %>"; var ruta = "../..";</script>
     <script src="../Scripts/Owner/RW-009-b.js"></script>
     <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

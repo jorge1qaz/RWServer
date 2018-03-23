@@ -44,5 +44,4 @@
     <br />
     <br />
     <script>var msgError = true;</script>
-    <script src="../Scripts/Owner/general.js"></script>
 </asp:Content>

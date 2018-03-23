@@ -30,12 +30,11 @@ namespace AppWebReportes.Reportes
                 identificacionReporte       = 1,
                 jsonDataSetDBComplete       = dbCompletePlan,
                 jsonDataSetRubrosByFormatos = rubrosCompletePlan,
-                tipoMoneda                  = true,
+                tipoMoneda                  = false,
                 mesProceso                  = 4,
             };
-            //queriesCompleteDatabase.GetReportEstadosFinancieros();
-            //queriesCompleteDatabase.TotalesByRubros();
-            queriesCompleteDatabase.GenerateTableWithNamesByIds();
+
+            queriesCompleteDatabase.GenerateReportEstadosFinancieros();
         }
     }
 }

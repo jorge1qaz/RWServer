@@ -254,7 +254,7 @@
         var listCostumer = <% Response.Write(Session["listCostumer"].ToString()); %>;
     </script>
     <script>
-        var dataSet = <% Response.Write(Session["queryJson"].ToString()); %>;
+        var dataSet = <% Response.Write(Session["queryJson"].ToString()); %>; var ruta = "../..";
     </script>
     <script src="../Scripts/Owner/RW-006.js"></script>
     <script src="../Scripts/Owner/general.js"></script>

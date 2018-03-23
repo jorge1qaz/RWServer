@@ -13,7 +13,7 @@
     var fechaCompleto = dia + "/" + mes + "/" + anio;
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"];
     var listarReporte = function () {
-        var tblReportes = $('#tableReport').DataTable({
+        var tblReportes = $('#MainContent_tableReport').DataTable({
             "destroy": true,
             "processing": true,
             "ordering": false,
@@ -23,7 +23,9 @@
             dom: 'Bfrtip',
             info: false,
             "columnDefs": [
-                { "className": "text-right", targets: [columnA, columnB] } //2, 5
+                { "className": "text-right", targets: [columnA, columnB] }, //2, 5
+                { "className": "text-left",  targets: [columnLeftA, columnLeftB] },
+                { "targets": [0, 3], "visible": false }
             ],
             buttons: [
                 'copy', {

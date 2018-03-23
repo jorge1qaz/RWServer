@@ -52,6 +52,7 @@
         if (tipoReporte == "Formato simple") {
             $("th:contains('Descripción')").css("min-width", "250px");
         }
+        var ruta = "../..";
     </script>
     <script src="../Scripts/Owner/RW-010.js"></script>
     <script src="../Scripts/Owner/general.js"></script>
