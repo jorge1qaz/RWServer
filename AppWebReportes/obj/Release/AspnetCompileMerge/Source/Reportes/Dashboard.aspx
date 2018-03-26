@@ -650,24 +650,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade bd-example-modal-sm" id="modalProgress" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Procesando datos</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="card card-outline-secondary">
-                        <div class="card-block">
-                            <div class="progress">
-                                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         $("#MainContent_rdbEDRPMSNaturaleza").addClass("custom-control-input");
         $("#MainContent_rdbEDRPMSFuncion").addClass("custom-control-input");

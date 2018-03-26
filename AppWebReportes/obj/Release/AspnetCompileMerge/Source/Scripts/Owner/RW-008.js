@@ -20,7 +20,6 @@
             "ordering": false,
             responsive: false,
             paging: false,
-            scrollCollapse: true,
             "language": idioma,
             dom: 'Bfrtip',
             info: false,

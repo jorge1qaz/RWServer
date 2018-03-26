@@ -233,20 +233,6 @@
         $('#modalFCD').modal('show');
     });
     $(".card").css("margin-bottom", "15px");
-    // Progress bar
-    $("form").on("submit", function (event) {
-        $('#modalProgress').modal('show');
-        var porcentajeAvance = 0;
-        var id = setInterval(frame, 80);
-        function frame() {
-            if (porcentajeAvance >= 100) {
-                porcentajeAvance = 0;
-            } else {
-                porcentajeAvance++;
-                progressBar.style.width = porcentajeAvance + '%';
-            }
-        }
-    });
     //Picker
     $(function () {
         $('#MainContent_txtFechaInicio').datepicker({

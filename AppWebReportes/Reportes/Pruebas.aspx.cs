@@ -30,11 +30,12 @@ namespace AppWebReportes.Reportes
                 identificacionReporte       = 1,
                 jsonDataSetDBComplete       = dbCompletePlan,
                 jsonDataSetRubrosByFormatos = rubrosCompletePlan,
-                tipoMoneda                  = false,
-                mesProceso                  = 4,
+                tipoMoneda                  = true,
+                mesProceso                  = 3,
             };
 
-            queriesCompleteDatabase.GenerateReportEstadosFinancieros();
+            string cajaBancos = queriesCompleteDatabase.GetOnlyOneResult(1, "A105");
+
         }
     }
 }

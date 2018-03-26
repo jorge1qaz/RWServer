@@ -28,7 +28,7 @@
                     <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label>
 
-                    <asp:GridView ID="grdTableReport" runat="server" CssClass="table table-bordered table-responsive table-hover table-sm table-striped text-center"></asp:GridView>
+                    <asp:GridView ID="grdTableReport" runat="server" CssClass="table table-bordered table-hover table-sm table-striped text-center"></asp:GridView>
                 </div>
             </div>
         </div>

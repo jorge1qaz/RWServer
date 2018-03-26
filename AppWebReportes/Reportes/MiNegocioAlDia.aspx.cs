@@ -23,11 +23,11 @@ namespace AppWebReportes.Reportes
 
             if (!Page.IsPostBack)
             {
-                Session["Resultado"]    = "0.0";
-                Session["Ventas"]       = "0.0";
-                Session["CajaBancos"]   = "0.0";
-                Session["Deben"]        = "0.0";
-                Session["debo"]         = "0.0";
+                Session["Resultado"]        = "0.0";
+                Session["Ventas"]           = "0.0";
+                Session["CajaBancos"]       = "0.0";
+                Session["Deben"]            = "0.0";
+                Session["debo"]             = "0.0";
                 Session["tipoMoneda"]       = "nuevos soles";
                 Session["simboloMoneda"]    = "S/ ";
             }
@@ -140,36 +140,6 @@ namespace AppWebReportes.Reportes
             Session["Ventas"] =  totalVentas;
             #endregion
         }
-        public void GetTotalForCajaBancos(bool moneda) {
-            NumberFormatInfo nfi;
-            if (moneda)
-            {
-                nfi = new CultureInfo("es-PE", false).NumberFormat;
-                //lblTipoMoneda.Text = "Nuevos soles";
-            }
-            else
-            {
-                nfi = new CultureInfo("en-US", false).NumberFormat;
-                //lblTipoMoneda.Text = "Dólares";
-            }
-            string JsonA105 = GetPathFile("A105");
-            DataTable tabla = new DataTable();
-            tabla = mergeTables.GetAccumulatedTables(JsonA105, lstMes.SelectedValue.ToString());
-            decimal total = 0;
-            try
-            {
-                DataTable ListCuentas = new DataTable();
-                ListCuentas = mergeTables.GetListDist(tabla, "a");
-                total = mergeTables.GetTotalByTable(tabla, ListCuentas, "a", "b", "c", true, false);
-                Session.Remove("CajaBancos");
-                Session["CajaBancos"] = total;
-            }
-            catch (Exception)
-            {
-                Session.Remove("CajaBancos");
-                Session["CajaBancos"] = 0;
-            }
-        }
         public void GetTotalByCuentasCobrar(bool moneda) {
             NumberFormatInfo nfi;
             if (moneda)
@@ -244,21 +214,18 @@ namespace AppWebReportes.Reportes
             if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
             {
                 GetTotalForVentas(true);
-                GetTotalForCajaBancos(true);
-                //GetTotalForResultado(true);
+                GetTotalForCajaBancos(true, int.Parse(lstMes.SelectedValue.ToString()));
                 GetTotalEstadoDeResultado();
                 GetTotalByCuentasCobrar(true);
                 GetTotalByCuentasPagar(true);
             }
             else {
                 GetTotalForVentas(false);
-                GetTotalForCajaBancos(false);
-                //GetTotalForResultado(false);
+                GetTotalForCajaBancos(false, int.Parse(lstMes.SelectedValue.ToString()));
                 GetTotalEstadoDeResultado();
                 GetTotalByCuentasCobrar(false);
                 GetTotalByCuentasPagar(false);
             }
-            
         }
         // Modificaciones
         public void GetTotalEstadoDeResultado()
@@ -300,29 +267,25 @@ namespace AppWebReportes.Reportes
                 Session["simboloMoneda"]    = "$ ";
             }
         }
-        //Jorge Luis|17/01/2018|RW-97
+        //Jorge Luis|26/12/2017|RW-103
         /*Método para */
-        //protected void lstMes_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (Session["TipoMonedaEFNT"].ToString() == "Nuevos soles")
-        //        //GetReport(true, int.Parse(lstMes.SelectedValue));
-        //    else
-        //        //GetReport(false, int.Parse(lstMes.SelectedValue));
-        //}
-        ////Jorge Luis|17/01/2018|RW-97
-        ///*Método para */
-        //protected void lstTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (bool.Parse(lstTipoMoneda.SelectedValue) == true)
-        //    {
-        //        Session["TipoMonedaEFNT"] = "Nuevos soles";
-        //        //GetReport(true, int.Parse(lstMes.SelectedValue));
-        //    }
-        //    else
-        //    {
-        //        Session["TipoMonedaEFNT"] = "Dólares";
-        //        //GetReport(false, int.Parse(lstMes.SelectedValue));
-        //    }
-        //}
+        public void GetTotalForCajaBancos(bool moneda, int mesProceso)
+        {
+            String rootPath             = Server.MapPath("~"); //Ruta física
+            string nameReport           = "rptStdFncr";
+            string dbCompletePlan       = paths.GetStringByFileJson("DataBaseConta", rootPath, Session["IdUser"].ToString(), nameReport, Request.QueryString["idCompany"].ToString(), Request.QueryString["year"].ToString());
+            string rubrosCompletePlan   = paths.GetStringByFileJson("listNamesRubros", rootPath, Session["IdUser"].ToString(), nameReport, Request.QueryString["idCompany"].ToString(), Request.QueryString["year"].ToString());
+            QueriesCompleteDatabase queriesCompleteDatabase = new QueriesCompleteDatabase()
+            {
+                identificacionReporte       = 1,
+                jsonDataSetDBComplete       = dbCompletePlan,
+                jsonDataSetRubrosByFormatos = rubrosCompletePlan,
+                tipoMoneda                  = moneda,
+                mesProceso                  = mesProceso,
+            };
+            string cajaBancos = queriesCompleteDatabase.GetOnlyOneResult(1, "A105");
+            Session.Remove("CajaBancos");
+            Session["CajaBancos"]            = Math.Round(decimal.Parse(cajaBancos), 2);
+        }
     } 
 }

@@ -15,13 +15,13 @@
     </nav>
     <br />
     <br />
-    <div class="">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-block">
                         <h4 class="card-title">Estado de resultado por función</h4>
-                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover">
+                        <table id="tableNaturaleza" class="table table-striped table-bordered table-responsive table-sm table-striped table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -125,33 +125,33 @@
                                     <td>
                                         <asp:Label ID="F199lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>F200</th>
-                                    <th>Gastos operacionales</th>
-                                    <th>
-                                        <asp:Label ID="F200lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F200lbl11" runat="server"></asp:Label></th>
+                                <tr class="font-weight-bold">
+                                    <td>F200</td>
+                                    <td>Gastos operacionales</td>
+                                    <td>
+                                        <asp:Label ID="F200lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F200lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>F206</td>
@@ -321,33 +321,33 @@
                                     <td>
                                         <asp:Label ID="F215lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>F299</th>
-                                    <th>Ganancia (pérdida) por actividades de operaciones</th>
-                                    <th>
-                                        <asp:Label ID="F299lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F299lbl11" runat="server"></asp:Label></th>
+                                <tr class="font-weight-bold">
+                                    <td>F299</td>
+                                    <td>Ganancia (pérdida) por actividades de operaciones</td>
+                                    <td>
+                                        <asp:Label ID="F299lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F299lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>F320</td>
@@ -517,33 +517,33 @@
                                     <td>
                                         <asp:Label ID="F415lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>F699</th>
-                                    <th>Resultado antes de impuesto a las ganancias</th>
-                                    <th>
-                                        <asp:Label ID="F699lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F699lbl11" runat="server"></asp:Label></th>
+                                <tr class="font-weight-bold">
+                                    <td>F699</td>
+                                    <td>Resultado antes de impuesto a las ganancias</td>
+                                    <td>
+                                        <asp:Label ID="F699lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F699lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                 <tr>
                                     <td>F710</td>
@@ -573,33 +573,33 @@
                                     <td>
                                         <asp:Label ID="F710lbl11" runat="server"></asp:Label></td>
                                 </tr>
-                                <tr>
-                                    <th>F799</th>
-                                    <th>Ganancia(pérdida) neta operaciones contable</th>
-                                    <th>
-                                        <asp:Label ID="F799lbl0" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl1" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl2" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl3" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl4" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl5" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl6" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl7" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl8" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl9" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl10" runat="server"></asp:Label></th>
-                                    <th>
-                                        <asp:Label ID="F799lbl11" runat="server"></asp:Label></th>
+                                <tr class="font-weight-bold">
+                                    <td>F799</td>
+                                    <td>Ganancia(pérdida) neta operaciones contable</td>
+                                    <td>
+                                        <asp:Label ID="F799lbl0" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl1" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl2" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl3" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl4" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl5" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl6" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl7" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl8" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl9" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl10" runat="server"></asp:Label></td>
+                                    <td>
+                                        <asp:Label ID="F799lbl11" runat="server"></asp:Label></td>
                                 </tr>
                                     <tr>
                                         <td>F805</td>
@@ -629,33 +629,33 @@
                                         <td>
                                             <asp:Label ID="F805lbl11" runat="server"></asp:Label></td>
                                     </tr>
-                                    <tr>
-                                        <th>F999</th>
-                                        <th>Ganancia (pérdida) neta del ejercicio</th>
-                                        <th>
-                                            <asp:Label ID="F999lbl0" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl1" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl2" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl3" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl4" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl5" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl6" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl7" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl8" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl9" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl10" runat="server"></asp:Label></th>
-                                        <th>
-                                            <asp:Label ID="F999lbl11" runat="server"></asp:Label></th>
+                                    <tr class="font-weight-bold">
+                                        <td>F999</td>
+                                        <td>Ganancia (pérdida) neta del ejercicio</td>
+                                        <td>
+                                            <asp:Label ID="F999lbl0" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl1" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl2" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl3" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl4" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl5" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl6" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl7" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl8" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl9" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl10" runat="server"></asp:Label></td>
+                                        <td>
+                                            <asp:Label ID="F999lbl11" runat="server"></asp:Label></td>
                                     </tr>
                             </tbody>
                         </table>

@@ -80,7 +80,7 @@
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
                         <span>del </span>
                         <asp:Label ID="lblAnio" runat="server"></asp:Label>
-                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tablaReporte" width="100%">
+                        <table class="table table-bordered table-hover table-sm table-striped" id="tablaReporte" width="100%">
                             <thead>
                                 <tr>
                                     <th id="ruc">RUC</th>

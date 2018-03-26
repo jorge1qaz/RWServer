@@ -16,13 +16,13 @@
     </nav>
     <br />
     <br />
-    <div class=""> <%--Se esta ocultando la clase "container" para hacer mas grande el reporte--%>
+    <div class="container"> <%--Se esta ocultando la clase "container" para hacer mas grande el reporte--%>
         <div class="row">
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-block">
                         <h4 class="card-title">Estado de resultado por naturaleza</h4>
-                        <table id="tableNaturaleza" class="table table-striped table-bordered display table-responsive table-sm table-striped table-hover" width="100%">
+                        <table id="tableNaturaleza" class="table table-striped table-bordered table-responsive table-sm table-striped table-hover" width="100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>

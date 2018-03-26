@@ -23,7 +23,7 @@
                             <div class="form">
                                 <div class="row" id="blockCorreo" runat="server">
                                     <div class="input-field col offset-m1 offset-s1 m10 s10">
-                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server" onkeypress="return ComprobarUsuarioKey(event);"></asp:TextBox>
+                                        <asp:TextBox ID="txtCorreo" CssClass="validate" runat="server" autofocus="true" onkeypress="return ComprobarUsuarioKey(event);"></asp:TextBox>
                                         <label for="txtCorreo">Correo electrónico</label>
                                         <div class="red-text center">
                                             <asp:Label ID="lblDoesNotExistUser" Text="" runat="server" />

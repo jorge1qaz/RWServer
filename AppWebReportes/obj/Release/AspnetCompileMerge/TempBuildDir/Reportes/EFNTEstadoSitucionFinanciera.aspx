@@ -66,7 +66,7 @@
                         <asp:Label ID="lblTipoReporte" runat="server"></asp:Label><span> - Expresado en </span>
                         <asp:Label ID="lblTipoMoneda" runat="server"></asp:Label><span> - Para el mes de </span>
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
-                        <asp:GridView ID="tableReport" runat="server" CssClass="table table-bordered table-responsive table-hover table-sm table-striped" width="100%"></asp:GridView>
+                        <asp:GridView ID="tableReport" runat="server" CssClass="table table-bordered table-hover table-sm table-striped" width="100%"></asp:GridView>
                     </div>
                 </div>
             </div>

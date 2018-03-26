@@ -67,7 +67,7 @@
                         <asp:Label ID="lblMesProceso" runat="server"></asp:Label>
                         <div class="row justify-content-md-center">
                             <div class="col-md-8">
-                                <table class="table table-bordered table-responsive table-hover table-sm table-striped text-center" id="tableReport" width="100%">
+                                <table class="table table-bordered table-hover table-sm table-striped text-center" id="tableReport" width="100%">
                                     <thead>
                                         <tr>
                                             <th >Código</th>

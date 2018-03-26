@@ -119,7 +119,7 @@
                                 <asp:Button ID="btnDeleteFilter" CssClass="btn btn-outline-danger" runat="server" Text="Eliminar filtro" OnClick="btnDeleteFilter_Click" />
                             </div>
                         </div>
-                        <table class="table table-bordered table-responsive table-hover table-sm table-striped" id="tablaReporte" width="100%">
+                        <table class="table table-bordered table-hover table-sm table-striped" id="tablaReporte" width="100%">
                             <thead>
                                 <tr>
                                     <th id="codigo">Código</th>
