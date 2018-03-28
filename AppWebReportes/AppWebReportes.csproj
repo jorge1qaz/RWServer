@@ -349,6 +349,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="Fonts\material-icons.css" />
     <Content Include="Fonts\MaterialIcons-Regular.svg" />
+    <Content Include="Foro\Buscador.aspx" />
     <Content Include="icon_rw.ico" />
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
@@ -826,6 +827,13 @@
     </Compile>
     <Compile Include="Bootstrap.master.designer.cs">
       <DependentUpon>Bootstrap.master</DependentUpon>
+    </Compile>
+    <Compile Include="Foro\Buscador.aspx.cs">
+      <DependentUpon>Buscador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro\Buscador.aspx.designer.cs">
+      <DependentUpon>Buscador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfiles\CambiarPassword.aspx.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
