@@ -13,15 +13,14 @@ namespace AppWebReportes.Perfiles
         static string idEncryped = "", bodyHTML = "", email = "";
         private string keyDecrypt = "QYAkRujflBQzKLxAiD";
         protected void Page_Load(object sender, EventArgs e)
-        {
-            
+        {            
             if (!Page.IsPostBack)
             {
                 Session.Remove("IdUser");
 
-                lstRol.DataSource = dat.Extrae("RW_Profiles_List_roles");
-                lstRol.DataTextField = "Descripcion";
-                lstRol.DataValueField = "IdRol";
+                lstRol.DataSource       = dat.Extrae("RW_Profiles_List_roles");
+                lstRol.DataTextField    = "Descripcion";
+                lstRol.DataValueField   = "IdRol";
                 lstRol.DataBind();
             }
         }
