@@ -109,5 +109,15 @@ namespace AppWebReportes
                 stateFinal = 4; // Sí es 4 es porque ha caducado la variable de sesión, avisar el asuario que lleva mucho tiempo con inactividad y se cerró su sesión
             return stateFinal;
         }
+
+        protected void chbMantenerSesion_CheckedChanged(object sender, EventArgs e)
+        {
+            Response.Write(chbMantenerSesion.Checked.ToString());
+            if (chbMantenerSesion.Checked == true)
+            {
+                Response.Cookies["mantenerSesion"].Value = "1";
+                Response.Cookies["mantenerSesion"].Expires = DateTime.Now.AddYears(1);
+            }
+        }
     } 
 }

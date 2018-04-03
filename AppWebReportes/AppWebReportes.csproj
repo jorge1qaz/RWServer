@@ -352,6 +352,7 @@
     <Content Include="Fonts\MaterialIcons-Regular.svg" />
     <Content Include="Foro\Buscador.aspx" />
     <Content Include="Foro\CrearItem.aspx" />
+    <Content Include="Foro\Edicion.aspx" />
     <Content Include="Foro\PreguntasSinRespuesta.aspx" />
     <Content Include="icon_rw.ico" />
     <Content Include="Images\404.jpg" />
@@ -846,6 +847,13 @@
     </Compile>
     <Compile Include="Foro\CrearItem.aspx.designer.cs">
       <DependentUpon>CrearItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foro\Edicion.aspx.cs">
+      <DependentUpon>Edicion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro\Edicion.aspx.designer.cs">
+      <DependentUpon>Edicion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Foro\PreguntasSinRespuesta.aspx.cs">
       <DependentUpon>PreguntasSinRespuesta.aspx</DependentUpon>

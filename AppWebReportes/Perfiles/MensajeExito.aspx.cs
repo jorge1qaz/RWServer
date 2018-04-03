@@ -24,6 +24,7 @@ namespace AppWebReportes.Perfiles
             tipoMensaje                         = Convert.ToInt32(Request.QueryString["tipoReporte"]);
             linkAcceso.Visible                  = false;
             linkForo.Visible                    = false;
+            linkAccesoForo.Visible              = false;
             switch (tipoMensaje)
             {
                 case 1:
@@ -74,6 +75,37 @@ namespace AppWebReportes.Perfiles
                     lblHeader.Text              = headerRegistroItemForo;
                     lblMensajePrincipal.Text    = bodyRegistroItemForo;
                     linkForo.Visible            = true;
+                    break;
+                case 6: // Para registrar un nuevo ítem de Foro
+                    try
+                    {
+                        string idEncrypted  = Request.QueryString["AxRGV7gUfmXD7c2YmF"].Replace(" ", "+");
+                        string keyDecrypt   = "QYAkRujflBQzKLxAiD";
+                        string idDecrypted  = seguridad.Decrypt(idEncrypted, keyDecrypt);
+                        Cliente cliente = new Cliente()
+                        {
+                            IdCliente = idDecrypted.ToString(),
+                            ActivacionCuenta = true
+                        };
+                        if (cliente.TwoParametersUser("RW_Profiles_Activate_Account", 2))
+                        {
+                            Cliente getDataCliente = new Cliente()
+                            {
+                                IdCliente = idDecrypted
+                            };
+                            nameCostumer                = getDataCliente.IdParameterUserName("RW_header_name_user");
+                            lblHeader.Text              = headerActivacionCuenta;
+                            lblMensajePrincipal.Text    = "Felicidades " + nameCostumer + " haz activado tu cuenta, ahora puedes realizar comentarios y asignar puntos en el foro.";
+                            linkAccesoForo.Visible      = true;
+                            Session["RegisterSuccess"]  = "success";
+                        }
+                        else
+                            Response.Redirect("~/Perfiles/MensajeError?tipoReporte=4", false);
+                    }
+                    catch (Exception)
+                    {
+                        Response.Redirect("~/Perfiles/MensajeError?tipoReporte=4", false);
+                    }
                     break;
                 default:
                     Response.Redirect("~/Perfiles/MensajeError");

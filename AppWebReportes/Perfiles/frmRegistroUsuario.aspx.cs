@@ -71,6 +71,13 @@ namespace AppWebReportes.Perfiles
                     idEncryped  = seguridad.Encrypt(txtConfirmarEmail.Text.ToString().Trim().ToLower(), keyDecrypt);
                     bodyHTML    = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
                     correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
+                    if (Session["tipoForo"] == null)
+                    {
+                        bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
+                    }
+                    else {
+                        bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 3);
+                    }
                     Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=3", false);
                 }
                 else

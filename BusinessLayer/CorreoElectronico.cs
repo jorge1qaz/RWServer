@@ -55,6 +55,9 @@ namespace BusinessLayer
                 case 2: // Mensaje para activar cuenta
                     message = "<div class='row'> <h2>¡Hola " + nameCostumer + "!</h2><br><p>Te damos la bienvenida a SmartReport, para activar tu cuenta has clic sobre el botón “Activar cuenta”.</p><br><a style='text-decoration: none; cursor: pointer; line-height: 36px; padding: 0 2rem; color: #fff; background-color: #0275d8;border-color: #0275d8; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; user-select:none; border: 1px solid transparent; font-size: 1rem; border-radius: .25rem; transition: all .2s ease-in-out; touch-action: manipulation;text-transform: none; overflow: visible; font-family: sans-serif; box-sizing: inherit;' href='" + seguridad.domain + "Perfiles/MensajeExito.aspx?AxRGV7gUfmXD7c2YmF=" + idEncrypted + "&tipoReporte=4'>Activar cuenta</a> </div>";
                     break;
+                case 3: // Mensaje para activar cuenta
+                    message = "<div class='row'> <h2>¡Hola " + nameCostumer + "!</h2><br><p>Te damos la bienvenida a Contasis con esta cuenta puedes acceder a diversos servicios que ofrecemos, para activar tu cuenta has clic sobre el botón “Activar cuenta”.</p><br><a style='text-decoration: none; cursor: pointer; line-height: 36px; padding: 0 2rem; color: #fff; background-color: #0275d8;border-color: #0275d8; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; user-select:none; border: 1px solid transparent; font-size: 1rem; border-radius: .25rem; transition: all .2s ease-in-out; touch-action: manipulation;text-transform: none; overflow: visible; font-family: sans-serif; box-sizing: inherit;' href='" + seguridad.domain + "Perfiles/MensajeExito.aspx?AxRGV7gUfmXD7c2YmF=" + idEncrypted + "&tipoReporte=6'>Activar cuenta</a> </div>";
+                    break;
             }
             return message;
         }

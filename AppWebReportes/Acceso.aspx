@@ -51,6 +51,10 @@
                                 <div class="row center">
                                     <a runat="server" href="~/Perfiles/frmRegistroUsuario.aspx" id="linkCrearCuenta">Crear cuenta</a>
                                 </div>
+                                <div class="row center">
+                                    <asp:CheckBox ID="chbMantenerSesion" runat="server" AutoPostBack="true"  OnCheckedChanged="chbMantenerSesion_CheckedChanged"/>
+                                    <label for="Contenido_chbMantenerSesion">Mantener la sesión iniciada</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,6 +84,7 @@
             </div>
         </div>
     </div>
+    <script>$("#MainContent_chbMantenerSesion").addClass("custom-control-input");</script>
     <script>
         function trigger() {
             $(function () {
@@ -108,7 +113,31 @@
         findIP.then((x) => { valor = x; $("#hiddenLabel").text(valor); });
     </script>
     <script>var initialPage = <% Response.Write(Session["initialPage"]); %>;</script>
-    <script>var page =  '<% string cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard"; Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
+    <script>var page =  '<% string cadena = "";
+        try
+        {
+            switch (Request.QueryString["tipo"].ToString())
+            {
+                case "foro":
+                    cadena = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    Response.Write(cadena.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
+                    break;
+                case "smart":
+                    cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard";
+                    Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+                default:
+                    cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard";
+                    Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+            }
+        }
+        catch (Exception)
+        {
+            cadena = HttpContext.Current.Request.Url + "/Reportes/Dashboard";
+            Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+        }
+         %>' </script>
     <script>var pageTruncate1 =  '<% string cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5"; Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
     <script>var pageTruncate2 =  '<% string cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6"; Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
     <script>var publicIP = "<% Response.Write(Request.ServerVariables["REMOTE_ADDR"].ToString()); %>"; if (publicIP == "::1") { publicIP = "170.239.101.114"; }</script>

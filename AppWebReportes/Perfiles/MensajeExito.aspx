@@ -20,6 +20,7 @@
                                         <asp:Label ID="lblMensajePrincipal" runat="server" Text="Label"></asp:Label>
                                         <br />
                                         <a runat="server" href="~/Acceso.aspx" id="linkAcceso" class="btn btn-primary">Iniciar sesión</a>
+                                        <a runat="server" href="~/Acceso.aspx?tipo=foro" id="linkAccesoForo" class="btn btn-primary">Iniciar sesión</a>
                                         <a runat="server" href="~/Foro/PreguntasSinRespuesta.aspx" id="linkForo" class="btn btn-primary">Preguntas sin respuesta</a>
                                     </div>
                                 </div>
