@@ -9,11 +9,11 @@ namespace AppWebReportes.Foro
     public partial class CrearItem : System.Web.UI.Page
     {
         AccesoDatos datos = new AccesoDatos();
+        public string jsonListaTags = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             List<string> listaTags = datos.ExtraeList("[foro].[FORO_List_Tags]");
-            string json = JsonConvert.SerializeObject(listaTags, Formatting.None);
-            Response.Write(json);
+            jsonListaTags = JsonConvert.SerializeObject(listaTags, Formatting.None);
             if (!Page.IsPostBack)
             {
                 lstProductos.DataSource     = datos.Extrae("[foro].[FORO_List_Productos]");
@@ -35,7 +35,10 @@ namespace AppWebReportes.Foro
                 VotosUtiles = 0, // se le asigna cero, ya que apenas se esta creando el ítem
                 IdProducto = Int16.Parse(lstProductos.SelectedValue.ToString())
             };
-            foroForos.CreateItem("[foro].[FORO_Create_New_Item]", 1);
+            if (foroForos.CreateItem("[foro].[FORO_Create_New_Item]", 1))
+                Response.Redirect("~/Perfiles/MensajeExito?tipoReporte=5", false);
+            else
+                Response.Redirect("~/Perfiles/MensajeError", false);
         }
     }
 }
