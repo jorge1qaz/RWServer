@@ -59,10 +59,18 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="txtTag">Selecionar etiqueta</label>
-                                        <asp:TextBox ID="txtTag" runat="server" CssClass="form-control" placeholder="Ingrese la etiqueta"></asp:TextBox>
-                                    </div>
+                                    <%--<div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group ui-widget">
+                                                <label for="tags">Selecionar etiqueta </label>
+                                                <asp:TextBox ID="txtTag" runat="server" CssClass="form-control" placeholder="Ingrese la etiqueta"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <br />
+                                            <button id="btnRegistrarTag" class="btn btn-success">Agregar</button>
+                                        </div>
+                                    </div>--%>
                                     <div class="form-group">
                                         <div class="text-center">
                                             <label class="custom-control custom-checkbox">
@@ -122,44 +130,9 @@
             });
         });
     </script>
-    <script src="../Scripts/Owner/FORO-001.js"></script>
-
-    <%--Desde aquí--%>
     <script>
-        $(function () {
-            var availableTags = [
-                "ActionScript",
-                "AppleScript",
-                "Asp",
-                "BASIC",
-                "C",
-                "C++",
-                "Clojure",
-                "COBOL",
-                "ColdFusion",
-                "Erlang",
-                "Fortran",
-                "Groovy",
-                "Haskell",
-                "Java",
-                "JavaScript",
-                "Lisp",
-                "Perl",
-                "PHP",
-                "Python",
-                "Ruby",
-                "Scala",
-                "Scheme"
-            ];
-            $("#tags").autocomplete({
-                source: availableTags
-            });
-        });
+        var availableTags = <% Response.Write(jsonListaTags.ToString());%>;
     </script>
-
-    <div class="ui-widget">
-        <label for="tags">Tags: </label>
-        <input id="tags">
-    </div>
+    <script src="../Scripts/Owner/FORO-001.js"></script>
 
 </asp:Content>

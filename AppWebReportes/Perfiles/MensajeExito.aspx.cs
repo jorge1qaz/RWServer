@@ -12,6 +12,10 @@ namespace AppWebReportes.Perfiles
         static string bodyRegistroUsuario           = "¡Estás a punto de crear tu cuenta en SmartReport! Hemos enviado un mensaje a tu correo electrónico con el cual podrás activar tu cuenta, recuerda que sí no lo encuentras, revisa la sección de spam.";
         static string headerRegistroUsuario         = "Activa tu cuenta";
         static string headerActivacionCuenta        = "¡Cuenta activada con éxito!";
+        static string bodyRegistroItemForo          = "Perfecto, ahora se cuenta con un nuevo ítem en la base del conocimiento de los productos de Contasis, gracias a ello se podrá sistematizar solución a muchos problemas. Tu aporte es de gran ayuda.";
+        static string headerRegistroItemForo        = "¡Ha registrado un nuevo elemento de foro con éxito! ";
+
+
         static int tipoMensaje                      = 0;
         Seguridad seguridad                         = new Seguridad();
         static string nameCostumer                  = "";
@@ -19,6 +23,7 @@ namespace AppWebReportes.Perfiles
         {
             tipoMensaje                         = Convert.ToInt32(Request.QueryString["tipoReporte"]);
             linkAcceso.Visible                  = false;
+            linkForo.Visible                    = false;
             switch (tipoMensaje)
             {
                 case 1:
@@ -64,6 +69,11 @@ namespace AppWebReportes.Perfiles
                     {
                         Response.Redirect("~/Perfiles/MensajeError?tipoReporte=4", false);
                     }
+                    break;
+                case 5: // Para registrar un nuevo ítem de Foro
+                    lblHeader.Text              = headerRegistroItemForo;
+                    lblMensajePrincipal.Text    = bodyRegistroItemForo;
+                    linkForo.Visible            = true;
                     break;
                 default:
                     Response.Redirect("~/Perfiles/MensajeError");

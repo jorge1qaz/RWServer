@@ -49,4 +49,9 @@
             $(element).parents("input").addClass("text-sucess").removeClass("text-danger");
         }
     });
+
+    $("#MainContent_txtTag").autocomplete({
+        source: availableTags
+    });
+
 });
