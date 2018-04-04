@@ -18,6 +18,33 @@ namespace AppWebReportes
         {
             Session["initialPage"] = 1;
             rootPath = Server.MapPath("~");
+            try
+            {
+                if (Request.Cookies["mantenerSesion"] != null)
+                {
+                    HttpCookie myCookie = new HttpCookie("mantenerSesion");
+                    myCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(myCookie);
+                }
+                if (Request.Cookies["idUserCookie"] != null)
+                {
+                    HttpCookie myCookie = new HttpCookie("idUserCookie");
+                    myCookie.Expires = DateTime.Now.AddDays(-1d);
+                    Response.Cookies.Add(myCookie);
+                }
+            }
+            catch
+            {
+            }
+            blockMantenerSesion.Visible = false;
+            try
+            {
+                if (Request.QueryString["tipo"].ToString() == "foro")
+                    blockMantenerSesion.Visible = true;
+            }
+            catch
+            {
+            }
             if (!Page.IsPostBack)
             {
                 if ((string)Session["IdUser"]   != null)
@@ -26,6 +53,7 @@ namespace AppWebReportes
                     blockRegisterSuccess.Visible = true;
                 else
                     blockRegisterSuccess.Visible = false;
+                
             }
         }
         [WebMethod(EnableSession = true)]
@@ -38,6 +66,10 @@ namespace AppWebReportes
                 resultado                                   = true;
                 HttpContext.Current.Session["IdUser"]       = paramIdCliente;
                 HttpContext.Current.Session["initialPage"]  = 0; // 0 = Indica que no es la primera vez que se accede a la página
+                HttpCookie MyCookie = new HttpCookie("idUserCookie");
+                MyCookie.Value = paramIdCliente;
+                MyCookie.Expires = DateTime.Now.AddDays(365);
+                HttpContext.Current.Response.Cookies.Add(MyCookie);
             }
             else
                 resultado = false;
@@ -112,7 +144,6 @@ namespace AppWebReportes
 
         protected void chbMantenerSesion_CheckedChanged(object sender, EventArgs e)
         {
-            Response.Write(chbMantenerSesion.Checked.ToString());
             if (chbMantenerSesion.Checked == true)
             {
                 Response.Cookies["mantenerSesion"].Value = "1";

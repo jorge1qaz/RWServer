@@ -14,64 +14,57 @@ namespace AppWebReportes.Foro
         {
             linkSesion.Visible = false;
             linkCerrarSesion.Visible = false;
-
-            Response.Write(Request.Cookies["mantenerSesion"].Value.ToString());
             try
             {
-                if (Request.Cookies["mantenerSesion"].Value.ToString() != null && Request.Cookies["mantenerSesion"].Value.ToString() == "1") // Comprobamos que el usuario haya permitido el uso de cookies
+                if (Request.Cookies["mantenerSesion"].Value.ToString() == "1") // Sí el usuario decidió mantener iniciada la sesión, entonces se empleará la cookie
                 {
-                    if (Session["IdUser"] != null) //Compruebo que el usuario se haya logeado
+                    try
                     {
-                        Response.Cookies["idUserCookie"].Value = Session["idUser"].ToString();
-                        Response.Cookies["idUserCookie"].Expires = DateTime.Now.AddYears(1);
-                        IdUser = Response.Cookies["idUserCookie"].Value.ToString();
-                    } // despues de esto sí no existe la variable de sesión obviamente esta almacenado en la cookie
-                    else
-                    {
-                        try
+                        IdUser = Request.Cookies["idUserCookie"].Value;
+                        if (IdUser == "" || IdUser == null) // Se supone que se perdió la cookie
                         {
-                            IdUser = Response.Cookies["idUserCookie"].Value.ToString();
+                            linkSesion.Visible = true;
+                            linkCerrarSesion.Visible = false;
                         }
-                        catch (Exception x)
+                        else // Aquí se tiene al usuario logeado
                         {
-                            IdUser = "";
+                            linkSesion.Visible = false;
+                            linkCerrarSesion.Visible = true;
+                            Cliente cliente = new Cliente() // Instancio el objeto CLIENTE
+                            { IdCliente = IdUser }; // Guardo en la variable IdCliente el ID del cliente
+                            lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
+                            linkCerrarSesion.Visible = true;
+                            linkSesion.Visible = false;
                         }
                     }
-                }
-                else // Esto quiere decir que la sesión debe durar poco, solo lo que dure la vida de una variable de sesión común 
-                {
-                    if (Session["IdUser"] != null) // Compruebo que el usuario se haya logeado
+                    catch
                     {
-                        IdUser = Session["IdUser"].ToString();
-                    }
-                    else
-                    {
-                        linkSesion.InnerText = "Iniciar sesión";
-                        linkCerrarSesion.Visible = false;
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception) // Si entra al catch es porque no decidió mantener iniciada la sesión
             {
-                if (Session["IdUser"] != null) // Compruebo que el usuario se haya logeado
+                if (Session["IdUser"] != null)
                 {
                     IdUser = Session["IdUser"].ToString();
+                    Cliente cliente = new Cliente() // Instancio el objeto CLIENTE
+                    { IdCliente = IdUser }; // Guardo en la variable IdCliente el ID del cliente
+                    lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
+                    linkCerrarSesion.Visible = true;
+                    linkSesion.Visible = false;
+                }
+                else
+                {
+                    linkSesion.Visible = true;
+                    linkCerrarSesion.Visible = false;
                 }
             }
-            
-            if (IdUser != "") //Compruebo que el usuario se haya logeado
-            {
-                Cliente cliente = new Cliente() // Instancio el objeto CLIENTE
-                { IdCliente = IdUser }; // Guardo en la variable IdCliente el ID del cliente
-                lblNombreUsuario.Text = cliente.IdParameterUserName("RW_header_name_user"); // Traigo desde la base de datos, el nombre del cliente
-                linkCerrarSesion.Visible = true;
-                linkSesion.Visible = false;
-            }
-            else
-            {
-                linkCerrarSesion.Visible = false;
-                linkSesion.Visible = true;
-            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string query = txtBuscar.Text.ToString().Trim();
+            Response.Redirect("~/Foro/Resultados.aspx?query=" + query, false);
         }
     }
 }

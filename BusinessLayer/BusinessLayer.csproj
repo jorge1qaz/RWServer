@@ -57,6 +57,7 @@
     <Compile Include="CorreoElectronico.cs" />
     <Compile Include="Datos.cs" />
     <Compile Include="Directorios.cs" />
+    <Compile Include="Foro_Comentarios.cs" />
     <Compile Include="Foro_Foros.cs" />
     <Compile Include="MargenUtilidad.cs" />
     <Compile Include="MergeTables.cs" />

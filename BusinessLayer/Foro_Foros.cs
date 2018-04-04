@@ -16,7 +16,8 @@ namespace BusinessLayer
         public Int16 IdProducto { get; set; }
         public string IdCliente { get; set; }
         public string DetalleEdicion { get; set; }
-        
+        public string NombreProducto { get; set; }
+
 
         public bool CreateItem(string storeProcedure, Int16 typeProcedure)
         {
@@ -146,5 +147,6 @@ namespace BusinessLayer
             con.Disconnect();
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
         }
+
     }
 }

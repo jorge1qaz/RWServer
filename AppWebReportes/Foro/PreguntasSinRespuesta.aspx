@@ -16,7 +16,7 @@
                             <tbody>
                                 <tr>
                                     <td class="font-weight-bold">
-                                        <asp:LinkButton ID="LinkButton1" runat="server">
+                                        <asp:LinkButton ID="linkEditar" runat="server">
                                             <asp:Label ID="lblCodigo" runat="server" Text='<%# Eval("Codigo") %>'></asp:Label>&nbsp;
                                             <asp:Label ID="lblTitulo" runat="server" Text='<%# Eval("Titulo") %>'></asp:Label>
                                         </asp:LinkButton>

@@ -52,5 +52,30 @@ namespace BusinessLayer
             con.Disconnect();
             return lista;
         }
+        //Jorge Luis|04/04/2018|RW-
+        /*Método para extraer datos de la base de datos web, mediante una consulta tres parámetros, el valor de la variable sql debe ser nvarchar*/
+        public DataTable Extrae(string consulta, string parametro, string nombreDBParametro)
+        {
+            DataTable tabla = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand();
+            tabla = new DataTable();
+            //cmd.Connection = con.cadena;
+            cmd.Connection = con.cadena;
+
+            SqlParameter param = new SqlParameter();
+            param.SqlDbType = SqlDbType.NVarChar; 
+            param.ParameterName = nombreDBParametro ;
+            param.Value = parametro;
+            cmd.Parameters.Add(param);
+
+            cmd.CommandText = consulta;
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Connect();
+            da.SelectCommand = cmd;
+            da.Fill(tabla);
+            con.Disconnect();
+            return tabla;
+        }
     }
 }

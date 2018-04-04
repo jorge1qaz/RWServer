@@ -20,7 +20,6 @@ namespace AppWebReportes.Foro
         protected void dtlListaPreguntasSinRespuesta_ItemCommand(object source, System.Web.UI.WebControls.DataListCommandEventArgs e)
         {
             string id = dtlListaPreguntasSinRespuesta.DataKeys[e.Item.ItemIndex].ToString();
-            Response.Write(id.ToString());
             Response.Redirect("~/Foro/Edicion.aspx?idForo=" + id);
         }
     }

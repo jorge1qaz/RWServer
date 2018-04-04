@@ -51,7 +51,7 @@
                                 <div class="row center">
                                     <a runat="server" href="~/Perfiles/frmRegistroUsuario.aspx" id="linkCrearCuenta">Crear cuenta</a>
                                 </div>
-                                <div class="row center">
+                                <div class="row center" runat="server" id="blockMantenerSesion">
                                     <asp:CheckBox ID="chbMantenerSesion" runat="server" AutoPostBack="true"  OnCheckedChanged="chbMantenerSesion_CheckedChanged"/>
                                     <label for="Contenido_chbMantenerSesion">Mantener la sesión iniciada</label>
                                 </div>

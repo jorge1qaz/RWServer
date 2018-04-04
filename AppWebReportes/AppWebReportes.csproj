@@ -352,8 +352,10 @@
     <Content Include="Fonts\MaterialIcons-Regular.svg" />
     <Content Include="Foro\Buscador.aspx" />
     <Content Include="Foro\CrearItem.aspx" />
+    <Content Include="Foro\Detalle.aspx" />
     <Content Include="Foro\Edicion.aspx" />
     <Content Include="Foro\PreguntasSinRespuesta.aspx" />
+    <Content Include="Foro\Resultados.aspx" />
     <Content Include="icon_rw.ico" />
     <Content Include="Images\404.jpg" />
     <Content Include="Images\brothercito-right.png" />
@@ -366,6 +368,7 @@
     <Content Include="Images\estado_de_resultado_default.png" />
     <Content Include="Images\flujo_de_caja_activated.png" />
     <Content Include="Images\flujo_de_caja_default.png" />
+    <Content Include="Images\foroBuscar.jpg" />
     <Content Include="Images\icono.ico" />
     <Content Include="Images\icon_rw.ico" />
     <Content Include="Images\image-dashboard.png" />
@@ -848,6 +851,13 @@
     <Compile Include="Foro\CrearItem.aspx.designer.cs">
       <DependentUpon>CrearItem.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Foro\Detalle.aspx.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro\Detalle.aspx.designer.cs">
+      <DependentUpon>Detalle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Foro\Edicion.aspx.cs">
       <DependentUpon>Edicion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -861,6 +871,13 @@
     </Compile>
     <Compile Include="Foro\PreguntasSinRespuesta.aspx.designer.cs">
       <DependentUpon>PreguntasSinRespuesta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Foro\Resultados.aspx.cs">
+      <DependentUpon>Resultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Foro\Resultados.aspx.designer.cs">
+      <DependentUpon>Resultados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfiles\CambiarPassword.aspx.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
