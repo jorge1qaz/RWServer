@@ -138,8 +138,56 @@
             Response.Write(cadena.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
         }
          %>' </script>
-    <script>var pageTruncate1 =  '<% string cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5"; Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
-    <script>var pageTruncate2 =  '<% string cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6"; Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", "")); %>' </script>
+    <script>var pageTruncate1 =  '<% string cadena2 = "";
+        try
+        {
+            switch (Request.QueryString["tipo"].ToString())
+            {
+                case "foro":
+                    cadena2 = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    Response.Write(cadena2.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
+                    break;
+                case "smart":
+                    cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5";
+                    Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+                default:
+                    cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5";
+                    Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+            }
+        }
+        catch (Exception)
+        {
+            cadena2 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=5";
+            Response.Write(cadena2.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+        }
+        %>' </script>
+    <script>var pageTruncate2 =  '<% string cadena3 = "";
+        try
+        {
+            switch (Request.QueryString["tipo"].ToString())
+            {
+                case "foro":
+                    cadena3 = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    Response.Write(cadena3.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
+                    break;
+                case "smart":
+                    cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6";
+                    Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+                default:
+                    cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6";
+                    Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+                    break;
+            }
+        }
+        catch (Exception)
+        {
+            cadena3 = HttpContext.Current.Request.Url + "/Perfiles/MensajeError?tipoReporte=6";
+            Response.Write(cadena3.Replace("acceso/", "").Replace("Acceso/", "").Replace("Acceso.aspx/", "").Replace("acceso.aspx/", ""));
+        }
+        %>' </script>
     <script>var publicIP = "<% Response.Write(Request.ServerVariables["REMOTE_ADDR"].ToString()); %>"; if (publicIP == "::1") { publicIP = "170.239.101.114"; }</script>
     <script src="Scripts/Owner/login.js" type="text/javascript"></script>
 </asp:Content>

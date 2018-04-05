@@ -542,6 +542,7 @@
     <Content Include="Datos\pruebas%40gmail.com.zip" />
     <Content Include="Scripts\Charts\jquery-ui.min.js" />
     <Content Include="Scripts\Owner\FORO-001.js" />
+    <Content Include="Scripts\Owner\FORO-007.js" />
     <Content Include="WS.asmx" />
     <None Include="Properties\PublishProfiles\ReportesContasis.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />

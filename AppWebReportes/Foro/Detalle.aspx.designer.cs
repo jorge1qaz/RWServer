@@ -103,6 +103,15 @@ namespace AppWebReportes.Foro {
         protected global::System.Web.UI.WebControls.CheckBox chbVotoUtilItem;
         
         /// <summary>
+        /// lblMarcarDesmarcarVoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblMarcarDesmarcarVoto;
+        
+        /// <summary>
         /// lblDescripción control.
         /// </summary>
         /// <remarks>
@@ -164,5 +173,23 @@ namespace AppWebReportes.Foro {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dtlComentarios;
+        
+        /// <summary>
+        /// dtlComentariosModeracion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtlComentariosModeracion;
+        
+        /// <summary>
+        /// dtlEditores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList dtlEditores;
     }
 }

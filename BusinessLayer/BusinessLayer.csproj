@@ -59,6 +59,7 @@
     <Compile Include="Directorios.cs" />
     <Compile Include="Foro_Comentarios.cs" />
     <Compile Include="Foro_Foros.cs" />
+    <Compile Include="Foro_Puntos.cs" />
     <Compile Include="MargenUtilidad.cs" />
     <Compile Include="MergeTables.cs" />
     <Compile Include="Paths.cs" />

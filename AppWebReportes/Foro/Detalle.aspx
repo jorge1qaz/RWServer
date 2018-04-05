@@ -25,8 +25,6 @@
         </div>
     </nav>
     <br />
-
-    <br />
     <div class="container">
         <div class="row">
             <h2>
@@ -43,9 +41,9 @@
             <div class="offset-md-5 col-md-3 col-sm-12">
                 <div class="text-center" runat="server" id="blockMarcarVotoUtil">
                     <label class="custom-control custom-checkbox">
-                        <asp:CheckBox ID="chbVotoUtilItem" runat="server" />
+                        <asp:CheckBox ID="chbVotoUtilItem" runat="server" AutoPostBack="True" OnCheckedChanged="chbVotoUtilItem_CheckedChanged" />
                         <span class="custom-control-indicator"></span>
-                        <span class="custom-control-description">Marcar como útil  </span>
+                        <span class="custom-control-description" runat="server" id="lblMarcarDesmarcarVoto"></span>
                     </label>
                 </div>
             </div>
@@ -97,6 +95,8 @@
                 <h3 class="text-justify font-weight-bold">Comentarios</h3>
                 <div class="row">
                     <div class="col-sm-12">
+                        <em>Todos los comentarios deben pasar por un proceso de moderación, por lo cual, su comentario no aparecerá de inmediato, sino que sólo después de que un moderador haya habilitado su comentario.</em>
+                        <br /><br />
                         <asp:DataList ID="dtlComentarios" runat="server" ShowFooter="False" DataKeyField="IdComentario" OnItemCommand="dtlComentarios_ItemCommand" RepeatLayout="Flow">
                             <ItemTemplate>
                                 <table style="width: 100%;">
@@ -135,9 +135,37 @@
                                 </table>
                             </ItemTemplate>
                         </asp:DataList>
+                        <asp:DataList ID="dtlComentariosModeracion" runat="server" ShowFooter="False" DataKeyField="IdComentario" OnItemCommand="dtlComentariosModeracion_ItemCommand" RepeatLayout="Flow">
+                            <ItemTemplate>
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <td class="text-justify font-weight-bold">
+                                            <asp:Label ID="lblNombres" runat="server" Text='<%# Eval("Nombres") %>'></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-justify">
+                                            <asp:Label ID="lblDescripcion" CssClass="text-justify" runat="server" Text='<%# Eval("Descripcion") %>'></asp:Label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                        <em>Realizado el 
+                                            <asp:Label ID="lblFechaModificacionComentario" runat="server" Text='<%# Eval("FechaCreacion") %>'></asp:Label>
+                                        </em>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblMensajeBloqueoComentario" runat="server" Text='<%# Eval("BloqueoEdicion") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Button ID="btnHabilitarComentario" CssClass="btn btn-primary" runat="server" Text="Habilitar pregunta" />
+                                    </td>
+                                </tr>
+                                </table>
+                            </ItemTemplate>
+                        </asp:DataList>
                     </div>
                 </div>
-
                 <br />
             </div>
         </div>
@@ -150,20 +178,35 @@
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table">
-                        <tr>
-                            <td>Contribuyente</td>
-                            <td>Fecha</td>
-                        </tr>
-                        <tr>
-                            <td><span>Viktor Krum </span></td>
-                            <td><em>El 01 de Abril, 2018</em></td>
-                        </tr>
-                        <tr>
-                            <td><span>Susan Bones</span></td>
-                            <td><em>El 02 de Abril, 2018</em></td>
-                        </tr>
-                    </table>
+                    <asp:DataList ID="dtlEditores" runat="server" ShowFooter="False" OnItemCommand="dtlEditores_ItemCommand" RepeatLayout="Flow">
+                        <ItemTemplate>
+                            <table style="width: 100%;" class="table">
+                                <tr class="text-justify font-weight-bold">
+                                    <td>Contribuyente</td>
+                                    <td>Detalle</td>
+                                </tr>
+                                <tr class="text-justify">
+                                    <td>
+                                        <asp:Label ID="lblNameContribuyente" runat="server" Text='<%# Eval("Nombres") %>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblDetalleEdicion" runat="server" Text='<%# Eval("DetalleEdicion") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>Fecha edición </em>
+                                    </td>
+                                    <td>
+                                        <em> 
+                                            <asp:Label ID="lblFechaModificacion" runat="server" Text='<%# Eval("FechaModificación") %>'></asp:Label>
+                                        </em>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:DataList>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>

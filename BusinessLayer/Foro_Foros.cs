@@ -18,8 +18,7 @@ namespace BusinessLayer
         public string DetalleEdicion { get; set; }
         public string NombreProducto { get; set; }
 
-
-        public bool CreateItem(string storeProcedure, Int16 typeProcedure)
+        public bool CreateItem(string storeProcedure)
         {
             Conexion con = new Conexion();
             SqlCommand cmd = new SqlCommand();
@@ -57,11 +56,17 @@ namespace BusinessLayer
             paramRespondido.Value = Respondido;
             cmd.Parameters.Add(paramRespondido);
 
-            SqlParameter paramVotosUtiles = new SqlParameter();
-            paramVotosUtiles.SqlDbType = SqlDbType.Int;
-            paramVotosUtiles.ParameterName = "@VotosUtiles";
-            paramVotosUtiles.Value = VotosUtiles;
-            cmd.Parameters.Add(paramVotosUtiles);
+            SqlParameter paramIdProducto = new SqlParameter();
+            paramIdProducto.SqlDbType = SqlDbType.SmallInt;
+            paramIdProducto.ParameterName = "@IdProducto";
+            paramIdProducto.Value = IdProducto;
+            cmd.Parameters.Add(paramIdProducto);
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
 
             SqlParameter paramComprobacion = new SqlParameter();
             paramComprobacion.Direction = ParameterDirection.Output;
@@ -69,18 +74,12 @@ namespace BusinessLayer
             paramComprobacion.ParameterName = "@Comprobacion";
             cmd.Parameters.Add(paramComprobacion);
 
-            SqlParameter paramIdProducto = new SqlParameter();
-            paramIdProducto.SqlDbType = SqlDbType.SmallInt;
-            paramIdProducto.ParameterName = "@IdProducto";
-            paramIdProducto.Value = IdProducto;
-            cmd.Parameters.Add(paramIdProducto);
-
             con.Connect();
             cmd.ExecuteNonQuery();
             con.Disconnect();
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
         }
-        public bool EditItem(string storeProcedure, Int16 typeProcedure)
+        public bool EditItem(string storeProcedure)
         {
             Conexion con = new Conexion();
             SqlCommand cmd = new SqlCommand();
