@@ -10,6 +10,7 @@ namespace AppWebReportes.Perfiles
         static string bodyCambiarDePassword         = "Felicitaciones se ha actualizado tu contraseña, ¿Deseas iniciar sesión?";
         static string headerCambiarDePassword       = "¡Cambio de contraseña con éxito!";
         static string bodyRegistroUsuario           = "¡Estás a punto de crear tu cuenta en SmartReport! Hemos enviado un mensaje a tu correo electrónico con el cual podrás activar tu cuenta, recuerda que sí no lo encuentras, revisa la sección de spam.";
+        static string bodyRegistroUsuarioForo       = "¡Estás a punto de crear tu cuenta en nuestros productos Contasis! Hemos enviado un mensaje a tu correo electrónico con el cual podrás activar tu cuenta, recuerda que sí no lo encuentras, revisa la sección de spam.";
         static string headerRegistroUsuario         = "Activa tu cuenta";
         static string headerActivacionCuenta        = "¡Cuenta activada con éxito!";
         static string bodyRegistroItemForo          = "Perfecto, ahora se cuenta con un nuevo ítem en la base del conocimiento de los productos de Contasis, gracias a ello se podrá sistematizar solución a muchos problemas. Tu aporte es de gran ayuda.";
@@ -106,6 +107,10 @@ namespace AppWebReportes.Perfiles
                     {
                         Response.Redirect("~/Perfiles/MensajeError?tipoReporte=4", false);
                     }
+                    break;
+                case 7: // Cuando se trata del mensaje de registro de un usuario de Foro
+                    lblHeader.Text              = headerRegistroUsuario;
+                    lblMensajePrincipal.Text    = bodyRegistroUsuarioForo;
                     break;
                 default:
                     Response.Redirect("~/Perfiles/MensajeError");

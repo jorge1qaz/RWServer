@@ -119,7 +119,7 @@
             switch (Request.QueryString["tipo"].ToString())
             {
                 case "foro":
-                    cadena = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    cadena = HttpContext.Current.Request.Url + "/Foro/Buscador.aspx";
                     Response.Write(cadena.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
                     break;
                 case "smart":
@@ -144,7 +144,7 @@
             switch (Request.QueryString["tipo"].ToString())
             {
                 case "foro":
-                    cadena2 = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    cadena2 = HttpContext.Current.Request.Url + "/Foro/Buscador.aspx";
                     Response.Write(cadena2.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
                     break;
                 case "smart":
@@ -169,7 +169,7 @@
             switch (Request.QueryString["tipo"].ToString())
             {
                 case "foro":
-                    cadena3 = HttpContext.Current.Request.Url + "/Foro/Buscador";
+                    cadena3 = HttpContext.Current.Request.Url + "/Foro/Buscador.aspx";
                     Response.Write(cadena3.Replace("Acceso.aspx?tipo=foro/", "").Replace("acceso.aspx?tipo=foro/", "").Replace("acceso?tipo=foro/", "").Replace("Acceso?tipo=foro/", ""));
                     break;
                 case "smart":

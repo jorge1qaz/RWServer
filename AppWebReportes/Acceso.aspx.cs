@@ -40,7 +40,10 @@ namespace AppWebReportes
             try
             {
                 if (Request.QueryString["tipo"].ToString() == "foro")
+                {
                     blockMantenerSesion.Visible = true;
+                    Session["tipoRegistro"] = "foro";
+                }
             }
             catch
             {

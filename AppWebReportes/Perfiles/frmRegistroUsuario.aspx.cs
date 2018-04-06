@@ -69,16 +69,38 @@ namespace AppWebReportes.Perfiles
                 {
                     email       = txtConfirmarEmail.Text.ToString().Trim().ToLower();
                     idEncryped  = seguridad.Encrypt(txtConfirmarEmail.Text.ToString().Trim().ToLower(), keyDecrypt);
-                    bodyHTML    = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
-                    correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
-                    if (Session["tipoForo"] == null)
+                    string valorRegistro = "";
+                    try
+                    {
+                        valorRegistro = Session["tipoRegistro"].ToString();
+                    }
+                    catch (Exception)
+                    {
+
+                        valorRegistro = "";
+                    }
+                    try
+                    {
+                        switch (valorRegistro)
+                        {
+                            case "foro":
+                                bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 3);
+                                correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
+                                Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=7", false);
+                                break;
+                            default:
+                                bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
+                                correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
+                                Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=3", false);
+                                break;
+                        }
+                    }
+                    catch (Exception)
                     {
                         bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 2);
+                        correoElectronico.SendEmail(bodyHTML, email, "Activación de cuenta");
+                        Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=3", false);
                     }
-                    else {
-                        bodyHTML = correoElectronico.messageToEmail(idEncryped, "", txtNombre.Text.ToString().Trim(), 3);
-                    }
-                    Response.Redirect("~/Perfiles/MensajeExito.aspx?tipoReporte=3", false);
                 }
                 else
                 {

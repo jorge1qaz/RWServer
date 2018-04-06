@@ -86,7 +86,7 @@ namespace AppWebReportes.Foro
                         Response.Redirect("~/Foro/Buscador.aspx", false);
                     }
                     DataTable dataTable = new DataTable();
-                    dataTable = accesoDatos.Extrae("[foro].[FORO_List_Items_Cliente]", query.Replace("+", "%"), "@consulta");
+                    dataTable = accesoDatos.Extrae("[foro].[FORO_List_Items_Cliente]", HttpUtility.UrlDecode(query).Replace("+", "%"), "@consulta");
                     if (dataTable.Rows.Count > 0)
                     {
                         dtlListaResultados.DataSource = dataTable;

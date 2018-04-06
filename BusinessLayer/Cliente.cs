@@ -124,6 +124,51 @@ namespace BusinessLayer
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
         }
         //Jorge Luis|08/11/2017|RW-19
+        /*Método para ejecutar un procedimiento almacenado, con el atributo de id(correo) del Cliente, nombre, apellido y RUC con un parámetro de salida.*/
+        public bool EditDataUser(string storeProcedure)
+        {
+            Conexion con = new Conexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = storeProcedure;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Connection = con.cadena;
+
+            SqlParameter paramIdCliente = new SqlParameter();
+            paramIdCliente.SqlDbType = SqlDbType.NVarChar;
+            paramIdCliente.ParameterName = "@IdCliente";
+            paramIdCliente.Value = IdCliente;
+            cmd.Parameters.Add(paramIdCliente);
+
+            SqlParameter paramNombre = new SqlParameter();
+            paramNombre.SqlDbType = SqlDbType.NVarChar;
+            paramNombre.ParameterName = "@Nombre";
+            paramNombre.Value = Nombre;
+            cmd.Parameters.Add(paramNombre);
+
+            SqlParameter paramApellidos = new SqlParameter();
+            paramApellidos.SqlDbType = SqlDbType.NVarChar;
+            paramApellidos.ParameterName = "@Apellidos";
+            paramApellidos.Value = Apellidos;
+            cmd.Parameters.Add(paramApellidos);
+
+            SqlParameter paramRUC = new SqlParameter();
+            paramRUC.SqlDbType = SqlDbType.NVarChar;
+            paramRUC.ParameterName = "@RUC";
+            paramRUC.Value = RUC;
+            cmd.Parameters.Add(paramRUC);
+
+            SqlParameter paramComprobacion = new SqlParameter();
+            paramComprobacion.Direction = ParameterDirection.Output;
+            paramComprobacion.SqlDbType = SqlDbType.Bit;
+            paramComprobacion.ParameterName = "@Comprobacion";
+            cmd.Parameters.Add(paramComprobacion);
+
+            con.Connect();
+            cmd.ExecuteNonQuery();
+            con.Disconnect();
+            return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+        }
+        //Jorge Luis|08/11/2017|RW-19
         /*Método para ejecutar un procedimiento almacenado, sólo con el atributo de id(correo) del Cliente y un parámetro de salida.*/
         public string IdParameterUserName(string storeProcedure)
         {

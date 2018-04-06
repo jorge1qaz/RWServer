@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web;
 using BusinessLayer;
 using Newtonsoft.Json;
 
@@ -68,8 +69,8 @@ namespace AppWebReportes.Foro
                 };
                 if (clienteModerador.IdParameterUser("[foro].[FORO_Profiles_Comprobar_Moderador]")) // Sí es true entonces es moderador, Verifica si el usuario logeado es Moderador o no
                 {
-                    linkCrearItem.Visible = true;
-                    linkItemsSinRespuesta.Visible = true;
+                    linkCrearItem.Visible           = true;
+                    linkItemsSinRespuesta.Visible   = true;
                 }
                 else
                 {
@@ -83,7 +84,7 @@ namespace AppWebReportes.Foro
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             string query = txtBuscar.Text.ToString().Trim();
-            Response.Redirect("~/Foro/Resultados.aspx?query=" + query, false);
+            Response.Redirect("~/Foro/Resultados.aspx?query=" + HttpUtility.UrlDecode(query), false);
         }
     }
 }

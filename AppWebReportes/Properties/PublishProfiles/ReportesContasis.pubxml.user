@@ -14,7 +14,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>11/10/2017 16:46:32</publishTime>
     </File>
     <File Include="Acceso.aspx">
-      <publishTime>04/05/2018 09:59:58</publishTime>
+      <publishTime>04/06/2018 12:07:50</publishTime>
     </File>
     <File Include="Account/AddPhoneNumber.aspx">
       <publishTime>11/07/2017 13:43:58</publishTime>
@@ -71,16 +71,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>02/22/2013 08:43:40</publishTime>
     </File>
     <File Include="bin/AppWebReportes.dll">
-      <publishTime>04/05/2018 18:03:30</publishTime>
+      <publishTime>04/06/2018 14:21:13</publishTime>
     </File>
     <File Include="bin/AppWebReportes.pdb">
-      <publishTime>04/05/2018 18:03:30</publishTime>
+      <publishTime>04/06/2018 14:21:13</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>04/05/2018 18:03:58</publishTime>
+      <publishTime>04/06/2018 14:21:33</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>04/05/2018 18:03:57</publishTime>
+      <publishTime>04/06/2018 14:21:33</publishTime>
     </File>
     <File Include="bin/AspNet.ScriptManager.jQuery.dll">
       <publishTime>06/16/2016 12:18:22</publishTime>
@@ -1289,7 +1289,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>03/12/2018 17:18:18</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>04/05/2018 18:03:42</publishTime>
+      <publishTime>04/06/2018 14:21:18</publishTime>
     </File>
     <File Include="pruebas.aspx">
       <publishTime>11/30/2017 16:24:57</publishTime>

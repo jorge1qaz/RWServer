@@ -379,6 +379,7 @@
     <Content Include="Images\mi_negocio_al_dia_default.png" />
     <Content Include="Perfiles\CambiarPassword.aspx" />
     <Content Include="Perfiles\CambioPassword.aspx" />
+    <Content Include="Perfiles\EditarDatos.aspx" />
     <Content Include="Perfiles\frmRegistroUsuario.aspx" />
     <Content Include="Perfiles\MensajeError.aspx" />
     <Content Include="Perfiles\MensajeExito.aspx" />
@@ -893,6 +894,13 @@
     </Compile>
     <Compile Include="Perfiles\CambioPassword.aspx.designer.cs">
       <DependentUpon>CambioPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Perfiles\EditarDatos.aspx.cs">
+      <DependentUpon>EditarDatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfiles\EditarDatos.aspx.designer.cs">
+      <DependentUpon>EditarDatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfiles\frmRegistroUsuario.aspx.cs">
       <DependentUpon>frmRegistroUsuario.aspx</DependentUpon>
