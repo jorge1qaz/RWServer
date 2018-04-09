@@ -8,6 +8,10 @@
                 <li>
                     <img src="../Images/logo-contasis.png" style="margin: 10px;" />
                 </li>
+                <li>
+                    <br />
+                    <a href="~/Perfiles/EditarDatos.aspx" runat="server">Editar datos</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li>
@@ -24,7 +28,8 @@
     <div runat="server" id="imageDashboardBlock">
         <div class="parallax-container">
             <div class="parallax">
-                <img src="../Images/dashboard.jpg" id="imageDashboard" style="z-index: -10000;"/></div>
+                <img src="../Images/dashboard.jpg" id="imageDashboard" style="z-index: -10000;" />
+            </div>
         </div>
     </div>
     <br />
