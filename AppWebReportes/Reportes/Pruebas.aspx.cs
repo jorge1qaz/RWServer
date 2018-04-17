@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Web.Security;
+using System.Xml;
 using BusinessLayer;
 
 namespace AppWebReportes.Reportes
@@ -36,6 +37,37 @@ namespace AppWebReportes.Reportes
 
             string cajaBancos = queriesCompleteDatabase.GetOnlyOneResult(1, "A105");
 
+
         }
+
+        protected void btnConsultar_Click(object sender, EventArgs e)
+        {
+            Licenciador.wsC0nsultCSoapPortClient dataClient = new Licenciador.wsC0nsultCSoapPortClient();
+            string resultado = string.Empty;
+
+
+
+
+            resultado = dataClient.Execute(txtDNI.Text.ToString(), out resultado);
+            if (resultado == "-1")
+                lblResultado.Text = "Lo sentimos, no es usuario de Contasis.";
+            else
+                lblResultado.Text = resultado;
+        }
+
+        //protected void Consultar()
+        //{
+        //    XmlDocument xml = new XmlDocument();
+        //    xml.LoadXml(textoXML);
+
+        //    XmlNodeList detalleAdicionales = xml.GetElementsByTagName("detallesAdicionales");
+        //    XmlNodeList xLista = ((XmlElement)detalleAdicionales[0]).GetElementsByTagName("detAdicional");
+        //    foreach (XmlElement nodo in xLista)
+        //    {
+        //        string xnombre = nodo.GetAttribute("nombre");
+        //        string xvalor = nodo.GetAttribute("valor");
+        //    }
+        
+        //}
     }
 }

@@ -337,3 +337,4 @@ D:\git\reporteadorweb\web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.cspro
 D:\git\reporteadorweb\web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.csproj.CoreCompileInputs.cache
 D:\git\reporteadorweb\web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.dll
 D:\git\reporteadorweb\web\RWServer\AppWebReportes\obj\Debug\AppWebReportes.pdb
+D:\git\ReportesWeb\Web\AppWebReportes\obj\Debug\AppWebReportes.csproj.CopyComplete

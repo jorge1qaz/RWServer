@@ -33,3 +33,4 @@ D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete

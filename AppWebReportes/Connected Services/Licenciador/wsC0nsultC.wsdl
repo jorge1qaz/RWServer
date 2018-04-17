@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="RegistroLicencias" xmlns:wsdlns="RegistroLicencias" name="wsC0nsultC" targetNamespace="RegistroLicencias" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" elementFormDefault="qualified" targetNamespace="RegistroLicencias">
+      <xsd:element name="wsC0nsultC.Execute">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="T0" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="wsC0nsultC.ExecuteResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="T1" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="T2" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <message name="wsC0nsultC.ExecuteSoapIn">
+    <part name="parameters" element="wsdlns:wsC0nsultC.Execute" />
+  </message>
+  <message name="wsC0nsultC.ExecuteSoapOut">
+    <part name="parameters" element="wsdlns:wsC0nsultC.ExecuteResponse" />
+  </message>
+  <portType name="wsC0nsultCSoapPort">
+    <operation name="Execute">
+      <input message="wsdlns:wsC0nsultC.ExecuteSoapIn" />
+      <output message="wsdlns:wsC0nsultC.ExecuteSoapOut" />
+    </operation>
+  </portType>
+  <binding name="wsC0nsultCSoapBinding" type="wsdlns:wsC0nsultCSoapPort">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="Execute">
+      <soap:operation soapAction="RegistroLicenciasaction/AWSC0NSULTC.Execute" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="wsC0nsultC">
+    <port name="wsC0nsultCSoapPort" binding="wsdlns:wsC0nsultCSoapBinding">
+      <soap:address location="https://licenciacontasis.net/LicenciaDemo/awsc0nsultc.aspx" />
+    </port>
+  </service>
+</definitions>
