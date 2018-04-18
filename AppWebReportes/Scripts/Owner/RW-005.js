@@ -1,4 +1,49 @@
-﻿$(document).ready(function () {
+﻿function ComprobarUsuario() {
+    var user = $("#Contenido_txtCorreo").val();
+    $.ajax({
+        type: "POST",
+        url: "Acceso.aspx/ComprobarUsuarioKey",
+        data: "{paramIdCliente: '" + user + "' }",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            if (msg.hasOwnProperty("d")) {
+                if (msg.d == true) {
+                    $("#Contenido_blockCorreo").css("display", "none");
+                    $("#btnHtmlComprobarUsuario").css("display", "none");
+                    $("#Contenido_txtCorreo").css("display", "none");
+                    $("#Contenido_blockContrasenia").css("display", "block");
+                    $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                    $("#btnHtmlAcceder").css("display", "inline-block");
+                    $("#Contenido_txtContrasenia").focus();
+                } else {
+                    $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                }
+            } else {
+                if (msg == true) {
+                    $("#Contenido_blockCorreo").css("display", "none");
+                    $("#btnHtmlComprobarUsuario").css("display", "none");
+                    $("#Contenido_txtCorreo").css("display", "none");
+                    $("#Contenido_blockContrasenia").css("display", "block");
+                    $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
+                    $("#btnHtmlAcceder").css("display", "inline-block");
+                    $("#Contenido_txtContrasenia").focus();
+                } else {
+                    $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                }
+            }
+        }, error: function (msg) {
+            alert("error " + msg.responseText);
+        }
+    });
+}
+function ComprobarUsuarioKey(e) {
+    if (e.keyCode == 13) {
+        ComprobarUsuario();
+    }
+}
+
+$(document).ready(function () {
     var formulario = $("#Formulario");
     $(formulario).validate({
         rules: {

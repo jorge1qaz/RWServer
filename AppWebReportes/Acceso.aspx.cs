@@ -76,7 +76,13 @@ namespace AppWebReportes
             }
             else
                 resultado = false;
-            HttpContext.Current.Session.Remove("RegisterSuccess");
+            try
+            {
+                HttpContext.Current.Session.Remove("RegisterSuccess");
+            }
+            catch
+            {
+            }
             return resultado;
         }
         [WebMethod(EnableSession = true)]
