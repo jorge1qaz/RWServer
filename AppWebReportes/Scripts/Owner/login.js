@@ -1,6 +1,8 @@
 ﻿var truncateAccess = 0;
 function ComprobarUsuario() {
     var user = $("#Contenido_txtCorreo").val();
+    user = user.replace('\\', '');
+    console.log(user);
     $.ajax({
         type: "POST",
         url: "Acceso.aspx/ComprobarUsuarioKey",
@@ -44,7 +46,7 @@ function ComprobarUsuarioKey(e) {
     }
 }
 function Acceder() {
-    var user = $("#Contenido_txtCorreo").val();
+    var user = $("#Contenido_txtCorreo").val().replace('\\', '');
     var contrasenia = $("#Contenido_txtContrasenia").val();
     $.ajax({
         type: "POST",
@@ -88,7 +90,7 @@ timedCount();
 //if (privateIP == "") { privateIP = "192.168.1.4"; }
 
 function ValidateAccess() {
-    var idCliente = $("#Contenido_txtCorreo").val();
+    var idCliente = $("#Contenido_txtCorreo").val().replace('\\', '');
     $.ajax({
         type: "POST",
         url: "Acceso.aspx/ValidateAccess",

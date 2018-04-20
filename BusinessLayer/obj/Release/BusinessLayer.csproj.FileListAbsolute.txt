@@ -8,3 +8,4 @@ D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAsse
 D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\Newtonsoft.Json.dll
 D:\git\ReportesWeb\Web\BusinessLayer\bin\Release\Newtonsoft.Json.xml
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete

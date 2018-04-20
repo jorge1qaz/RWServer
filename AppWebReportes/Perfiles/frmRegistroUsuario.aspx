@@ -95,7 +95,58 @@
                 </div>
             </div>
         </div>
-        <script src="../Scripts/Owner/RW-005.js"></script>
+        <div class="modal fade bd-example-modal-sm" id="modalUserExistente" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Dirección de correo electrónico ya existente</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-outline-secondary">
+                                <div class="card-block">
+                                    <p>Estimado usuario, tu dirección de correo electrónico ya existe en nuestra base de datos, sí tienes alguna duda o problema, no dudes en contactarnos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                    </div>
+                </div>
+            </div>
+        <div class="modal fade bd-example-modal-sm" id="modalUserLicenciador"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">RUC/DNI no registrado en el licenciador</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card card-outline-secondary">
+                                <div class="card-block">
+                                    <p>Estimado usuario, el RUC/DNI que estas empleando no está registrado en las licencias que ofrecemos, esto conlleva ciertas limitaciones en el uso del sistema, pero descuida aun puedes crear tu cuenta y acceder a diversos servicios en línea, como el foro de ayuda al cliente y mucho más.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                    </div>
+                </div>
+            </div>
     </div>
+    <script>
+        
+        function triggerUserExistente() {
+            $(function () {
+                $('#modalUserExistente').modal();
+            });
+        }
+        function triggerUserLicenciador() {
+            $(function () {
+                $('#modalUserLicenciador').modal();
+            });
+        }
+    </script>
+    <script src="../Scripts/Owner/RW-005.js"></script>
     <script>var msgError = true;</script>
 </asp:Content>

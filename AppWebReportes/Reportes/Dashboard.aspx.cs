@@ -24,6 +24,25 @@ namespace AppWebReportes.Reportes
             //if (decimal.Parse(Request.Browser.Version) < decimal.Parse(Request.Browser.MajorVersion.ToString()))
             //    Response.Write("<script>alert('Tu navegador no está actualizado, las funcionalidades de la aplicación no serán iguales a menos que tengas actualizado tu navegador.')</script>");
 
+            #region Control de la sesión
+            try
+            {
+                if (Request.Cookies["mantenerSesion"].Value.ToString() == "1") // Sí el usuario decidió mantener iniciada la sesión, entonces se empleará la cookie
+                {
+                    try
+                    {
+                        Session["IdUser"] = Request.Cookies["idUserCookie"].Value;
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+            catch (Exception) // Si entra al catch es porque no decidió mantener iniciada la sesión
+            {
+            }
+            #endregion
+
             String rootPath = Server.MapPath("~");
             if (Session["IdUser"] == null) //Compruebo que el usuario se haya logeado
                 Response.Redirect("~/Acceso"); //En caso de que no, lo redireciono a la pagina "Acceso"

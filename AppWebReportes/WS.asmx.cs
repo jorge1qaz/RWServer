@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using System;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
 
 namespace AppWebReportes
@@ -11,6 +12,7 @@ namespace AppWebReportes
     [WebService(Namespace = "http://licenciacontasis.net/reportweb/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
+    [ScriptService]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
     public class WSasmx : System.Web.Services.WebService
@@ -37,33 +39,34 @@ namespace AppWebReportes
             return stateFinal;
         }
         [WebMethod(EnableSession = true)]
-        public static int ComprobarUsuarioKey(string paramIdCliente)
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public bool ComprobarUsuarioKey(string paramIdCliente)
         {
-            // 0 = init; 1 = 'El usuario ya existe'; 2 = 'El usuario no pertenece al licenciador'; 
-            // 3 = 'El usuario no existe y si pertenece al licenciador'; 4 = 'El usuario no existe y no pertenece al licenciador';
-            int resultado                                   = 0; // {comprobar existencia de cuenta}
+            bool resultado = false; // {comprobar existencia de cuenta}
+            Cliente cliente = new Cliente()
+            { IdCliente = paramIdCliente };
+            if (cliente.IdParameterUser("RW_Security_Check_User"))
+                resultado = true;
+            else
+                resultado = false;
+            return resultado;
+        }
+        [System.Web.Script.Services.ScriptMethod()]
+        [WebMethod]
+        public bool ComprobarUsuarioLicenciador(string paramIdCliente)
+        {
+            // 0 = init; 
+            // 1 = 'El usuario NO pertenece al licenciador';
+            // 2 = 'El usuario SI pertenece al licenciador';
+            bool resultado                                  = false; // {comprobar existencia de cuenta}
             string resultadoWS                              = string.Empty;
             Licenciador.wsC0nsultCSoapPortClient dataClient = new Licenciador.wsC0nsultCSoapPortClient();
             resultadoWS                                     = dataClient.Execute(paramIdCliente, out resultadoWS);
 
-            Cliente cliente = new Cliente()
-            { IdCliente = paramIdCliente };
-            if (cliente.IdParameterUser("RW_Security_Check_User")) // Sí el usuario existe devuelve TRUE, de lo contrario es FALSE
-            {
-                if (resultadoWS == "-1") // Sí es TRUE no pertenece al Licenciador
-                    resultado = 1; // El usuario si existe y no pertenece al licenciador (IGUAL AL CASO 1)
-                else
-                    resultado = ; 
-            }
+            if (resultadoWS == "-1") // Sí es TRUE no pertenece al Licenciador
+                resultado = false; // El usuario NO pertenece al licenciador
             else
-            {
-                if (resultadoWS == "-1")
-                    resultado = ;
-                else
-                    resultado = ;
-            }
-
-
+                resultado = true; // El usuario SI pertenece al licenciador (Usuario normal del SmartReport)
             return resultado;
         }
     }

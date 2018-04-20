@@ -408,7 +408,7 @@ namespace BusinessLayer
         {
             bool[] states;
             string customOutputVariable = "";
-            Int16 customOutputVariableValue = 0;
+            int customOutputVariableValue = 0;
             Conexion con = new Conexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = storeProcedure;
@@ -460,7 +460,16 @@ namespace BusinessLayer
             cmd.ExecuteNonQuery();
             con.Disconnect();
             states[0] = bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString()); // Variable de comprobación del sp
-            customOutputVariableValue = Int16.Parse(cmd.Parameters[customOutputVariable].Value.ToString());
+            try
+            {
+                string valorTest = cmd.Parameters[customOutputVariable].Value.ToString();
+            }
+            catch (Exception exception)
+            {
+                string messageception = exception.ToString();
+                throw;
+            }
+            customOutputVariableValue = Convert.ToInt16(cmd.Parameters[customOutputVariable].Value.ToString());
             switch (typeProcedure)
             {
                 case 1:

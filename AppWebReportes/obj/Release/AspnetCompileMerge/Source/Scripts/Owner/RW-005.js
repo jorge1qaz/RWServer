@@ -1,4 +1,57 @@
-﻿$(document).ready(function () {
+﻿function ComprobarUserExistente() {
+    var user = $("#MainContent_txtEmail").val();
+    //var valorDatos = { "paramIdCliente": user };
+    $.ajax({
+        type: "POST",
+        url: "../WS.asmx/ComprobarUsuarioKey",
+        data: "{paramIdCliente: '" + user + "' }",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            if (msg.hasOwnProperty("d")) {
+                if (msg.d == true) {
+                    triggerUserExistente();
+                }
+            } else {
+                if (msg == true) {
+                    triggerUserExistente();
+                }
+            }
+        }, error: function (msg) {
+            alert("error " + msg.responseText);
+        }
+    });
+}
+function ComprobarUserLicenciador() {
+    var user = $("#MainContent_txtRUC").val();
+    $.ajax({
+        type: "POST",
+        url: "../WS.asmx/ComprobarUsuarioLicenciador",
+        data: "{paramIdCliente: '" + user + "' }",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            if (msg.hasOwnProperty("d")) {
+                if (msg.d == false) {
+                    triggerUserLicenciador();
+                }
+            } else {
+                if (msg == false) {
+                    triggerUserLicenciador();
+                }
+            }
+        }, error: function (msg) {
+            alert("error " + msg.responseText);
+        }
+    });
+}
+function ComprobarUsuarioKey(e) {
+    if (e.keyCode == 13) {
+        ComprobarUsuario();
+    }
+}
+
+$(document).ready(function () {
     var formulario = $("#Formulario");
     $(formulario).validate({
         rules: {
@@ -96,6 +149,12 @@
         unhighlight: function (element, errorClass, validClass) {
             $(element).parents("input").addClass("text-sucess").removeClass("text-danger");
         }
+    });
+    $("#MainContent_txtEmail").focusout(function () {
+        ComprobarUserExistente();
+    });
+    $("#MainContent_txtRUC").focusout(function () {
+        ComprobarUserLicenciador();
     });
 });
 $("#MainContent_txtEmail").on('paste', function () {

@@ -13,15 +13,6 @@ D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\Busin
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\Proyectos\Contasis\Reporteador web\Web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.dll
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.pdb
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.dll
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.xml
-D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
-D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
-D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.dll
-D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.pdb
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\bin\Debug\BusinessLayer.dll
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\bin\Debug\BusinessLayer.pdb
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\bin\Debug\DotNetZip.dll
@@ -32,5 +23,14 @@ D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csprojR
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\git\reporteadorweb\web\RWServer\BusinessLayer\obj\Debug\BusinessLayer.pdb
-D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\git\ReportesWeb\Web\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csproj.CopyComplete
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Web\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache

@@ -6,4 +6,7 @@
     <script src="../Scripts/Owner/general.js"></script>
 
 
+    <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
+    <asp:Button ID="btnConsultar" runat="server" Text="Button" OnClick="btnConsultar_Click"  />
+    <asp:Label ID="lblResultado" runat="server" Text="Label"></asp:Label>
 </asp:Content>

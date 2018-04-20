@@ -36,18 +36,7 @@ namespace AppWebReportes
             catch
             {
             }
-            blockMantenerSesion.Visible = false;
-            try
-            {
-                if (Request.QueryString["tipo"].ToString() == "foro")
-                {
-                    blockMantenerSesion.Visible = true;
-                    Session["tipoRegistro"] = "foro";
-                }
-            }
-            catch
-            {
-            }
+            blockMantenerSesion.Visible = true;            
             if (!Page.IsPostBack)
             {
                 if ((string)Session["IdUser"]   != null)
@@ -99,7 +88,6 @@ namespace AppWebReportes
                 if (states[1])
                 {
                     resultado                               = "éxito"; // éxito
-                    HttpContext.Current.Session["IdUser"]   = paramIdCliente;
                 }
                 else
                     resultado = "comprobación de cuenta activada";  // comprobación de cuenta activada

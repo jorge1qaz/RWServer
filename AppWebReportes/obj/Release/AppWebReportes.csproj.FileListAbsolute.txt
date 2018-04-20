@@ -82,3 +82,4 @@ D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.csprojResolveAs
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.dll
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.pdb
 D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.csproj.CoreCompileInputs.cache
+D:\git\ReportesWeb\Web\AppWebReportes\obj\Release\AppWebReportes.csproj.CopyComplete

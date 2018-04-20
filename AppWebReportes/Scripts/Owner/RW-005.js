@@ -1,35 +1,20 @@
-﻿function ComprobarUsuario() {
-    var user = $("#Contenido_txtCorreo").val();
+﻿function ComprobarUserExistente() {
+    var user = $("#MainContent_txtEmail").val().replace('\\', '');
+    //var valorDatos = { "paramIdCliente": user };
     $.ajax({
         type: "POST",
-        url: "Acceso.aspx/ComprobarUsuarioKey",
+        url: "../WS.asmx/ComprobarUsuarioKey",
         data: "{paramIdCliente: '" + user + "' }",
         contentType: "application/json",
         dataType: "json",
         success: function (msg) {
             if (msg.hasOwnProperty("d")) {
                 if (msg.d == true) {
-                    $("#Contenido_blockCorreo").css("display", "none");
-                    $("#btnHtmlComprobarUsuario").css("display", "none");
-                    $("#Contenido_txtCorreo").css("display", "none");
-                    $("#Contenido_blockContrasenia").css("display", "block");
-                    $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
-                    $("#btnHtmlAcceder").css("display", "inline-block");
-                    $("#Contenido_txtContrasenia").focus();
-                } else {
-                    $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                    triggerUserExistente();
                 }
             } else {
                 if (msg == true) {
-                    $("#Contenido_blockCorreo").css("display", "none");
-                    $("#btnHtmlComprobarUsuario").css("display", "none");
-                    $("#Contenido_txtCorreo").css("display", "none");
-                    $("#Contenido_blockContrasenia").css("display", "block");
-                    $("#Contenido_btnLinkCambiarContrasenia").css("display", "inline-block");
-                    $("#btnHtmlAcceder").css("display", "inline-block");
-                    $("#Contenido_txtContrasenia").focus();
-                } else {
-                    $("#Contenido_lblDoesNotExistUser").text("No pudimos encontrar su cuenta de SmartReport");
+                    triggerUserExistente();
                 }
             }
         }, error: function (msg) {
@@ -37,11 +22,34 @@
         }
     });
 }
-function ComprobarUsuarioKey(e) {
-    if (e.keyCode == 13) {
-        ComprobarUsuario();
-    }
+function ComprobarUserLicenciador() {
+    var user = $("#MainContent_txtRUC").val().replace('\\', '');
+    $.ajax({
+        type: "POST",
+        url: "../WS.asmx/ComprobarUsuarioLicenciador",
+        data: "{paramIdCliente: '" + user + "' }",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (msg) {
+            if (msg.hasOwnProperty("d")) {
+                if (msg.d == false) {
+                    triggerUserLicenciador();
+                }
+            } else {
+                if (msg == false) {
+                    triggerUserLicenciador();
+                }
+            }
+        }, error: function (msg) {
+            alert("error " + msg.responseText);
+        }
+    });
 }
+//function ComprobarUsuarioKey(e) {
+//    if (e.keyCode == 13) {
+//        ComprobarUsuario();
+//    }
+//}
 
 $(document).ready(function () {
     var formulario = $("#Formulario");
@@ -141,6 +149,12 @@ $(document).ready(function () {
         unhighlight: function (element, errorClass, validClass) {
             $(element).parents("input").addClass("text-sucess").removeClass("text-danger");
         }
+    });
+    $("#MainContent_txtEmail").focusout(function () {
+        ComprobarUserExistente();
+    });
+    $("#MainContent_txtRUC").focusout(function () {
+        ComprobarUserLicenciador();
     });
 });
 $("#MainContent_txtEmail").on('paste', function () {
